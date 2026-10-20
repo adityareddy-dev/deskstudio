@@ -47,7 +47,7 @@ function pickRender(dir) {
 const ctlDir = join(root, 'clips', 'fixtures', 'controls', 'jobs');
 const ctl = JSON.parse(readFileSync(join(ctlDir, readdirSync(ctlDir)[0], 'state.json'), 'utf8'));
 const ctlAvg = (Object.values(ctl.scores.at(-1).axes).reduce((a, b) => a + b, 0) / 8).toFixed(1);
-const gif = name => existsSync(join(here, 'media', `${name}.gif`)) ? `![${name}](site/media/${name}.gif)\n\n` : '';
+const gif = (name, alt = name) => existsSync(join(here, 'media', `${name}.gif`)) ? `![${alt}](site/media/${name}.gif)\n\n` : '';
 const tierRows = [['director', 'the pick, the notes, the sign-off'], ['senior', 'the roughs, research, type, tokens, copy'], ['builder', 'every polish round, the making']];
 const desksByTier = t => registry.desks.filter(d => d.tier === t);
 
@@ -138,7 +138,7 @@ ${gif('before-after')}## The dashboard
 
 \`/desk:dashboard setup\` once, then \`/desk:dashboard start\`, opens a local page: ${registry.desks.length} desks lit when active, the job's phase and round, the review board with every rough, pick and round, the scorecard, and the cost by tier. Every control is a write to a file the Manager reads before its next step: pause, continue, stop, move a tier or a desk to another model, write a desk a note, pick a rough yourself, approve under the bar or send back with notes.
 
-${gif('pick-it-yourself')}${gif('swap-the-seat')}${gif('note-to-the-desk')}One real job, run from the dashboard: paused after the roughs, the pick made by hand, the builder role moved from Haiku to Sonnet, and a note written to the UI Designer. It came back signed off at ${ctlAvg} in ${ctl.round} rounds, ${money(ctl.cost.total)} at list price.
+${gif('pick-it-yourself')}${gif('swap-the-seat', 'Change the builder role')}${gif('note-to-the-desk')}One real job, run from the dashboard: paused after the roughs, the pick made by hand, the builder role moved from Haiku to Sonnet, and a note written to the UI Designer. It came back signed off at ${ctlAvg} in ${ctl.round} rounds, ${money(ctl.cost.total)} at list price.
 
 ${gif('the-pick')}## The team
 

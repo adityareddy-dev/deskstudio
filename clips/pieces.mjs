@@ -4,7 +4,7 @@
 //   node clips/pieces.mjs <piece|all> [--sizes slide,ig-story,ig-square] [--out DIR]
 //   node clips/pieces.mjs --list
 // Each piece writes clips/pieces/<name>.html (self-contained, fonts and images inline) and then
-// <name>-<WxH>.mp4, .webm and .png (the poster) into the out folder, the same names the floor recorder uses.
+// <name>-<WxH>.mp4, .webm and .png (the poster) into the out folder, the same names the dashboard recorder uses.
 import { copyFileSync, existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { spawnSync } from 'node:child_process';
 import { dirname, join, resolve } from 'node:path';
@@ -64,7 +64,7 @@ const stops = () => readFileSync(join(fixture, 'events.jsonl'), 'utf8').split('\
   .map(l => { try { return JSON.parse(l); } catch { return null; } })
   .filter(e => e && e.type === 'desk.stop' && typeof e.costUsd === 'number')
   .map(e => ({ desk: e.desk, tier: tierOf(e.model, e.desk), model: e.model, cost: e.costUsd, tokens: e.tokens && e.tokens.total || 0 }));
-// Cost is attributed by the model that ran, the way state.mjs does: a desk's seat can be overridden for a step.
+// Cost is attributed by the model that ran, the way state.mjs does: a desk's role can be overridden for a step.
 const tierOf = (model, desk) => /opus|fable|large|pro/.test(model || '') ? 'director' : /sonnet|mini|flash(?!-lite)/.test(model || '') ? 'senior' : /haiku|nano|lite/.test(model || '') ? 'builder' : TIER_OF[desk];
 // Keyframes for one segment of the cost line: holds, then moves to each new value over 300ms; `end` shrinks it back for a loop.
 function segFrames(name, steps, total, scale, { end = null } = {}) {
@@ -76,7 +76,7 @@ function segFrames(name, steps, total, scale, { end = null } = {}) {
   out.push(`100% { width: ${end ? '0%' : w(v)} }`);
   return `@keyframes ${name} { ${out.join(' ')} }`;
 }
-// The 42-desk floor from the sting, lamps lighting in reading order 20ms apart from `from`.
+// The 42-desk dashboard from the sting, lamps lighting in reading order 20ms apart from `from`.
 // `ran` is the set of registry indexes that did the job: the sting lights every lamp, then the others dim at `dimAt`.
 const floorHtml = (from = 200, { ran = null, dimAt = 4000 } = {}) => `<div class="floor" aria-hidden="true">${Array.from({ length: 42 }, (_, i) => `<div class="desk${ran && !ran.has(i) ? ' idle' : ''}" style="--t: ${from + i * 20}ms;--d: ${dimAt}ms"><div class="slab"></div><div class="lamp"></div></div>`).join('')}</div>`;
 const FLOOR_CSS = `
@@ -262,7 +262,7 @@ export const PIECES = {
       const start = { director: 0, senior: s.cost.director, builder: s.cost.director + s.cost.senior };
       const labels = ['director', 'senior', 'builder'].map(t => `<div class="tier land" style="--t:5300ms;--x:${(start[t] / scale * 100).toFixed(2)}%"><span class="muted">${t}</span> ${money(s.cost[t])}</div>`).join('');
       const builderTotal = polish.reduce((a, x) => a + x.cost, 0);
-      const caps = twoCaps('Three polish rounds on the builder seat.', `${money(builderTotal)} of ${money(total)}.`, 4800, 7000);
+      const caps = twoCaps('Three polish rounds on the builder role.', `${money(builderTotal)} of ${money(total)}.`, 4800, 7000);
       return doc({
         title: 'Desk Studio, builder prices', duration: 7000,
         css: `${frames}${caps.css}

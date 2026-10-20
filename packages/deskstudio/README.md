@@ -2,7 +2,7 @@
 
 Your own design studio. A full design studio inside the coding agent you already use. One command, free, nothing leaves your machine but the model calls you already make.
 
-This package is Desk Studio for coding agents other than Claude Code, plus the `desk-run`, `desk-proof`, `desk-event` and `desk-floor` tools for every agent. In Claude Code, install the plugin instead:
+This package is Desk Studio for coding agents other than Claude Code, plus the `desk-run`, `desk-proof`, `desk-event` and `desk-dashboard` tools for every agent. In Claude Code, install the plugin instead:
 
 ```
 /plugin install desk --marketplace adityareddy-dev/deskstudio
@@ -38,8 +38,8 @@ npx --package deskstudio desk-run design "a launch card" --models director=anthr
 The dashboard, a local page on 127.0.0.1 where you watch the desks, pause, move a role to another model, write a desk a note or pick a rough yourself:
 
 ```
-npx --package deskstudio desk-floor setup
-npx --package deskstudio desk-floor start
+npx --package deskstudio desk-dashboard setup
+npx --package deskstudio desk-dashboard start
 ```
 
 `desk-proof` checks any HTML or SVG file on its own:

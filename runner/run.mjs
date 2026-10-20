@@ -176,7 +176,7 @@ function tierFor(ctx, pen) {
   return pen === 'art-director' ? 'director' : pen === 'senior' ? 'senior' : 'builder';
 }
 
-// Reads the control file and the desk's inbox, records the desk on the floor, calls the model.
+// Reads the control file and the desk's inbox, records the desk on the dashboard, calls the model.
 async function callDesk(ctx, { desk, tier, task, system, prompt, images = [] }) {
   const { state, paths } = ctx;
   const control = S.readControl(paths);
@@ -184,7 +184,7 @@ async function callDesk(ctx, { desk, tier, task, system, prompt, images = [] }) 
   if (control.models && typeof control.models === 'object') {
     for (const t of TIERS) if (control.models[t] && control.models[t] !== state.models[t]) {
       resolveModel(control.models[t]);
-      ctx.log(`${t} moved to ${control.models[t]} from the floor`);
+      ctx.log(`${t} moved to ${control.models[t]} from the dashboard`);
       state.models[t] = control.models[t];
     }
   }
@@ -205,7 +205,7 @@ async function callDesk(ctx, { desk, tier, task, system, prompt, images = [] }) 
     if (result.via) entry.via = result.via;
     const tokens = normalizeUsage(result.usage);
     addCost(state, tier, result.costUsd, tokens);
-    // The same shape the SubagentStop hook writes in native mode, so the floor and state.mjs cost read both.
+    // The same shape the SubagentStop hook writes in native mode, so the dashboard and state.mjs cost read both.
     S.emitRaw(ctx.projectDir, { type: 'desk.stop', id: state.id, desk, tier, status: 'done', seconds: Math.round((Date.now() - t0) / 1000),
       model: result.spec || spec, modelId: result.modelId || result.model, ...(tokens ? { tokens } : {}), ...(typeof result.costUsd === 'number' ? { costUsd: result.costUsd } : {}) });
     ctx.log(`${desk}: done in ${Math.round((Date.now() - t0) / 1000)}s${result.costUsd != null ? `, ${result.costUsd.toFixed(4)} usd` : ', cost not reported'}`);
@@ -437,7 +437,7 @@ async function stepPick(ctx) {
   const prompt = `Job ${state.id}. Out folder: ${paths.outDir}. Renders folder: ${paths.rendersDir}.\n`
     + `Three roughs were made from the same brief. Patterns: ${state.roughs.map(r => `rough ${r.n} ${r.pattern.toLowerCase()}`).join(', ')}.\n`
     + `Screenshots attached in this order:\n${listing.join('\n')}\n`
-    + (userPick ? `The user has already picked rough ${userPick} from the floor. Do not re-pick: your pick line must read "pick: ${userPick}", the reason is "the user's call", and your notes are for rough ${userPick}.\n` : '')
+    + (userPick ? `The user has already picked rough ${userPick} from the dashboard. Do not re-pick: your pick line must read "pick: ${userPick}", the reason is "the user's call", and your notes are for rough ${userPick}.\n` : '')
     + `Return your pick in the shape your brief defines.\n` + briefBlock(ctx);
   const r = await callDesk(ctx, { desk: 'art-director', tier: 'director', task: 'pick', system: texts.roles['art-director'], prompt, images });
   let pick;

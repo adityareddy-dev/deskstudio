@@ -1,6 +1,6 @@
 # Desk Studio
 
-Position: for developers and founders who ship without a designer, 42 desks working inside your agent while you run the floor. Warm, plain, steady.
+Position: for developers and founders who ship without a designer, 42 desks working inside your agent while you run the dashboard. Warm, plain, steady.
 
 ## The mark
 
@@ -12,7 +12,7 @@ Position: for developers and founders who ship without a designer, 42 desks work
 
 ## Backgrounds
 
-- Dark set (`background` #12110f) for the floor, the sting and dark cards.
+- Dark set (`background` #12110f) for the dashboard, the sting and dark cards.
 - Light set (`background-light` #ffffff) for the hero page, the sheet and white cards.
 - Surface (`surface`, `surface-light`) for panels and desks only. Never put the mark on amber.
 - Text pairs are in `DESIGN.md`. Use only those.
@@ -25,9 +25,9 @@ Amber is a desk at work and the pick: a lit lamp, and the ring drawn round the p
 
 Inter, 600 and 400. Wordmark tracking -0.02em. Scale and sizes are in `type.md`. Geist Mono only for the install line.
 
-## The floor
+## The dashboard
 
-The 42-desk grid is 7 columns by 6 rows. It appears only as the floor, never as wallpaper behind text.
+The 42-desk grid is 7 columns by 6 rows. It appears only as the dashboard, never as wallpaper behind text.
 
 ## Voice
 

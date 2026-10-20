@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // The hero loop: one command typed in a terminal, then every piece the studio has signed off, then the line.
-// Not a floor recording. Every frame is drawn from a fixed timeline, so every take comes out the same.
+// Not a dashboard recording. Every frame is drawn from a fixed timeline, so every take comes out the same.
 // The pieces are the gallery's own renders from evals/golden, picked the way site/build.mjs picks them.
 //   node clips/one-command.mjs [--size 16:9|1:1|9:16|4:5] [--out clips/takes]
 // Output: one-command-<WxH>.mp4 and the poster frame one-command-<WxH>.png.

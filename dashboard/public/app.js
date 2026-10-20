@@ -1,4 +1,4 @@
-// Desk Studio floor. Plain JS, no build step.
+// Desk Studio dashboard. Plain JS, no build step.
 // Reads /api/state, /api/jobs/:id and the /api/events stream. Writes controls through /api/control/:id.
 (() => {
   'use strict';
@@ -280,7 +280,7 @@
     const el = $('#job');
     const job = S.job;
     if (!job) {
-      el.innerHTML = `<div class="panel-head"><h2>Job</h2></div><p class="muted">${S.state.jobs.length ? 'Pick a job above.' : 'No jobs yet. Run /desk:design in this project and the floor fills in as the desks work.'}</p>`;
+      el.innerHTML = `<div class="panel-head"><h2>Job</h2></div><p class="muted">${S.state.jobs.length ? 'Pick a job above.' : 'No jobs yet. Run /desk:design in this project and the dashboard fills in as the desks work.'}</p>`;
       return;
     }
     const st = job.state, c = job.control || {}, M = modelsNow();
@@ -294,7 +294,7 @@
     if (c.pick) held.push(`Your pick: rough ${c.pick}. It overrides the Art Director at the pick step.`);
     if (c.approve) held.push('Approved by you.');
     if (c.sendBack) held.push('Sent back with your notes for one more round.');
-    if (c.models) held.push('Seats changed for this job. They apply at each desk\'s next step.');
+    if (c.models) held.push('Roles changed for this job. They apply at each desk\'s next step.');
     if (job.controlError) held.push(`control.json cannot be read: ${job.controlError}`);
     const cost = st.cost || {};
     const overrides = M.overrides();
@@ -316,7 +316,7 @@
           : `<button data-act="pause" data-v="true" ${closed ? 'disabled' : ''}>Pause at next step</button>`}
         <button class="danger ghost" data-act="stop" ${c.stop || closed ? 'disabled' : ''}>${c.stop ? 'Stop requested' : 'Stop job'}</button>
       </div>
-      <h3>Seats</h3>
+      <h3>Roles</h3>
       <table class="seats">${TIERS.map(t => `<tr><td>${t}</td><td class="mono">${esc(M.tier(t) || 'default')}</td><td><button class="ghost small" data-act="tier" data-tier="${t}">Change</button></td></tr>`).join('')}</table>
       ${Object.keys(overrides).length ? `<p class="muted">Desk overrides: ${Object.entries(overrides).map(([k, v]) => `${esc(deskName(k))} on <span class="mono">${esc(v)}</span>`).join(', ')}</p>` : ''}
       <h3>Cost so far</h3>
@@ -325,7 +325,7 @@
         <tr><td>total</td><td><strong>${money(cost.total) || '<span class="muted">none reported</span>'}</strong></td></tr>
       </table>
       ${costLineHtml(cost)}
-      ${cost.complete === false ? '<p class="muted">Partial: some desks did not report usage, so this is a floor, not the total.</p>' : ''}
+      ${cost.complete === false ? '<p class="muted">Partial: some desks did not report usage, so this is a lower bound, not the total.</p>' : ''}
       ${st.tokens && typeof st.tokens === 'object' ? `<p class="muted">Tokens: ${Object.entries(st.tokens).map(([k, v]) => `${esc(k)} ${fmtNum(v)}`).join(', ')}</p>` : ''}
       ${usage.size ? `<table class="bydesk">${[...usage].sort((a, b) => b[1].cost - a[1].cost).map(([slug, u]) => `<tr><td>${esc(deskName(slug))}<span class="muted"> x${u.runs}</span></td><td class="mono muted">${tokensShort(u.tokens)}</td><td>${u.priced ? money(u.cost) : '<span class="muted">no price</span>'}</td></tr>`).join('')}</table>
       <p class="muted">Per desk, at list price, from what each desk reported when it stopped.</p>` : ''}
@@ -355,8 +355,8 @@
     }
     const jobOpen = !!S.job && !CLOSED.has(S.job.state.phase) && !(S.job.control && S.job.control.paused);
     let lit = live.size + (jobOpen ? 1 : 0);
-    let html = `<div class="panel-head"><h2>The floor</h2><span class="muted">${lit} of ${desks.desks.length} desks lit</span></div>`;
-    // One 7 by 6 floor in tier order, with the tiers and their seats listed above it.
+    let html = `<div class="panel-head"><h2>Dashboard</h2><span class="muted">${lit} of ${desks.desks.length} desks lit</span></div>`;
+    // One 7 by 6 dashboard in tier order, with the tiers and their roles listed above it.
     html += `<div class="tiers">${desks.tiers.map(tier => {
       const n = desks.desks.filter(d => d.tier === tier.id).length;
       const tierModel = tier.id === 'manager' ? 'session model' : (M.tier(tier.id) || tier.model);
@@ -378,7 +378,7 @@
         if (stale) task += ' (no live agent)';
         const since = l ? l.since : (isManager && jobOpen ? Date.parse(S.job.state.startedAt) : 0);
         const u = usage.get(d.slug);
-        // A lamp that lights after the floor first drew lights with the entrance move; the first draw shows what is already lit.
+        // A lamp that lights after the dashboard first drew lights with the entrance move; the first draw shows what is already lit.
         let lamp = -1;
         if (isLit) lamp = moveAge(`lamp:${d.slug}`, S.floorDrawn);
         else MOVES.delete(`lamp:${d.slug}`);
@@ -544,7 +544,7 @@
     return `<h3>Model</h3>
       <div class="row"><select id="modelSelect" aria-label="Model">${opts.map(m => `<option value="${esc(m)}" ${m === current ? 'selected' : ''}>${esc(m)}</option>`).join('')}<option value="__other">Other</option></select><input id="modelOther" type="text" placeholder="provider/model" hidden></div>
       <div class="row"><button data-act="model" data-scope="job" ${S.job ? '' : 'disabled'}>This job</button><button class="ghost" data-act="model" data-scope="default" ${S.job ? '' : 'disabled'}>Save as default</button>${hasOverride ? '<button class="ghost" data-act="model-clear">Use the tier model</button>' : ''}</div>
-      <p class="muted">${S.job ? 'A running desk finishes its step first. The new seat applies at the next step.' : 'Pick a job first. Without one there is nothing to write the change to.'}</p>`;
+      <p class="muted">${S.job ? 'A running desk finishes its step first. The new role applies at the next step.' : 'Pick a job first. Without one there is nothing to write the change to.'}</p>`;
   }
 
   function renderSheet() {
@@ -565,7 +565,7 @@
         <p class="muted">${esc(tier.name)} tier. Now on <span class="mono">${esc(current)}</span>${d.tier === 'manager' ? '' : override ? ' (set for this desk)' : ' (the tier model)'}.</p>
         ${u ? `<p class="muted">On this job: ${u.runs} run${u.runs === 1 ? '' : 's'}, ${tokensShort(u.tokens)} tokens${u.priced ? `, ${money(u.cost)} at list price` : ''}${u.models.size ? ` on <span class="mono">${esc([...u.models].join(', '))}</span>` : ''}.</p>` : ''}
         ${d.tier === 'manager'
-          ? '<p class="muted">The Design Manager runs in your own session on whatever model the session uses, so it has no seat to change.</p>'
+          ? '<p class="muted">The Design Manager runs in your own session on whatever model the session uses, so it has no role to change.</p>'
           : modelForm(current, !!override)}
         <h3>Note to this desk</h3>
         <p class="muted">Goes into this desk's next prompt on the job. The log records only that a note was left and its length.</p>
@@ -575,7 +575,7 @@
       const tier = S.state.desks.tiers.find(t => t.id === target);
       if (!tier) return closeSheet();
       const current = M.tier(target) || tier.model;
-      title = `${tier.name} seats`;
+      title = `${tier.name} roles`;
       body = `<p class="muted">${esc(tier.note || '')} Now on <span class="mono">${esc(current)}</span>.</p>${modelForm(current, false)}`;
     } else if (kind === 'sendback') {
       title = 'Send back';
@@ -719,7 +719,7 @@
     const main = $('main');
     const n = document.createElement('section');
     n.className = 'notice';
-    n.innerHTML = `<h2>Cannot open the floor</h2><p>${esc(msg)}</p>`;
+    n.innerHTML = `<h2>Cannot open the dashboard</h2><p>${esc(msg)}</p>`;
     main.prepend(n);
   }
 

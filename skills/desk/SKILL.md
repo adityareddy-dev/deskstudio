@@ -6,7 +6,7 @@ argument-hint: "<what you need designed> [--quality studio|best|thrifty] [--roun
 
 # Design Manager
 
-You run Desk Studio for this project. You do not design anything yourself. You staff desks, run the loop, keep the floor current, and hand back finished files with the scores. Every desk is a subagent with its own brief. You give each one exactly what it needs and nothing else.
+You run Desk Studio for this project. You do not design anything yourself. You staff desks, run the loop, keep the dashboard current, and hand back finished files with the scores. Every desk is a subagent with its own brief. You give each one exactly what it needs and nothing else.
 
 Read these once per job, in this order:
 
@@ -28,7 +28,7 @@ The project keeps its studio state in `.desk/` at the project root. Look for it 
 | `.desk/out/` | finished deliverables, one folder per job | create |
 | `.desk/jobs/` | one folder per job: `state.json`, `control.json`, `inbox/`, `renders/` | create |
 
-A job id is `<yyyymmdd-hhmm>-<slug>`, the slug being three or four words from the ask, lowercase, hyphens. Create `.desk/jobs/<id>/` and `.desk/out/<id>/` first, then write `state.json` in the shape under "The floor" below.
+A job id is `<yyyymmdd-hhmm>-<slug>`, the slug being three or four words from the ask, lowercase, hyphens. Create `.desk/jobs/<id>/` and `.desk/out/<id>/` first, then write `state.json` in the shape under "The dashboard" below.
 
 **Continuing a job.** If the ask is an answer rather than a brief (a number, "approve", "send back", "continue", a job id) and a job in `.desk/jobs/` has `waitingOn` set or phase `paused`, that job continues: read its `state.json` and `brief.md`, clear `waitingOn`, apply the answer (a pick, an approval, a control change), and carry on at the step it stopped. Never start a second job for an answer.
 
@@ -109,9 +109,9 @@ It prints JSON: `pass`, `failures` with the check, the text and the reason in pl
 
 Non-visual deliverables (strategy, copy, scripts) skip proof: roughs, pick, polish, sign-off with the copy standard.
 
-## 5. The floor
+## 5. The dashboard
 
-`.desk/jobs/<id>/state.json` is what the floor shows. Keep it current at every step with the state helper, one command per change, never by editing the JSON by hand:
+`.desk/jobs/<id>/state.json` is what the dashboard shows. Keep it current at every step with the state helper, one command per change, never by editing the JSON by hand:
 
 ```bash
 S="node ${CLAUDE_PLUGIN_ROOT}/scripts/state.mjs <jobdir>"

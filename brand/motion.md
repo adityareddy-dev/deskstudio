@@ -13,7 +13,7 @@ Source of truth is the `motion:` block in DESIGN.md. The table copies it. Where 
 
 Linear only for opacity under 150ms and for progress. No bounce. Stagger between items is 60 to 80ms, six items at most per group, except the scorecard's eight slabs at 60ms and the sting's 42-lamp wave at 20ms.
 
-## The three floor moves
+## The three dashboard moves
 
 | Move | Property | Duration | Easing | Stagger |
 |---|---|---|---|---|
@@ -22,7 +22,7 @@ Linear only for opacity under 150ms and for progress. No bounce. Stagger between
 | The scorecard slabs fill | eight slabs, each `transform: scaleX(0)` to `scaleX(1)` from its left edge, left to right. The pass line at 8 is drawn from the first frame and never animates. A slab under 8 stops at its value and stays muted, its figure turns danger `#ff6b5e`. | 300ms each | entrance | 60ms between slabs |
 | The cost line grows | one line in three segments, director then senior then builder, in the foreground colour at 100%, 60% and 30%, measured against the next whole dollar. Each segment's `width` moves from its last value to its new one when a desk reports. No amber, no stagger. | 300ms | settle | none |
 
-The pick ring appears fully drawn on the card, and it draws on the floor and on the sheet. It is not in the hero or the sting, where amber stays the lamps. One ring per screen.
+The pick ring appears fully drawn on the card, and it draws on the dashboard and on the sheet. It is not in the hero or the sting, where amber stays the lamps. One ring per screen.
 
 The sting lights all 42 desks in reading order, 20ms apart, from 200ms (the last starts at 1020ms and is lit by 1320ms), then the end line lands with the entrance move at 1333ms and holds to 3000ms.
 

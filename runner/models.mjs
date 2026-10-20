@@ -1,5 +1,5 @@
 // Model specs: "provider/alias" or "provider/full-id" to a provider, an id and a price.
-// Tiers and desks come from skills/desk/desks.json, the one registry the floor and the agents share.
+// Tiers and desks come from skills/desk/desks.json, the one registry the dashboard and the agents share.
 import { readFileSync, existsSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -36,7 +36,7 @@ export function providerNames() {
 
 export const TIERS = ['director', 'senior', 'builder'];
 
-// The default seat per tier from desks.json, with the Manager skill's defaults behind it.
+// The default role per tier from desks.json, with the Manager skill's defaults behind it.
 export function tierDefaults() {
   const t = loadDesks().tiers || {};
   return {

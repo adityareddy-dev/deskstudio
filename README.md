@@ -107,7 +107,7 @@ The launch card at the top went roughs, pick (rough 2: headline reads first at b
 
 ![pick-it-yourself](site/media/pick-it-yourself.gif)
 
-![swap-the-seat](site/media/swap-the-seat.gif)
+![Change the builder role](site/media/swap-the-seat.gif)
 
 ![note-to-the-desk](site/media/note-to-the-desk.gif)
 

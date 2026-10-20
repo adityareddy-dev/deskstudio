@@ -20,9 +20,9 @@ The script and beats from the Video Producer, the clip length and sizes (16:9, 9
 - **Beat length.** 0.8 to 2.5 seconds. A caption's beat is at least its reading time: `words * 60 / 200` seconds and never under 1.2s. The hook frame holds for 1 to 1.5s. The end frame holds for 1.5 to 2s.
 - **The first frame is the poster.** The hook line in the biggest type of the clip, the brand present, something to look at. It has to work still.
 - **One change per beat.** Something enters, something moves, something resolves. Never two.
-- **Eye path** continues: where the last beat ended, the next begins. Left to right, top to bottom, or a fixed anchor (the floor stays, the desks light).
+- **Eye path** continues: where the last beat ended, the next begins. Left to right, top to bottom, or a fixed anchor (the dashboard stays, the desks light).
 - **Captions** in the safe zone (bottom 15% for 9:16, bottom 10% for 16:9, above any platform UI), 5% of the height tall at least, on a scrim if over anything busy, ten words at most per caption, the same position every time.
-- **Real UI** over mockups. If the clip shows the floor, the frames are renders of the real floor at real states.
+- **Real UI** over mockups. If the clip shows the dashboard, the frames are renders of the real dashboard at real states.
 - **9:16 is not a crop of 16:9.** Re-board it: stack what was side by side, bigger type, the caption closer to the action.
 - **Sound** is optional. The board works silent. A sound cue (a click, a sting) is noted with its beat.
 - **The end frame**: the mark, the one line (the install command or the URL), still for 1.5s or more.

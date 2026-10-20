@@ -32,7 +32,7 @@ For a design ask that ends in files (a card, a carousel, a landing page, an emai
 
 Commands: ${commands}. Flags: \`--quality studio|best|thrifty\`, \`--rounds N\`, \`--models director=anthropic/opus,builder=google/flash\`. \`npx --package deskstudio desk-run doctor\` shows which model providers this machine can use.
 
-The runner writes finished files to \`.desk/out/<job>/\` and the job state to \`.desk/jobs/<job>/\`. Its last lines are the handback: what was made and where, which desks worked on which model, the scores, the rounds, the cost. Return that to the user as it is. Exit code 3 means the job is holding (paused from the floor), 4 means it was handed back under the bar.
+The runner writes finished files to \`.desk/out/<job>/\` and the job state to \`.desk/jobs/<job>/\`. Its last lines are the handback: what was made and where, which desks worked on which model, the scores, the rounds, the cost. Return that to the user as it is. Exit code 3 means the job is holding (paused from the dashboard), 4 means it was handed back under the bar.
 
 For design work inside the codebase (components, styles, pages), play the Design Manager yourself: read \`${skillsDir}/SKILL.md\` and follow it, with the role briefs in \`${skillsDir}/roles/\`, \`${skillsDir}/rubric.md\` and the standards in \`${skillsDir}/standards/\`. Desks on call: ${desks.join(', ')}. Run proof on anything visual with \`npx --package deskstudio desk-proof check <file> --brand .desk/DESIGN.md --sizes <sizes> --out .desk/renders\`.
 <!-- desk:end -->

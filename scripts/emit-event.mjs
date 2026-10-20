@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Appends one event line to <project>/.desk/events.jsonl for the floor.
+// Appends one event line to <project>/.desk/events.jsonl for the dashboard.
 // Two ways in:
 //   as a hook:    node emit-event.mjs --hook        (reads the hook JSON on stdin)
 //   from a skill: node emit-event.mjs job.phase id=... phase=roughs round=0

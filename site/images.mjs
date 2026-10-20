@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // The promotional image set, from frames of the recorded takes, so still and motion match.
 //   node site/images.mjs [--takes clips/takes] [--out site/images]
-// Subjects: the wall (every signed-off piece around the command), the floor, the scorecard, the cost line, the gallery and the hook (the sting's end line), each at
+// Subjects: the wall (every signed-off piece around the command), the dashboard, the scorecard, the cost line, the gallery and the hook (the sting's end line), each at
 // og 1200x630, linkedin 1200x627, x 1600x900, reddit 1200x628 (from the 16:9 take), square 1080x1080 (from the 1:1
 // take) and story 1080x1920 (from the 9:16 take). The wall at og size is also written to site/media/og.png, cause it shows the work.
 import { existsSync, mkdirSync, statSync } from 'node:fs';

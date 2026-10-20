@@ -1,6 +1,6 @@
 # The runner
 
-`desk-run` is the Design Manager's loop as a Node program. It lets the same desks, the same loop and the same floor work outside Claude Code, with a different provider per tier. In Claude Code the plugin's subagents do this natively. Everywhere else, and for anyone who wants to mix providers across tiers, the runner drives the loop itself.
+`desk-run` is the Design Manager's loop as a Node program. It lets the same desks, the same loop and the same dashboard work outside Claude Code, with a different provider per tier. In Claude Code the plugin's subagents do this natively. Everywhere else, and for anyone who wants to mix providers across tiers, the runner drives the loop itself.
 
 ```
 desk-run design "a launch card for LinkedIn" [--project DIR] [--quality studio|best|thrifty] [--rounds N]
@@ -39,17 +39,17 @@ Exit codes: 0 done at the bar, 4 handed back under the bar, 3 holding, 1 failed,
   events.jsonl         one line per event, names, numbers and paths only
   jobs/<id>/
     brief.md           the brief, the only place the ask lives
-    state.json         the floor: phase, round, desks, pick, proof, scores, cost, waitingOn
-    control.json       written by the floor or by hand: paused, models, pick
+    state.json         the dashboard: phase, round, desks, pick, proof, scores, cost, waitingOn
+    control.json       written by the dashboard or by hand: paused, models, pick
     inbox/<desk>.md    a note from the user to one desk, read once then deleted
     renders/roughs/rough-N/<size>.png, renders/round-N/<size>.png
   out/<id>/
     rough-1.html rough-2.html rough-3.html final.html handback.md
 ```
 
-`state.json` follows the shape in the Manager skill (the same one `scripts/state.mjs` keeps in native mode, with `tokens` by tier and desk entries `{ desk, task, status, model, startedAt, updatedAt }`), plus what the runner needs to resume: `pen` (builder, senior or art-director), `notes` (for the next polish round), `misses` (per axis or proof check), `roughs`, `lastRenders`, and `next` when the job is paused or failed. So the floor shows a runner job and a native job the same way.
+`state.json` follows the shape in the Manager skill (the same one `scripts/state.mjs` keeps in native mode, with `tokens` by tier and desk entries `{ desk, task, status, model, startedAt, updatedAt }`), plus what the runner needs to resume: `pen` (builder, senior or art-director), `notes` (for the next polish round), `misses` (per axis or proof check), `roughs`, `lastRenders`, and `next` when the job is paused or failed. So the dashboard shows a runner job and a native job the same way.
 
-Tiers and desks come from `skills/desk/desks.json`, the registry the floor and the generated agents share: the default seat per tier, and each desk's name and tier. A command may only staff desks that are in it.
+Tiers and desks come from `skills/desk/desks.json`, the registry the dashboard and the generated agents share: the default role per tier, and each desk's name and tier. A command may only staff desks that are in it.
 
 ## Events
 
@@ -60,12 +60,12 @@ Job events go through `scripts/emit-event.mjs` in its from-a-skill form: `job.st
 Before every model call the runner reads `.desk/jobs/<id>/control.json`:
 
 - `"paused": true` holds the job. The current call is never interrupted, the hold happens before the next one. State gets `phase: "paused"` and `next: "<phase>"`, the runner prints one line saying how to resume, and exits 3.
-- `"models": { "builder": "openai/nano" }` moves a tier for the rest of the job. State records the new seat, the handback lists every model each desk used.
+- `"models": { "builder": "openai/nano" }` moves a tier for the rest of the job. State records the new role, the handback lists every model each desk used.
 - `"pick": 2` overrides the Art Director's pick, as above.
 
 A file in `inbox/<desk>.md` is a note from the user to that desk. The runner puts it at the top of that desk's next prompt under "Note from the user" and deletes it. For the three parallel roughs the first rough takes the note.
 
-The floor writes these files. Without the floor, write them by hand.
+The dashboard writes these files. Without the dashboard, write them by hand.
 
 ## Resume
 
@@ -89,7 +89,7 @@ Pick and sign-off see the screenshots. Anthropic, OpenAI and Google have complet
 
 ## What stays Claude Code only
 
-Native subagents with the host's tools (reading the repo, editing components, the Figma MCP), the hooks that light the floor from the host's own tool calls, and the memory block applied by the Stop hook. The runner's desks produce files, not repo edits, which is what deliverables are anyway. Everything else, the desks, the loop, the tiers, proof, the control file and the event log, runs anywhere Node and Chrome run.
+Native subagents with the host's tools (reading the repo, editing components, the Figma MCP), the hooks that light the dashboard from the host's own tool calls, and the memory block applied by the Stop hook. The runner's desks produce files, not repo edits, which is what deliverables are anyway. Everything else, the desks, the loop, the tiers, proof, the control file and the event log, runs anywhere Node and Chrome run.
 
 ## Tests
 
@@ -97,4 +97,4 @@ Native subagents with the host's tools (reading the repo, editing components, th
 node --test "runner/test/*.test.mjs"
 ```
 
-A fake provider answers from canned documents and score blocks, so the loop tests make no model calls and still render with proof for real. They cover the parsers, a pass on round one, notes carried into round two, a proof failure that never reaches the director, the cap, the escalation ladder, the brand step, two sizes, pause and resume, control.json seats and pick, the inbox, a failed call, and the installer on a temp dir.
+A fake provider answers from canned documents and score blocks, so the loop tests make no model calls and still render with proof for real. They cover the parsers, a pass on round one, notes carried into round two, a proof failure that never reaches the director, the cap, the escalation ladder, the brand step, two sizes, pause and resume, control.json roles and pick, the inbox, a failed call, and the installer on a temp dir.

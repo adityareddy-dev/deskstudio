@@ -28,6 +28,7 @@
     "desk-run": "bin/desk-run.mjs",
     "desk-proof": "bin/desk-proof.mjs",
     "desk-event": "bin/desk-event.mjs",
+    "desk-dashboard": "bin/desk-dashboard.mjs",
     "desk-floor": "bin/desk-floor.mjs"
   },
   "files": [

@@ -1,6 +1,6 @@
 # What a job costs
 
-On a subscription plan the figures here are list price, not a bill. On an API key they are what you pay. The floor shows what the work would cost at list price so you can see where the money goes and move seats around.
+On a subscription plan the figures here are list price, not a bill. On an API key they are what you pay. The dashboard shows what the work would cost at list price so you can see where the money goes and move roles around.
 
 ## The tiers
 
@@ -25,15 +25,15 @@ Every desk runs as its own subagent with its own transcript. When a desk stops, 
 
 `complete: false` means at least one desk did not report usage, and the handback says so.
 
-## Reading the floor
+## Reading the dashboard
 
 - The job panel shows cost so far by tier and the total, and a line that grows as the desks report.
 - Each desk card shows the model it ran on and what its last turn cost.
 - The cost line on the site comes from the launch card run in `clips/fixtures/card/`, never typed in.
 
-## Moving seats
+## Moving roles
 
-Change tiers in `.desk/project.json`, with `--quality studio|best|thrifty` on a command, or from the floor while a job is paused. `thrifty` puts Sonnet on the director desks and Haiku everywhere else, including the roughs. `best` puts Fable on the directors and Opus on the seniors. A mix across providers (`"builder": "openai/nano"`) goes through the runner.
+Change tiers in `.desk/project.json`, with `--quality studio|best|thrifty` on a command, or from the dashboard while a job is paused. `thrifty` puts Sonnet on the director desks and Haiku everywhere else, including the roughs. `best` puts Fable on the directors and Opus on the seniors. A mix across providers (`"builder": "openai/nano"`) goes through the runner.
 
 On the Northlight card, thrifty cost $0.35 against $0.97 at the studio tier and finished at 8.1, under the bar after three rounds. The best preset has not been run to the end yet.
 

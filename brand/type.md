@@ -38,11 +38,11 @@ Base 16px, ratio 1.25, rounded to 0.5px. Headlines are tight, body is open.
 | small | -1 | 13 | 1.4 | 400 | 0 |
 | label | -1 | 13 | 1.2 | 600, caps | +0.06em |
 
-Measure: body 60ch, never over 70ch. Headlines run two lines at most on every surface. Nothing under 13px except desk figures on the floor at 11px minimum.
+Measure: body 60ch, never over 70ch. Headlines run two lines at most on every surface. Nothing under 13px except desk figures on the dashboard at 11px minimum.
 
 ## Numerals
 
-Tabular lining on floor desks, timers, costs and scores: `font-variant-numeric: tabular-nums lining-nums`. Proportional in prose and headlines.
+Tabular lining on dashboard desks, timers, costs and scores: `font-variant-numeric: tabular-nums lining-nums`. Proportional in prose and headlines.
 
 ## Wordmark
 
@@ -52,7 +52,7 @@ Tabular lining on floor desks, timers, costs and scores: `font-variant-numeric: 
 
 | Surface | Sizes |
 |---|---|
-| Floor (dark UI, 42 desks) | desk name 13px / 600, figures 13px / 400 tabular |
+| Dashboard (dark UI, 42 desks) | desk name 13px / 600, figures 13px / 400 tabular |
 | Hero desktop | headline 76.5px, subline 20px, install line 16px Geist Mono, open line and Read the code 16px / 400 |
 | Hero phone | headline 39px, subline, install line, open line and link 16px |
 | Card linkedin 1200x627 | headline 95.5px, two lines, no support line |
