@@ -1,11 +1,11 @@
-// The clips, each one idea on the real floor. A clip drives the job through the same files the Manager
-// writes, so what the camera sees is the floor doing its job. Timings in seconds from the first frame.
+// The clips, each one idea on the real dashboard. A clip drives the job through the same files the Manager
+// writes, so what the camera sees is the dashboard doing its job. Timings in seconds from the first frame.
 // Captions are burned in later by the video pipeline; `caption` is the one line on screen.
 //
 // Toolkit (see record.mjs): t.start(desk, task, model) -> agent, t.stop(desk, agent, {model, costUsd}),
 // t.phase(name, round), t.state(patch), t.event({...}), t.click(sel), t.type(sel, text), t.wait(ms).
 
-// Seats in state read as provider/tier, the way project.json names them. Stop events carry the model id.
+// Roles in state read as provider/tier, the way project.json names them. Stop events carry the model id.
 const SONNET = 'anthropic/sonnet', HAIKU = 'anthropic/haiku', OPUS = 'anthropic/opus';
 const ID = { 'anthropic/sonnet': 'claude-sonnet-5-5', 'anthropic/haiku': 'claude-haiku-5-5', 'anthropic/opus': 'claude-opus-5-5' };
 // `fresh: true` starts a clip from an empty job (record.mjs resets the staffing, scores and live desks first).
@@ -35,7 +35,7 @@ export const CLIPS = [
     name: 'floor-idle', seconds: 10, loop: true, about: 'The 42 desks, a lamp lighting as a desk starts work.',
     caption: 'Forty-two desks.',
     fresh: true, job: null,
-    // An empty job on the floor, the camera on the grid, desks starting and stopping one after another.
+    // An empty job on the dashboard, the camera on the grid, desks starting and stopping one after another.
     async before(t) { await t.scrollTo('#floor', 300); },
     async run(t) {
       const a = t.start('typographer', 'type scale', SONNET); await t.wait(1100);
@@ -50,7 +50,7 @@ export const CLIPS = [
     },
   },
   {
-    name: 'one-line', seconds: 8, loop: true, about: 'A line typed, the floor lights, three roughs, the pick, polish, the scorecard at the bar.',
+    name: 'one-line', seconds: 8, loop: true, about: 'A line typed, the dashboard lights, three roughs, the pick, polish, the scorecard at the bar.',
     caption: 'One line. A studio.',
     fresh: true,
     // Replays the fixture's real job in order: its desks, renders, pick, proof, sign-off rounds and tier costs.
@@ -60,7 +60,7 @@ export const CLIPS = [
       const desks = f.desks || [];
       const isRough = d => /^rough\b/i.test(d.task || '');
       const rest = desks.filter(d => !isRough(d));
-      // The replay fits in the first 5.2s; the floor reads state once a second, so the last scorecard
+      // The replay fits in the first 5.2s; the dashboard reads state once a second, so the last scorecard
       // shows by about 6.5s and its slabs finish filling (8 slabs, 60ms apart, 300ms each) before the clip ends.
       const step = Math.min(1200, 4600 / (1 + rest.length));
       t.phase('roughs', 0);
@@ -134,8 +134,8 @@ export const CLIPS = [
     },
   },
   {
-    name: 'swap-the-seat', seconds: 8, about: 'The builder seat moves to another model while the job holds, then the polish runs on it.',
-    caption: 'Swap the seat.',
+    name: 'swap-the-seat', seconds: 8, about: 'The builder role moves to another model while the job holds, then the polish runs on it.',
+    caption: 'Change the role.',
     zoomTall: 1.05, fresh: true, fixture: CONTROLS,
     async before(t) { seed(t, { pick: true }); t.state({ phase: 'paused' }); await t.wait(600); },
     async run(t) {

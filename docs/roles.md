@@ -6,7 +6,7 @@ Every desk, by tier, with what it owns. Each desk has a brief in `skills/desk/ro
 
 | Desk | Owns | Tools |
 | --- | --- | --- |
-| Design Manager (`design-manager`) | intake, staffing, the loop, the floor, the handback | main session |
+| Design Manager (`design-manager`) | intake, staffing, the loop, the dashboard, the handback | main session |
 
 ## director (anthropic/opus)
 

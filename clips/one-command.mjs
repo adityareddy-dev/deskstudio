@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 // The hero loop: one command typed in a terminal, then every piece the studio has signed off, then the line.
-// Not a floor recording. Every frame is drawn from a fixed timeline, so every take comes out the same.
+// Not a dashboard recording. Every frame is drawn from a fixed timeline, so every take comes out the same.
 // The pieces are the gallery's own renders from evals/golden, picked the way site/build.mjs picks them.
-//   node clips/one-command.mjs [--size 16:9|1:1|9:16] [--out clips/takes]
+//   node clips/one-command.mjs [--size 16:9|1:1|9:16|4:5] [--out clips/takes]
 // Output: one-command-<WxH>.mp4 and the poster frame one-command-<WxH>.png.
 import { existsSync, mkdirSync, mkdtempSync, readdirSync, rmSync, writeFileSync } from 'node:fs';
 import { spawnSync } from 'node:child_process';
@@ -14,7 +14,7 @@ import { launch } from '../proof/browser.mjs';
 const here = dirname(fileURLToPath(import.meta.url));
 const root = join(here, '..');
 const args = Object.fromEntries(process.argv.slice(2).map((a, i, all) => a.startsWith('--') ? [a.slice(2), all[i + 1] && !all[i + 1].startsWith('--') ? all[i + 1] : true] : []).filter(Boolean));
-const SIZES = { '16:9': [1920, 1080], '1:1': [1080, 1080], '9:16': [1080, 1920] };
+const SIZES = { '16:9': [1920, 1080], '1:1': [1080, 1080], '9:16': [1080, 1920], '4:5': [1080, 1350] };
 const [W, H] = SIZES[args.size || '16:9'] || SIZES['16:9'];
 const out = resolve(args.out || join(here, 'takes'));
 const FPS = 30, SECONDS = 11;

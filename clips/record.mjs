@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Records a clip of the real floor. A clip is a timeline in clips.mjs that drives a job through the
+// Records a clip of the real dashboard. A clip is a timeline in clips.mjs that drives a job through the
 // same files the Manager writes (events.jsonl, state.json), while Chrome records the page.
 //   node clips/record.mjs <clip> [--size 16:9|9:16|1:1|WxH] [--scheme dark|light] [--fixture DIR] [--out DIR]
 //   node clips/record.mjs --list
@@ -58,7 +58,7 @@ function toolkit({ page, desk, job, final, finalEvents = [] }) {
       finalEvents[i] = null;
       return { model: e.model, tokens: e.tokens && e.tokens.total, costUsd: e.costUsd };
     },
-    // Puts one held render (rough-2, round-1) back where the floor reads it, so it appears when the replay reaches it.
+    // Puts one held render (rough-2, round-1) back where the dashboard reads it, so it appears when the replay reaches it.
     reveal: name => {
       const from = join(desk, 'jobs', job, 'renders.held', name), to = join(desk, 'jobs', job, 'renders', name);
       if (existsSync(from) && !existsSync(to)) { mkdirSync(dirname(to), { recursive: true }); renameSync(from, to); }
@@ -72,11 +72,11 @@ function toolkit({ page, desk, job, final, finalEvents = [] }) {
       for (const f of readdirSync(from)) if (prefix === null ? f === pattern : f.startsWith(prefix)) renameSync(join(from, f), join(to, f));
     },
     wait: ms => page.waitForTimeout(ms),
-    // Waits until the floor shows something (the floor reads state once a second), then a beat for its move to finish.
+    // Waits until the dashboard shows something (the dashboard reads state once a second), then a beat for its move to finish.
     until: async (sel, { timeout = 3000, then = 0 } = {}) => { await page.waitForSelector(sel, { timeout }).catch(() => {}); if (then) await page.waitForTimeout(then); },
     event: e => appendFileSync(join(desk, 'events.jsonl'), JSON.stringify({ t: new Date().toISOString(), session: 'clip', ...e }) + '\n'),
     state: patch => { const s = readState(); writeState(typeof patch === 'function' ? (patch(s) || s) : Object.assign(s, patch)); },
-    // A desk starts: lights the card and adds the seat to the job's staffing.
+    // A desk starts: lights the card and adds the role to the job's staffing.
     start: (slug, task, model) => {
       const agent = `clip-${++agentN}`;
       t.event({ type: 'desk.start', desk: slug, agent });
@@ -85,14 +85,14 @@ function toolkit({ page, desk, job, final, finalEvents = [] }) {
     },
     // The job ends: finishedAt is now and startedAt is as far back as the real run took, so 'Took' reads the record's time.
     finish: () => { const took = final ? (Date.parse(final.updatedAt) - Date.parse(final.startedAt)) : 0; t.state(s => { s.finishedAt = new Date().toISOString(); if (took > 0) s.startedAt = new Date(Date.now() - took).toISOString(); }); },
-    // A desk stops. Tokens and cost go on the event only when the clip gives them, so the floor never shows a made-up
+    // A desk stops. Tokens and cost go on the event only when the clip gives them, so the dashboard never shows a made-up
     // figure. A real cost is also added to the job's cost and tokens by the desk's tier, the way the Manager does, so
     // the cost line grows as the desks report.
     stop: (slug, agent, { model = 'claude-haiku-5-5', costUsd, tokens } = {}) => {
       t.event({ type: 'desk.stop', desk: slug, agent, model, ...(tokens ? { tokens: { total: tokens } } : {}), ...(typeof costUsd === 'number' ? { costUsd } : {}) });
       t.state(s => {
         const d = s.desks.find(x => x.agent === agent); if (d) { d.status = 'done'; d.updatedAt = new Date().toISOString(); }
-        // By the model that ran, the way state.mjs attributes cost: a desk's seat can be overridden for a step.
+        // By the model that ran, the way state.mjs attributes cost: a desk's role can be overridden for a step.
         const tier = /opus|fable/.test(model) ? 'director' : /sonnet/.test(model) ? 'senior' : /haiku/.test(model) ? 'builder' : TIER_OF[slug];
         if (tier && typeof costUsd === 'number') {
           s.cost = s.cost || { director: 0, senior: 0, builder: 0, total: 0, complete: true };
@@ -140,11 +140,11 @@ async function record(clip, { size, scheme, fixture, outDir }) {
     });
     const opened = Date.now();
     const page = await context.newPage();
-    // The floor asks to confirm a pick, a stop and an approval; the take says yes, the way the person watching would.
+    // The dashboard asks to confirm a pick, a stop and an approval; the take says yes, the way the person watching would.
     page.on('dialog', d => d.accept());
     await page.goto(`http://127.0.0.1:${port}/?token=${token}${clip.query || ''}`, { waitUntil: 'load' });
     await page.waitForSelector('#floor .desk, #floor [data-desk]', { timeout: 10000 }).catch(() => {});
-    // Zoom the page so the floor's text reads at the size a clip is watched at: the layout reflows at the smaller width.
+    // Zoom the page so the dashboard's text reads at the size a clip is watched at: the layout reflows at the smaller width.
     const zoom = size.width > size.height ? (clip.zoom ?? 1.5) : (clip.zoomTall ?? clip.zoom ?? 1.4);
     await page.addStyleTag({ content: `html { zoom: ${zoom}; }` });
     await page.waitForTimeout(clip.settle ?? 600);
@@ -172,7 +172,7 @@ async function record(clip, { size, scheme, fixture, outDir }) {
   const webm = join(outDir, `${base}.webm`);
   let mp4 = null;
   if (existsSync(raw) && hasFfmpeg()) {
-    // The floor's page is 1440 wide at most, centred, with its text 24px in from the column edge; the caption lines up with that.
+    // The dashboard's page is 1440 wide at most, centred, with its text 24px in from the column edge; the caption lines up with that.
     const left = Math.max(0, Math.round((size.width - 1440) / 2)) + 24;
     const cap = clip.caption ? await captionPng({ text: clip.caption, width: size.width, height: size.height, scheme, left, out: join(projRoot, 'caption.png') }) : null;
     const over = cap ? overlayArgs(cap) : [];
@@ -190,7 +190,7 @@ async function record(clip, { size, scheme, fixture, outDir }) {
   return { name: clip.name, seconds: clip.seconds, size: `${size.width}x${size.height}`, caption: clip.caption || null, lead: Number(lead.toFixed(2)), poster, webm: existsSync(webm) ? webm : null, mp4 };
 }
 
-// A fixture is a real job from the past. Shift every timestamp so the floor shows it as happening now.
+// A fixture is a real job from the past. Shift every timestamp so the dashboard shows it as happening now.
 function rebaseTimes(desk, job) {
   const now = Date.now();
   const eventsFile = join(desk, 'events.jsonl');
@@ -216,7 +216,7 @@ function freshJob(desk, job) {
   const s = JSON.parse(readFileSync(stateFile, 'utf8'));
   Object.assign(s, { desks: [], scores: [], proof: [], pick: null, phase: 'intake', round: 0, waitingOn: null, cost: { director: 0, senior: 0, builder: 0, total: 0, complete: true }, tokens: { director: 0, senior: 0, builder: 0 }, files: [], startedAt: new Date().toISOString(), updatedAt: new Date().toISOString() });
   delete s.finishedAt;
-  // The job as it began: the default seats, and none of the controls a person used on the way.
+  // The job as it began: the default roles, and none of the controls a person used on the way.
   s.models = { director: 'anthropic/opus', senior: 'anthropic/sonnet', builder: 'anthropic/haiku' };
   rmSync(join(desk, 'jobs', job, 'control.json'), { force: true });
   rmSync(join(desk, 'jobs', job, 'inbox'), { recursive: true, force: true });

@@ -26,7 +26,7 @@ A set of slides for a room or a screen share: a pitch, a review, a talk, a repor
 ## Colour
 
 - Background, text, one accent, one muted for secondary text and gridlines. The accent is the one thing per slide: the figure, the bar the headline is about, the highlighted word.
-- Contrast 4.5:1 for body, 3:1 for headlines, measured on the rendered slide. Projectors lose contrast, so aim higher than the floor: 7:1 for body on a stage deck.
+- Contrast 4.5:1 for body, 3:1 for headlines, measured on the rendered slide. Projectors lose contrast, so aim higher than the minimum: 7:1 for body on a stage deck.
 - Images get a scrim block in the brand's background colour at 85% or more under any text.
 - Charts use the chart standard's palettes from the brand file. No new hues for data.
 - No gradient unless the brand owns one, and then only on the title and close slides.

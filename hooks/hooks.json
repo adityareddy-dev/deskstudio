@@ -1,5 +1,5 @@
 {
-  "description": "Desk Studio: records desk starts and stops, tool counts and session edges to .desk/events.jsonl for the floor. Only names, numbers and paths, never prompt text.",
+  "description": "Desk Studio: records desk starts and stops, tool counts and session edges to .desk/events.jsonl for the dashboard. Only names, numbers and paths, never prompt text.",
   "hooks": {
     "SessionStart": [
       { "matcher": "*", "hooks": [ { "type": "command", "command": "node", "args": ["${CLAUDE_PLUGIN_ROOT}/scripts/emit-event.mjs", "--hook"], "timeout": 5 } ] }

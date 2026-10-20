@@ -295,7 +295,7 @@ test('cli: setup writes dashboard.json and the gitignore lines, start prints a u
   assert.match(status0.out, /not enabled/);
 
   const setup = run(['setup', '--port', '7499']);
-  assert.match(setup, /Floor enabled/);
+  assert.match(setup, /Dashboard enabled/);
   assert.deepEqual(readJson(join(desk, 'dashboard.json')), { enabled: true, port: 7499 });
   const ignore = readFileSync(join(desk, '.gitignore'), 'utf8').split('\n');
   for (const line of ['events.jsonl', 'jobs/', 'dashboard.runtime.json', 'dashboard.log']) assert.ok(ignore.includes(line), line);
@@ -333,3 +333,36 @@ test('cli: setup writes dashboard.json and the gitignore lines, start prints a u
   assert.equal(noStart.code, 3);
   assert.match(noStart.err, /not enabled/);
 });
+
+
+for (const bins of [join(here, '..', '..', 'bin'), join(here, '..', '..', 'packages', 'deskstudio', 'bin')]) {
+  test(`dashboard command and old alias share the same lifecycle in ${bins}`, async () => {
+    const { root, desk } = makeProject();
+    const ext = bins.includes('packages') ? '.mjs' : '';
+    const run = (name, args) => execFileSync(process.execPath, [join(bins, name + ext), ...args, '--project', root], { encoding: 'utf8', timeout: 20000 });
+    for (const name of ['desk-dashboard', 'desk-floor']) {
+      for (const flag of ['--help', '-h']) {
+        const help = run(name, [flag]);
+        assert.match(help, /usage: desk-dashboard/);
+        assert.match(help, /desk-floor is the old name/);
+      }
+    }
+    const port = String(7500 + Math.floor(Math.random() * 90));
+    assert.match(run('desk-dashboard', ['setup', '--port', port]), /Dashboard enabled/);
+    try {
+      assert.match(run('desk-floor', ['start']), /Dashboard started/);
+      const runtime = readJson(join(desk, 'dashboard.runtime.json'));
+      const status = run('desk-dashboard', ['status']);
+      assert.match(status, /Dashboard: running/);
+      assert.ok(status.includes(`?token=${runtime.token}`));
+      assert.match(run('desk-dashboard', ['start']), /Dashboard already running/);
+      const health = await request(`http://127.0.0.1:${port}/api/health`, { headers: { 'X-Desk-Token': runtime.token } });
+      assert.equal(health.json.pid, runtime.pid);
+    } finally {
+      assert.match(run('desk-dashboard', ['stop']), /Dashboard stopped/);
+      run('desk-floor', ['disable']);
+    }
+    assert.equal(readJson(join(desk, 'dashboard.json')).enabled, false);
+    assert.ok(!existsSync(join(desk, 'dashboard.runtime.json')));
+  });
+}

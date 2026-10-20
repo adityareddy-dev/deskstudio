@@ -35,7 +35,7 @@ Every adapter exports the same thing: `runCli({ model, system, prompt, images, c
 
 ## The models table
 
-`runner/models.json`, with `checkedAt`. Each provider lists its CLI name, key variables, the three tiers and its models: an id for the API, the name the CLI takes, list prices per million tokens (input, output, and cacheRead and cacheWrite where published. The Anthropic rows match `scripts/prices.json`) and whether the model takes images. The default seat per tier comes from `skills/desk/desks.json`, not from here. `desk-run providers` prints it.
+`runner/models.json`, with `checkedAt`. Each provider lists its CLI name, key variables, the three tiers and its models: an id for the API, the name the CLI takes, list prices per million tokens (input, output, and cacheRead and cacheWrite where published. The Anthropic rows match `scripts/prices.json`) and whether the model takes images. The default role per tier comes from `skills/desk/desks.json`, not from here. `desk-run providers` prints it.
 
 | Provider | Tier | Alias | Model | List price in / out per 1M |
 | --- | --- | --- | --- | --- |

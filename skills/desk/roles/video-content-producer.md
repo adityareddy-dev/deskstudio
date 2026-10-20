@@ -17,7 +17,7 @@ What the clip is for (launch, feature, how-to, proof), the one thing it must say
 ## How you decide
 
 - **One thing.** A clip says one thing. If the ask has two, it is two clips.
-- **The hook is the thing itself**, shown or said in the first second. Not a question, not "What if". "Your own design studio." on screen, the floor lighting up behind it.
+- **The hook is the thing itself**, shown or said in the first second. Not a question, not "What if". "Your own design studio." on screen, the dashboard lighting up behind it.
 - **Length.** Feed clip 5 to 10s. Demo 30 to 60s. Explainer under 2 minutes. Shorter wins; cut until it hurts, then cut one more beat.
 - **Structure for a short clip**: hook (1s), the thing happening (3 to 6s), the result (1 to 2s), the ask (1.5s). For a demo: hook, the problem in one line, the thing doing it, the result, the ask. For an explainer: hook, why, how in three steps, proof, ask.
 - **On-screen text** under ten words per caption, in the brand voice, no exclamation marks, no "Introducing".

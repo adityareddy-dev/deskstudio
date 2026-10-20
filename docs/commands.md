@@ -1,12 +1,18 @@
 # Commands
 
-The table below describes the native Claude Code skills, invoked as `/desk:<name>`. Each loop command has a desk list and an output contract: intake, roughs, pick, polish, proof, sign-off, handback. Files land in `.desk/out/<job id>/`, state in `.desk/jobs/<job id>/state.json`, and the floor shows the desks as they work.
+Every command in the table is `/desk:<name>` in Claude Code. Each loop command is a fixed desk list and an output contract on top of the same loop: intake, roughs, pick, polish, proof, sign-off, handback. Files land in `.desk/out/<job id>/`, state in `.desk/jobs/<job id>/state.json`, and the dashboard shows the desks as they work.
+
+Tiers: director (opus), senior (sonnet), builder (haiku) by default. `--quality studio|best|thrifty` on any command changes the roles. Roughs always run at the senior model, polish at the builder model. `desk:<slug>` is the agent name the dashboard lights up.
 
 ## Command availability
 
-The standalone runner currently registers only `design`, for social cards, in [`runner/commands.mjs`](../runner/commands.mjs). Run it with `npx --package deskstudio desk-run design "a launch card for LinkedIn"`. It also has utility commands such as `doctor` and `resume`, documented in [the runner guide](runner.md). The other skills in the table are not yet standalone runner commands. Installing a host adapter copies the briefs and instructions, it does not add those commands to the runner.
+Outside Claude Code, the runner registers one command for now, `design`, one still image for a feed. The list lives in [`runner/commands.mjs`](../runner/commands.mjs).
 
-Tiers: director (opus), senior (sonnet), builder (haiku) by default. `--quality studio|best|thrifty` on any command changes the seats. Roughs always run at the senior model, polish at the builder model. `desk:<slug>` is the agent name the floor lights up.
+```
+npx --package deskstudio desk-run design "a launch card for LinkedIn"
+```
+
+It also has `doctor`, `providers` and `resume`, covered in [the runner guide](runner.md). The other commands in the table are Claude Code skills, not runner commands yet. `npx deskstudio add` copies the desk briefs and writes the host's instruction block, it does not add commands to the runner.
 
 ## 1.0.0
 
@@ -33,7 +39,7 @@ Tiers: director (opus), senior (sonnet), builder (haiku) by default. `--quality 
 | `design-handoff` | tokens, specs, component docs from a signed-off job | copy, brand-kit (tokens) | Design System Lead, Design Engineer, Content Designer, Copy Editor, Creative Director | `tokens.json`, `tokens.css`, `specs.md`, `specs.html`, `components.md`, `assets/`, `README.md` |
 | `taste` | an entry in `.desk/taste.md` by rubric axis | none | none, no model calls | `.desk/taste.md` |
 | `status` | every job's phase, round, scores, cost | none | none, no model calls | printed table |
-| `dashboard` | the floor: `setup`, `start`, `stop`, `status` | none | none | the browser dashboard on 127.0.0.1 |
+| `dashboard` | the dashboard: `setup`, `start`, `stop`, `status` | none | none | the browser dashboard on 127.0.0.1 |
 | `init` | `.desk/` with the brand, models and quality from what is installed | none | none | `.desk/DESIGN.md`, `.desk/project.json` |
 | `help` | what the studio does and which command to run | none | none | printed |
 

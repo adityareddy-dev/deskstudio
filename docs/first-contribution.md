@@ -7,13 +7,13 @@ You can help without running a model. Start with a host you use or a small JavaS
 | If you use or know | Start here | Files to read | Check |
 | --- | --- | --- | --- |
 | Cursor | [Setup guide, #3](https://github.com/adityareddy-dev/deskstudio/issues/3) | `packages/deskstudio/bin/deskstudio.mjs`, `scripts/build-adapters.mjs` | Install twice in a disposable project, keep existing instructions and an edited brief |
-| Copilot | [Setup guide, #4](https://github.com/adityareddy-dev/deskstudio/issues/4) | Same installer and adapter source | Check `.github/copilot-instructions.md` and `.agents/skills/desk/`, including a second install |
-| JavaScript tests | [Safe-zone boundaries, #5](https://github.com/adityareddy-dev/deskstudio/issues/5) | `proof/check.mjs`, `proof/test/` | Synthetic boxes exactly on, then one pixel outside, each edge |
+| Copilot | [Setup guide, #4](https://github.com/adityareddy-dev/deskstudio/issues/4) | `packages/deskstudio/bin/deskstudio.mjs`, `runner/test/installer.test.mjs` | Check `.github/copilot-instructions.md` and `.agents/skills/desk/`, including a second install |
+| JavaScript tests | [Safe-zone boundaries, #5](https://github.com/adityareddy-dev/deskstudio/issues/5) | `checkSafeZone` in `proof/check.mjs`, `proof/test/` | Synthetic boxes exactly on, then one pixel outside, each edge |
 | JavaScript tests | [Required copy, #6](https://github.com/adityareddy-dev/deskstudio/issues/6) | `checkCopy` in `proof/check.mjs`, `proof/test/` | Small synthetic DOM cases for the matching behavior described in the issue |
 
 Check each issue's status, assignee and recent comments before starting. If it is taken or closed, use the [current starter issue list](https://github.com/adityareddy-dev/deskstudio/contribute). Comment with the change you want to make and any question about scope. Read the issue body for its full acceptance criteria.
 
-The [new desk issues](https://github.com/adityareddy-dev/deskstudio/issues?q=is%3Aissue%20is%3Aopen%20label%3Aenhancement) also need design judgment, registry changes and regenerated files. The test or setup-guide tasks above are smaller places to start.
+The new desk issues, a [localization designer](https://github.com/adityareddy-dev/deskstudio/issues/1) and a [form designer](https://github.com/adityareddy-dev/deskstudio/issues/2), also need design judgment, registry changes and regenerated files. The test or setup-guide tasks above are smaller places to start.
 
 ## Get a working copy
 
@@ -38,7 +38,7 @@ For the complete test suite, install the browser and media prerequisites in [CON
 
 `README.md` comes from `site/readme.mjs`. Edit the generator, then run `node site/readme.mjs`. If you change a role brief or registry entry, regenerate agents and adapters as the contribution guide describes. Do not hand-edit generated files.
 
-Keep setup examples disposable. The installer writes instructions and skills into the project you run it from. Do not test it in a private project and attach the resulting files to an issue.
+Keep setup examples disposable. The installer writes instructions and skills into the project you run it from, so try it in a throwaway folder rather than a private project, and keep private project content out of anything you attach to an issue.
 
 ## Send the pull request
 

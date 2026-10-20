@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// The floor: a local dashboard for Desk Studio. Zero dependencies.
+// The Desk Studio dashboard. Zero dependencies.
 //   setup | start | stop | status | disable | serve   [--project DIR] [--port N]
 // Binds 127.0.0.1 only. Every API route needs the token printed at start.
 // Reads .desk/events.jsonl and .desk/jobs/*/state.json. Writes control.json, inbox notes
@@ -26,7 +26,7 @@ const TIER_NOTES = {
   builder: 'Polish rounds and the making desks.'
 };
 
-// The one desk list is skills/desk/desks.json. The floor only needs slug, name, tier and owns.
+// The one desk list is skills/desk/desks.json. The dashboard only needs slug, name, tier and owns.
 export function loadDesks(file = REGISTRY) {
   const raw = JSON.parse(readFileSync(file, 'utf8'));
   const tiersIn = Array.isArray(raw.tiers) ? Object.fromEntries(raw.tiers.map(t => [t.id, t])) : (raw.tiers || {});
@@ -458,7 +458,7 @@ export function createFloor({ root, desk, token, port = DEFAULT_PORT, startedAt 
       if (req.method !== 'GET' && req.method !== 'HEAD') return sendJson(res, 405, { error: 'Method not allowed' });
       const file = path === '/' ? 'index.html' : decodeURIComponent(path.slice(1));
       if (file.split('/').includes('..')) return sendJson(res, 400, { error: 'Bad path' });
-      // /fonts/ serves the plugin's bundled woff2 files, so the floor sets Inter without a network.
+      // /fonts/ serves the plugin's bundled woff2 files, so the dashboard sets Inter without a network.
       const fromFonts = file.startsWith('fonts/');
       const base = fromFonts ? FONTS : PUBLIC;
       const full = resolve(base, fromFonts ? file.slice(6) : file);
@@ -551,8 +551,11 @@ async function main() {
   const args = parseArgs(process.argv.slice(2));
   const cmd = args._[0];
   const port = Number(args.port) || null;
+  const usage = 'usage: desk-dashboard setup|start|stop|status|disable|serve [--project DIR] [--port N]\n'
+    + 'desk-floor is the old name and still works as an alias.';
+  if (args.help || args._.includes('-h')) { console.log(usage); return; }
   if (!['setup', 'start', 'stop', 'status', 'disable', 'serve'].includes(cmd)) {
-    console.error('usage: node dashboard/server.js setup|start|stop|status|disable|serve [--project DIR] [--port N]');
+    console.error(usage);
     process.exit(2);
   }
 
@@ -571,7 +574,7 @@ async function main() {
     const next = { enabled: true, port: port || config?.port || DEFAULT_PORT };
     writeJsonAtomic(configFile, next);
     const added = ensureGitignore(desk);
-    console.log(`Floor enabled for ${root} on port ${next.port}.`);
+    console.log(`Dashboard enabled for ${root} on port ${next.port}.`);
     console.log(`Wrote .desk/dashboard.json${added.length ? ` and added ${added.join(', ')} to .desk/.gitignore` : ''}.`);
     console.log('Logs desk names, models, rounds, scores, costs and file paths to .desk/events.jsonl, never prompt text.');
     console.log('Serves on 127.0.0.1 only, behind a token that changes on every start. Turn it off with "disable".');
@@ -582,46 +585,46 @@ async function main() {
     writeJsonAtomic(configFile, { ...(config || {}), enabled: false, port: config?.port || DEFAULT_PORT });
     if (runtime?.pid && runtime?.token) {
       const h = await health(runtime.port, runtime.token);
-      if (h?.ok && h.pid === runtime.pid) { try { process.kill(runtime.pid); } catch {} console.log(`Stopped the floor (pid ${runtime.pid}).`); }
+      if (h?.ok && h.pid === runtime.pid) { try { process.kill(runtime.pid); } catch {} console.log(`Stopped the dashboard (pid ${runtime.pid}).`); }
       try { unlinkSync(runtimeFile); } catch {}
     }
-    console.log('Floor disabled. The event log stays until you delete .desk/events.jsonl. "setup" turns it back on.');
+    console.log('Dashboard disabled. The event log stays until you delete .desk/events.jsonl. "setup" turns it back on.');
     return;
   }
 
   if (cmd === 'status') {
-    if (!config?.enabled) { console.log('Floor: not enabled. Run setup first.'); process.exit(3); }
-    if (!runtime?.pid) { console.log(`Floor: enabled on port ${config.port}, not running. Run start.`); process.exit(3); }
+    if (!config?.enabled) { console.log('Dashboard: not enabled. Run setup first.'); process.exit(3); }
+    if (!runtime?.pid) { console.log(`Dashboard: enabled on port ${config.port}, not running. Run start.`); process.exit(3); }
     const h = await health(runtime.port, runtime.token);
     if (h?.ok && h.pid === runtime.pid) {
-      console.log(`Floor: running, pid ${runtime.pid}, since ${runtime.startedAt}`);
+      console.log(`Dashboard: running, pid ${runtime.pid}, since ${runtime.startedAt}`);
       console.log(urlFor(runtime.port, runtime.token));
       return;
     }
     try { unlinkSync(runtimeFile); } catch {}
-    console.log(`Floor: enabled on port ${config.port}, not running (stale record removed). Run start.`);
+    console.log(`Dashboard: enabled on port ${config.port}, not running (stale record removed). Run start.`);
     process.exit(3);
   }
 
   if (cmd === 'stop') {
-    if (!runtime?.pid) { console.log('Floor: not running.'); return; }
+    if (!runtime?.pid) { console.log('Dashboard: not running.'); return; }
     const h = await health(runtime.port, runtime.token);
-    if (!h) { try { unlinkSync(runtimeFile); } catch {} console.log('Floor: not running (stale record removed).'); return; }
-    if (h.status === 401 || !h.ok) { console.error(`Something else answers on port ${runtime.port}. Not touching it. Remove .desk/dashboard.runtime.json by hand if the floor is gone.`); process.exit(1); }
+    if (!h) { try { unlinkSync(runtimeFile); } catch {} console.log('Dashboard: not running (stale record removed).'); return; }
+    if (h.status === 401 || !h.ok) { console.error(`Something else answers on port ${runtime.port}. Not touching it. Remove .desk/dashboard.runtime.json by hand if the dashboard is gone.`); process.exit(1); }
     if (h.pid !== runtime.pid) { console.error(`Pid mismatch: record says ${runtime.pid}, server says ${h.pid}. Not killing. Remove .desk/dashboard.runtime.json by hand.`); process.exit(1); }
     try { process.kill(runtime.pid); } catch (e) { console.error(`Could not stop pid ${runtime.pid}: ${e.message}`); process.exit(1); }
     for (let i = 0; i < 20 && await health(runtime.port, runtime.token, 300); i++) await sleep(150);
     try { unlinkSync(runtimeFile); } catch {}
-    console.log(`Floor stopped (pid ${runtime.pid}).`);
+    console.log(`Dashboard stopped (pid ${runtime.pid}).`);
     return;
   }
 
   if (cmd === 'start') {
-    if (!config?.enabled) { console.error('Floor is not enabled for this project. Run "setup" first (/desk:dashboard setup).'); process.exit(3); }
+    if (!config?.enabled) { console.error('Dashboard is not enabled for this project. Run "setup" first (/desk:dashboard setup).'); process.exit(3); }
     const usePort = port || config.port || DEFAULT_PORT;
     if (runtime?.pid && runtime?.token) {
       const h = await health(runtime.port, runtime.token);
-      if (h?.ok && h.pid === runtime.pid) { console.log(`Floor already running (pid ${runtime.pid}).`); console.log(urlFor(runtime.port, runtime.token)); return; }
+      if (h?.ok && h.pid === runtime.pid) { console.log(`Dashboard already running (pid ${runtime.pid}).`); console.log(urlFor(runtime.port, runtime.token)); return; }
       try { unlinkSync(runtimeFile); } catch {}
     }
     if (await portBusy(usePort)) { console.error(`Port ${usePort} is in use by something else. Pick another with --port N, or stop what is on it.`); process.exit(1); }
@@ -639,7 +642,7 @@ async function main() {
     while (Date.now() < deadline) {
       const h = await health(usePort, token, 500);
       if (h?.ok && h.pid === child.pid) {
-        console.log(`Floor started for ${root} (pid ${child.pid}).`);
+        console.log(`Dashboard started for ${root} (pid ${child.pid}).`);
         console.log(urlFor(usePort, token));
         return;
       }
@@ -647,7 +650,7 @@ async function main() {
       await sleep(150);
     }
     const tail = (readText(join(desk, 'dashboard.log'), 1e6) || '').trim().split('\n').slice(-5).join('\n');
-    console.error(`The floor did not come up on port ${usePort}${exited !== null ? ` (exit ${exited})` : ''}. Last log lines:\n${tail}`);
+    console.error(`The dashboard did not come up on port ${usePort}${exited !== null ? ` (exit ${exited})` : ''}. Last log lines:\n${tail}`);
     try { process.kill(child.pid); } catch {}
     process.exit(1);
   }
@@ -664,7 +667,7 @@ async function main() {
     writeJsonAtomic(runtimeFile, { pid: process.pid, port: usePort, token, startedAt, project: root });
     log(desk, `serve start pid ${process.pid} port ${usePort}`);
     // Spawned by start: the token is already printed there, keep it out of the log file.
-    console.log(process.env.DESK_FLOOR_TOKEN ? `Floor serving ${root} on port ${usePort}` : `Floor serving ${root} on ${urlFor(usePort, token)}`);
+    console.log(process.env.DESK_FLOOR_TOKEN ? `Dashboard serving ${root} on port ${usePort}` : `Dashboard serving ${root} on ${urlFor(usePort, token)}`);
     const bye = () => {
       log(desk, `serve stop pid ${process.pid}`);
       floor.close().then(() => { try { if (readJson(runtimeFile, {})?.pid === process.pid) unlinkSync(runtimeFile); } catch {} process.exit(0); });

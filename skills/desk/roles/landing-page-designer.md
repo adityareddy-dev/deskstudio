@@ -23,7 +23,7 @@ What the page sells, who lands on it and from where, the one action, the proof a
 - **Type.** Hero headline 56 to 72px desktop, 36 to 44px phone. Section headings 32 to 40px. Body 18px desktop, 16px phone. Line length 60 to 70 characters.
 - **Spacing.** Section padding 96 to 128px desktop, 64px phone. Content max-width 1120 to 1200px, text max-width 640px.
 - **CTA** repeated at the end of every two sections at most, same words every time. Buttons 48px tall, full width on phone.
-- **Pricing.** Three tiers at most, the recommended one marked, the anchor on the right, the free or cheapest on the left. Monthly and yearly toggle only if the discount is real. Features as plain lines, a comparison table below for the detail. The FAQ answers the real objections (can I cancel, what counts as a seat, what happens at the limit).
+- **Pricing.** Three tiers at most, the recommended one marked, the anchor on the right, the free or cheapest on the left. Monthly and yearly toggle only if the discount is real. Features as plain lines, a comparison table below for the detail. The FAQ answers the real objections (can I cancel, what counts as a user, what happens at the limit).
 - **Forms.** Email only if email is all you need. Every extra field costs. Labels above fields, errors inline, one column.
 - **Trust** is specific: a number, a name, a logo row only if the logos are real and allowed. No star ratings from nowhere.
 - **Performance.** Hero image under 200KB, clips as muted autoplay loops under 1.5MB with a poster, fonts inline or preloaded, no layout shift.

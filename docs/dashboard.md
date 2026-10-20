@@ -1,6 +1,6 @@
-# The floor
+# The dashboard
 
-The floor is the front desk of the studio. One page on your own machine where you see every desk, the job it is on, the roughs and the scores, and where you steer it: pause, change who sits where, write a desk a note, pick a rough yourself, approve or send back.
+The dashboard is the front desk of the studio. One page on your own machine where you see every desk, the job it is on, the roughs and the scores, and where you steer it: pause, change who sits where, write a desk a note, pick a rough yourself, approve or send back.
 
 It is off by default. Turn it on once per project:
 
@@ -9,13 +9,13 @@ It is off by default. Turn it on once per project:
 /desk:dashboard start
 ```
 
-`start` prints a link like `http://127.0.0.1:7433/?token=...`. Open it. The token changes on every start. `status` prints it again, `stop` ends the server, `disable` turns the floor off. Outside Claude Code the same commands are `desk-floor setup|start|stop|status|disable`, with `--project DIR` for another folder and `--port N` for another port.
+`start` prints a link like `http://127.0.0.1:7433/?token=...`. Open it. The token changes on every start. `status` prints it again, `stop` ends the server, `disable` turns the dashboard off. Outside Claude Code the same commands are `desk-dashboard setup|start|stop|status|disable`, with `--project DIR` for another folder and `--port N` for another port.
 
 ## What it shows
 
-**The job.** Command and deliverable, phase, round of max, quality preset, sizes, how long it has been running. The seats: which model each tier is on. Cost so far by tier from `state.json`, with a note when a desk did not report usage so the number is a floor, then the same cost per desk from the stop events, highest first. Staffing: every desk on the job with its task, status, model and how long it took, or has been going. The brief, folded away.
+**The job.** Command and deliverable, phase, round of max, quality preset, sizes, how long it has been running. The roles: which model each tier is on. Cost so far by tier from `state.json`, with a note when a desk did not report usage so the number is a lower bound, then the same cost per desk from the stop events, highest first. Staffing: every desk on the job with its task, status, model and how long it took, or has been going. The brief, folded away.
 
-**The floor.** All 42 desks in a grid by tier: manager, director, senior, builder. The list is `skills/desk/desks.json`, the same registry the agents are built from. A desk lights up when it has started and not yet stopped, with its task, its model and the time it has been working. A desk with a model set just for it shows the model in the accent colour. Once a desk has stopped on this job, its card shows what it cost and how many tokens it used, summed over its runs, from what the desk reported when it stopped. The cost is list price, an estimate, since a subscription is not billed per token.
+**The dashboard.** All 42 desks in a grid by tier: manager, director, senior, builder. The list is `skills/desk/desks.json`, the same registry the agents are built from. A desk lights up when it has started and not yet stopped, with its task, its model and the time it has been working. A desk with a model set just for it shows the model in the accent colour. Once a desk has stopped on this job, its card shows what it cost and how many tokens it used, summed over its runs, from what the desk reported when it stopped. The cost is list price, an estimate, since a subscription is not billed per token.
 
 **The review board.** The three roughs from the latest render, with the pick ringed and the Art Director's reason and notes. Each polish round with its render, the proof result (passed, or how many checks failed) and the sign-off scores as one bar per rubric axis, green at 8 or above. Links to every file in the out folder.
 
@@ -52,7 +52,7 @@ Model names are `provider/model`, for example `anthropic/sonnet` or `openai/nano
 | `.desk/dashboard.json` | `enabled` and `port`, written by `setup` |
 | `.desk/dashboard.runtime.json` | pid, port and token of the running server, removed on `stop` |
 | `.desk/dashboard.log` | start, stop, controls and errors, one line each |
-| `.desk/events.jsonl` | the event log the floor tails |
+| `.desk/events.jsonl` | the event log the dashboard tails |
 | `.desk/jobs/<id>/state.json` | what the job panel and the review board show, kept by the Manager |
 | `.desk/jobs/<id>/control.json` | your controls, merged key by key, read by the Manager |
 | `.desk/jobs/<id>/inbox/<desk>.md` | your notes to a desk |
@@ -69,7 +69,7 @@ All routes need the token, in the URL as `?token=` or in the header `X-Desk-Toke
 - `GET /api/state`: project.json, the brand front matter, the jobs newest first, the active job, the desk list.
 - `GET /api/jobs/:id`: state.json, control.json, the render folders with their PNGs, the out files, the brief, the inbox desks.
 - `GET /api/events`: a server-sent event stream. The last 200 lines of the log on connect, then every new line. An extra `state` event fires when a state.json changes.
-- `GET /api/file?path=`: a PNG, HTML, SVG or JSON file under `.desk/out` or `.desk/jobs` only. HTML and SVG are served sandboxed so a rough cannot run scripts against the floor.
+- `GET /api/file?path=`: a PNG, HTML, SVG or JSON file under `.desk/out` or `.desk/jobs` only. HTML and SVG are served sandboxed so a rough cannot run scripts against the dashboard.
 - `POST /api/control/:id`: one of `{pause}`, `{stop}`, `{models, scope}`, `{pick}`, `{note}`, `{approve}`, `{sendBack}`.
 
 ## Tests

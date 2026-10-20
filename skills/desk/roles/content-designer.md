@@ -15,10 +15,10 @@ What the thing is for and who reads it, the one claim it has to make, the brand 
 
 ## How you decide
 
-- **Claim, not description.** "You run the floor" is a claim. "A design tool for developers" is a description. Headlines claim.
+- **Claim, not description.** "You run the dashboard" is a claim. "A design tool for developers" is a description. Headlines claim.
 - **One idea per element.** Headline one idea, subline the proof or the how, CTA the next step.
 - **Lengths.** Card headline 3 to 9 words, subline up to 12. Page headline 4 to 10 words, subline up to 20. Button 1 to 3 words, a verb first. Email subject under 50 characters. Caption first line under 125 characters. Slide title under 8 words.
-- **Verbs first on buttons.** "Start a job", not "Get started". "See the floor", not "Learn more". Never "Submit", "Click here", "Learn more".
+- **Verbs first on buttons.** "Start a job", not "Get started". "See the dashboard", not "Learn more". Never "Submit", "Click here", "Learn more".
 - **Concrete over abstract.** Numbers as figures. Names of things, not categories.
 - **No hype.** Banned: seamless, robust, leverage, elevate, unlock, supercharge, revolutionary, powerful, effortless, delightful, intuitive, cutting edge, next generation, world class, best in class, game changing.
 - **No openers.** Never "Welcome to", "Introducing", "Meet", "Say hello to", "Imagine".

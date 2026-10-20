@@ -1,9 +1,9 @@
 #!/usr/bin/env node
-// Makes the clip fixture where the floor's controls are used for real, on a real job (runner mode, Anthropic seats).
+// Makes the clip fixture where the dashboard's controls are used for real, on a real job (runner mode, Anthropic roles).
 //   node clips/make-controls.mjs [--out clips/fixtures/controls] [--rounds 4]
-// The job runs in a temp project. As soon as the first rough starts, the driver pauses it from the floor's own control
-// code. When the job holds before the pick, the driver picks a rough, moves the builder seat to Sonnet and writes the UI
-// Designer a note, all through applyControl (the function behind the floor's buttons), then continues the job. The whole
+// The job runs in a temp project. As soon as the first rough starts, the driver pauses it from the dashboard's own control
+// code. When the job holds before the pick, the driver picks a rough, moves the builder role to Sonnet and writes the UI
+// Designer a note, all through applyControl (the function behind the dashboard's buttons), then continues the job. The whole
 // .desk folder is copied out when the job ends, so the clips can replay it.
 import { cpSync, existsSync, mkdirSync, mkdtempSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { spawn } from 'node:child_process';
@@ -17,7 +17,7 @@ const root = join(here, '..');
 const args = Object.fromEntries(process.argv.slice(2).map((a, i, all) => a.startsWith('--') ? [a.slice(2), all[i + 1]] : []).filter(Boolean));
 const out = resolve(args.out || join(here, 'fixtures', 'controls'));
 const rounds = args.rounds || '4';
-const ASK = "a LinkedIn card for Desk Studio. Headline 'You run the floor.' and 'deskstudio.ai'. Copy that must appear: 'You run the floor.' and 'deskstudio.ai'.";
+const ASK = "a LinkedIn card for Desk Studio. Headline 'You run the dashboard.' and 'deskstudio.ai'. Copy that must appear: 'You run the dashboard.' and 'deskstudio.ai'.";
 const NOTE = 'More air around the headline. One accent only.';
 
 const proj = mkdtempSync(join(tmpdir(), 'desk-controls-'));
@@ -47,7 +47,7 @@ while (!paused) {
   if (s && (s.desks || []).some(d => /^rough/.test(d.task || ''))) {
     id = s.id;
     const r = applyControl(desk, id, { pause: true });
-    log(`paused from the floor: ${r.status}`);
+    log(`paused from the dashboard: ${r.status}`);
     paused = true;
   }
 }

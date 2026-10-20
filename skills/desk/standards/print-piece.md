@@ -27,7 +27,7 @@ A thing that gets printed: a business card, a poster, a one-pager handed across 
 - Background, text, one accent, from the brand file. Fewer colours print truer and cheaper.
 - Text under 12pt in one solid ink (black, or one brand colour at 100%), never built from four.
 - Large colour fields are flat, not gradients, because gradients band on press. A gradient the brand owns is the one exception and gets a note on the proof.
-- Contrast on paper reads darker than on screen, so the floor is still 4.5:1 for body and 3:1 for the headline, measured on the screen proof.
+- Contrast on paper reads darker than on screen, so the minimum is still 4.5:1 for body and 3:1 for the headline, measured on the screen proof.
 - The CMYK note in the file lists every brand colour with its approximate CMYK and a line saying the press profile decides the final values.
 
 ## Composition patterns that work

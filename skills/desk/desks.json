@@ -6,7 +6,7 @@
     "manager": { "default": "inherit", "color": "yellow" }
   },
   "desks": [
-    { "slug": "design-manager", "name": "Design Manager", "tier": "manager", "agent": false, "owns": "intake, staffing, the loop, the floor, the handback",
+    { "slug": "design-manager", "name": "Design Manager", "tier": "manager", "agent": false, "owns": "intake, staffing, the loop, the dashboard, the handback",
       "description": "The front desk. Runs in the main session through the studio skill." },
 
     { "slug": "creative-director", "name": "Creative Director", "tier": "director", "tools": ["Read", "Glob"], "maxTurns": 24, "owns": "direction and sign-off against the rubric",

@@ -67,7 +67,7 @@ const card = JSON.parse(readFileSync(join(cardDir, 'jobs', cardJob, 'state.json'
 const cardRender = (round, size = 'linkedin') => join(cardDir, 'jobs', cardJob, 'renders', round, `${size}.png`);
 const cardFinal = card.scores.find(s => s.round === card.round) || card.scores.at(-1);
 
-// The controls job: a real run steered from the floor (clips/make-controls.mjs).
+// The controls job: a real run steered from the dashboard (clips/make-controls.mjs).
 const ctlDir = join(root, 'clips', 'fixtures', 'controls', 'jobs');
 const ctl = JSON.parse(readFileSync(join(ctlDir, readdirSync(ctlDir)[0], 'state.json'), 'utf8'));
 const controls = { average: (Object.values((ctl.scores.at(-1) || {}).axes || {}).reduce((a, b) => a + b, 0) / 8).toFixed(1), rounds: ctl.round, cost: ctl.cost.total };
@@ -266,12 +266,12 @@ const html = `<!doctype html>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Desk Studio</title>
-<meta name="description" content="An open-source design studio inside your coding agent. Review roughs, run proof checks and keep the files locally. MIT licensed. Model usage follows provider pricing.">
+<meta name="description" content="Your own design studio. A full design studio inside the coding agent you already use. One command, free, nothing leaves your machine but the model calls you already make.">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="canonical" href="https://deskstudio.ai/">
 <link rel="preload" as="image" href="media/one-command-vertical.webp" fetchpriority="high">
 <meta property="og:title" content="Your own design studio.">
-<meta property="og:description" content="An open-source design studio inside your coding agent. Local files, model-assisted reviews and pixel proof checks. MIT licensed, with provider model usage.">
+<meta property="og:description" content="A full design studio inside the coding agent you already use. One command, free, nothing leaves your machine.">
 <meta property="og:image" content="https://deskstudio.ai/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
 <meta property="og:url" content="https://deskstudio.ai/"><meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
@@ -287,10 +287,10 @@ const html = `<!doctype html>
 <section class="hero"><div class="wrap two">
   <div>
     <h1>Your own design studio.</h1>
-    <p class="lead">A design studio inside the coding agent you already use. Open source, MIT. Files stay local, model calls and research lookups go to your providers. Model usage follows your provider's plan or API pricing.</p>
+    <p class="lead">A full design studio inside the coding agent you already use. One command, free, nothing leaves your machine but the model calls you already make.</p>
     <div class="ctas"><a class="cta" href="#install">Install the plugin</a><a class="cta ghost" href="${REPO}">${star}Star on GitHub</a></div>
     <code class="install">${cmd(INSTALL)}</code>
-    <p class="open">No Desk Studio account or sign-up.<a href="#contribute">Make your first contribution</a></p>
+    <p class="open">Open source, MIT. No account, no sign-up.<a href="${REPO}">Read the code</a></p>
   </div>
   ${heroLoop('one-command', 'One command typed in a terminal, then every piece the studio has signed off, then the line: your own design studio, at your desk')}
 </div></section>
@@ -320,9 +320,9 @@ const html = `<!doctype html>
 <section id="team"><div class="wrap">
   <div class="two">
     <div><h2>${registry.desks.length} desks.</h2><p class="lead">Each desk is a written brief: what it owns, how it decides, its checklist and what it hands to the next desk. The Design Manager staffs them per job. The three roughs run side by side and the rest in turn.</p></div>
-    <div>${loop('floor-idle', 'The floor: forty-two desks, a lamp lighting when a desk starts')}</div>
+    <div>${loop('floor-idle', 'The dashboard: forty-two desks, a lamp lighting when a desk starts')}</div>
   </div>
-  <div class="tiers">${TIERS.map(([t, label, does]) => `<div class="tier"><h3>${label} <span class="muted">${desksByTier(t).length}</span></h3><p class="muted">${esc(does)}. Default seat <span class="mono">${esc(registry.tiers[t].default)}</span>.</p><ul>${desksByTier(t).map(d => `<li>${esc(d.name)}<span>${esc(d.owns)}</span></li>`).join('')}</ul></div>`).join('')}</div>
+  <div class="tiers">${TIERS.map(([t, label, does]) => `<div class="tier"><h3>${label} <span class="muted">${desksByTier(t).length}</span></h3><p class="muted">${esc(does)}. Default model <span class="mono">${esc(registry.tiers[t].default)}</span>.</p><ul>${desksByTier(t).map(d => `<li>${esc(d.name)}<span>${esc(d.owns)}</span></li>`).join('')}</ul></div>`).join('')}</div>
   <p class="muted" style="margin-top:24px">The Design Manager runs in your session on whatever model you run, and the other ${registry.desks.length - 1} desks run as subagents.</p>
 </div></section>
 
@@ -330,7 +330,7 @@ const html = `<!doctype html>
   <div class="two flip">
     <div>${loop('cost-meter', 'The cost line filling by tier as each desk reports')}</div>
     <div><h2>Cheap models make. Strong models judge.</h2>
-      <p class="lead">Roughs come from the senior seat, every polish round from the builder seat, and the pick, the notes and the sign-off from the director seat. The floor shows what each desk cost at list price.</p></div>
+      <p class="lead">Roughs come from the senior roles, every polish round from the builder roles, and the pick, the notes and the sign-off from the director roles. The dashboard shows what each desk cost at list price.</p></div>
   </div>
   <table><thead><tr><th>Tier</th><th>Default</th><th>Does</th></tr></thead><tbody>${TIERS.map(([t, , does]) => `<tr><th>${t}</th><td class="mono">${esc(registry.tiers[t].default)}</td><td>${esc(does)}</td></tr>`).join('')}</tbody></table>
   <h3 style="margin-top:48px">One launch card, ${money(card.cost.total)} at list price.</h3>
@@ -340,9 +340,9 @@ const html = `<!doctype html>
 </div></section>
 
 <section id="models"><div class="wrap">
-  <h2>Models per seat.</h2>
+  <h2>Models per role.</h2>
   <p class="lead">The runner reaches each provider through the CLI you already have signed in, on the plan you already pay for. API keys are the fallback. One provider is fine, and tiers can mix. Jobs have completed through the Anthropic, OpenAI and Google CLIs. Google uses Antigravity CLI.</p>
-  <table><thead><tr><th>Provider</th><th>CLI</th><th>Seats</th></tr></thead><tbody>${providerRows}</tbody></table>
+  <table><thead><tr><th>Provider</th><th>CLI</th><th>Roles</th></tr></thead><tbody>${providerRows}</tbody></table>
   <pre><code>{
   "models": {
     "director": "anthropic/opus",
@@ -350,12 +350,12 @@ const html = `<!doctype html>
     "builder": "openai/nano"
   }
 }</code></pre>
-  <p class="muted small" style="margin-top:12px">Set once in <span class="mono">.desk/project.json</span>, or from the floor for one job.</p>
+  <p class="muted small" style="margin-top:12px">Set once in <span class="mono">.desk/project.json</span>, or from the dashboard for one job.</p>
 </div></section>
 
-<section id="floor"><div class="wrap">
+<section id="dashboard"><div class="wrap">
   <div class="two">
-    <div><h2>You run the floor.</h2>
+    <div><h2>You run it from the dashboard.</h2>
       <p class="lead">A local page, nothing leaves your machine. Every control is a write to a file the Manager reads before its next step.</p>
       <ul class="controls">
         <li>Pause at the next step, continue, stop.</li>
@@ -366,8 +366,8 @@ const html = `<!doctype html>
       </ul></div>
     <div>${loop('pick-it-yourself', 'Clicking a rough on the review board, which then shows as picked by you')}</div>
   </div>
-  <p class="muted" style="margin-top:48px">One real job, run from the floor: paused after the roughs, the pick made by hand, the builder seat moved from Haiku to Sonnet, and a note written to the UI Designer. It came back signed off at ${controls.average} in ${controls.rounds} rounds, ${money(controls.cost)} at list price.</p>
-  <div class="pair2"><div>${loop('swap-the-seat', 'The builder seat moved to another model while the job holds')}</div><div>${loop('note-to-the-desk', 'A note typed to the UI Designer, then the next round')}</div></div>
+  <p class="muted" style="margin-top:48px">One real job, run from the dashboard: paused after the roughs, the pick made by hand, the builder role moved from Haiku to Sonnet, and a note written to the UI Designer. It came back signed off at ${controls.average} in ${controls.rounds} rounds, ${money(controls.cost)} at list price.</p>
+  <div class="pair2"><div>${loop('swap-the-seat', 'The builder role moved to another model while the job holds')}</div><div>${loop('note-to-the-desk', 'A note typed to the UI Designer, then the next round')}</div></div>
 </div></section>
 
 <section id="proof"><div class="wrap">
@@ -383,8 +383,8 @@ const html = `<!doctype html>
 <section id="where"><div class="wrap">
   <h2>Other agents.</h2>
   <table><thead><tr><th>Agent</th><th>What you get</th></tr></thead><tbody>
-    <tr><th>Claude Code</th><td>Everything: the ${registry.desks.length - 1} desks as native subagents with the repo's tools, the Manager in your session, the loop, proof, the floor, video.</td></tr>
-    <tr><th>Codex, Cursor, Gemini CLI, Copilot, Windsurf, OpenCode</th><td><span class="mono">npx deskstudio add</span> installs the role briefs and host instructions. The runner currently routes <span class="mono">design</span> to social cards, with the review loop, proof and floor. For work inside the codebase, the host can follow the Manager skill and role briefs. Broader native slash commands are not runner commands. The installer is tested for each host.</td></tr>
+    <tr><th>Claude Code</th><td>Everything: the ${registry.desks.length - 1} desks as native subagents with the repo's tools, the Manager in your session, the loop, proof, the dashboard, video.</td></tr>
+    <tr><th>Codex, Cursor, Gemini CLI, Copilot, Windsurf, OpenCode</th><td><span class="mono">npx deskstudio add</span> writes a rules block the agent reads and copies the desk briefs. The runner takes <span class="mono">design</span> for social cards, with the same loop, proof and dashboard, and desks return files rather than editing the repo. For design work inside the codebase the agent plays the Design Manager from the briefs. The other commands are Claude Code only for now. The installer is tested for each of these agents, and jobs have completed through the Claude, Codex and Antigravity CLIs.</td></tr>
   </tbody></table>
 </div></section>
 
@@ -413,8 +413,8 @@ const html = `<!doctype html>
 
 <section id="contribute"><div class="wrap">
   <h2>Make your first contribution.</h2>
-  <p class="lead">Use Cursor or Copilot? Help write the setup guide. Know JavaScript? Add proof tests for safe-zone boundaries or required copy. These starter tasks need no model calls.</p>
-  <div class="ctas"><a class="cta" href="${REPO}/contribute">Find a starter issue</a><a class="cta ghost" href="${REPO}/blob/main/docs/first-contribution.md">Read the contribution walkthrough</a></div>
+  <p class="lead">There are setup guides to write for Cursor and Copilot, and proof tests to add for safe-zone boundaries and required copy. None of them need a model call.</p>
+  <div class="ctas"><a class="cta" href="${REPO}/contribute">Pick a starter issue</a><a class="cta ghost" href="${REPO}/blob/main/docs/first-contribution.md">Your first contribution</a></div>
   <p class="muted small" style="margin-top:16px">Check that an issue is open and unclaimed before starting. A failed install is useful too, <a href="${REPO}/issues/new/choose">report it with the host, version and exact command</a>. Remove private project content from logs.</p>
 </div></section>
 
@@ -422,7 +422,7 @@ const html = `<!doctype html>
 <footer><div class="wrap">
   <a class="brand" href="#top">${mark}Desk Studio</a>
   <span>MIT. It runs on your machine. Only the model calls the desks make and a few research lookups leave it.</span>
-  <span><a href="${REPO}">GitHub</a> <a href="${REPO}/blob/main/docs/privacy.md" style="margin-left:24px">Privacy</a></span>
+  <span><a href="${REPO}">GitHub</a> <a href="#contribute" style="margin-left:24px">Contribute</a> <a href="${REPO}/blob/main/docs/privacy.md" style="margin-left:24px">Privacy</a></span>
 </div></footer>
 <script>
 if (matchMedia('(prefers-reduced-motion: reduce)').matches) for (const v of document.querySelectorAll('video')) { v.removeAttribute('autoplay'); v.pause(); }

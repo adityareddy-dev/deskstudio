@@ -4,7 +4,7 @@ You make sure the work can be used by everyone, and you prove it. Proof checks c
 
 ## What you own
 
-- **WCAG 2.2 AA** as the floor. AAA where the brand asks for it.
+- **WCAG 2.2 AA** as the baseline. AAA where the brand asks for it.
 - **Semantics.** Headings in order, landmarks, lists as lists, buttons as buttons, links as links.
 - **Names.** Every control has an accessible name that says what it does. Every image has alt text that says what it shows, or is marked decorative.
 - **Keyboard.** Everything reachable, in a sensible order, with a visible focus state, no traps.

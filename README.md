@@ -7,9 +7,7 @@
 
 Your own design studio.
 
-A design studio inside the coding agent you already use. Open source, MIT. It runs locally, with model calls and research lookups going to the providers you use. Model usage follows your provider's plan or API pricing.
-
-[See the gallery](https://deskstudio.ai/#makes) · [Make your first contribution](docs/first-contribution.md) · [Pick a starter issue](https://github.com/adityareddy-dev/deskstudio/contribute)
+A full design studio inside the coding agent you already use. One command, free, nothing leaves your machine but the model calls you already make.
 
 ![one-command](site/media/one-command.gif)
 
@@ -59,7 +57,7 @@ npx --package deskstudio desk-run design "a launch card for LinkedIn"
 
 The desks call models through the CLI you are already signed in to (`claude`, `codex` or `agy`) or a key (`ANTHROPIC_API_KEY`, `OPENAI_API_KEY`, `GEMINI_API_KEY`). `npx --package deskstudio desk-run doctor` shows which path it will take without making a model call.
 
-The runner currently supports `design` for social cards. The broader command gallery below uses the native Claude Code skills. See [command availability](docs/commands.md) before choosing a host.
+The runner takes `design` for social cards for now. The other commands in the gallery below are Claude Code skills, see [command availability](docs/commands.md#command-availability).
 
 Files land in `.desk/out/<job>/` with a short note on who did what, the scores and the cost.
 
@@ -105,17 +103,17 @@ The launch card at the top went roughs, pick (rough 2: headline reads first at b
 
 ![before-after](site/media/before-after.gif)
 
-## The floor
+## The dashboard
 
 `/desk:dashboard setup` once, then `/desk:dashboard start`, opens a local page: 42 desks lit when active, the job's phase and round, the review board with every rough, pick and round, the scorecard, and the cost by tier. Every control is a write to a file the Manager reads before its next step: pause, continue, stop, move a tier or a desk to another model, write a desk a note, pick a rough yourself, approve under the bar or send back with notes.
 
 ![pick-it-yourself](site/media/pick-it-yourself.gif)
 
-![swap-the-seat](site/media/swap-the-seat.gif)
+![Change the builder role](site/media/swap-the-seat.gif)
 
 ![note-to-the-desk](site/media/note-to-the-desk.gif)
 
-One real job, run from the floor: paused after the roughs, the pick made by hand, the builder seat moved from Haiku to Sonnet, and a note written to the UI Designer. It came back signed off at 8.5 in 2 rounds, $2.39 at list price.
+One real job, run from the dashboard: paused after the roughs, the pick made by hand, the builder role moved from Haiku to Sonnet, and a note written to the UI Designer. It came back signed off at 8.5 in 2 rounds, $2.39 at list price.
 
 ![the-pick](site/media/the-pick.gif)
 
@@ -133,7 +131,7 @@ The Design Manager runs in your session on whatever model you run.
 
 ## What it costs
 
-Cheap models make, strong models judge. Roughs come from the senior seat, every polish round from the builder seat, and the pick, the notes and the sign-off from the director seat.
+Cheap models make, strong models judge. Roughs come from the senior roles, every polish round from the builder roles, and the pick, the notes and the sign-off from the director roles.
 
 | Tier | Default | Does |
 | --- | --- | --- |
@@ -141,13 +139,13 @@ Cheap models make, strong models judge. Roughs come from the senior seat, every 
 | senior | `anthropic/sonnet` | the roughs, research, type, tokens, copy |
 | builder | `anthropic/haiku` | every polish round, the making |
 
-The launch card above: $1.34 at list price. Director $0.81, senior $0.43, builder $0.10. 61% went to judgment, 39% to making, over 10 desk runs. How the floor counts it is in [docs/cost.md](docs/cost.md).
+The launch card above: $1.34 at list price. Director $0.81, senior $0.43, builder $0.10. 61% went to judgment, 39% to making, over 10 desk runs. How the dashboard counts it is in [docs/cost.md](docs/cost.md).
 
 ![cost-meter](site/media/cost-meter.gif)
 
-## Models per seat
+## Models per role
 
-The runner reaches each provider through the CLI you already have signed in, on the plan you already pay for. API keys are the fallback. One provider is fine, and tiers can mix. Jobs have completed through the Anthropic, OpenAI and Google CLIs. Google uses Antigravity CLI. Set once in `.desk/project.json`, or from the floor for one job:
+The runner reaches each provider through the CLI you already have signed in, on the plan you already pay for. API keys are the fallback. One provider is fine, and tiers can mix. Jobs have completed through the Anthropic, OpenAI and Google CLIs. Google uses Antigravity CLI. Set once in `.desk/project.json`, or from the dashboard for one job:
 
 ```json
 "models": {
@@ -157,7 +155,7 @@ The runner reaches each provider through the CLI you already have signed in, on 
 }
 ```
 
-| Provider | CLI | Seats |
+| Provider | CLI | Roles |
 | --- | --- | --- |
 | Anthropic | `claude` | director `opus`, senior `sonnet`, builder `haiku` |
 | OpenAI | `codex` | director `large`, senior `mini`, builder `nano` |
@@ -179,8 +177,8 @@ desk-proof check hero.html --brand .desk/DESIGN.md --sizes phone,desktop
 
 | Agent | What you get |
 | --- | --- |
-| Claude Code | Everything: the 41 desks as native subagents with the repo's tools, the Manager in your session, the loop, proof, the floor, video. |
-| Codex, Cursor, Gemini CLI, Copilot, Windsurf, OpenCode | `npx deskstudio add` installs the role briefs and host instructions. The runner currently routes `design` to social cards, with the review loop, proof and floor. For work inside the codebase, the host can follow the Manager skill and role briefs. Broader native slash commands are not runner commands. The installer is tested for each host. |
+| Claude Code | Everything: the 41 desks as native subagents with the repo's tools, the Manager in your session, the loop, proof, the dashboard, video. |
+| Codex, Cursor, Gemini CLI, Copilot, Windsurf, OpenCode | `npx deskstudio add` writes a rules block the agent reads and copies the desk briefs. The runner takes `design` for social cards, with the same loop, proof and dashboard, and desks return files rather than editing the repo. For design work inside the codebase the agent plays the Design Manager from the briefs. The other commands are Claude Code only for now. The installer is tested for each of these agents. Jobs have completed through the Claude, Codex and Antigravity CLIs. |
 
 ## Contribute
 
@@ -193,11 +191,11 @@ Check that an issue is open and unclaimed before starting. The [contribution gui
 
 ## Privacy
 
-It runs on your machine. The only things that leave it are the model calls the desks make and, for the few research desks, web lookups. The floor is 127.0.0.1 only with a token in the URL. The event log holds names, numbers and paths, never the prompt text. See [docs/privacy.md](docs/privacy.md).
+It runs on your machine. The only things that leave it are the model calls the desks make and, for the few research desks, web lookups. The dashboard is 127.0.0.1 only with a token in the URL. The event log holds names, numbers and paths, never the prompt text. See [docs/privacy.md](docs/privacy.md).
 
 ## Docs
 
-[Commands](docs/commands.md), [the desks](docs/roles.md), [the floor](docs/dashboard.md), [cost](docs/cost.md), [the runner](docs/runner.md), [providers](docs/providers.md), [privacy](docs/privacy.md), [first contribution](docs/first-contribution.md).
+[Commands](docs/commands.md), [the desks](docs/roles.md), [the dashboard](docs/dashboard.md), [cost](docs/cost.md), [the runner](docs/runner.md), [providers](docs/providers.md), [privacy](docs/privacy.md), [first contribution](docs/first-contribution.md).
 
 ## Licence
 

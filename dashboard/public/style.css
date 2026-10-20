@@ -1,4 +1,4 @@
-/* Desk Studio floor, set to the brand kit in brand/ (DESIGN.md, palette.css, motion.md).
+/* Desk Studio dashboard, set to the brand kit in brand/ (DESIGN.md, palette.css, motion.md).
    Every colour and type value lives in the first two blocks. Dark is the default, the light scheme follows.
    Amber is a lit lamp and the pick ring only: never text, never a fill behind text, never a button. */
 @font-face { font-family: "Inter"; src: url("/fonts/inter/Inter-Variable.woff2") format("woff2"); font-weight: 100 900; font-display: swap; }
@@ -168,7 +168,7 @@ select:focus, input:focus, textarea:focus, button:focus-visible, a:focus-visible
 .staff .task { flex: 1 1 136px; color: var(--muted); }
 .brief summary { margin-top: 16px; }
 
-/* floor: the 42 desks as 7 by 6, in tier order, each one a slab and a lamp */
+/* dashboard: the 42 desks as 7 by 6, in tier order, each one a slab and a lamp */
 .tiers { display: flex; flex-wrap: wrap; gap: 8px 24px; margin: 8px 0 16px; }
 .tier { display: flex; align-items: center; gap: 8px; white-space: nowrap; }
 .tier h3 { margin: 0; color: var(--text); }

@@ -41,7 +41,7 @@ sources:
 
 ## Position
 
-For developers and founders who ship without a designer, 42 desks working inside your agent while you run the floor. Warm, plain, steady.
+For developers and founders who ship without a designer, 42 desks working inside your agent while you run the dashboard. Warm, plain, steady.
 
 ## Voice
 
@@ -55,7 +55,7 @@ Amber is a desk at work and the pick: a lit lamp, and the ring drawn round the p
 
 ## Colour by job
 
-Dark set (default for the floor and the sting)
+Dark set (default for the dashboard and the sting)
 
 | Job | Token | Hex |
 |---|---|---|
@@ -84,7 +84,7 @@ Background, foreground and accent keep the strategist's hexes in both sets. Noth
 ## Spacing, radius, elevation
 
 - Unit 8px. Scale in units: 0.5, 1, 2, 3, 4, 6, 8, 12, 16 (4, 8, 16, 24, 32, 48, 64, 96, 128px). Nothing off the scale.
-- Radius 0 on the mark, slabs, bars and the floor's desks. Radius 4 is the default for panels, inputs and buttons. Radius 8 for cards and the hero's rough frames. Nothing round.
+- Radius 0 on the mark, slabs, bars and the dashboard's desks. Radius 4 is the default for panels, inputs and buttons. Radius 8 for cards and the hero's rough frames. Nothing round.
 - No shadows. Menus and dialogs may take one 1px `line` border instead.
 - Breakpoints 390, 768, 1024, 1440.
 
@@ -95,7 +95,7 @@ Background, foreground and accent keep the strategist's hexes in both sets. Noth
 - Put figures in Inter with tabular numerals wherever they sit in a row.
 - Use foreground on background for headlines and body, muted for labels and secondary lines.
 - Draw the pass line at 8 on every scorecard, even when every axis passes.
-- Show the 42-desk grid as 7 columns by 6 rows, and only where it is the floor.
+- Show the 42-desk grid as 7 columns by 6 rows, and only where it is the dashboard.
 - Draw the pick ring as one open amber stroke round the picked desk or rough: a slightly irregular oval 1.5 times the picked box, centred on it, round caps and joins, no fill, drawn clockwise from the top arc a third in from the left, the end running past the start (8px on rings under 120px wide, 12px from 120px), its last quarter drifting outward so it passes the start with one stroke width of clear space between the two strokes. Stroke 3px under 120px wide, 4px from 120px. One ring per screen.
 - Write a desk by its job title: Art Director, Typographer.
 - Respect reduced motion: show the end state, no fill, draw or stagger.
