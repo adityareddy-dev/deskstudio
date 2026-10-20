@@ -134,11 +134,11 @@ A builder that misses the same note twice hands the file to a senior. A senior t
 
 The launch card at the top went roughs, pick (rough ${card.pick.rough}: ${card.pick.reason}), then ${card.scores.map(s => `${s.average}`).join(', ')} over ${card.round} rounds, signed off at ${cardFinal.average}.
 
-${gif('before-after')}## The floor
+${gif('before-after')}## The dashboard
 
 \`/desk:dashboard setup\` once, then \`/desk:dashboard start\`, opens a local page: ${registry.desks.length} desks lit when active, the job's phase and round, the review board with every rough, pick and round, the scorecard, and the cost by tier. Every control is a write to a file the Manager reads before its next step: pause, continue, stop, move a tier or a desk to another model, write a desk a note, pick a rough yourself, approve under the bar or send back with notes.
 
-${gif('pick-it-yourself')}${gif('swap-the-seat')}${gif('note-to-the-desk')}One real job, run from the floor: paused after the roughs, the pick made by hand, the builder seat moved from Haiku to Sonnet, and a note written to the UI Designer. It came back signed off at ${ctlAvg} in ${ctl.round} rounds, ${money(ctl.cost.total)} at list price.
+${gif('pick-it-yourself')}${gif('swap-the-seat')}${gif('note-to-the-desk')}One real job, run from the dashboard: paused after the roughs, the pick made by hand, the builder role moved from Haiku to Sonnet, and a note written to the UI Designer. It came back signed off at ${ctlAvg} in ${ctl.round} rounds, ${money(ctl.cost.total)} at list price.
 
 ${gif('the-pick')}## The team
 
@@ -150,17 +150,17 @@ The Design Manager runs in your session on whatever model you run.
 
 ## What it costs
 
-Cheap models make, strong models judge. Roughs come from the senior seat, every polish round from the builder seat, and the pick, the notes and the sign-off from the director seat.
+Cheap models make, strong models judge. Roughs come from the senior roles, every polish round from the builder roles, and the pick, the notes and the sign-off from the director roles.
 
 | Tier | Default | Does |
 | --- | --- | --- |
 ${tierRows.map(([t, does]) => `| ${t} | \`${registry.tiers[t].default}\` | ${does} |`).join('\n')}
 
-The launch card above: ${money(card.cost.total)} at list price. Director ${money(card.cost.director)}, senior ${money(card.cost.senior)}, builder ${money(card.cost.builder)}. ${judge}% went to judgment, ${100 - judge}% to making, over ${card.desks.length} desk runs. How the floor counts it is in [docs/cost.md](docs/cost.md).
+The launch card above: ${money(card.cost.total)} at list price. Director ${money(card.cost.director)}, senior ${money(card.cost.senior)}, builder ${money(card.cost.builder)}. ${judge}% went to judgment, ${100 - judge}% to making, over ${card.desks.length} desk runs. How the dashboard counts it is in [docs/cost.md](docs/cost.md).
 
-${gif('cost-meter')}## Models per seat
+${gif('cost-meter')}## Models per role
 
-The runner reaches each provider through the CLI you already have signed in, on the plan you already pay for. API keys are the fallback. One provider is fine, and tiers can mix. Jobs have completed through the Anthropic, OpenAI and Google CLIs. Google uses Antigravity CLI. Set once in \`.desk/project.json\`, or from the floor for one job:
+The runner reaches each provider through the CLI you already have signed in, on the plan you already pay for. API keys are the fallback. One provider is fine, and tiers can mix. Jobs have completed through the Anthropic, OpenAI and Google CLIs. Google uses Antigravity CLI. Set once in \`.desk/project.json\`, or from the dashboard for one job:
 
 \`\`\`json
 "models": {
@@ -170,7 +170,7 @@ The runner reaches each provider through the CLI you already have signed in, on 
 }
 \`\`\`
 
-| Provider | CLI | Seats |
+| Provider | CLI | Roles |
 | --- | --- | --- |
 ${Object.values(models.providers).map(p => `| ${p.label} | \`${p.cli}\` | director \`${p.tiers.director}\`, senior \`${p.tiers.senior}\`, builder \`${p.tiers.builder}\` |`).join('\n')}
 
@@ -188,16 +188,16 @@ ${gif('proof')}## Other agents
 
 | Agent | What you get |
 | --- | --- |
-| Claude Code | Everything: the ${registry.desks.length - 1} desks as native subagents with the repo's tools, the Manager in your session, the loop, proof, the floor, video. |
-| Codex, Cursor, Gemini CLI, Copilot, Windsurf, OpenCode | \`npx deskstudio add\` writes a rules block the agent reads, and the agent runs jobs through \`desk-run\`: the same desks, loop, proof and floor, with desks returning files rather than editing the repo. The installer is tested for each of these agents. Jobs have completed through the Claude, Codex and Antigravity CLIs. |
+| Claude Code | Everything: the ${registry.desks.length - 1} desks as native subagents with the repo's tools, the Manager in your session, the loop, proof, the dashboard, video. |
+| Codex, Cursor, Gemini CLI, Copilot, Windsurf, OpenCode | \`npx deskstudio add\` writes a rules block the agent reads, and the agent runs jobs through \`desk-run\`: the same desks, loop, proof and dashboard, with desks returning files rather than editing the repo. The installer is tested for each of these agents. Jobs have completed through the Claude, Codex and Antigravity CLIs. |
 
 ## Privacy
 
-It runs on your machine. The only things that leave it are the model calls the desks make and, for the few research desks, web lookups. The floor is 127.0.0.1 only with a token in the URL. The event log holds names, numbers and paths, never the prompt text. See [docs/privacy.md](docs/privacy.md).
+It runs on your machine. The only things that leave it are the model calls the desks make and, for the few research desks, web lookups. The dashboard is 127.0.0.1 only with a token in the URL. The event log holds names, numbers and paths, never the prompt text. See [docs/privacy.md](docs/privacy.md).
 
 ## Docs
 
-[Commands](docs/commands.md), [the desks](docs/roles.md), [the floor](docs/dashboard.md), [cost](docs/cost.md), [the runner](docs/runner.md), [providers](docs/providers.md), [privacy](docs/privacy.md).
+[Commands](docs/commands.md), [the desks](docs/roles.md), [the dashboard](docs/dashboard.md), [cost](docs/cost.md), [the runner](docs/runner.md), [providers](docs/providers.md), [privacy](docs/privacy.md).
 
 ## Licence
 

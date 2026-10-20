@@ -26,16 +26,16 @@ npx --package deskstudio desk-run design "a launch card for LinkedIn"
 
 ## What runs
 
-The same loop as the plugin: three roughs from the senior seat, the Art Director picks one and writes notes, the builder seat polishes, a proof step checks the rendered pixels in Chrome (contrast, overflow, safe zones, palette, type scale, copy present), and the Creative Director scores eight axes. Pass is every axis at 8 or above and the average at 8.5 or above. Files land in `.desk/out/<job>/` with a note on who did what, the scores and the cost at list price.
+The same loop as the plugin: three roughs from the senior roles, the Art Director picks one and writes notes, the builder role polishes, a proof step checks the rendered pixels in Chrome (contrast, overflow, safe zones, palette, type scale, copy present), and the Creative Director scores eight axes. Pass is every axis at 8 or above and the average at 8.5 or above. Files land in `.desk/out/<job>/` with a note on who did what, the scores and the cost at list price.
 
-Seats are per tier and reach each provider through the CLI you already have signed in (`claude`, `codex`, `agy`), with API keys as the fallback. Google uses Antigravity CLI because individual-account Gemini CLI sign-in is no longer supported. Run `agy` once to sign in and `agy models` to see your available models. One provider is fine, and tiers can mix. Jobs have completed through all three CLIs, including a Google-only job and a mixed OpenAI/Google job, both signed off at 8.75:
+Roles are set per tier and reach each provider through the CLI you already have signed in (`claude`, `codex`, `agy`), with API keys as the fallback. Google uses Antigravity CLI because individual-account Gemini CLI sign-in is no longer supported. Run `agy` once to sign in and `agy models` to see your available models. One provider is fine, and tiers can mix. Jobs have completed through all three CLIs, including a Google-only job and a mixed OpenAI/Google job, both signed off at 8.75:
 
 ```
 npx --package deskstudio desk-run doctor
 npx --package deskstudio desk-run design "a launch card" --models director=anthropic/opus,builder=openai/nano
 ```
 
-The floor, a local page on 127.0.0.1 where you watch the desks, pause, move a seat, write a desk a note or pick a rough yourself:
+The dashboard, a local page on 127.0.0.1 where you watch the desks, pause, move a role to another model, write a desk a note or pick a rough yourself:
 
 ```
 npx --package deskstudio desk-floor setup

@@ -67,7 +67,7 @@ const card = JSON.parse(readFileSync(join(cardDir, 'jobs', cardJob, 'state.json'
 const cardRender = (round, size = 'linkedin') => join(cardDir, 'jobs', cardJob, 'renders', round, `${size}.png`);
 const cardFinal = card.scores.find(s => s.round === card.round) || card.scores.at(-1);
 
-// The controls job: a real run steered from the floor (clips/make-controls.mjs).
+// The controls job: a real run steered from the dashboard (clips/make-controls.mjs).
 const ctlDir = join(root, 'clips', 'fixtures', 'controls', 'jobs');
 const ctl = JSON.parse(readFileSync(join(ctlDir, readdirSync(ctlDir)[0], 'state.json'), 'utf8'));
 const controls = { average: (Object.values((ctl.scores.at(-1) || {}).axes || {}).reduce((a, b) => a + b, 0) / 8).toFixed(1), rounds: ctl.round, cost: ctl.cost.total };
@@ -320,9 +320,9 @@ const html = `<!doctype html>
 <section id="team"><div class="wrap">
   <div class="two">
     <div><h2>${registry.desks.length} desks.</h2><p class="lead">Each desk is a written brief: what it owns, how it decides, its checklist and what it hands to the next desk. The Design Manager staffs them per job. The three roughs run side by side and the rest in turn.</p></div>
-    <div>${loop('floor-idle', 'The floor: forty-two desks, a lamp lighting when a desk starts')}</div>
+    <div>${loop('floor-idle', 'The dashboard: forty-two desks, a lamp lighting when a desk starts')}</div>
   </div>
-  <div class="tiers">${TIERS.map(([t, label, does]) => `<div class="tier"><h3>${label} <span class="muted">${desksByTier(t).length}</span></h3><p class="muted">${esc(does)}. Default seat <span class="mono">${esc(registry.tiers[t].default)}</span>.</p><ul>${desksByTier(t).map(d => `<li>${esc(d.name)}<span>${esc(d.owns)}</span></li>`).join('')}</ul></div>`).join('')}</div>
+  <div class="tiers">${TIERS.map(([t, label, does]) => `<div class="tier"><h3>${label} <span class="muted">${desksByTier(t).length}</span></h3><p class="muted">${esc(does)}. Default model <span class="mono">${esc(registry.tiers[t].default)}</span>.</p><ul>${desksByTier(t).map(d => `<li>${esc(d.name)}<span>${esc(d.owns)}</span></li>`).join('')}</ul></div>`).join('')}</div>
   <p class="muted" style="margin-top:24px">The Design Manager runs in your session on whatever model you run, and the other ${registry.desks.length - 1} desks run as subagents.</p>
 </div></section>
 
@@ -330,7 +330,7 @@ const html = `<!doctype html>
   <div class="two flip">
     <div>${loop('cost-meter', 'The cost line filling by tier as each desk reports')}</div>
     <div><h2>Cheap models make. Strong models judge.</h2>
-      <p class="lead">Roughs come from the senior seat, every polish round from the builder seat, and the pick, the notes and the sign-off from the director seat. The floor shows what each desk cost at list price.</p></div>
+      <p class="lead">Roughs come from the senior roles, every polish round from the builder roles, and the pick, the notes and the sign-off from the director roles. The dashboard shows what each desk cost at list price.</p></div>
   </div>
   <table><thead><tr><th>Tier</th><th>Default</th><th>Does</th></tr></thead><tbody>${TIERS.map(([t, , does]) => `<tr><th>${t}</th><td class="mono">${esc(registry.tiers[t].default)}</td><td>${esc(does)}</td></tr>`).join('')}</tbody></table>
   <h3 style="margin-top:48px">One launch card, ${money(card.cost.total)} at list price.</h3>
@@ -340,9 +340,9 @@ const html = `<!doctype html>
 </div></section>
 
 <section id="models"><div class="wrap">
-  <h2>Models per seat.</h2>
+  <h2>Models per role.</h2>
   <p class="lead">The runner reaches each provider through the CLI you already have signed in, on the plan you already pay for. API keys are the fallback. One provider is fine, and tiers can mix. Jobs have completed through the Anthropic, OpenAI and Google CLIs. Google uses Antigravity CLI.</p>
-  <table><thead><tr><th>Provider</th><th>CLI</th><th>Seats</th></tr></thead><tbody>${providerRows}</tbody></table>
+  <table><thead><tr><th>Provider</th><th>CLI</th><th>Roles</th></tr></thead><tbody>${providerRows}</tbody></table>
   <pre><code>{
   "models": {
     "director": "anthropic/opus",
@@ -350,12 +350,12 @@ const html = `<!doctype html>
     "builder": "openai/nano"
   }
 }</code></pre>
-  <p class="muted small" style="margin-top:12px">Set once in <span class="mono">.desk/project.json</span>, or from the floor for one job.</p>
+  <p class="muted small" style="margin-top:12px">Set once in <span class="mono">.desk/project.json</span>, or from the dashboard for one job.</p>
 </div></section>
 
-<section id="floor"><div class="wrap">
+<section id="dashboard"><div class="wrap">
   <div class="two">
-    <div><h2>You run the floor.</h2>
+    <div><h2>You run it from the dashboard.</h2>
       <p class="lead">A local page, nothing leaves your machine. Every control is a write to a file the Manager reads before its next step.</p>
       <ul class="controls">
         <li>Pause at the next step, continue, stop.</li>
@@ -366,8 +366,8 @@ const html = `<!doctype html>
       </ul></div>
     <div>${loop('pick-it-yourself', 'Clicking a rough on the review board, which then shows as picked by you')}</div>
   </div>
-  <p class="muted" style="margin-top:48px">One real job, run from the floor: paused after the roughs, the pick made by hand, the builder seat moved from Haiku to Sonnet, and a note written to the UI Designer. It came back signed off at ${controls.average} in ${controls.rounds} rounds, ${money(controls.cost)} at list price.</p>
-  <div class="pair2"><div>${loop('swap-the-seat', 'The builder seat moved to another model while the job holds')}</div><div>${loop('note-to-the-desk', 'A note typed to the UI Designer, then the next round')}</div></div>
+  <p class="muted" style="margin-top:48px">One real job, run from the dashboard: paused after the roughs, the pick made by hand, the builder role moved from Haiku to Sonnet, and a note written to the UI Designer. It came back signed off at ${controls.average} in ${controls.rounds} rounds, ${money(controls.cost)} at list price.</p>
+  <div class="pair2"><div>${loop('swap-the-seat', 'The builder role moved to another model while the job holds')}</div><div>${loop('note-to-the-desk', 'A note typed to the UI Designer, then the next round')}</div></div>
 </div></section>
 
 <section id="proof"><div class="wrap">
@@ -383,8 +383,8 @@ const html = `<!doctype html>
 <section id="where"><div class="wrap">
   <h2>Other agents.</h2>
   <table><thead><tr><th>Agent</th><th>What you get</th></tr></thead><tbody>
-    <tr><th>Claude Code</th><td>Everything: the ${registry.desks.length - 1} desks as native subagents with the repo's tools, the Manager in your session, the loop, proof, the floor, video.</td></tr>
-    <tr><th>Codex, Cursor, Gemini CLI, Copilot, Windsurf, OpenCode</th><td><span class="mono">npx deskstudio add</span> writes a rules block the agent reads, and the agent runs jobs through <span class="mono">desk-run</span>: the same desks, loop, proof and floor, with desks returning files rather than editing the repo. The installer is tested for each of these agents, and jobs have completed through the Claude, Codex and Antigravity CLIs.</td></tr>
+    <tr><th>Claude Code</th><td>Everything: the ${registry.desks.length - 1} desks as native subagents with the repo's tools, the Manager in your session, the loop, proof, the dashboard, video.</td></tr>
+    <tr><th>Codex, Cursor, Gemini CLI, Copilot, Windsurf, OpenCode</th><td><span class="mono">npx deskstudio add</span> writes a rules block the agent reads, and the agent runs jobs through <span class="mono">desk-run</span>: the same desks, loop, proof and dashboard, with desks returning files rather than editing the repo. The installer is tested for each of these agents, and jobs have completed through the Claude, Codex and Antigravity CLIs.</td></tr>
   </tbody></table>
 </div></section>
 
