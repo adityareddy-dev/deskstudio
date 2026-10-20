@@ -4,7 +4,7 @@
 // The pieces are the gallery's own renders from evals/golden, picked the way site/build.mjs picks them.
 //   node clips/one-command.mjs [--size 16:9|1:1|9:16|4:5] [--out clips/takes]
 // Output: one-command-<WxH>.mp4 and the poster frame one-command-<WxH>.png.
-import { existsSync, mkdirSync, mkdtempSync, readdirSync, rmSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, mkdtempSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { spawnSync } from 'node:child_process';
 import { tmpdir } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
@@ -51,6 +51,8 @@ const L = square ? { rows: 5, th: 168, gap: 16, termW: 900, cmdSize: 25, hook: 6
   : vertical ? { rows: 9, th: 190, gap: 16, termW: 960, cmdSize: 30, hook: 118, mark: 128 }
   : { rows: 4, th: 234, gap: 20, termW: 1120, cmdSize: 34, hook: 104, mark: 104 };
 
+// The end card carries the logo from brand/logo. Its S starts cream and turns gold when the lamp used to come on.
+const LOGO = readFileSync(join(root, 'brand', 'logo', 'logo.svg'), 'utf8').trim().replace(/^<svg[^>]*>/, '<svg id="logo" viewBox="0 0 512 512">').replace('fill="#ffaa1c"', 'id="logoS" fill="#f4f0e8"');
 const font = f => pathToFileURL(join(root, 'fonts', f)).href;
 const html = `<!doctype html><html><head><meta charset="utf-8"><style>
 @font-face { font-family: Inter; font-weight: 100 900; src: url("${font('inter/Inter-Variable.woff2')}") format("woff2"); }
@@ -75,8 +77,6 @@ html, body { width: ${W}px; height: ${H}px; overflow: hidden; background: #12110
 #status .dot { display: inline-block; width: .55em; height: .55em; border-radius: 50%; background: #ffaa1c; margin-right: .7em; vertical-align: .05em; }
 #hook { position: absolute; left: 0; right: 0; top: 50%; transform: translateY(-50%); text-align: center; }
 #hook svg { width: ${L.mark}px; height: ${L.mark}px; margin: 0 auto ${square ? 36 : 48}px; display: block; overflow: visible; }
-#hook rect { fill: #f4f0e8; }
-#hook circle { fill: #ffaa1c; }
 #hook h1 { font-weight: 600; font-size: ${L.hook}px; line-height: 1.06; letter-spacing: -0.025em; }
 #hook .url { margin-top: ${square ? 36 : 48}px; font: 400 ${square ? 26 : 32}px "Geist Mono", monospace; color: #9a948a; }
 #fade { position: absolute; inset: 0; background: #12110f; opacity: 0; }
@@ -86,7 +86,7 @@ html, body { width: ${W}px; height: ${H}px; overflow: hidden; background: #12110
 <div id="term"><div class="bar"><i></i><i></i><i></i><span>~/my-app</span></div>
   <div class="body"><div><span class="prompt">&gt;</span><span id="typed"></span><span id="cursor"></span></div>
   <div id="status"><span class="dot"></span>${LOOP.map(w => `<b>${w}</b>`).join('&nbsp;&nbsp;&nbsp;')}</div></div></div>
-<div id="hook"><svg viewBox="0 0 24 24"><rect id="desk" x="0" y="18" width="24" height="6"/><circle id="lamp" cx="17" cy="10" r="4"/></svg>
+<div id="hook">${LOGO}
   <h1><span id="l1">Your own${vertical ? '<br>' : ' '}design studio.</span><br><span id="l2">At your desk.</span></h1><div class="url" id="url">deskstudio.ai</div></div>
 <div id="fade"></div>
 </div><script>
@@ -152,14 +152,14 @@ window.seek = t => {
     el.style.opacity = p <= 0 ? 0 : Math.min(1, p * 3);
     el.style.transform = 'translate(' + x + 'px,' + y + 'px) scale(' + (0.25 + 0.75 * outCubic(p)) + ')';
   });
-  // The line: the wall goes quiet, the desk is drawn, the words come up, the lamp comes on.
+  // The line: the wall goes quiet, the logo comes up, then the words, then its S lights.
   const sh = span(t, HOOK, HOOK + 0.6);
   $('shade').style.opacity = 0.9 * sh;
   $('wall').style.filter = sh > 0 ? 'blur(' + (sh * 5).toFixed(2) + 'px)' : 'none';
-  const d = outCubic(span(t, HOOK + 0.2, HOOK + 0.7));
-  $('desk').setAttribute('width', 24 * d); $('desk').style.opacity = d > 0 ? 1 : 0;
+  const d = span(t, HOOK + 0.2, HOOK + 0.6);
+  $('logo').style.opacity = Math.min(1, d * 3); $('logo').style.transform = 'scale(' + (0.6 + 0.4 * outBack(d)).toFixed(3) + ')';
   const lamp = span(t, HOOK + 1.75, HOOK + 1.95);
-  $('lamp').style.opacity = lamp; $('lamp').style.filter = lamp ? 'drop-shadow(0 0 ' + (6 * lamp) + 'px rgba(255,170,28,.9))' : 'none';
+  $('logoS').setAttribute('fill', lamp > 0.5 ? '#ffaa1c' : '#f4f0e8'); $('logoS').style.filter = lamp ? 'drop-shadow(0 0 ' + (14 * lamp).toFixed(1) + 'px rgba(255,170,28,.8))' : 'none';
   for (const [id, a] of [['l1', HOOK + 0.45], ['l2', HOOK + 1.05], ['url', HOOK + 1.7]]) {
     const p = outCubic(span(t, a, a + 0.5));
     $(id).style.opacity = p; $(id).style.display = 'inline-block'; $(id).style.transform = 'translateY(' + (1 - p) * 24 + 'px)';

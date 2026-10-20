@@ -64,6 +64,8 @@ const F = FW === 1920 ? { term: [1120, 34], dock: [40, 36, 0.38], cap: [40, 24, 
   : FH > FW ? { term: [940, 29], dock: [40, 70, 0.5], cap: [52, 28, 150], hook: [118, 128, 56], wall: { rows: 9, th: 190, gap: 16 } }
   : { term: [940, 29], dock: [28, 28, 0.44], cap: [34, 21, 44], hook: [66, 72, 32], wall: { rows: 5, th: 168, gap: 16 } };
 
+// The end card carries the logo from brand/logo. Its S starts cream and turns gold when the lamp used to come on.
+const LOGO = readFileSync(join(root, 'brand', 'logo', 'logo.svg'), 'utf8').trim().replace(/^<svg[^>]*>/, '<svg id="logo" viewBox="0 0 512 512">').replace('fill="#ffaa1c"', 'id="logoS" fill="#f4f0e8"');
 const font = f => pathToFileURL(join(root, 'fonts', f)).href;
 const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const BASE = 780;
@@ -168,7 +170,7 @@ svg { position: absolute; inset: 0; }
 <div id="wall"></div>
 <div id="shade"></div>
 <div id="cap"></div>
-<div id="hook" style="opacity:0"><svg viewBox="0 0 24 24"><rect id="desk" x="0" y="18" width="24" height="6" fill="#f4f0e8"/><circle id="lampmark" cx="17" cy="10" r="4" fill="#ffaa1c"/></svg>
+<div id="hook" style="opacity:0">${LOGO}
   <div class="brand" id="brand">Desk Studio</div>
   <h1><span id="l1">Your own${FH > FW ? '<br>' : ' '}design studio.</span><br><span id="l2">At your desk.</span></h1><div class="url" id="url">deskstudio.ai</div></div>
 <div id="fade"></div>
@@ -427,8 +429,10 @@ window.seek = t => {
   $('shade').style.opacity = 0.9 * sh;
   $('wall').style.filter = sh > 0 ? 'blur(' + (sh * 5).toFixed(2) + 'px)' : 'none';
   $('hook').style.opacity = span(t, 27.0, 27.2);
-  const d = outCubic(span(t, 27.1, 27.5)); $('desk').setAttribute('width', 24 * d);
-  const lamp = span(t, 28.9, 29.1); $('lampmark').style.opacity = lamp; $('lampmark').style.filter = lamp ? 'drop-shadow(0 0 ' + (6 * lamp) + 'px rgba(255,170,28,.9))' : 'none';
+  const d = span(t, 27.1, 27.5);
+  $('logo').style.opacity = Math.min(1, d * 3); $('logo').style.transform = 'scale(' + (0.6 + 0.4 * outBack(d)).toFixed(3) + ')';
+  const lamp = span(t, 28.9, 29.1);
+  $('logoS').setAttribute('fill', lamp > 0.5 ? '#ffaa1c' : '#f4f0e8'); $('logoS').style.filter = lamp ? 'drop-shadow(0 0 ' + (14 * lamp).toFixed(1) + 'px rgba(255,170,28,.8))' : 'none';
   for (const [id, a] of [['brand', 27.3], ['l1', 27.7], ['l2', 28.2], ['url', 28.8]]) {
     const p = outCubic(span(t, a, a + 0.5)); const el = $(id); el.style.opacity = p; el.style.display = id === 'url' || id === 'brand' ? 'block' : 'inline-block'; el.style.transform = 'translateY(' + (1 - p) * 24 + 'px)';
   }
