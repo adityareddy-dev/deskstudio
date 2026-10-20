@@ -2,6 +2,8 @@
 
 Pick a [good first issue](https://github.com/adityareddy-dev/deskstudio/issues?q=is%3Aissue%20is%3Aopen%20label%3A%22good%20first%20issue%22), or open an issue with the problem you want to solve. Keep a pull request to one change and say how you checked it. Our [code of conduct](CODE_OF_CONDUCT.md) applies here.
 
+New here? [Your first contribution](docs/first-contribution.md) maps the starter issues to the files and checks they need. Documentation and synthetic proof tests do not need a model account.
+
 ## Run the checks
 
 Use Node.js 20 or newer (CI uses 22), Chrome or Chromium, and `ffmpeg` on your PATH. From the repo root:

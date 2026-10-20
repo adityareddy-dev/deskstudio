@@ -1,6 +1,10 @@
 # Commands
 
-Every command is `/desk:<name>` in Claude Code, or `desk-run <name> "<ask>"` anywhere else. Each one is a fixed desk list and an output contract on top of the same loop: intake, roughs, pick, polish, proof, sign-off, handback. Files land in `.desk/out/<job id>/`, state in `.desk/jobs/<job id>/state.json`, and the floor shows the desks as they work.
+The table below describes the native Claude Code skills, invoked as `/desk:<name>`. Each loop command has a desk list and an output contract: intake, roughs, pick, polish, proof, sign-off, handback. Files land in `.desk/out/<job id>/`, state in `.desk/jobs/<job id>/state.json`, and the floor shows the desks as they work.
+
+## Command availability
+
+The standalone runner currently registers only `design`, for social cards, in [`runner/commands.mjs`](../runner/commands.mjs). Run it with `npx --package deskstudio desk-run design "a launch card for LinkedIn"`. It also has utility commands such as `doctor` and `resume`, documented in [the runner guide](runner.md). The other skills in the table are not yet standalone runner commands. Installing a host adapter copies the briefs and instructions, it does not add those commands to the runner.
 
 Tiers: director (opus), senior (sonnet), builder (haiku) by default. `--quality studio|best|thrifty` on any command changes the seats. Roughs always run at the senior model, polish at the builder model. `desk:<slug>` is the agent name the floor lights up.
 

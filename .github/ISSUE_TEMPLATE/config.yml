@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Start contributing
+    url: https://github.com/adityareddy-dev/deskstudio/blob/main/docs/first-contribution.md
+    about: Find a small task, its source files and the checks to run.
+  - name: Ask a setup question
+    url: https://github.com/adityareddy-dev/deskstudio/discussions
+    about: Discuss setup or an idea before opening a bug report.

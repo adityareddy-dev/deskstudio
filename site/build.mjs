@@ -266,12 +266,12 @@ const html = `<!doctype html>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Desk Studio</title>
-<meta name="description" content="Your own design studio. A full design studio inside the coding agent you already use. One command, free, nothing leaves your machine but the model calls you already make.">
+<meta name="description" content="An open-source design studio inside your coding agent. Review roughs, run proof checks and keep the files locally. MIT licensed. Model usage follows provider pricing.">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="canonical" href="https://deskstudio.ai/">
 <link rel="preload" as="image" href="media/one-command-vertical.webp" fetchpriority="high">
 <meta property="og:title" content="Your own design studio.">
-<meta property="og:description" content="A full design studio inside the coding agent you already use. One command, free, nothing leaves your machine.">
+<meta property="og:description" content="An open-source design studio inside your coding agent. Local files, model-assisted reviews and pixel proof checks. MIT licensed, with provider model usage.">
 <meta property="og:image" content="https://deskstudio.ai/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
 <meta property="og:url" content="https://deskstudio.ai/"><meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
@@ -287,17 +287,17 @@ const html = `<!doctype html>
 <section class="hero"><div class="wrap two">
   <div>
     <h1>Your own design studio.</h1>
-    <p class="lead">A full design studio inside the coding agent you already use. One command, free, nothing leaves your machine but the model calls you already make.</p>
+    <p class="lead">A design studio inside the coding agent you already use. Open source, MIT. Files stay local, model calls and research lookups go to your providers. Model usage follows your provider's plan or API pricing.</p>
     <div class="ctas"><a class="cta" href="#install">Install the plugin</a><a class="cta ghost" href="${REPO}">${star}Star on GitHub</a></div>
     <code class="install">${cmd(INSTALL)}</code>
-    <p class="open">Open source, MIT. No account, no sign-up.<a href="${REPO}">Read the code</a></p>
+    <p class="open">No Desk Studio account or sign-up.<a href="#contribute">Make your first contribution</a></p>
   </div>
   ${heroLoop('one-command', 'One command typed in a terminal, then every piece the studio has signed off, then the line: your own design studio, at your desk')}
 </div></section>
 
 <section id="makes"><div class="wrap">
   <h2>Made by the studio.</h2>
-  <p class="lead">${goldens.length} pieces for four made-up brands, one real site and the studio's own, each signed off by the Creative Director against the eight-axis rubric. The score and the cost under each one are from the run that made it.</p>
+  <p class="lead">${goldens.length} pieces for four made-up brands, one real site and the studio's own, each signed off by the Creative Director against the eight-axis rubric. The score and the cost under each one are from the run that made it. Scores come from the studio's model reviewers, they are not independent benchmarks.</p>
   <div class="gallery">${galleryHtml}</div>
 </div></section>
 
@@ -384,7 +384,7 @@ const html = `<!doctype html>
   <h2>Other agents.</h2>
   <table><thead><tr><th>Agent</th><th>What you get</th></tr></thead><tbody>
     <tr><th>Claude Code</th><td>Everything: the ${registry.desks.length - 1} desks as native subagents with the repo's tools, the Manager in your session, the loop, proof, the floor, video.</td></tr>
-    <tr><th>Codex, Cursor, Gemini CLI, Copilot, Windsurf, OpenCode</th><td><span class="mono">npx deskstudio add</span> writes a rules block the agent reads, and the agent runs jobs through <span class="mono">desk-run</span>: the same desks, loop, proof and floor, with desks returning files rather than editing the repo. The installer is tested for each of these agents, and jobs have completed through the Claude, Codex and Antigravity CLIs.</td></tr>
+    <tr><th>Codex, Cursor, Gemini CLI, Copilot, Windsurf, OpenCode</th><td><span class="mono">npx deskstudio add</span> installs the role briefs and host instructions. The runner currently routes <span class="mono">design</span> to social cards, with the review loop, proof and floor. For work inside the codebase, the host can follow the Manager skill and role briefs. Broader native slash commands are not runner commands. The installer is tested for each host.</td></tr>
   </tbody></table>
 </div></section>
 
@@ -408,7 +408,14 @@ const html = `<!doctype html>
   </tbody></table>
   <p class="lead">Then ask the agent in plain words, it reads the block and runs the studio.</p>
   <p class="cmdblock"><code>${cmd('design a launch card for LinkedIn')}</code></p>
-  <p class="muted small" style="margin-top:8px">Or run it yourself: <span class="mono">npx desk-run design "a launch card for LinkedIn"</span>. The desks call models through the CLI you are already signed in to (<span class="mono">claude</span>, <span class="mono">codex</span> or <span class="mono">gemini</span>) or a key (<span class="mono">ANTHROPIC_API_KEY</span>, <span class="mono">OPENAI_API_KEY</span>, <span class="mono">GEMINI_API_KEY</span>). <span class="mono">npx desk-run doctor</span> shows which path it will take. Files land in <span class="mono">.desk/out/&lt;job&gt;/</span> either way.</p>
+  <p class="muted small" style="margin-top:8px">Or run it yourself: <span class="mono">npx --package deskstudio desk-run design "a launch card for LinkedIn"</span>. The desks call models through the CLI you are already signed in to (<span class="mono">claude</span>, <span class="mono">codex</span> or <span class="mono">agy</span>) or a key (<span class="mono">ANTHROPIC_API_KEY</span>, <span class="mono">OPENAI_API_KEY</span>, <span class="mono">GEMINI_API_KEY</span>). <span class="mono">npx --package deskstudio desk-run doctor</span> shows which path it will take without making a model call. Files land in <span class="mono">.desk/out/&lt;job&gt;/</span> either way.</p>
+</div></section>
+
+<section id="contribute"><div class="wrap">
+  <h2>Make your first contribution.</h2>
+  <p class="lead">Use Cursor or Copilot? Help write the setup guide. Know JavaScript? Add proof tests for safe-zone boundaries or required copy. These starter tasks need no model calls.</p>
+  <div class="ctas"><a class="cta" href="${REPO}/contribute">Find a starter issue</a><a class="cta ghost" href="${REPO}/blob/main/docs/first-contribution.md">Read the contribution walkthrough</a></div>
+  <p class="muted small" style="margin-top:16px">Check that an issue is open and unclaimed before starting. A failed install is useful too, <a href="${REPO}/issues/new/choose">report it with the host, version and exact command</a>. Remove private project content from logs.</p>
 </div></section>
 
 </main>
