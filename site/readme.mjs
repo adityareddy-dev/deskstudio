@@ -56,6 +56,7 @@ const md = `# Desk Studio
 [![npm version](https://img.shields.io/npm/v/deskstudio)](https://www.npmjs.com/package/deskstudio)
 [![CI](https://github.com/adityareddy-dev/deskstudio/actions/workflows/check.yml/badge.svg)](https://github.com/adityareddy-dev/deskstudio/actions/workflows/check.yml)
 [![MIT licence](https://img.shields.io/badge/licence-MIT-blue)](LICENSE)
+[![Open Source Helpers](https://www.codetriage.com/adityareddy-dev/deskstudio/badges/users.svg)](https://www.codetriage.com/adityareddy-dev/deskstudio)
 
 Your own design studio.
 
