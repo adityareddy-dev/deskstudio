@@ -3,7 +3,7 @@
 // Mirrors skills/desk/SKILL.md: intake, roughs, pick, polish, proof, sign-off, escalation, cap, handback.
 //
 //   desk-run <command> "<ask>" [--project DIR] [--quality studio|best|thrifty] [--rounds N]
-//            [--models director=anthropic/opus,builder=google/flash] [--brand #hex|path] [--timeout MIN]
+//            [--models director=anthropic/opus,builder=google/flash] [--brand #hex|path] [--timeout MIN] [--no-proof]
 //   desk-run resume <id> [--project DIR]
 //   desk-run doctor [--probe]
 //   desk-run providers
@@ -88,7 +88,7 @@ function tierModels(projectCfg, quality, overrides) {
 }
 
 // Starts a job. Returns { code, id, state, handback }.
-export async function runJob({ command, ask, project, quality, rounds, models, brand, invoke, log, timeoutMs, now }) {
+export async function runJob({ command, ask, project, quality, rounds, models, brand, invoke, log, timeoutMs, now, noProof = false }) {
   const ctx = makeCtx({ project, invoke, log, timeoutMs });
   const cmd = getCommand(command);
   for (const desk of cmd.desks) if (!deskInfo(desk)) throw new Error(`Command ${cmd.name} staffs "${desk}", which is not in skills/desk/desks.json.`);
@@ -103,14 +103,14 @@ export async function runJob({ command, ask, project, quality, rounds, models, b
   S.ensureJobDirs(paths);
   ctx.paths = paths; ctx.cmd = cmd; ctx.texts = loadTexts(cmd); ctx.brandHint = brand || null; ctx.ask = flags.ask;
   ctx.state = S.writeState(paths, {
-    id, command: cmd.name, deliverable: cmd.deliverable, sizes: cmd.sizes.slice(), quality,
+    id, command: cmd.name, deliverable: cmd.deliverable, sizes: cmd.sizes.slice(), quality, proofMode: noProof ? 'off' : 'on',
     models: tiers, phase: 'intake', round: 0, maxRounds, desks: [], pick: null, proof: [], scores: [],
     waitingOn: null, cost: { director: 0, senior: 0, builder: 0, total: 0, complete: true }, tokens: { director: 0, senior: 0, builder: 0 },
     files: { final: S.rel(ctx.projectDir, paths.finalFile), brief: S.rel(ctx.projectDir, paths.briefFile) },
     pen: 'builder', notes: [], misses: {}, startedAt: S.localIso(), updatedAt: S.localIso(),
   });
   S.emit(ctx.projectDir, 'job.start', { id, command: cmd.name, deliverable: cmd.deliverable });
-  ctx.log(`job ${id} in ${S.rel(ctx.projectDir, paths.jobDir) || '.'} (${quality}: director ${tiers.director}, senior ${tiers.senior}, builder ${tiers.builder}, ${maxRounds} rounds)`);
+  ctx.log(`job ${id} in ${S.rel(ctx.projectDir, paths.jobDir) || '.'} (${quality}: director ${tiers.director}, senior ${tiers.senior}, builder ${tiers.builder}, ${maxRounds} rounds${noProof ? ', no proof' : ''})`);
   return loop(ctx);
 }
 
@@ -495,6 +495,16 @@ async function stepProof(ctx) {
   const round = state.round;
   const out = join(paths.rendersDir, `round-${round}`);
   const mustAppear = ctx.brief && !ctx.brief.draftCopy ? ctx.brief.copy : [];
+  if (state.proofMode === 'off') {
+    // Render only: the desks see the screenshots, nobody checks the pixels.
+    await proof(ctx, 'render', paths.finalFile, out);
+    state.proof.push({ round, pass: null, skipped: true, failures: 0 });
+    state.lastRenders = S.rel(ctx.projectDir, out);
+    S.emit(ctx.projectDir, 'job.proof', { id: state.id, round, pass: null, skipped: true, failures: 0 });
+    ctx.log(`proof round ${round}: skipped (--no-proof), rendered only`);
+    setPhase(ctx, 'signoff', round);
+    return;
+  }
   const result = await proof(ctx, 'check', paths.finalFile, out, { brand: paths.brandFile, mustAppear });
   const failures = (result.renders || []).reduce((n, r) => n + (r.failures?.length || 0), 0);
   state.proof.push({ round, pass: !!result.pass, failures });
@@ -517,7 +527,7 @@ async function stepSignoff(ctx) {
   if (!images.length) throw new Error(`No screenshots in ${state.lastRenders} for the sign-off.`);
   const shots = images.map((f, i) => `${i + 1}. ${basename(f, '.png')}: ${f}`).join('\n');
   const prompt = `Job ${state.id}. Sign-off for round ${round} of ${state.maxRounds}. Screenshots attached:\n${shots}\n`
-    + `Proof passed this round (overflow, safe zone, contrast on real pixels, type scale, palette, copy present).\n`
+    + (state.proofMode === 'off' ? `No mechanical proof ran this round.\n` : `Proof passed this round (overflow, safe zone, contrast on real pixels, type scale, palette, copy present).\n`)
     + `The Art Director picked rough ${state.pick.rough} (${state.pick.pattern.toLowerCase()}): ${state.pick.reason}\nThe Art Director's notes at the pick:\n${state.pick.notes.map((n, i) => `${i + 1}. ${n}`).join('\n') || '(none)'}\n`
     + `Return the sign-off in the exact shape your brief defines.\n`
     + briefBlock(ctx) + section('Rubric', texts.rubric) + section('Taste (.desk/taste.md)', S.readText(paths.tasteFile));
@@ -564,7 +574,7 @@ function afterMiss(ctx, notes, keys) {
 function openLine(state) {
   const last = state.scores[state.scores.length - 1];
   const lastProof = state.proof[state.proof.length - 1];
-  if (lastProof && !lastProof.pass && (!last || last.round < lastProof.round)) return `proof still fails: ${state.notes.slice(0, 2).join('; ')}`;
+  if (lastProof && lastProof.pass === false && (!last || last.round < lastProof.round)) return `proof still fails: ${state.notes.slice(0, 2).join('; ')}`;
   if (!last) return 'no sign-off yet';
   const under = AXES.filter(a => last.axes[a] < 8);
   const avgShort = last.average < 8.5 && !under.length ? `average ${last.average} under 8.5` : '';
@@ -606,7 +616,7 @@ async function stepHandback(ctx) {
   const files = readdirSync(paths.outDir).filter(f => statSync(join(paths.outDir, f)).isFile()).length + 1; // plus handback.md
   const firstPass = state.proof.find(p => p.pass);
   const failedBefore = state.proof.filter(p => !p.pass && (!firstPass || p.round < firstPass.round));
-  const proofLine = firstPass
+  const proofLine = state.proofMode === 'off' ? 'Proof: not run (--no-proof).' : firstPass
     ? `Proof: passed on round ${firstPass.round}${failedBefore.length ? ` after ${failedBefore.reduce((n, p) => n + p.failures, 0)} fix${failedBefore.reduce((n, p) => n + p.failures, 0) === 1 ? '' : 'es'}` : ''}.`
     : 'Proof: never passed.';
   const scoresLine = last
@@ -717,7 +727,8 @@ function usage() {
   return `desk-run: Desk Studio's loop as a program.
 
   desk-run <command> "<ask>" [--project DIR] [--quality studio|best|thrifty] [--rounds N]
-           [--models director=anthropic/opus,builder=google/flash] [--brand #hex|path] [--timeout MIN]
+           [--models director=anthropic/opus,builder=google/flash] [--brand #hex|path] [--timeout MIN] [--no-proof]
+  --no-proof renders each round but skips the mechanical checks, so the Creative Director is the only judge (for studies).
   desk-run resume <id> [--project DIR]
   desk-run doctor [--probe] [--project DIR]
   desk-run providers
@@ -758,7 +769,7 @@ export async function main(argv = process.argv.slice(2)) {
   const r = await runJob({
     command, ask, project: flags.project, quality: flags.quality, rounds: flags.rounds ? Number(flags.rounds) : undefined,
     models: flags.models ? parseModelsFlag(flags.models) : undefined, brand: typeof flags.brand === 'string' ? flags.brand : undefined,
-    invoke: runModel, timeoutMs,
+    invoke: runModel, timeoutMs, noProof: !!flags['no-proof'],
   });
   if (r.error) process.stdout.write(`Failed at ${r.state.next}: ${r.error.message}\nFix the cause and run: desk-run resume ${r.id}${flags.project ? ` --project "${flags.project}"` : ''}\n`);
   return r.code;
