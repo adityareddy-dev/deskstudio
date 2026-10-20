@@ -21,17 +21,36 @@ On a Claude Code older than 2.1.275, add the marketplace first, then install:
 /plugin install desk@deskstudio
 ```
 
-Any other agent, in the project:
-
-```
-npx deskstudio add
-```
-
 Then ask for something:
 
 ```
 /desk:design a launch card for LinkedIn
 ```
+
+Codex, Cursor, Gemini CLI, Copilot, Windsurf or OpenCode, one line in the project:
+
+```
+npx deskstudio add
+```
+
+It writes `.desk/`, copies the desks to `.agents/skills/desk/` and puts one marked block in the agent's instruction file. Every agent by default, one with `--agent codex`. Run it again any time, it only touches what sits between its markers.
+
+| Agent | Where the block goes |
+| --- | --- |
+| Codex | `AGENTS.md` |
+| OpenCode | `AGENTS.md` |
+| Gemini CLI | `GEMINI.md` |
+| Copilot | `.github/copilot-instructions.md` |
+| Cursor | `.cursor/rules/desk.mdc` |
+| Windsurf | `.windsurf/rules/desk.md` |
+
+Then ask the agent in plain words, "design a launch card for LinkedIn", it reads the block and runs the studio. Or run it yourself:
+
+```
+npx desk-run design "a launch card for LinkedIn"
+```
+
+The desks call models through the CLI you are already signed in to (`claude`, `codex` or `gemini`) or a key (`ANTHROPIC_API_KEY`, `OPENAI_API_KEY`, `GEMINI_API_KEY`). `npx desk-run doctor` shows which path it will take.
 
 Files land in `.desk/out/<job>/` with a short note on who did what, the scores and the cost.
 

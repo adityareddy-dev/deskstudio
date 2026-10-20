@@ -16,7 +16,7 @@ In the project, once:
 npx deskstudio add
 ```
 
-It copies the `.desk/` seed files, writes a marked block into `AGENTS.md`, `GEMINI.md`, `.github/copilot-instructions.md`, `.cursor/rules/desk.mdc` and `.windsurf/rules/desk.md` without touching what is already there, and copies the desk skill (the 42 role briefs, the Design Manager's included) to `.agents/skills/desk/`. `--agent claude|codex|cursor|gemini|copilot|windsurf|all` limits it to one agent.
+It copies the `.desk/` seed files, writes a marked block into `AGENTS.md`, `GEMINI.md`, `.github/copilot-instructions.md`, `.cursor/rules/desk.mdc` and `.windsurf/rules/desk.md` without touching what is already there, and copies the desk skill (the 42 role briefs, the Design Manager's included) to `.agents/skills/desk/`. `--agent claude|codex|cursor|gemini|copilot|windsurf|opencode|all` limits it to one agent.
 
 Then ask the agent for something. For a design ask, the block tells it to run the studio and hand back what it returns:
 

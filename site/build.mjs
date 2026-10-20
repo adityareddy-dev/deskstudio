@@ -371,10 +371,22 @@ const html = `<!doctype html>
   <p class="lead">Claude Code, one line.</p>
   <p class="cmdblock"><code>${cmd(INSTALL)}</code></p>
   <p class="muted small" style="margin-top:8px">On a Claude Code older than 2.1.275: <span class="mono">/plugin marketplace add adityareddy-dev/deskstudio</span>, then <span class="mono">/plugin install desk@deskstudio</span>.</p>
-  <p class="lead">Everyone else, one line in the project.</p>
-  <p class="cmdblock"><code>${cmd('npx deskstudio add')}</code></p>
   <p class="lead">Then ask for something.</p>
   <p class="cmdblock"><code>${cmd('/desk:design a launch card for LinkedIn')}</code></p>
+  <p class="lead">Codex, Cursor, Gemini CLI, Copilot, Windsurf or OpenCode: one line in the project.</p>
+  <p class="cmdblock"><code>${cmd('npx deskstudio add')}</code></p>
+  <p class="muted small" style="margin-top:8px">It writes <span class="mono">.desk/</span>, copies the desks to <span class="mono">.agents/skills/desk/</span> and puts one marked block in the agent's instruction file. Every agent by default, one with <span class="mono">--agent codex</span>. Run it again any time, it only touches what sits between its markers.</p>
+  <table><thead><tr><th>Agent</th><th>Where the block goes</th></tr></thead><tbody>
+    <tr><th>Codex</th><td class="mono">AGENTS.md</td></tr>
+    <tr><th>OpenCode</th><td class="mono">AGENTS.md</td></tr>
+    <tr><th>Gemini CLI</th><td class="mono">GEMINI.md</td></tr>
+    <tr><th>Copilot</th><td class="mono">.github/copilot-instructions.md</td></tr>
+    <tr><th>Cursor</th><td class="mono">.cursor/rules/desk.mdc</td></tr>
+    <tr><th>Windsurf</th><td class="mono">.windsurf/rules/desk.md</td></tr>
+  </tbody></table>
+  <p class="lead">Then ask the agent in plain words, it reads the block and runs the studio.</p>
+  <p class="cmdblock"><code>${cmd('design a launch card for LinkedIn')}</code></p>
+  <p class="muted small" style="margin-top:8px">Or run it yourself: <span class="mono">npx desk-run design "a launch card for LinkedIn"</span>. The desks call models through the CLI you are already signed in to (<span class="mono">claude</span>, <span class="mono">codex</span> or <span class="mono">gemini</span>) or a key (<span class="mono">ANTHROPIC_API_KEY</span>, <span class="mono">OPENAI_API_KEY</span>, <span class="mono">GEMINI_API_KEY</span>). <span class="mono">npx desk-run doctor</span> shows which path it will take. Files land in <span class="mono">.desk/out/&lt;job&gt;/</span> either way.</p>
 </div></section>
 
 </main>
