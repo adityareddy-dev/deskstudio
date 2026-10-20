@@ -1,0 +1,33 @@
+{
+  "from": "evals/results/2026-10-19T06-37-03-studio-presentation-pitch-northlight/presentation-pitch-northlight",
+  "markedAt": "2026-10-19T07:56:25.647Z",
+  "deliverable": "deck",
+  "sizes": [
+    "slide"
+  ],
+  "quality": "studio",
+  "models": {
+    "director": "anthropic/opus",
+    "senior": "anthropic/sonnet",
+    "builder": "anthropic/haiku"
+  },
+  "rounds": 4,
+  "average": 8.5,
+  "axes": {
+    "hierarchy": 9,
+    "typography": 8,
+    "spacing": 9,
+    "colour": 9,
+    "composition": 8,
+    "originality": 8,
+    "brand": 9,
+    "copy": 8
+  },
+  "cost": {
+    "director": 6.3166,
+    "senior": 1.4652,
+    "builder": 0.1438,
+    "total": 7.9256,
+    "complete": true
+  }
+}

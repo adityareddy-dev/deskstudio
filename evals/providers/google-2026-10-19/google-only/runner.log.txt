@@ -1,0 +1,75 @@
+[desk] job 20261019-2350-northlight-battery-announcement-social in .desk/jobs/20261019-2350-northlight-battery-announcement-social (studio: director google/argon, senior google/flash, builder google/flash-low, 6 rounds)
+[desk] design-manager: intake at google/argon
+[desk] design-manager: done in 38s, cost not reported
+[desk] brief written: sizes linkedin, ig-post, 4 copy lines
+[desk] brand font Inter inlined by the runner into every file (63 KB)
+[desk] ui-designer: rough 1, editorial split at google/flash
+[desk] ui-designer: rough 2, full bleed with scrim at google/flash
+[desk] ui-designer: rough 3, type only at google/flash
+[desk] ui-designer: done in 256s, 0.1438 usd
+[desk] ui-designer: done in 297s, 0.1588 usd
+[desk] failed at roughs: agy did not answer within 300s.
+Failed at roughs: agy did not answer within 300s.
+Fix the cause and run: desk-run resume 20261019-2350-northlight-battery-announcement-social --project "/workspace/scratch/deskstudio-google-run"
+[desk] resuming 20261019-2350-northlight-battery-announcement-social at roughs
+[desk] brand font Inter inlined by the runner into every file (63 KB)
+[desk] director moved to google/flash-high from the floor
+[desk] senior moved to google/flash-low from the floor
+[desk] ui-designer: rough 1, editorial split at google/flash-low
+[desk] ui-designer: rough 2, full bleed with scrim at google/flash-low
+[desk] ui-designer: rough 3, type only at google/flash-low
+[desk] ui-designer: done in 16s, 0.0150 usd
+[desk] ui-designer: done in 19s, 0.0166 usd
+[desk] ui-designer: done in 18s, 0.0162 usd
+[desk] rough 1 rendered to .desk/jobs/20261019-2350-northlight-battery-announcement-social/renders/roughs/rough-1
+[desk] rough 2 rendered to .desk/jobs/20261019-2350-northlight-battery-announcement-social/renders/roughs/rough-2
+[desk] rough 3 rendered to .desk/jobs/20261019-2350-northlight-battery-announcement-social/renders/roughs/rough-3
+[desk] art-director: pick at google/flash-high with 6 screenshots
+[desk] failed at pick: agy did not inspect every supplied screenshot. No visual sign-off was accepted.
+[desk] resuming 20261019-2350-northlight-battery-announcement-social at pick
+[desk] art-director: pick at google/flash-high with 6 screenshots
+[desk] art-director: done in 264s, 0.1553 usd
+[desk] pick: rough 1 (editorial split) by art-director, 5 notes
+[desk] brand font Inter inlined by the runner into every file (63 KB)
+[desk] ui-designer: polish round 1 at google/flash-low with 2 screenshots
+[desk] ui-designer: done in 19s, 0.0294 usd
+[desk] proof round 1: pass
+[desk] creative-director: sign-off round 1 at google/flash-high with 2 screenshots
+[desk] creative-director: done in 266s, 0.1530 usd
+[desk] sign-off round 1: hierarchy 9, typography 8, spacing 9, colour 9, composition 7, originality 8, brand 9, copy 9, average 8.5, under the bar
+[desk] ui-designer: polish round 2 at google/flash-low with 2 screenshots
+[desk] failed at polish: agy failed (exit null): SUCCESS
+{"event": "verification.brief-correction", "at": "2026-10-19T19:15:59.601754-05:00", "reason": "intake dropped the final full stop from the supplied URL copy; original intake retained; corrected before second polish completed"}
+[desk] resuming 20261019-2350-northlight-battery-announcement-social at polish round 2
+[desk] brand font Inter inlined by the runner into every file (63 KB)
+[desk] ui-designer: polish round 2 at google/flash-low with 2 screenshots (with a note from the user)
+[desk] ui-designer: done in 22s, 0.0290 usd
+[desk] proof round 2: pass
+[desk] creative-director: sign-off round 2 at google/flash-high with 2 screenshots
+[desk] creative-director: done in 251s, 0.1322 usd
+[desk] sign-off round 2: hierarchy 7, typography 8, spacing 6, colour 9, composition 7, originality 8, brand 9, copy 9, average 7.88, under the bar
+[desk] ui-designer: polish round 3 at google/flash-low with 2 screenshots
+[desk] failed at polish: agy failed (exit null): SUCCESS
+{"event": "verification.layout-clarification", "at": "2026-10-19T19:25:06.408738-05:00", "reason": "resolved the earlier 650px headline width against the newer 119px font note and specified separate chart/footer regions; resumed with explicitly pinned model effort"}
+[desk] resuming 20261019-2350-northlight-battery-announcement-social at polish round 3
+[desk] brand font Inter inlined by the runner into every file (63 KB)
+[desk] ui-designer: polish round 3 at google/flash-low with 2 screenshots (with a note from the user)
+[desk] ui-designer: done in 22s, 0.0295 usd
+[desk] proof round 3: pass
+[desk] creative-director: sign-off round 3 at google/flash-high with 2 screenshots
+[desk] creative-director: done in 242s, 0.1410 usd
+[desk] sign-off round 3: hierarchy 9, typography 9, spacing 9, colour 9, composition 8, originality 8, brand 9, copy 9, average 8.75, pass
+Done: social-card for A Northlight battery announcement social, 6 files in .desk/out/20261019-2350-northlight-battery-announcement-social/
+  final.html, renders at linkedin and ig-post in .desk/jobs/20261019-2350-northlight-battery-announcement-social/renders/round-3/
+Desks: UI Designer x5 roughs (flash, flash-low), Art Director pick (flash-high), UI Designer polish x3 (flash-low), Creative Director sign-off x3 (flash-high)
+Pick: rough 1, editorial split, "Editorial split establishes an immediate two-second hierarchy and solid canvas balance across both aspect ratios with a bold interval graphic."
+Scores: hierarchy 9, typography 9, spacing 9, colour 9, composition 8, originality 8, brand 9, copy 9, average 8.75, pass
+Rounds: 3 of 6. Proof: passed on round 1.
+Cost: director 0.58, senior 0.35, builder 0.09, total 1.02 (list prices, from the CLI) (some costs are unknown)
+Open: none
+
+<!-- desk:memory
+decisions:
+  - "Editorial split works for this brand's social-card (2026-10-20)"
+-->
+[desk] job 20261019-2350-northlight-battery-announcement-social is already done

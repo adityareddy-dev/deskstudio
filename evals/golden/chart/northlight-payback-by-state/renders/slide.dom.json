@@ -1,0 +1,1093 @@
+{
+  "width": 1920,
+  "height": 1080,
+  "scrollWidth": 1920,
+  "scrollHeight": 1080,
+  "boxes": [
+    {
+      "x": 96,
+      "y": 59,
+      "width": 1096.953125,
+      "height": 74,
+      "text": "Arizona pays back fastest, in 5.1 years",
+      "color": "rgb(22, 22, 20)",
+      "opacity": 1,
+      "fontSize": 61,
+      "fontWeight": 600,
+      "fontFamily": "Inter, Arial, sans-serif",
+      "clips": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1920,
+          "height": 1080,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 96,
+      "y": 142,
+      "width": 801.5625,
+      "height": 37,
+      "text": "Years until a home solar system pays for itself, by state",
+      "color": "rgb(107, 106, 102)",
+      "opacity": 1,
+      "fontSize": 31,
+      "fontWeight": 400,
+      "fontFamily": "Inter, Arial, sans-serif",
+      "clips": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1920,
+          "height": 1080,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 96,
+      "y": 273,
+      "width": 115.796875,
+      "height": 37,
+      "text": "Arizona",
+      "color": "rgb(22, 22, 20)",
+      "opacity": 1,
+      "fontSize": 31,
+      "fontWeight": 600,
+      "fontFamily": "Inter, Arial, sans-serif",
+      "clips": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1920,
+          "height": 1080,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 992,
+      "y": 263,
+      "width": 76.5625,
+      "height": 59,
+      "text": "5.1",
+      "color": "rgb(217, 72, 15)",
+      "opacity": 1,
+      "fontSize": 49,
+      "fontWeight": 600,
+      "fontFamily": "Inter, Arial, sans-serif",
+      "clips": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1920,
+          "height": 1080,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 1076.5625,
+      "y": 286,
+      "width": 65.03125,
+      "height": 30,
+      "text": "years",
+      "color": "rgb(107, 106, 102)",
+      "opacity": 1,
+      "fontSize": 25,
+      "fontWeight": 400,
+      "fontFamily": "Inter, Arial, sans-serif",
+      "clips": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1920,
+          "height": 1080,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 96,
+      "y": 361,
+      "width": 139.609375,
+      "height": 37,
+      "text": "California",
+      "color": "rgb(22, 22, 20)",
+      "opacity": 1,
+      "fontSize": 31,
+      "fontWeight": 400,
+      "fontFamily": "Inter, Arial, sans-serif",
+      "clips": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1920,
+          "height": 1080,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 1124,
+      "y": 361,
+      "width": 48.53125,
+      "height": 37,
+      "text": "6.2",
+      "color": "rgb(22, 22, 20)",
+      "opacity": 1,
+      "fontSize": 31,
+      "fontWeight": 400,
+      "fontFamily": "Inter, Arial, sans-serif",
+      "clips": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1920,
+          "height": 1080,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 96,
+      "y": 449,
+      "width": 85.671875,
+      "height": 37,
+      "text": "Texas",
+      "color": "rgb(22, 22, 20)",
+      "opacity": 1,
+      "fontSize": 31,
+      "fontWeight": 400,
+      "fontFamily": "Inter, Arial, sans-serif",
+      "clips": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1920,
+          "height": 1080,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 1208,
+      "y": 449,
+      "width": 48.53125,
+      "height": 37,
+      "text": "6.9",
+      "color": "rgb(22, 22, 20)",
+      "opacity": 1,
+      "fontSize": 31,
+      "fontWeight": 400,
+      "fontFamily": "Inter, Arial, sans-serif",
+      "clips": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1920,
+          "height": 1080,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 96,
+      "y": 537,
+      "width": 100.265625,
+      "height": 37,
+      "text": "Florida",
+      "color": "rgb(22, 22, 20)",
+      "opacity": 1,
+      "fontSize": 31,
+      "fontWeight": 400,
+      "fontFamily": "Inter, Arial, sans-serif",
+      "clips": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1920,
+          "height": 1080,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 1268,
+      "y": 537,
+      "width": 48.53125,
+      "height": 37,
+      "text": "7.4",
+      "color": "rgb(22, 22, 20)",
+      "opacity": 1,
+      "fontSize": 31,
+      "fontWeight": 400,
+      "fontFamily": "Inter, Arial, sans-serif",
+      "clips": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1920,
+          "height": 1080,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 96,
+      "y": 625,
+      "width": 133.984375,
+      "height": 37,
+      "text": "Colorado",
+      "color": "rgb(22, 22, 20)",
+      "opacity": 1,
+      "fontSize": 31,
+      "fontWeight": 400,
+      "fontFamily": "Inter, Arial, sans-serif",
+      "clips": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1920,
+          "height": 1080,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 1316,
+      "y": 625,
+      "width": 48.53125,
+      "height": 37,
+      "text": "7.8",
+      "color": "rgb(22, 22, 20)",
+      "opacity": 1,
+      "fontSize": 31,
+      "fontWeight": 400,
+      "fontFamily": "Inter, Arial, sans-serif",
+      "clips": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1920,
+          "height": 1080,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 96,
+      "y": 713,
+      "width": 140.984375,
+      "height": 37,
+      "text": "New York",
+      "color": "rgb(22, 22, 20)",
+      "opacity": 1,
+      "fontSize": 31,
+      "fontWeight": 400,
+      "fontFamily": "Inter, Arial, sans-serif",
+      "clips": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1920,
+          "height": 1080,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 1412,
+      "y": 713,
+      "width": 48.53125,
+      "height": 37,
+      "text": "8.6",
+      "color": "rgb(22, 22, 20)",
+      "opacity": 1,
+      "fontSize": 31,
+      "fontWeight": 400,
+      "fontFamily": "Inter, Arial, sans-serif",
+      "clips": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1920,
+          "height": 1080,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 96,
+      "y": 801,
+      "width": 220.703125,
+      "height": 37,
+      "text": "Massachusetts",
+      "color": "rgb(22, 22, 20)",
+      "opacity": 1,
+      "fontSize": 31,
+      "fontWeight": 400,
+      "fontFamily": "Inter, Arial, sans-serif",
+      "clips": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1920,
+          "height": 1080,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 1472,
+      "y": 801,
+      "width": 48.53125,
+      "height": 37,
+      "text": "9.1",
+      "color": "rgb(22, 22, 20)",
+      "opacity": 1,
+      "fontSize": 31,
+      "fontWeight": 400,
+      "fontFamily": "Inter, Arial, sans-serif",
+      "clips": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1920,
+          "height": 1080,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 96,
+      "y": 889,
+      "width": 172.65625,
+      "height": 37,
+      "text": "Washington",
+      "color": "rgb(22, 22, 20)",
+      "opacity": 1,
+      "fontSize": 31,
+      "fontWeight": 400,
+      "fontFamily": "Inter, Arial, sans-serif",
+      "clips": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1920,
+          "height": 1080,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 1616,
+      "y": 889,
+      "width": 68.640625,
+      "height": 37,
+      "text": "10.3",
+      "color": "rgb(22, 22, 20)",
+      "opacity": 1,
+      "fontSize": 31,
+      "fontWeight": 400,
+      "fontFamily": "Inter, Arial, sans-serif",
+      "clips": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1920,
+          "height": 1080,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 980,
+      "y": 204,
+      "width": 340.84375,
+      "height": 30,
+      "text": "1.1 years ahead of California",
+      "color": "rgb(107, 106, 102)",
+      "opacity": 1,
+      "fontSize": 25,
+      "fontWeight": 400,
+      "fontFamily": "Inter, Arial, sans-serif",
+      "clips": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1920,
+          "height": 1080,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 96,
+      "y": 996,
+      "width": 562.109375,
+      "height": 30,
+      "text": "Source: payback.csv, 10,885 homes in 8 states",
+      "color": "rgb(107, 106, 102)",
+      "opacity": 1,
+      "fontSize": 25,
+      "fontWeight": 400,
+      "fontFamily": "Inter, Arial, sans-serif",
+      "clips": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1920,
+          "height": 1080,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 111.34375,
+      "y": 54,
+      "width": 372.828125,
+      "height": 27,
+      "text": "Payback in years and homes, by state",
+      "color": "rgb(0, 0, 0)",
+      "opacity": 1,
+      "fontSize": 25,
+      "fontWeight": 400,
+      "fontFamily": "\"Times New Roman\"",
+      "clips": [
+        {
+          "x": 96,
+          "y": 54,
+          "width": 403.53125,
+          "height": 318,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 144.125,
+      "y": 85,
+      "width": 54.15625,
+      "height": 27,
+      "text": "State",
+      "color": "rgb(0, 0, 0)",
+      "opacity": 1,
+      "fontSize": 25,
+      "fontWeight": 700,
+      "fontFamily": "\"Times New Roman\"",
+      "clips": [
+        {
+          "x": 96,
+          "y": 54,
+          "width": 403.53125,
+          "height": 318,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 247.421875,
+      "y": 85,
+      "width": 171.5,
+      "height": 27,
+      "text": "Payback (years)",
+      "color": "rgb(0, 0, 0)",
+      "opacity": 1,
+      "fontSize": 25,
+      "fontWeight": 700,
+      "fontFamily": "\"Times New Roman\"",
+      "clips": [
+        {
+          "x": 96,
+          "y": 54,
+          "width": 403.53125,
+          "height": 318,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 422.921875,
+      "y": 85,
+      "width": 73.609375,
+      "height": 27,
+      "text": "Homes",
+      "color": "rgb(0, 0, 0)",
+      "opacity": 1,
+      "fontSize": 25,
+      "fontWeight": 700,
+      "fontFamily": "\"Times New Roman\"",
+      "clips": [
+        {
+          "x": 96,
+          "y": 54,
+          "width": 403.53125,
+          "height": 318,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 99,
+      "y": 117,
+      "width": 80.53125,
+      "height": 27,
+      "text": "Arizona",
+      "color": "rgb(0, 0, 0)",
+      "opacity": 1,
+      "fontSize": 25,
+      "fontWeight": 400,
+      "fontFamily": "\"Times New Roman\"",
+      "clips": [
+        {
+          "x": 96,
+          "y": 54,
+          "width": 403.53125,
+          "height": 318,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 247.421875,
+      "y": 117,
+      "width": 31.25,
+      "height": 27,
+      "text": "5.1",
+      "color": "rgb(0, 0, 0)",
+      "opacity": 1,
+      "fontSize": 25,
+      "fontWeight": 400,
+      "fontFamily": "\"Times New Roman\"",
+      "clips": [
+        {
+          "x": 96,
+          "y": 54,
+          "width": 403.53125,
+          "height": 318,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 422.921875,
+      "y": 117,
+      "width": 50,
+      "height": 27,
+      "text": "1240",
+      "color": "rgb(0, 0, 0)",
+      "opacity": 1,
+      "fontSize": 25,
+      "fontWeight": 400,
+      "fontFamily": "\"Times New Roman\"",
+      "clips": [
+        {
+          "x": 96,
+          "y": 54,
+          "width": 403.53125,
+          "height": 318,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 99,
+      "y": 149,
+      "width": 101.359375,
+      "height": 27,
+      "text": "California",
+      "color": "rgb(0, 0, 0)",
+      "opacity": 1,
+      "fontSize": 25,
+      "fontWeight": 400,
+      "fontFamily": "\"Times New Roman\"",
+      "clips": [
+        {
+          "x": 96,
+          "y": 54,
+          "width": 403.53125,
+          "height": 318,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 247.421875,
+      "y": 149,
+      "width": 31.25,
+      "height": 27,
+      "text": "6.2",
+      "color": "rgb(0, 0, 0)",
+      "opacity": 1,
+      "fontSize": 25,
+      "fontWeight": 400,
+      "fontFamily": "\"Times New Roman\"",
+      "clips": [
+        {
+          "x": 96,
+          "y": 54,
+          "width": 403.53125,
+          "height": 318,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 422.921875,
+      "y": 149,
+      "width": 50,
+      "height": 27,
+      "text": "3310",
+      "color": "rgb(0, 0, 0)",
+      "opacity": 1,
+      "fontSize": 25,
+      "fontWeight": 400,
+      "fontFamily": "\"Times New Roman\"",
+      "clips": [
+        {
+          "x": 96,
+          "y": 54,
+          "width": 403.53125,
+          "height": 318,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 99,
+      "y": 181,
+      "width": 57.953125,
+      "height": 27,
+      "text": "Texas",
+      "color": "rgb(0, 0, 0)",
+      "opacity": 1,
+      "fontSize": 25,
+      "fontWeight": 400,
+      "fontFamily": "\"Times New Roman\"",
+      "clips": [
+        {
+          "x": 96,
+          "y": 54,
+          "width": 403.53125,
+          "height": 318,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 247.421875,
+      "y": 181,
+      "width": 31.25,
+      "height": 27,
+      "text": "6.9",
+      "color": "rgb(0, 0, 0)",
+      "opacity": 1,
+      "fontSize": 25,
+      "fontWeight": 400,
+      "fontFamily": "\"Times New Roman\"",
+      "clips": [
+        {
+          "x": 96,
+          "y": 54,
+          "width": 403.53125,
+          "height": 318,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 422.921875,
+      "y": 181,
+      "width": 50,
+      "height": 27,
+      "text": "2105",
+      "color": "rgb(0, 0, 0)",
+      "opacity": 1,
+      "fontSize": 25,
+      "fontWeight": 400,
+      "fontFamily": "\"Times New Roman\"",
+      "clips": [
+        {
+          "x": 96,
+          "y": 54,
+          "width": 403.53125,
+          "height": 318,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 99,
+      "y": 213,
+      "width": 72.21875,
+      "height": 27,
+      "text": "Florida",
+      "color": "rgb(0, 0, 0)",
+      "opacity": 1,
+      "fontSize": 25,
+      "fontWeight": 400,
+      "fontFamily": "\"Times New Roman\"",
+      "clips": [
+        {
+          "x": 96,
+          "y": 54,
+          "width": 403.53125,
+          "height": 318,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 247.421875,
+      "y": 213,
+      "width": 31.25,
+      "height": 27,
+      "text": "7.4",
+      "color": "rgb(0, 0, 0)",
+      "opacity": 1,
+      "fontSize": 25,
+      "fontWeight": 400,
+      "fontFamily": "\"Times New Roman\"",
+      "clips": [
+        {
+          "x": 96,
+          "y": 54,
+          "width": 403.53125,
+          "height": 318,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 422.921875,
+      "y": 213,
+      "width": 50,
+      "height": 27,
+      "text": "1880",
+      "color": "rgb(0, 0, 0)",
+      "opacity": 1,
+      "fontSize": 25,
+      "fontWeight": 400,
+      "fontFamily": "\"Times New Roman\"",
+      "clips": [
+        {
+          "x": 96,
+          "y": 54,
+          "width": 403.53125,
+          "height": 318,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 99,
+      "y": 245,
+      "width": 93.046875,
+      "height": 27,
+      "text": "Colorado",
+      "color": "rgb(0, 0, 0)",
+      "opacity": 1,
+      "fontSize": 25,
+      "fontWeight": 400,
+      "fontFamily": "\"Times New Roman\"",
+      "clips": [
+        {
+          "x": 96,
+          "y": 54,
+          "width": 403.53125,
+          "height": 318,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 247.421875,
+      "y": 245,
+      "width": 31.25,
+      "height": 27,
+      "text": "7.8",
+      "color": "rgb(0, 0, 0)",
+      "opacity": 1,
+      "fontSize": 25,
+      "fontWeight": 400,
+      "fontFamily": "\"Times New Roman\"",
+      "clips": [
+        {
+          "x": 96,
+          "y": 54,
+          "width": 403.53125,
+          "height": 318,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 422.921875,
+      "y": 245,
+      "width": 37.5,
+      "height": 27,
+      "text": "640",
+      "color": "rgb(0, 0, 0)",
+      "opacity": 1,
+      "fontSize": 25,
+      "fontWeight": 400,
+      "fontFamily": "\"Times New Roman\"",
+      "clips": [
+        {
+          "x": 96,
+          "y": 54,
+          "width": 403.53125,
+          "height": 318,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 99,
+      "y": 277,
+      "width": 101.40625,
+      "height": 27,
+      "text": "New York",
+      "color": "rgb(0, 0, 0)",
+      "opacity": 1,
+      "fontSize": 25,
+      "fontWeight": 400,
+      "fontFamily": "\"Times New Roman\"",
+      "clips": [
+        {
+          "x": 96,
+          "y": 54,
+          "width": 403.53125,
+          "height": 318,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 247.421875,
+      "y": 277,
+      "width": 31.25,
+      "height": 27,
+      "text": "8.6",
+      "color": "rgb(0, 0, 0)",
+      "opacity": 1,
+      "fontSize": 25,
+      "fontWeight": 400,
+      "fontFamily": "\"Times New Roman\"",
+      "clips": [
+        {
+          "x": 96,
+          "y": 54,
+          "width": 403.53125,
+          "height": 318,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 422.921875,
+      "y": 277,
+      "width": 37.5,
+      "height": 27,
+      "text": "910",
+      "color": "rgb(0, 0, 0)",
+      "opacity": 1,
+      "fontSize": 25,
+      "fontWeight": 400,
+      "fontFamily": "\"Times New Roman\"",
+      "clips": [
+        {
+          "x": 96,
+          "y": 54,
+          "width": 403.53125,
+          "height": 318,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 99,
+      "y": 309,
+      "width": 144.421875,
+      "height": 27,
+      "text": "Massachusetts",
+      "color": "rgb(0, 0, 0)",
+      "opacity": 1,
+      "fontSize": 25,
+      "fontWeight": 400,
+      "fontFamily": "\"Times New Roman\"",
+      "clips": [
+        {
+          "x": 96,
+          "y": 54,
+          "width": 403.53125,
+          "height": 318,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 247.421875,
+      "y": 309,
+      "width": 31.25,
+      "height": 27,
+      "text": "9.1",
+      "color": "rgb(0, 0, 0)",
+      "opacity": 1,
+      "fontSize": 25,
+      "fontWeight": 400,
+      "fontFamily": "\"Times New Roman\"",
+      "clips": [
+        {
+          "x": 96,
+          "y": 54,
+          "width": 403.53125,
+          "height": 318,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 422.921875,
+      "y": 309,
+      "width": 37.5,
+      "height": 27,
+      "text": "420",
+      "color": "rgb(0, 0, 0)",
+      "opacity": 1,
+      "fontSize": 25,
+      "fontWeight": 400,
+      "fontFamily": "\"Times New Roman\"",
+      "clips": [
+        {
+          "x": 96,
+          "y": 54,
+          "width": 403.53125,
+          "height": 318,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 99,
+      "y": 341,
+      "width": 118.8125,
+      "height": 27,
+      "text": "Washington",
+      "color": "rgb(0, 0, 0)",
+      "opacity": 1,
+      "fontSize": 25,
+      "fontWeight": 400,
+      "fontFamily": "\"Times New Roman\"",
+      "clips": [
+        {
+          "x": 96,
+          "y": 54,
+          "width": 403.53125,
+          "height": 318,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 247.421875,
+      "y": 341,
+      "width": 43.75,
+      "height": 27,
+      "text": "10.3",
+      "color": "rgb(0, 0, 0)",
+      "opacity": 1,
+      "fontSize": 25,
+      "fontWeight": 400,
+      "fontFamily": "\"Times New Roman\"",
+      "clips": [
+        {
+          "x": 96,
+          "y": 54,
+          "width": 403.53125,
+          "height": 318,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 422.921875,
+      "y": 341,
+      "width": 37.5,
+      "height": 27,
+      "text": "380",
+      "color": "rgb(0, 0, 0)",
+      "opacity": 1,
+      "fontSize": 25,
+      "fontWeight": 400,
+      "fontFamily": "\"Times New Roman\"",
+      "clips": [
+        {
+          "x": 96,
+          "y": 54,
+          "width": 403.53125,
+          "height": 318,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    }
+  ],
+  "fonts": {
+    "Inter": true,
+    "Arial": true,
+    "sans-serif": true,
+    "Times New Roman": true
+  },
+  "images": 0
+}

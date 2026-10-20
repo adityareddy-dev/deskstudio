@@ -1,0 +1,38 @@
+{
+  "job_id": "20261019-2225-northlight-battery-announcement-distinctive",
+  "exit_code": 0,
+  "outcome": "passed proof and sign-off",
+  "models": {
+    "director": "openai/large",
+    "senior": "openai/mini",
+    "builder": "openai/mini"
+  },
+  "rounds": 2,
+  "last_score": {
+    "round": 2,
+    "by": "creative-director",
+    "axes": {
+      "hierarchy": 9,
+      "typography": 9,
+      "spacing": 9,
+      "colour": 9,
+      "composition": 8,
+      "originality": 8,
+      "brand": 9,
+      "copy": 9
+    },
+    "average": 8.75,
+    "pass": true,
+    "notes": [
+      "composition: In landscape, increase marker spacing from 48px to 64px and move \u201cThen free.\u201d from x=416px to x=512px, extending the central sequence across the canvas.",
+      "originality: In landscape, align all seven marker tops and bottoms with the visible capital height of \u201cThen free.\u201d so the count and payoff read as one typographic line."
+    ],
+    "polish": [
+      "Keep the portrait\u2019s 240px markers and current text positions."
+    ]
+  },
+  "final_proof_pass": true,
+  "list_price_estimate_usd": 0.6207,
+  "all_desks_via": "codex CLI",
+  "note": "Fresh bounded follow-up with mini as the builder, and a more specific seven-year timeline brief. It is a provider verification, separate from the default studio-tier gallery."
+}

@@ -1,0 +1,10 @@
+{
+  "command": "presentation-design",
+  "ask": "pitch deck for a seed round, ten slides, the numbers are made up but plausible for a home solar company",
+  "brand": "northlight",
+  "rounds": 5,
+  "expect": {
+    "pass": true,
+    "minAverage": 8.5
+  }
+}

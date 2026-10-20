@@ -1,0 +1,122 @@
+{
+  "id": "20261019-2351-northlight-battery-announcement-social",
+  "phase": "done",
+  "exit_code": 0,
+  "models_at_finish": {
+    "director": "openai/large",
+    "senior": "google/flash",
+    "builder": "google/flash-low"
+  },
+  "rounds": 2,
+  "max_rounds": 6,
+  "last_score": {
+    "round": 2,
+    "by": "creative-director",
+    "axes": {
+      "hierarchy": 9,
+      "typography": 9,
+      "spacing": 8,
+      "colour": 9,
+      "composition": 8,
+      "originality": 9,
+      "brand": 9,
+      "copy": 9
+    },
+    "average": 8.75,
+    "pass": true,
+    "notes": [
+      "spacing: On portrait, reduce the visible gap between the timeline baseline and \u201cThen free.\u201d from approximately 70px to 48px.",
+      "composition: Move the portrait footer group up 64px, preserving its left edge and internal spacing, to tighten the connection between payoff and battery announcement."
+    ],
+    "polish": [
+      "Keep the landscape layout as rendered."
+    ]
+  },
+  "proof": [
+    {
+      "round": 1,
+      "pass": false,
+      "failures": 1
+    },
+    {
+      "round": 2,
+      "pass": true,
+      "failures": 0
+    }
+  ],
+  "reported_cost_subtotal_usd": 1.0605,
+  "cost_complete": false,
+  "completed_desks": [
+    {
+      "desk": "design-manager",
+      "task": "intake",
+      "model": "openai/large",
+      "via": "cli"
+    },
+    {
+      "desk": "ui-designer",
+      "task": "rough 2, full bleed with scrim",
+      "model": "google/flash",
+      "via": "cli"
+    },
+    {
+      "desk": "ui-designer",
+      "task": "rough 1, editorial split",
+      "model": "google/flash",
+      "via": "cli"
+    },
+    {
+      "desk": "ui-designer",
+      "task": "rough 2, full bleed with scrim",
+      "model": "google/flash",
+      "via": "cli"
+    },
+    {
+      "desk": "ui-designer",
+      "task": "rough 3, type only",
+      "model": "google/flash",
+      "via": "cli"
+    },
+    {
+      "desk": "art-director",
+      "task": "pick",
+      "model": "openai/large",
+      "via": "cli"
+    },
+    {
+      "desk": "ui-designer",
+      "task": "polish round 1",
+      "model": "google/flash-low",
+      "via": "cli"
+    },
+    {
+      "desk": "ui-designer",
+      "task": "polish round 2",
+      "model": "google/flash-low",
+      "via": "cli"
+    },
+    {
+      "desk": "creative-director",
+      "task": "sign-off round 2",
+      "model": "openai/large",
+      "via": "cli"
+    }
+  ],
+  "failed_desks": [
+    {
+      "desk": "ui-designer",
+      "task": "rough 1, editorial split",
+      "model": "google/flash"
+    },
+    {
+      "desk": "ui-designer",
+      "task": "rough 3, type only",
+      "model": "google/flash"
+    },
+    {
+      "desk": "ui-designer",
+      "task": "polish round 1",
+      "model": "google/flash-low"
+    }
+  ]
+}

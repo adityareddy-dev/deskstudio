@@ -1,0 +1,207 @@
+{
+  "id": "20261018-2024-launch-sting-wordmark",
+  "command": "motion-design",
+  "deliverable": "motion-clip",
+  "sizes": [
+    "slide"
+  ],
+  "quality": "studio",
+  "models": {
+    "director": "anthropic/opus",
+    "senior": "anthropic/sonnet",
+    "builder": "anthropic/haiku"
+  },
+  "phase": "done",
+  "round": 2,
+  "maxRounds": 5,
+  "desks": [
+    {
+      "desk": "storyboard-artist",
+      "task": "beats and board",
+      "status": "done",
+      "model": "anthropic/haiku",
+      "startedAt": "2026-10-19T01:26:16.745Z",
+      "updatedAt": "2026-10-19T01:31:08.889Z"
+    },
+    {
+      "desk": "copy-editor",
+      "task": "on-screen words",
+      "status": "done",
+      "model": "anthropic/sonnet",
+      "startedAt": "2026-10-19T01:26:16.810Z",
+      "updatedAt": "2026-10-19T01:27:14.955Z"
+    },
+    {
+      "desk": "typographer",
+      "task": "type moves",
+      "status": "done",
+      "model": "anthropic/sonnet",
+      "startedAt": "2026-10-19T01:26:16.877Z",
+      "updatedAt": "2026-10-19T01:28:00.153Z"
+    },
+    {
+      "desk": "motion-designer",
+      "task": "rough 1, type reveal",
+      "status": "done",
+      "model": "anthropic/sonnet",
+      "startedAt": "2026-10-19T01:31:09.144Z",
+      "updatedAt": "2026-10-19T01:33:18.930Z"
+    },
+    {
+      "desk": "motion-designer",
+      "task": "rough 2, draw the mark",
+      "status": "done",
+      "model": "anthropic/sonnet",
+      "startedAt": "2026-10-19T01:31:09.207Z",
+      "updatedAt": "2026-10-19T01:33:02.270Z"
+    },
+    {
+      "desk": "motion-designer",
+      "task": "rough 3, before and after",
+      "status": "done",
+      "model": "anthropic/sonnet",
+      "startedAt": "2026-10-19T01:31:09.270Z",
+      "updatedAt": "2026-10-19T01:36:09.631Z"
+    },
+    {
+      "desk": "art-director",
+      "task": "pick",
+      "status": "done",
+      "model": "anthropic/opus",
+      "startedAt": "2026-10-19T01:37:02.762Z",
+      "updatedAt": "2026-10-19T01:42:36.134Z"
+    },
+    {
+      "desk": "motion-designer",
+      "task": "polish round 1",
+      "status": "done",
+      "model": "anthropic/haiku",
+      "startedAt": "2026-10-19T01:42:36.560Z",
+      "updatedAt": "2026-10-19T01:46:25.375Z"
+    },
+    {
+      "desk": "creative-director",
+      "task": "sign-off round 1",
+      "status": "done",
+      "model": "anthropic/opus",
+      "startedAt": "2026-10-19T01:47:14.097Z",
+      "updatedAt": "2026-10-19T01:53:00.512Z"
+    },
+    {
+      "desk": "video-editor",
+      "task": "pacing round 1",
+      "status": "done",
+      "model": "anthropic/haiku",
+      "startedAt": "2026-10-19T01:47:14.164Z",
+      "updatedAt": "2026-10-19T01:49:12.080Z"
+    },
+    {
+      "desk": "motion-designer",
+      "task": "polish round 2",
+      "status": "done",
+      "model": "anthropic/haiku",
+      "startedAt": "2026-10-19T01:53:01.094Z",
+      "updatedAt": "2026-10-19T01:54:43.298Z"
+    },
+    {
+      "desk": "creative-director",
+      "task": "sign-off round 2",
+      "status": "done",
+      "model": "anthropic/opus",
+      "startedAt": "2026-10-19T01:55:18.471Z",
+      "updatedAt": "2026-10-19T02:00:52.716Z"
+    },
+    {
+      "desk": "video-editor",
+      "task": "exports 16x9",
+      "status": "done",
+      "model": "anthropic/haiku",
+      "startedAt": "2026-10-19T02:00:53.103Z",
+      "updatedAt": "2026-10-19T02:03:15.843Z"
+    }
+  ],
+  "pick": {
+    "by": "art-director",
+    "rough": 2,
+    "reason": "the rule cuts Cut it. and the struck words stay in grey, the brand's one idea in one movement per beat",
+    "at": "2026-10-19T01:42:36.199Z"
+  },
+  "proof": [
+    {
+      "round": 1,
+      "pass": true,
+      "failures": 0
+    },
+    {
+      "round": 2,
+      "pass": true,
+      "failures": 0
+    }
+  ],
+  "scores": [
+    {
+      "round": 1,
+      "by": "creative-director",
+      "average": 8.5,
+      "pass": false,
+      "axes": {
+        "hierarchy": 9,
+        "typography": 9,
+        "spacing": 8,
+        "colour": 9,
+        "composition": 7,
+        "originality": 8,
+        "brand": 9,
+        "copy": 9
+      }
+    },
+    {
+      "round": 2,
+      "by": "creative-director",
+      "average": 9,
+      "pass": true,
+      "axes": {
+        "hierarchy": 9,
+        "typography": 9,
+        "spacing": 9,
+        "colour": 9,
+        "composition": 9,
+        "originality": 9,
+        "brand": 9,
+        "copy": 9
+      }
+    }
+  ],
+  "waitingOn": null,
+  "cost": {
+    "director": 2.3063,
+    "senior": 0.8875,
+    "builder": 0.1411,
+    "total": 3.3349,
+    "complete": true
+  },
+  "tokens": {
+    "director": 1516054,
+    "senior": 1136942,
+    "builder": 3914459
+  },
+  "files": {
+    "board": ".desk/out/20261018-2024-launch-sting-wordmark/board.html",
+    "beats": ".desk/out/20261018-2024-launch-sting-wordmark/beats.md",
+    "type": ".desk/out/20261018-2024-launch-sting-wordmark/type.md",
+    "copy": ".desk/out/20261018-2024-launch-sting-wordmark/copy.md",
+    "rough1": ".desk/out/20261018-2024-launch-sting-wordmark/rough-1.html",
+    "rough2": ".desk/out/20261018-2024-launch-sting-wordmark/rough-2.html",
+    "rough3": ".desk/out/20261018-2024-launch-sting-wordmark/rough-3.html",
+    "final": ".desk/out/20261018-2024-launch-sting-wordmark/final.html",
+    "pick": ".desk/jobs/20261018-2024-launch-sting-wordmark/pick.md",
+    "webm": ".desk/out/20261018-2024-launch-sting-wordmark/clip-16x9.webm",
+    "mp4": ".desk/out/20261018-2024-launch-sting-wordmark/clip-16x9.mp4",
+    "poster": ".desk/out/20261018-2024-launch-sting-wordmark/poster-16x9.png",
+    "timeline": ".desk/out/20261018-2024-launch-sting-wordmark/timeline.md",
+    "renders": ".desk/out/20261018-2024-launch-sting-wordmark/renders"
+  },
+  "startedAt": "2026-10-19T01:24:28.047Z",
+  "updatedAt": "2026-10-19T02:03:27.022Z",
+  "finishedAt": "2026-10-19T02:03:16.110Z"
+}

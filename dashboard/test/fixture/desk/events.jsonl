@@ -1,0 +1,10 @@
+{"t":"2026-01-01T15:00:00.000Z","session":"fixture1","type":"session.start","source":"startup"}
+{"t":"2026-01-01T15:00:05.000Z","type":"job.start","id":"20260101-0900-test-card","command":"design","deliverable":"social-card"}
+{"t":"2026-01-01T15:00:06.000Z","type":"job.phase","id":"20260101-0900-test-card","phase":"roughs","round":0}
+{"t":"2026-01-01T15:00:10.000Z","session":"fixture1","type":"desk.start","desk":"ui-designer","agent":"a1"}
+{"t":"2026-01-01T15:00:11.000Z","session":"fixture1","type":"desk.tool","desk":"ui-designer","agent":"a1","tool":"Write"}
+{"t":"2026-01-01T15:00:20.000Z","session":"fixture1","type":"desk.stop","desk":"ui-designer","agent":"a1"}
+{"t":"2026-01-01T15:01:00.000Z","type":"job.phase","id":"20260101-0900-test-card","phase":"polish","round":1}
+{"t":"2026-01-01T15:01:05.000Z","session":"fixture1","type":"desk.start","desk":"ui-designer","agent":"a2"}
+{"t":"2026-01-01T15:01:40.000Z","session":"fixture1","type":"desk.stop","desk":"ui-designer","agent":"a2","model":"claude-haiku-5-5","tokens":{"total":12000,"input":9000,"cacheRead":2000,"cacheWrite":500,"output":500},"costUsd":0.0123}
+{"t":"2026-01-01T15:01:45.000Z","session":"fixture1","type":"desk.start","desk":"ui-designer","agent":"a3"}

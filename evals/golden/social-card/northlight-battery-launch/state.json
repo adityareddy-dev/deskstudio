@@ -1,0 +1,132 @@
+{
+  "id": "20261018-1928-battery-option-cards",
+  "command": "design",
+  "deliverable": "social-card",
+  "sizes": [
+    "linkedin",
+    "ig-post"
+  ],
+  "quality": "studio",
+  "models": {
+    "director": "anthropic/opus",
+    "senior": "anthropic/sonnet",
+    "builder": "anthropic/haiku"
+  },
+  "phase": "done",
+  "round": 2,
+  "maxRounds": 6,
+  "desks": [
+    {
+      "desk": "ui-designer",
+      "task": "rough 1, type only",
+      "status": "done",
+      "model": "anthropic/sonnet",
+      "startedAt": "2026-10-19T00:29:16.442Z",
+      "updatedAt": "2026-10-19T00:29:56.448Z"
+    },
+    {
+      "desk": "ui-designer",
+      "task": "rough 2, stat card",
+      "status": "done",
+      "model": "anthropic/sonnet",
+      "startedAt": "2026-10-19T00:29:16.501Z",
+      "updatedAt": "2026-10-19T00:30:10.359Z"
+    },
+    {
+      "desk": "ui-designer",
+      "task": "rough 3, editorial split",
+      "status": "done",
+      "model": "anthropic/sonnet",
+      "startedAt": "2026-10-19T00:29:16.557Z",
+      "updatedAt": "2026-10-19T00:30:16.432Z"
+    },
+    {
+      "desk": "art-director",
+      "task": "pick",
+      "status": "done",
+      "model": "anthropic/opus",
+      "startedAt": "2026-10-19T00:30:23.467Z",
+      "updatedAt": "2026-10-19T00:32:50.625Z"
+    },
+    {
+      "desk": "ui-designer",
+      "task": "polish round 1",
+      "status": "done",
+      "model": "anthropic/haiku",
+      "startedAt": "2026-10-19T00:32:51.051Z",
+      "updatedAt": "2026-10-19T00:34:14.120Z"
+    },
+    {
+      "desk": "ui-designer",
+      "task": "polish round 2",
+      "status": "done",
+      "model": "anthropic/haiku",
+      "startedAt": "2026-10-19T00:34:21.650Z",
+      "updatedAt": "2026-10-19T00:35:07.924Z"
+    },
+    {
+      "desk": "creative-director",
+      "task": "sign-off round 2",
+      "status": "done",
+      "model": "anthropic/opus",
+      "startedAt": "2026-10-19T00:35:13.123Z",
+      "updatedAt": "2026-10-19T00:38:54.607Z"
+    }
+  ],
+  "pick": {
+    "by": "art-director",
+    "rough": 2,
+    "reason": "the number leads in the accent and the battery news reads at thumbnail size without fighting the claim",
+    "at": "2026-10-19T00:32:50.711Z"
+  },
+  "proof": [
+    {
+      "round": 1,
+      "pass": false,
+      "failures": 2
+    },
+    {
+      "round": 2,
+      "pass": true,
+      "failures": 0
+    }
+  ],
+  "scores": [
+    {
+      "round": 2,
+      "by": "creative-director",
+      "average": 8.6,
+      "pass": true,
+      "axes": {
+        "hierarchy": 9,
+        "typography": 8,
+        "spacing": 9,
+        "colour": 9,
+        "composition": 8,
+        "originality": 8,
+        "brand": 9,
+        "copy": 9
+      }
+    }
+  ],
+  "waitingOn": null,
+  "cost": {
+    "director": 0.4664,
+    "senior": 0.4697,
+    "builder": 0.0335,
+    "total": 0.9696,
+    "complete": true
+  },
+  "tokens": {
+    "director": 141716,
+    "senior": 384193,
+    "builder": 871964
+  },
+  "files": {
+    "brief": ".desk/jobs/20261018-1928-battery-option-cards/brief.md",
+    "final": ".desk/out/20261018-1928-battery-option-cards/final.html"
+  },
+  "startedAt": "2026-10-19T00:29:02.242Z",
+  "updatedAt": "2026-10-19T00:38:54.889Z",
+  "finishedAt": "2026-10-19T00:38:54.888Z"
+}

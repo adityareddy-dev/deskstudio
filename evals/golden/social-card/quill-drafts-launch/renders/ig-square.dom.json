@@ -1,0 +1,147 @@
+{
+  "width": 1080,
+  "height": 1080,
+  "scrollWidth": 1080,
+  "scrollHeight": 1080,
+  "boxes": [
+    {
+      "x": 89.046875,
+      "y": 77,
+      "width": 641.796875,
+      "height": 318,
+      "text": "Cut it.",
+      "color": "rgb(139, 141, 153)",
+      "opacity": 1,
+      "fontSize": 232,
+      "fontWeight": 600,
+      "fontFamily": "\"Source Serif 4\", Georgia, \"Times New Roman\", serif",
+      "clips": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1080,
+          "height": 1080,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 89.046875,
+      "y": 309,
+      "width": 210.75,
+      "height": 318,
+      "text": "It",
+      "color": "rgb(237, 237, 240)",
+      "opacity": 1,
+      "fontSize": 232,
+      "fontWeight": 600,
+      "fontFamily": "\"Source Serif 4\", Georgia, \"Times New Roman\", serif",
+      "clips": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1080,
+          "height": 1080,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 299.796875,
+      "y": 309,
+      "width": 603.140625,
+      "height": 318,
+      "text": "stays.",
+      "color": "rgb(124, 156, 255)",
+      "opacity": 1,
+      "fontSize": 232,
+      "fontWeight": 600,
+      "fontFamily": "\"Source Serif 4\", Georgia, \"Times New Roman\", serif",
+      "clips": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1080,
+          "height": 1080,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 96,
+      "y": 630,
+      "width": 170.8125,
+      "height": 74,
+      "text": "Drafts,",
+      "color": "rgb(237, 237, 240)",
+      "opacity": 1,
+      "fontSize": 54,
+      "fontWeight": 400,
+      "fontFamily": "\"Source Serif 4\", Georgia, \"Times New Roman\", serif",
+      "clips": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1080,
+          "height": 1080,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 96,
+      "y": 700.1875,
+      "width": 330.703125,
+      "height": 74,
+      "text": "not versions.",
+      "color": "rgb(237, 237, 240)",
+      "opacity": 1,
+      "fontSize": 54,
+      "fontWeight": 400,
+      "fontFamily": "\"Source Serif 4\", Georgia, \"Times New Roman\", serif",
+      "clips": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1080,
+          "height": 1080,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 96,
+      "y": 948,
+      "width": 130.390625,
+      "height": 41,
+      "text": "quill.app",
+      "color": "rgb(139, 141, 153)",
+      "opacity": 1,
+      "fontSize": 30,
+      "fontWeight": 600,
+      "fontFamily": "\"Source Serif 4\", Georgia, \"Times New Roman\", serif",
+      "clips": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1080,
+          "height": 1080,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    }
+  ],
+  "fonts": {
+    "Source Serif 4": true,
+    "Georgia": true,
+    "Times New Roman": true,
+    "serif": true
+  },
+  "images": 0
+}

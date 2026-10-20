@@ -1,0 +1,438 @@
+{
+  "width": 1080,
+  "height": 1080,
+  "scrollWidth": 1080,
+  "scrollHeight": 1080,
+  "boxes": [
+    {
+      "x": 72,
+      "y": 71,
+      "width": 846.4375,
+      "height": 204,
+      "text": "A Day in the Life of Adi",
+      "color": "rgb(245, 245, 247)",
+      "opacity": 1,
+      "fontSize": 149,
+      "fontWeight": 560,
+      "fontFamily": "\"Source Serif 4\", Georgia, \"Times New Roman\", serif",
+      "clips": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1080,
+          "height": 1080,
+          "clipX": true,
+          "clipY": true
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1080,
+          "height": 1080,
+          "clipX": true,
+          "clipY": true
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1080,
+          "height": 1080,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 72,
+      "y": 225.953125,
+      "width": 718.015625,
+      "height": 204,
+      "text": "A Day in the Life of Adi",
+      "color": "rgb(245, 245, 247)",
+      "opacity": 1,
+      "fontSize": 149,
+      "fontWeight": 560,
+      "fontFamily": "\"Source Serif 4\", Georgia, \"Times New Roman\", serif",
+      "clips": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1080,
+          "height": 1080,
+          "clipX": true,
+          "clipY": true
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1080,
+          "height": 1080,
+          "clipX": true,
+          "clipY": true
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1080,
+          "height": 1080,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 72,
+      "y": 439.90625,
+      "width": 359.4375,
+      "height": 39,
+      "text": "One working day, in 3D.",
+      "color": "rgb(185, 180, 196)",
+      "opacity": 1,
+      "fontSize": 32,
+      "fontWeight": 400,
+      "fontFamily": "Inter, Arial, sans-serif",
+      "clips": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1080,
+          "height": 1080,
+          "clipX": true,
+          "clipY": true
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1080,
+          "height": 1080,
+          "clipX": true,
+          "clipY": true
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1080,
+          "height": 1080,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 72,
+      "y": 484.703125,
+      "width": 419.734375,
+      "height": 39,
+      "text": "The resume is in the phone.",
+      "color": "rgb(185, 180, 196)",
+      "opacity": 1,
+      "fontSize": 32,
+      "fontWeight": 400,
+      "fontFamily": "Inter, Arial, sans-serif",
+      "clips": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1080,
+          "height": 1080,
+          "clipX": true,
+          "clipY": true
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1080,
+          "height": 1080,
+          "clipX": true,
+          "clipY": true
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1080,
+          "height": 1080,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 144,
+      "y": 969,
+      "width": 196.5625,
+      "height": 30,
+      "text": "adityareddy.dev",
+      "color": "rgb(245, 245, 247)",
+      "opacity": 1,
+      "fontSize": 25,
+      "fontWeight": 600,
+      "fontFamily": "Inter, Arial, sans-serif",
+      "clips": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1080,
+          "height": 1080,
+          "clipX": true,
+          "clipY": true
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1080,
+          "height": 1080,
+          "clipX": true,
+          "clipY": true
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1080,
+          "height": 1080,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 556,
+      "y": 623,
+      "width": 97.109375,
+      "height": 30,
+      "text": "Resume",
+      "color": "rgb(29, 29, 31)",
+      "opacity": 1,
+      "fontSize": 25,
+      "fontWeight": 600,
+      "fontFamily": "Inter, Arial, sans-serif",
+      "clips": [
+        {
+          "x": 532,
+          "y": 574,
+          "width": 462,
+          "height": 847,
+          "clipX": true,
+          "clipY": true
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1080,
+          "height": 1080,
+          "clipX": true,
+          "clipY": true
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1080,
+          "height": 1080,
+          "clipX": true,
+          "clipY": true
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1080,
+          "height": 1080,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 588,
+      "y": 705,
+      "width": 68.765625,
+      "height": 30,
+      "text": "React",
+      "color": "rgb(29, 29, 31)",
+      "opacity": 1,
+      "fontSize": 25,
+      "fontWeight": 600,
+      "fontFamily": "Inter, Arial, sans-serif",
+      "clips": [
+        {
+          "x": 532,
+          "y": 574,
+          "width": 462,
+          "height": 847,
+          "clipX": true,
+          "clipY": true
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1080,
+          "height": 1080,
+          "clipX": true,
+          "clipY": true
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1080,
+          "height": 1080,
+          "clipX": true,
+          "clipY": true
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1080,
+          "height": 1080,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 588,
+      "y": 761,
+      "width": 139.78125,
+      "height": 30,
+      "text": "Kubernetes",
+      "color": "rgb(29, 29, 31)",
+      "opacity": 1,
+      "fontSize": 25,
+      "fontWeight": 600,
+      "fontFamily": "Inter, Arial, sans-serif",
+      "clips": [
+        {
+          "x": 532,
+          "y": 574,
+          "width": 462,
+          "height": 847,
+          "clipX": true,
+          "clipY": true
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1080,
+          "height": 1080,
+          "clipX": true,
+          "clipY": true
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1080,
+          "height": 1080,
+          "clipX": true,
+          "clipY": true
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1080,
+          "height": 1080,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 588,
+      "y": 817,
+      "width": 161.765625,
+      "height": 30,
+      "text": "Observability",
+      "color": "rgb(29, 29, 31)",
+      "opacity": 1,
+      "fontSize": 25,
+      "fontWeight": 600,
+      "fontFamily": "Inter, Arial, sans-serif",
+      "clips": [
+        {
+          "x": 532,
+          "y": 574,
+          "width": 462,
+          "height": 847,
+          "clipX": true,
+          "clipY": true
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1080,
+          "height": 1080,
+          "clipX": true,
+          "clipY": true
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1080,
+          "height": 1080,
+          "clipX": true,
+          "clipY": true
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1080,
+          "height": 1080,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 588,
+      "y": 873,
+      "width": 217.71875,
+      "height": 30,
+      "text": "Web performance",
+      "color": "rgb(29, 29, 31)",
+      "opacity": 1,
+      "fontSize": 25,
+      "fontWeight": 600,
+      "fontFamily": "Inter, Arial, sans-serif",
+      "clips": [
+        {
+          "x": 532,
+          "y": 574,
+          "width": 462,
+          "height": 847,
+          "clipX": true,
+          "clipY": true
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1080,
+          "height": 1080,
+          "clipX": true,
+          "clipY": true
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1080,
+          "height": 1080,
+          "clipX": true,
+          "clipY": true
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1080,
+          "height": 1080,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    }
+  ],
+  "fonts": {
+    "Source Serif 4": true,
+    "Georgia": true,
+    "Times New Roman": true,
+    "serif": true,
+    "Inter": true,
+    "Arial": true,
+    "sans-serif": true
+  },
+  "images": 0
+}

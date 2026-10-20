@@ -1,0 +1,35 @@
+{
+  "from": "evals/results/2026-10-19T00-05-14-studio/design-card-ferro",
+  "markedAt": "2026-10-19T00:45:31.726Z",
+  "deliverable": "social-card",
+  "sizes": [
+    "linkedin",
+    "ig-post",
+    "yt-thumb"
+  ],
+  "quality": "studio",
+  "models": {
+    "director": "anthropic/opus",
+    "senior": "anthropic/sonnet",
+    "builder": "anthropic/haiku"
+  },
+  "rounds": 2,
+  "average": 8.75,
+  "axes": {
+    "hierarchy": 9,
+    "typography": 9,
+    "spacing": 8,
+    "colour": 10,
+    "composition": 8,
+    "originality": 8,
+    "brand": 9,
+    "copy": 9
+  },
+  "cost": {
+    "director": 0.394,
+    "senior": 0.3754,
+    "builder": 0.028,
+    "total": 0.7974,
+    "complete": true
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "command": "design-critique",
+  "ask": "critique card.html",
+  "brand": "deskstudio",
+  "files": {
+    "card.html": "fixtures/card-product-update.html"
+  },
+  "rounds": 2,
+  "expect": {
+    "kind": "report"
+  }
+}

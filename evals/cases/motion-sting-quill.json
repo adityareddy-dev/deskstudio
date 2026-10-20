@@ -1,0 +1,13 @@
+{
+  "command": "motion-design",
+  "ask": "a 6 second launch sting for 16:9 that ends on the wordmark",
+  "brand": "quill",
+  "mustAppear": [
+    "Cut it. It stays."
+  ],
+  "rounds": 5,
+  "expect": {
+    "pass": true,
+    "minAverage": 8.5
+  }
+}

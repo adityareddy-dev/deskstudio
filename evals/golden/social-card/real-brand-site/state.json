@@ -1,0 +1,190 @@
+{
+  "id": "20261019-1042-day-life-cards",
+  "command": "design",
+  "deliverable": "social-card",
+  "sizes": [
+    "linkedin",
+    "ig-square"
+  ],
+  "quality": "studio",
+  "models": {
+    "director": "anthropic/opus",
+    "senior": "anthropic/sonnet",
+    "builder": "anthropic/haiku"
+  },
+  "phase": "done",
+  "round": 4,
+  "maxRounds": 6,
+  "desks": [
+    {
+      "desk": "social-media-copywriter",
+      "task": "on-card subline and alt text",
+      "status": "done",
+      "model": "anthropic/haiku",
+      "startedAt": "2026-10-19T15:43:49.532Z",
+      "updatedAt": "2026-10-19T15:44:33.595Z"
+    },
+    {
+      "desk": "ui-designer",
+      "task": "rough 1, editorial split",
+      "status": "done",
+      "model": "anthropic/sonnet",
+      "startedAt": "2026-10-19T15:43:49.589Z",
+      "updatedAt": "2026-10-19T15:44:59.369Z"
+    },
+    {
+      "desk": "ui-designer",
+      "task": "rough 2, type only",
+      "status": "done",
+      "model": "anthropic/sonnet",
+      "startedAt": "2026-10-19T15:43:49.657Z",
+      "updatedAt": "2026-10-19T15:44:54.233Z"
+    },
+    {
+      "desk": "ui-designer",
+      "task": "rough 3, full bleed",
+      "status": "done",
+      "model": "anthropic/sonnet",
+      "startedAt": "2026-10-19T15:43:49.716Z",
+      "updatedAt": "2026-10-19T15:45:32.141Z"
+    },
+    {
+      "desk": "art-director",
+      "task": "pick",
+      "status": "done",
+      "model": "anthropic/opus",
+      "startedAt": "2026-10-19T15:45:42.030Z",
+      "updatedAt": "2026-10-19T15:49:02.472Z"
+    },
+    {
+      "desk": "ui-designer",
+      "task": "polish round 1",
+      "status": "done",
+      "model": "anthropic/haiku",
+      "startedAt": "2026-10-19T15:49:02.947Z",
+      "updatedAt": "2026-10-19T15:50:28.416Z"
+    },
+    {
+      "desk": "ui-designer",
+      "task": "polish round 2",
+      "status": "done",
+      "model": "anthropic/haiku",
+      "startedAt": "2026-10-19T15:50:35.184Z",
+      "updatedAt": "2026-10-19T15:51:21.721Z"
+    },
+    {
+      "desk": "creative-director",
+      "task": "sign-off round 2",
+      "status": "done",
+      "model": "anthropic/opus",
+      "startedAt": "2026-10-19T15:51:27.072Z",
+      "updatedAt": "2026-10-19T15:56:49.279Z"
+    },
+    {
+      "desk": "ui-designer",
+      "task": "polish round 3",
+      "status": "done",
+      "model": "anthropic/haiku",
+      "startedAt": "2026-10-19T15:56:49.625Z",
+      "updatedAt": "2026-10-19T15:58:58.937Z"
+    },
+    {
+      "desk": "ui-designer",
+      "task": "polish round 4",
+      "status": "done",
+      "model": "anthropic/haiku",
+      "startedAt": "2026-10-19T15:59:05.377Z",
+      "updatedAt": "2026-10-19T16:00:10.320Z"
+    },
+    {
+      "desk": "creative-director",
+      "task": "sign-off round 4",
+      "status": "done",
+      "model": "anthropic/opus",
+      "startedAt": "2026-10-19T16:00:15.705Z",
+      "updatedAt": "2026-10-19T16:04:46.538Z"
+    }
+  ],
+  "pick": {
+    "by": "art-director",
+    "rough": 1,
+    "reason": "the only rough that shows the hook, the resume on a paper phone against night, as a real landscape split, and the square needs a scale fix not a new structure",
+    "at": "2026-10-19T15:49:02.535Z"
+  },
+  "proof": [
+    {
+      "round": 1,
+      "pass": false,
+      "failures": 1
+    },
+    {
+      "round": 2,
+      "pass": true,
+      "failures": 0
+    },
+    {
+      "round": 3,
+      "pass": false,
+      "failures": 13
+    },
+    {
+      "round": 4,
+      "pass": true,
+      "failures": 0
+    }
+  ],
+  "scores": [
+    {
+      "round": 2,
+      "by": "creative-director",
+      "average": 8.4,
+      "pass": false,
+      "axes": {
+        "hierarchy": 9,
+        "typography": 8,
+        "spacing": 8,
+        "colour": 9,
+        "composition": 8,
+        "originality": 7,
+        "brand": 9,
+        "copy": 9
+      }
+    },
+    {
+      "round": 4,
+      "by": "creative-director",
+      "average": 8.5,
+      "pass": true,
+      "axes": {
+        "hierarchy": 9,
+        "typography": 8,
+        "spacing": 8,
+        "colour": 9,
+        "composition": 8,
+        "originality": 8,
+        "brand": 9,
+        "copy": 9
+      }
+    }
+  ],
+  "waitingOn": null,
+  "cost": {
+    "director": 0.7894,
+    "senior": 0.3886,
+    "builder": 0.0554,
+    "total": 1.2334,
+    "complete": true
+  },
+  "tokens": {
+    "director": 262263,
+    "senior": 321138,
+    "builder": 1055521
+  },
+  "files": {
+    "final": ".desk/out/20261019-1042-day-life-cards/final.html",
+    "renders": ".desk/jobs/20261019-1042-day-life-cards/renders/round-4"
+  },
+  "startedAt": "2026-10-19T15:42:56.389Z",
+  "updatedAt": "2026-10-19T16:04:57.017Z",
+  "finishedAt": "2026-10-19T16:04:46.905Z"
+}

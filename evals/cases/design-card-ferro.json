@@ -1,0 +1,1 @@
+{ "command": "design", "ask": "a LinkedIn card and a YouTube thumbnail for a spec reveal.", "brand": "ferro", "sizes": ["linkedin", "yt-thumb"], "mustAppear": ["0.01mm. On your desk.", "Steel, not plastic.", "ferro.tools"], "rounds": 6, "expect": { "pass": true, "minAverage": 8.5 } }

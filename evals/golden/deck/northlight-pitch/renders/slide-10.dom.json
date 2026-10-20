@@ -1,0 +1,190 @@
+{
+  "width": 1920,
+  "height": 1080,
+  "scrollWidth": 1920,
+  "scrollHeight": 1080,
+  "boxes": [
+    {
+      "x": 96,
+      "y": 250,
+      "width": 595.578125,
+      "height": 115,
+      "text": "We’re raising",
+      "color": "rgb(22, 22, 20)",
+      "opacity": 1,
+      "fontSize": 95,
+      "fontWeight": 600,
+      "fontFamily": "Inter, Arial, sans-serif",
+      "clips": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1920,
+          "height": 1080,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 691.578125,
+      "y": 250,
+      "width": 288.03125,
+      "height": 115,
+      "text": "$6.0M",
+      "color": "rgb(217, 72, 15)",
+      "opacity": 1,
+      "fontSize": 95,
+      "fontWeight": 600,
+      "fontFamily": "Inter, Arial, sans-serif",
+      "clips": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1920,
+          "height": 1080,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 979.609375,
+      "y": 250,
+      "width": 583.921875,
+      "height": 115,
+      "text": "for two more crews and 24 months of runway",
+      "color": "rgb(22, 22, 20)",
+      "opacity": 1,
+      "fontSize": 95,
+      "fontWeight": 600,
+      "fontFamily": "Inter, Arial, sans-serif",
+      "clips": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1920,
+          "height": 1080,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 96,
+      "y": 354,
+      "width": 1417.953125,
+      "height": 115,
+      "text": "for two more crews and 24 months of runway",
+      "color": "rgb(22, 22, 20)",
+      "opacity": 1,
+      "fontSize": 95,
+      "fontWeight": 600,
+      "fontFamily": "Inter, Arial, sans-serif",
+      "clips": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1920,
+          "height": 1080,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 96,
+      "y": 544,
+      "width": 305.71875,
+      "height": 39,
+      "text": "Dana Whitfield, CEO",
+      "color": "rgb(107, 106, 102)",
+      "opacity": 1,
+      "fontSize": 32,
+      "fontWeight": 400,
+      "fontFamily": "Inter, Arial, sans-serif",
+      "clips": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1920,
+          "height": 1080,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 96,
+      "y": 584,
+      "width": 386.515625,
+      "height": 39,
+      "text": "dana@northlight.example",
+      "color": "rgb(107, 106, 102)",
+      "opacity": 1,
+      "fontSize": 32,
+      "fontWeight": 400,
+      "fontFamily": "Inter, Arial, sans-serif",
+      "clips": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1920,
+          "height": 1080,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 1644.421875,
+      "y": 960,
+      "width": 25.953125,
+      "height": 30,
+      "text": "10",
+      "color": "rgb(107, 106, 102)",
+      "opacity": 1,
+      "fontSize": 25,
+      "fontWeight": 400,
+      "fontFamily": "Inter, Arial, sans-serif",
+      "clips": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1920,
+          "height": 1080,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 1702.375,
+      "y": 960,
+      "width": 121.625,
+      "height": 30,
+      "text": "Northlight",
+      "color": "rgb(22, 22, 20)",
+      "opacity": 1,
+      "fontSize": 25,
+      "fontWeight": 600,
+      "fontFamily": "Inter, Arial, sans-serif",
+      "clips": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1920,
+          "height": 1080,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    }
+  ],
+  "fonts": {
+    "Inter": true,
+    "Arial": true,
+    "sans-serif": true
+  },
+  "images": 0
+}

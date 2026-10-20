@@ -1,0 +1,212 @@
+[
+  {
+    "path": "DESIGN.md",
+    "bytes": 771,
+    "sha256": "9b80358e9fd1115d34572dcb24d38149dcb30e71fd97b5a82e529884ac3baefc"
+  },
+  {
+    "path": "brief.md",
+    "bytes": 2076,
+    "sha256": "6cb37efcb599984a6f1624de69f0b07c60a664ccf91a18b7f3d037078e2c63e0"
+  },
+  {
+    "path": "events.jsonl",
+    "bytes": 8727,
+    "sha256": "beab5a2276642945c78d61e476a4fc0064ad0011ba31f06f17a2579a2998dd44"
+  },
+  {
+    "path": "out/final.html",
+    "bytes": 69257,
+    "sha256": "4956e96a677475cc679ac14c5eb46f58452cd6ded31bbf46728dcb4139a8fdeb"
+  },
+  {
+    "path": "out/fonts-inter.css",
+    "bytes": 64497,
+    "sha256": "8bce66ee685fc4d113bd19a4076fdd3da185dc90e57e7f630dd4c0221c58fc4d"
+  },
+  {
+    "path": "out/handback.md",
+    "bytes": 940,
+    "sha256": "966a34b54ed768504459c3bddf4c0cd935c835ee2548499c969b3857608a60b4"
+  },
+  {
+    "path": "out/rough-1.html",
+    "bytes": 70096,
+    "sha256": "fa17478a56ad8884dfacbb5115d00e413290ca0a9803d4cb61233ffccf062d7b"
+  },
+  {
+    "path": "out/rough-2.html",
+    "bytes": 68350,
+    "sha256": "67ed1f401b795ab6ba45e122e965e5c6cfd365b8d00dbf7489d2d203a3dedc6c"
+  },
+  {
+    "path": "out/rough-3.html",
+    "bytes": 68832,
+    "sha256": "b89a894193f94c70732528d78b7926192f8079a7f3837f7467be323d372d09dc"
+  },
+  {
+    "path": "renders/roughs/rough-1/ig-post.background.png",
+    "bytes": 7426,
+    "sha256": "22691ead275f63bd7548d17e0acd513d0341648c5f918697861f33fa53d4a124"
+  },
+  {
+    "path": "renders/roughs/rough-1/ig-post.dom.json",
+    "bytes": 3281,
+    "sha256": "a8178fcdedb734003e9db788532c54b3a1e1faed4921bd9acb709cdba8572c1e"
+  },
+  {
+    "path": "renders/roughs/rough-1/ig-post.png",
+    "bytes": 33814,
+    "sha256": "f802b0da57612fd41a4ce3d78787a1df67eee6f1d736c071b28717d3e7b36a84"
+  },
+  {
+    "path": "renders/roughs/rough-1/linkedin.background.png",
+    "bytes": 3695,
+    "sha256": "ca9bf3322b5b32488c46e4bd9607e42b8c8b3c9a6d44790eeac5c268698308b8"
+  },
+  {
+    "path": "renders/roughs/rough-1/linkedin.dom.json",
+    "bytes": 3277,
+    "sha256": "66fd79c7fa58850195dcdb087ce872b0c29f9e38334634c46018408d69fe13d8"
+  },
+  {
+    "path": "renders/roughs/rough-1/linkedin.png",
+    "bytes": 30888,
+    "sha256": "eba1f8dc43329a3560319d281ec31555bab4609f2e84836e504a129ecad986b3"
+  },
+  {
+    "path": "renders/roughs/rough-2/ig-post.background.png",
+    "bytes": 7465,
+    "sha256": "b19de91c74c7791ce0baf48cb989e9131b715210a2255ef3f19426b316588fde"
+  },
+  {
+    "path": "renders/roughs/rough-2/ig-post.dom.json",
+    "bytes": 4074,
+    "sha256": "2f43e2c167c5c18204117878c97d99d4424cf0ee4a0b0ea88ed500a2ec6cd91e"
+  },
+  {
+    "path": "renders/roughs/rough-2/ig-post.png",
+    "bytes": 33961,
+    "sha256": "60ca71488d495510dfc2678f06aacb21ccf6de6411ecc75b37b992ff17580ba6"
+  },
+  {
+    "path": "renders/roughs/rough-2/linkedin.background.png",
+    "bytes": 3712,
+    "sha256": "05a7bcf77eaf52c415771383ed9e5be48170c79b3bea835766141bd10dd9702b"
+  },
+  {
+    "path": "renders/roughs/rough-2/linkedin.dom.json",
+    "bytes": 4056,
+    "sha256": "4d72fbf103b1d3d37169fe3976c883444bb11f93563f00bc739329231e53bec9"
+  },
+  {
+    "path": "renders/roughs/rough-2/linkedin.png",
+    "bytes": 30869,
+    "sha256": "4c53ef7a425bcb0182898447a4ad757ad44e9b4f0cb176389ed31402616319e5"
+  },
+  {
+    "path": "renders/roughs/rough-3/ig-post.background.png",
+    "bytes": 7439,
+    "sha256": "bfd1713323603ff26393362e54d319fea3d4a22b8965d4af9a8f806cdc3ba220"
+  },
+  {
+    "path": "renders/roughs/rough-3/ig-post.dom.json",
+    "bytes": 3281,
+    "sha256": "a47e576b44953002fe6084d6a46ec99f4f74fd74b3078762097b31f58e37766b"
+  },
+  {
+    "path": "renders/roughs/rough-3/ig-post.png",
+    "bytes": 42342,
+    "sha256": "6e1d5a7514d08acc91019180066243bda09c1eb9d4a8a2181e4ec55d6a83b81e"
+  },
+  {
+    "path": "renders/roughs/rough-3/linkedin.background.png",
+    "bytes": 3704,
+    "sha256": "025e5bf78358bdb318adabbb0e6b6db3a75336f0a3952266a72d8a79b02e7283"
+  },
+  {
+    "path": "renders/roughs/rough-3/linkedin.dom.json",
+    "bytes": 3270,
+    "sha256": "6f22b27256e55fbdf47d49b0e2f45f2aa6d7657b6c6b9c21bb0f1601e091369d"
+  },
+  {
+    "path": "renders/roughs/rough-3/linkedin.png",
+    "bytes": 32458,
+    "sha256": "06b719568e73817752608e803841be9645010aab1e521ca90a9f66d230edb8dd"
+  },
+  {
+    "path": "renders/round-1/ig-post.background.png",
+    "bytes": 7439,
+    "sha256": "e25b26a7466959b5e52c01fb7d2129b7856d38633ebb7e563c6243b9b9aac56d"
+  },
+  {
+    "path": "renders/round-1/ig-post.dom.json",
+    "bytes": 3279,
+    "sha256": "8c3512a17725952e39a9e85cd6909001b35f1629d5f4c5f33ce6f6fc18d0e6f1"
+  },
+  {
+    "path": "renders/round-1/ig-post.png",
+    "bytes": 42468,
+    "sha256": "0c8ef45b851024e2e64ab3a5b575bcda3cca768f81bc6fdd29e66e87acc7b567"
+  },
+  {
+    "path": "renders/round-1/linkedin.background.png",
+    "bytes": 3704,
+    "sha256": "025e5bf78358bdb318adabbb0e6b6db3a75336f0a3952266a72d8a79b02e7283"
+  },
+  {
+    "path": "renders/round-1/linkedin.dom.json",
+    "bytes": 3270,
+    "sha256": "12666052e0161c32f3f7ff4b74dccdac3d2af663e913ce246e36aaa05ce5ebb5"
+  },
+  {
+    "path": "renders/round-1/linkedin.png",
+    "bytes": 32564,
+    "sha256": "42a2492aad9632087f61db228416e9cb20d37aee50ad04623ac5471b8a714181"
+  },
+  {
+    "path": "renders/round-2/ig-post.background.png",
+    "bytes": 7439,
+    "sha256": "94623a0ece14eeaf584da46b6b12f36cd258c0277a784f9265ac78c101b4b0e3"
+  },
+  {
+    "path": "renders/round-2/ig-post.dom.json",
+    "bytes": 3279,
+    "sha256": "71b17386a2ed10fefa69aeaaddcefa6eee17dd54e6d5e68b109e531ac3f42e90"
+  },
+  {
+    "path": "renders/round-2/ig-post.png",
+    "bytes": 42469,
+    "sha256": "f4fa6c9b3ba8a766bfb1579c9f0627ba8b94dba65061515737ca046abc7338e3"
+  },
+  {
+    "path": "renders/round-2/linkedin.background.png",
+    "bytes": 3704,
+    "sha256": "025e5bf78358bdb318adabbb0e6b6db3a75336f0a3952266a72d8a79b02e7283"
+  },
+  {
+    "path": "renders/round-2/linkedin.dom.json",
+    "bytes": 3270,
+    "sha256": "12666052e0161c32f3f7ff4b74dccdac3d2af663e913ce246e36aaa05ce5ebb5"
+  },
+  {
+    "path": "renders/round-2/linkedin.png",
+    "bytes": 32564,
+    "sha256": "42a2492aad9632087f61db228416e9cb20d37aee50ad04623ac5471b8a714181"
+  },
+  {
+    "path": "result.json",
+    "bytes": 2740,
+    "sha256": "f1ddc13fa3c3e6d726e6ea3ea8bd67ed960a6871d9dd263b6f2f85e7b0c6ae53"
+  },
+  {
+    "path": "runner.log.txt",
+    "bytes": 3986,
+    "sha256": "c5a31db3c4bd8c7fd0caca6a6206aa36b87f655f3444ebbecadde8ba46d7d117"
+  },
+  {
+    "path": "state.json",
+    "bytes": 7205,
+    "sha256": "787694cb7ace9b426f63905ff2fb2329232308bc35a1a61bc4daa412321ad32a"
+  }
+]

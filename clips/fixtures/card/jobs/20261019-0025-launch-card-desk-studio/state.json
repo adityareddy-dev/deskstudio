@@ -1,0 +1,195 @@
+{
+  "id": "20261019-0025-launch-card-desk-studio",
+  "command": "design",
+  "deliverable": "social-card",
+  "sizes": [
+    "linkedin",
+    "ig-post"
+  ],
+  "quality": "studio",
+  "models": {
+    "director": "anthropic/opus",
+    "senior": "anthropic/sonnet",
+    "builder": "anthropic/haiku"
+  },
+  "phase": "done",
+  "round": 3,
+  "maxRounds": 8,
+  "desks": [
+    {
+      "desk": "ui-designer",
+      "task": "rough 1, editorial split",
+      "status": "done",
+      "model": "anthropic/sonnet",
+      "startedAt": "2026-10-19T05:25:31.613Z",
+      "updatedAt": "2026-10-19T05:26:38.290Z"
+    },
+    {
+      "desk": "ui-designer",
+      "task": "rough 2, type only",
+      "status": "done",
+      "model": "anthropic/sonnet",
+      "startedAt": "2026-10-19T05:25:31.684Z",
+      "updatedAt": "2026-10-19T05:26:31.851Z"
+    },
+    {
+      "desk": "ui-designer",
+      "task": "rough 3, frame",
+      "status": "done",
+      "model": "anthropic/sonnet",
+      "startedAt": "2026-10-19T05:25:31.750Z",
+      "updatedAt": "2026-10-19T05:27:04.723Z"
+    },
+    {
+      "desk": "art-director",
+      "task": "pick",
+      "status": "done",
+      "model": "anthropic/opus",
+      "startedAt": "2026-10-19T05:27:14.932Z",
+      "updatedAt": "2026-10-19T05:29:58.344Z"
+    },
+    {
+      "desk": "ui-designer",
+      "task": "polish round 1",
+      "status": "done",
+      "model": "anthropic/haiku",
+      "startedAt": "2026-10-19T05:29:58.835Z",
+      "updatedAt": "2026-10-19T05:31:42.092Z"
+    },
+    {
+      "desk": "creative-director",
+      "task": "sign-off round 1",
+      "status": "done",
+      "model": "anthropic/opus",
+      "startedAt": "2026-10-19T05:31:50.704Z",
+      "updatedAt": "2026-10-19T05:37:40.236Z"
+    },
+    {
+      "desk": "ui-designer",
+      "task": "polish round 2",
+      "status": "done",
+      "model": "anthropic/haiku",
+      "startedAt": "2026-10-19T05:37:40.614Z",
+      "updatedAt": "2026-10-19T05:41:20.374Z"
+    },
+    {
+      "desk": "creative-director",
+      "task": "sign-off round 2",
+      "status": "done",
+      "model": "anthropic/opus",
+      "startedAt": "2026-10-19T05:41:32.312Z",
+      "updatedAt": "2026-10-19T05:53:19.697Z"
+    },
+    {
+      "desk": "ui-designer",
+      "task": "polish round 3",
+      "status": "done",
+      "model": "anthropic/haiku",
+      "startedAt": "2026-10-19T05:53:20.061Z",
+      "updatedAt": "2026-10-19T05:55:25.716Z"
+    },
+    {
+      "desk": "creative-director",
+      "task": "sign-off round 3",
+      "status": "done",
+      "model": "anthropic/opus",
+      "startedAt": "2026-10-19T05:55:32.419Z",
+      "updatedAt": "2026-10-19T05:58:24.305Z"
+    }
+  ],
+  "pick": {
+    "by": "art-director",
+    "rough": 2,
+    "reason": "headline reads first at both sizes, only amber is the small lamp, fixes are type sizes not layout",
+    "at": "2026-10-19T05:29:58.418Z"
+  },
+  "proof": [
+    {
+      "round": 1,
+      "pass": true,
+      "failures": 0
+    },
+    {
+      "round": 2,
+      "pass": true,
+      "failures": 0
+    },
+    {
+      "round": 3,
+      "pass": true,
+      "failures": 0
+    }
+  ],
+  "scores": [
+    {
+      "round": 1,
+      "by": "creative-director",
+      "average": 8.4,
+      "pass": false,
+      "axes": {
+        "hierarchy": 9,
+        "typography": 8,
+        "spacing": 8,
+        "colour": 9,
+        "composition": 8,
+        "originality": 7,
+        "brand": 9,
+        "copy": 9
+      }
+    },
+    {
+      "round": 2,
+      "by": "creative-director",
+      "average": 8.5,
+      "pass": false,
+      "axes": {
+        "hierarchy": 9,
+        "typography": 8,
+        "spacing": 9,
+        "colour": 9,
+        "composition": 8,
+        "originality": 7,
+        "brand": 9,
+        "copy": 9
+      }
+    },
+    {
+      "round": 3,
+      "by": "creative-director",
+      "average": 8.9,
+      "pass": true,
+      "axes": {
+        "hierarchy": 9,
+        "typography": 9,
+        "spacing": 9,
+        "colour": 9,
+        "composition": 9,
+        "originality": 8,
+        "brand": 9,
+        "copy": 9
+      }
+    }
+  ],
+  "waitingOn": null,
+  "cost": {
+    "director": 0.8087,
+    "senior": 0.4296,
+    "builder": 0.0971,
+    "total": 1.3354,
+    "complete": true
+  },
+  "tokens": {
+    "director": 313437,
+    "senior": 403248,
+    "builder": 2912637
+  },
+  "files": {
+    "brief": ".desk/jobs/20261019-0025-launch-card-desk-studio/brief.md",
+    "final": ".desk/out/20261019-0025-launch-card-desk-studio/final.html",
+    "linkedin": ".desk/out/20261019-0025-launch-card-desk-studio/final-linkedin.png",
+    "igPost": ".desk/out/20261019-0025-launch-card-desk-studio/final-ig-post.png"
+  },
+  "startedAt": "2026-10-19T05:25:16.821Z",
+  "updatedAt": "2026-10-19T05:58:24.766Z",
+  "finishedAt": "2026-10-19T05:58:24.765Z"
+}

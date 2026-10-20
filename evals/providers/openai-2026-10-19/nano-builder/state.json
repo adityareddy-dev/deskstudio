@@ -1,0 +1,290 @@
+{
+  "id": "20261019-2221-linkedin-instagram-portrait-new",
+  "command": "design",
+  "deliverable": "social-card",
+  "sizes": [
+    "linkedin",
+    "ig-post"
+  ],
+  "quality": "studio",
+  "models": {
+    "director": "openai/large",
+    "senior": "openai/mini",
+    "builder": "openai/nano"
+  },
+  "phase": "done",
+  "round": 6,
+  "maxRounds": 6,
+  "desks": [
+    {
+      "desk": "design-manager",
+      "task": "intake",
+      "status": "done",
+      "model": "openai/large",
+      "startedAt": "2026-10-19T22:21:15+00:00",
+      "updatedAt": "2026-10-19T22:21:30+00:00",
+      "via": "cli"
+    },
+    {
+      "desk": "ui-designer",
+      "task": "rough 1, editorial split",
+      "status": "done",
+      "model": "openai/mini",
+      "startedAt": "2026-10-19T22:21:30+00:00",
+      "updatedAt": "2026-10-19T22:22:06+00:00",
+      "via": "cli"
+    },
+    {
+      "desk": "ui-designer",
+      "task": "rough 2, full bleed with scrim",
+      "status": "done",
+      "model": "openai/mini",
+      "startedAt": "2026-10-19T22:21:30+00:00",
+      "updatedAt": "2026-10-19T22:21:57+00:00",
+      "via": "cli"
+    },
+    {
+      "desk": "ui-designer",
+      "task": "rough 3, type only",
+      "status": "done",
+      "model": "openai/mini",
+      "startedAt": "2026-10-19T22:21:30+00:00",
+      "updatedAt": "2026-10-19T22:21:53+00:00",
+      "via": "cli"
+    },
+    {
+      "desk": "art-director",
+      "task": "pick",
+      "status": "done",
+      "model": "openai/large",
+      "startedAt": "2026-10-19T22:22:48+00:00",
+      "updatedAt": "2026-10-19T22:23:01+00:00",
+      "via": "cli"
+    },
+    {
+      "desk": "ui-designer",
+      "task": "polish round 1",
+      "status": "done",
+      "model": "openai/nano",
+      "startedAt": "2026-10-19T22:23:02+00:00",
+      "updatedAt": "2026-10-19T22:23:11+00:00",
+      "via": "cli"
+    },
+    {
+      "desk": "ui-designer",
+      "task": "polish round 2",
+      "status": "done",
+      "model": "openai/nano",
+      "startedAt": "2026-10-19T22:23:13+00:00",
+      "updatedAt": "2026-10-19T22:23:20+00:00",
+      "via": "cli"
+    },
+    {
+      "desk": "ui-designer",
+      "task": "polish round 3",
+      "status": "done",
+      "model": "openai/nano",
+      "startedAt": "2026-10-19T22:23:21+00:00",
+      "updatedAt": "2026-10-19T22:23:32+00:00",
+      "via": "cli"
+    },
+    {
+      "desk": "creative-director",
+      "task": "sign-off round 3",
+      "status": "done",
+      "model": "openai/large",
+      "startedAt": "2026-10-19T22:23:34+00:00",
+      "updatedAt": "2026-10-19T22:23:55+00:00",
+      "via": "cli"
+    },
+    {
+      "desk": "ui-designer",
+      "task": "polish round 4",
+      "status": "done",
+      "model": "openai/nano",
+      "startedAt": "2026-10-19T22:23:55+00:00",
+      "updatedAt": "2026-10-19T22:24:01+00:00",
+      "via": "cli"
+    },
+    {
+      "desk": "ui-designer",
+      "task": "polish round 5",
+      "status": "done",
+      "model": "openai/nano",
+      "startedAt": "2026-10-19T22:24:03+00:00",
+      "updatedAt": "2026-10-19T22:24:10+00:00",
+      "via": "cli"
+    },
+    {
+      "desk": "ui-designer",
+      "task": "polish round 6",
+      "status": "done",
+      "model": "openai/nano",
+      "startedAt": "2026-10-19T22:24:12+00:00",
+      "updatedAt": "2026-10-19T22:24:24+00:00",
+      "via": "cli"
+    },
+    {
+      "desk": "creative-director",
+      "task": "sign-off round 6",
+      "status": "done",
+      "model": "openai/large",
+      "startedAt": "2026-10-19T22:24:26+00:00",
+      "updatedAt": "2026-10-19T22:24:41+00:00",
+      "via": "cli"
+    }
+  ],
+  "pick": {
+    "by": "art-director",
+    "rough": 3,
+    "pattern": "Type only",
+    "combineWith": null,
+    "reason": "The numerical claim reads fastest, and the restrained typography gives Northlight the strongest hierarchy in both formats.",
+    "lost": "1 The battery competes with the claim for attention, 2 The heavy black frame reduces headline scale and pushes the URL off the left alignment.",
+    "notes": [
+      "Embed actual Inter font data and set headline weight to 600, body and URL to 400; the brief requires verified Inter loading before proof.",
+      "In portrait, move the supporting line’s text box to y=752px, retaining its current left alignment; this balances the two empty bands below the headline under the standard’s one-third-canvas limit.",
+      "Set “Seven” to exactly #d9480f as the single accent; retain #161614 for remaining text and #f7f5f0 for the background, per the brand palette."
+    ],
+    "at": "2026-10-19T22:23:01+00:00"
+  },
+  "proof": [
+    {
+      "round": 1,
+      "pass": false,
+      "failures": 2
+    },
+    {
+      "round": 2,
+      "pass": false,
+      "failures": 2
+    },
+    {
+      "round": 3,
+      "pass": true,
+      "failures": 0
+    },
+    {
+      "round": 4,
+      "pass": false,
+      "failures": 2
+    },
+    {
+      "round": 5,
+      "pass": false,
+      "failures": 2
+    },
+    {
+      "round": 6,
+      "pass": true,
+      "failures": 0
+    }
+  ],
+  "scores": [
+    {
+      "round": 3,
+      "by": "creative-director",
+      "axes": {
+        "hierarchy": 9,
+        "typography": 9,
+        "spacing": 9,
+        "colour": 9,
+        "composition": 9,
+        "originality": 6,
+        "brand": 9,
+        "copy": 9
+      },
+      "average": 8.63,
+      "pass": false,
+      "notes": [
+        "originality: The uniform headline follows the standard template too literally. Give “Seven” a distinct numerical scale: 149px landscape, 186px portrait, retaining 600 weight and its orange accent. Keep the remaining headline at 95px and 119px respectively; retain three lines. Remove the separate supporting size by setting support and URL to 25px, preserving the three-size limit."
+      ],
+      "polish": [
+        "None."
+      ]
+    },
+    {
+      "round": 6,
+      "by": "creative-director",
+      "axes": {
+        "hierarchy": 9,
+        "typography": 9,
+        "spacing": 8,
+        "colour": 9,
+        "composition": 8,
+        "originality": 6,
+        "brand": 9,
+        "copy": 10
+      },
+      "average": 8.5,
+      "pass": false,
+      "notes": [
+        "spacing: Move the portrait supporting text box to y=752px as specified at the pick; retain x=80px.",
+        "composition: Move the portrait URL text box to y=1120px to tighten the lower grouping while preserving the bottom safe zone.",
+        "originality: Develop 1 alternative type-only lockup using a shared vertical alignment between the end of “Seven” and “Then free.”; retain the single accent, supplied copy, and 3-size limit."
+      ],
+      "polish": [
+        "None."
+      ]
+    }
+  ],
+  "waitingOn": {
+    "type": "approve_under_bar",
+    "text": "Under the bar after 6 rounds. originality under 8, originality: Develop 1 alternative type-only lockup using a shared vertical alignment between the end of “Seven” and “Then free.”; retain the single accent, supplied copy, and 3-size limit."
+  },
+  "cost": {
+    "director": 0.5662,
+    "senior": 0.0949,
+    "builder": 0.0093,
+    "total": 0.6704,
+    "complete": true
+  },
+  "tokens": {
+    "director": 91222,
+    "senior": 59298,
+    "builder": 169554
+  },
+  "files": {
+    "final": ".desk/out/20261019-2221-linkedin-instagram-portrait-new/final.html",
+    "brief": ".desk/jobs/20261019-2221-linkedin-instagram-portrait-new/brief.md",
+    "handback": ".desk/out/20261019-2221-linkedin-instagram-portrait-new/handback.md"
+  },
+  "pen": "builder",
+  "notes": [
+    "spacing: Move the portrait supporting text box to y=752px as specified at the pick; retain x=80px.",
+    "composition: Move the portrait URL text box to y=1120px to tighten the lower grouping while preserving the bottom safe zone.",
+    "originality: Develop 1 alternative type-only lockup using a shared vertical alignment between the end of “Seven” and “Then free.”; retain the single accent, supplied copy, and 3-size limit."
+  ],
+  "misses": {
+    "originality": 1
+  },
+  "startedAt": "2026-10-19T22:21:15+00:00",
+  "updatedAt": "2026-10-19T22:24:41+00:00",
+  "roughs": [
+    {
+      "n": 1,
+      "pattern": "Editorial split",
+      "file": ".desk/out/20261019-2221-linkedin-instagram-portrait-new/rough-1.html",
+      "fonts": "Inter; runner inlines font data; no fallback used intentionally",
+      "renders": ".desk/jobs/20261019-2221-linkedin-instagram-portrait-new/renders/roughs/rough-1"
+    },
+    {
+      "n": 2,
+      "pattern": "Full bleed with scrim",
+      "file": ".desk/out/20261019-2221-linkedin-instagram-portrait-new/rough-2.html",
+      "fonts": "Inter, runner-inlined; no fallback used",
+      "renders": ".desk/jobs/20261019-2221-linkedin-instagram-portrait-new/renders/roughs/rough-2"
+    },
+    {
+      "n": 3,
+      "pattern": "Type only",
+      "file": ".desk/out/20261019-2221-linkedin-instagram-portrait-new/rough-3.html",
+      "fonts": "Inter, runner-inlined; no substitution",
+      "renders": ".desk/jobs/20261019-2221-linkedin-instagram-portrait-new/renders/roughs/rough-3"
+    }
+  ],
+  "next": "pick",
+  "lastRenders": ".desk/jobs/20261019-2221-linkedin-instagram-portrait-new/renders/round-6",
+  "penNotes": [],
+  "finishedAt": "2026-10-19T22:24:41+00:00"
+}

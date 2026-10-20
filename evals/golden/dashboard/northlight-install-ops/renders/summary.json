@@ -1,0 +1,13 @@
+{
+  "pass": true,
+  "failures": [],
+  "screenshots": [
+    ".desk\\jobs\\20261018-1950-install-team-ops-dashboard\\renders\\round-3\\ready\\phone.png",
+    ".desk\\jobs\\20261018-1950-install-team-ops-dashboard\\renders\\round-3\\ready\\tablet.png",
+    ".desk\\jobs\\20261018-1950-install-team-ops-dashboard\\renders\\round-3\\ready\\desktop.png",
+    ".desk\\jobs\\20261018-1950-install-team-ops-dashboard\\renders\\round-3\\loading\\desktop.png",
+    ".desk\\jobs\\20261018-1950-install-team-ops-dashboard\\renders\\round-3\\empty\\desktop.png",
+    ".desk\\jobs\\20261018-1950-install-team-ops-dashboard\\renders\\round-3\\error\\desktop.png",
+    ".desk\\jobs\\20261018-1950-install-team-ops-dashboard\\renders\\round-3\\stale\\desktop.png"
+  ]
+}

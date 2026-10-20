@@ -1,0 +1,183 @@
+{
+  "id": "20261018-1939-quill-launch-cards",
+  "command": "design",
+  "deliverable": "social-card",
+  "sizes": [
+    "x",
+    "ig-square"
+  ],
+  "quality": "studio",
+  "models": {
+    "director": "anthropic/opus",
+    "senior": "anthropic/sonnet",
+    "builder": "anthropic/haiku"
+  },
+  "phase": "done",
+  "round": 4,
+  "maxRounds": 6,
+  "desks": [
+    {
+      "desk": "ui-designer",
+      "task": "rough 1, type only",
+      "status": "done",
+      "model": "anthropic/sonnet",
+      "startedAt": "2026-10-19T00:39:55.807Z",
+      "updatedAt": "2026-10-19T00:40:55.079Z"
+    },
+    {
+      "desk": "ui-designer",
+      "task": "rough 2, editorial split",
+      "status": "done",
+      "model": "anthropic/sonnet",
+      "startedAt": "2026-10-19T00:39:55.864Z",
+      "updatedAt": "2026-10-19T00:40:55.153Z"
+    },
+    {
+      "desk": "ui-designer",
+      "task": "rough 3, frame",
+      "status": "done",
+      "model": "anthropic/sonnet",
+      "startedAt": "2026-10-19T00:39:55.919Z",
+      "updatedAt": "2026-10-19T00:40:55.227Z"
+    },
+    {
+      "desk": "art-director",
+      "task": "pick",
+      "status": "done",
+      "model": "anthropic/opus",
+      "startedAt": "2026-10-19T00:41:03.728Z",
+      "updatedAt": "2026-10-19T00:45:43.932Z"
+    },
+    {
+      "desk": "ui-designer",
+      "task": "polish round 1",
+      "status": "done",
+      "model": "anthropic/haiku",
+      "startedAt": "2026-10-19T00:45:44.363Z",
+      "updatedAt": "2026-10-19T00:47:16.328Z"
+    },
+    {
+      "desk": "ui-designer",
+      "task": "polish round 2",
+      "status": "done",
+      "model": "anthropic/haiku",
+      "startedAt": "2026-10-19T00:47:25.825Z",
+      "updatedAt": "2026-10-19T00:48:23.604Z"
+    },
+    {
+      "desk": "creative-director",
+      "task": "sign-off round 2",
+      "status": "done",
+      "model": "anthropic/opus",
+      "startedAt": "2026-10-19T00:48:30.537Z",
+      "updatedAt": "2026-10-19T00:52:09.115Z"
+    },
+    {
+      "desk": "ui-designer",
+      "task": "polish round 3",
+      "status": "done",
+      "model": "anthropic/haiku",
+      "startedAt": "2026-10-19T00:52:09.539Z",
+      "updatedAt": "2026-10-19T00:53:22.229Z"
+    },
+    {
+      "desk": "ui-designer",
+      "task": "polish round 4",
+      "status": "done",
+      "model": "anthropic/haiku",
+      "startedAt": "2026-10-19T00:53:31.701Z",
+      "updatedAt": "2026-10-19T00:54:56.909Z"
+    },
+    {
+      "desk": "creative-director",
+      "task": "sign-off round 4",
+      "status": "done",
+      "model": "anthropic/opus",
+      "startedAt": "2026-10-19T00:55:07.132Z",
+      "updatedAt": "2026-10-19T00:58:16.990Z"
+    }
+  ],
+  "pick": {
+    "by": "art-director",
+    "rough": 1,
+    "reason": "type only reads first at a squint on both sizes, biggest serif, accent on the one word that carries the promise",
+    "at": "2026-10-19T00:45:43.987Z"
+  },
+  "proof": [
+    {
+      "round": 1,
+      "pass": false,
+      "failures": 3
+    },
+    {
+      "round": 2,
+      "pass": true,
+      "failures": 0
+    },
+    {
+      "round": 3,
+      "pass": false,
+      "failures": 2
+    },
+    {
+      "round": 4,
+      "pass": true,
+      "failures": 0
+    }
+  ],
+  "scores": [
+    {
+      "round": 2,
+      "by": "creative-director",
+      "average": 8.4,
+      "pass": false,
+      "axes": {
+        "hierarchy": 9,
+        "typography": 8,
+        "spacing": 8,
+        "colour": 9,
+        "composition": 8,
+        "originality": 7,
+        "brand": 9,
+        "copy": 9
+      }
+    },
+    {
+      "round": 4,
+      "by": "creative-director",
+      "average": 8.9,
+      "pass": true,
+      "axes": {
+        "hierarchy": 9,
+        "typography": 9,
+        "spacing": 9,
+        "colour": 9,
+        "composition": 9,
+        "originality": 8,
+        "brand": 9,
+        "copy": 9
+      }
+    }
+  ],
+  "waitingOn": null,
+  "cost": {
+    "director": 0.5132,
+    "senior": 0.4084,
+    "builder": 0.0499,
+    "total": 0.9715,
+    "complete": true
+  },
+  "tokens": {
+    "director": 272879,
+    "senior": 308391,
+    "builder": 1292434
+  },
+  "files": {
+    "brief": ".desk/jobs/20261018-1939-quill-launch-cards/brief.md",
+    "final": ".desk/out/20261018-1939-quill-launch-cards/final.html",
+    "renders": ".desk/jobs/20261018-1939-quill-launch-cards/renders/round-4"
+  },
+  "startedAt": "2026-10-19T00:39:44.917Z",
+  "updatedAt": "2026-10-19T00:58:17.389Z",
+  "finishedAt": "2026-10-19T00:58:17.388Z"
+}

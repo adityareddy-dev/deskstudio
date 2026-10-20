@@ -1,0 +1,45 @@
+{
+  "pass": true,
+  "file": "final.html",
+  "sizeKB": 5.9,
+  "renders": [
+    {
+      "size": "email-600",
+      "scheme": "light",
+      "width": 600,
+      "height": 800,
+      "png": "C:\\Users\\adity\\AppData\\Local\\Temp\\desk-eval-email-template-welcome-ferro-1792369831296\\.desk\\jobs\\20261019-0032-ferro-welcome-setup-guide\\renders\\round-2\\email-600-light.png",
+      "pass": true,
+      "failures": [],
+      "waived": [
+        {
+          "check": "font",
+          "text": "Geist",
+          "reason": "the brand font \"Geist\" is not loaded in this file (families named: Geist, Inter, Arial, sans-serif), so it renders in a fallback. Inline it with font.mjs css \"Geist\" per procedures/fonts.md",
+          "waived": "email clients ignore data-URI fonts, procedures/fonts.md"
+        }
+      ]
+    },
+    {
+      "size": "email-600",
+      "scheme": "dark",
+      "width": 600,
+      "height": 800,
+      "png": "C:\\Users\\adity\\AppData\\Local\\Temp\\desk-eval-email-template-welcome-ferro-1792369831296\\.desk\\jobs\\20261019-0032-ferro-welcome-setup-guide\\renders\\round-2\\email-600-dark.png",
+      "pass": true,
+      "failures": [],
+      "waived": [
+        {
+          "check": "font",
+          "text": "Geist",
+          "reason": "the brand font \"Geist\" is not loaded in this file (families named: Geist, Inter, Arial, sans-serif), so it renders in a fallback. Inline it with font.mjs css \"Geist\" per procedures/fonts.md",
+          "waived": "email clients ignore data-URI fonts, procedures/fonts.md"
+        }
+      ]
+    }
+  ],
+  "screenshots": [
+    "C:\\Users\\adity\\AppData\\Local\\Temp\\desk-eval-email-template-welcome-ferro-1792369831296\\.desk\\jobs\\20261019-0032-ferro-welcome-setup-guide\\renders\\round-2\\email-600-light.png",
+    "C:\\Users\\adity\\AppData\\Local\\Temp\\desk-eval-email-template-welcome-ferro-1792369831296\\.desk\\jobs\\20261019-0032-ferro-welcome-setup-guide\\renders\\round-2\\email-600-dark.png"
+  ]
+}

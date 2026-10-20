@@ -1,0 +1,10 @@
+{
+  "name": "desk",
+  "version": "1.0.0",
+  "description": "Desk Studio: a design studio inside your coding agent. Forty-two desks staffed per job, roughs, pick, polish, proof and sign-off, studio quality on the plans you already have.",
+  "author": { "name": "Aditya Reddy", "url": "https://deskstudio.ai" },
+  "homepage": "https://deskstudio.ai",
+  "repository": "https://github.com/adityareddy-dev/deskstudio",
+  "license": "MIT",
+  "keywords": ["design", "design-studio", "ui", "ux", "brand", "social", "email", "motion", "video", "presentation", "data-viz", "accessibility", "design-system", "creative-director", "art-director"]
+}

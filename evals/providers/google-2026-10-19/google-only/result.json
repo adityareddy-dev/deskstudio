@@ -1,0 +1,156 @@
+{
+  "id": "20261019-2350-northlight-battery-announcement-social",
+  "phase": "done",
+  "exit_code": 0,
+  "models_at_finish": {
+    "director": "google/flash-high",
+    "senior": "google/flash-low",
+    "builder": "google/flash-low"
+  },
+  "rounds": 3,
+  "max_rounds": 6,
+  "last_score": {
+    "round": 3,
+    "by": "creative-director",
+    "axes": {
+      "hierarchy": 9,
+      "typography": 9,
+      "spacing": 9,
+      "colour": 9,
+      "composition": 8,
+      "originality": 8,
+      "brand": 9,
+      "copy": 9
+    },
+    "average": 8.75,
+    "pass": true,
+    "notes": [
+      "composition: On linkedin, vertically center the marker group within the right 45% panel with 96px padding top and bottom.",
+      "originality: On ig-post, reduce marker width to 64px with 24px gaps to keep them as slender measured markers rather than wide blocks."
+    ],
+    "polish": [
+      "Increase orange payoff marker height by 32px on linkedin for stronger vertical accent contrast."
+    ]
+  },
+  "proof": [
+    {
+      "round": 1,
+      "pass": true,
+      "failures": 0
+    },
+    {
+      "round": 2,
+      "pass": true,
+      "failures": 0
+    },
+    {
+      "round": 3,
+      "pass": true,
+      "failures": 0
+    }
+  ],
+  "reported_cost_subtotal_usd": 1.0198,
+  "cost_complete": false,
+  "completed_desks": [
+    {
+      "desk": "design-manager",
+      "task": "intake",
+      "model": "google/argon",
+      "via": "cli"
+    },
+    {
+      "desk": "ui-designer",
+      "task": "rough 2, full bleed with scrim",
+      "model": "google/flash",
+      "via": "cli"
+    },
+    {
+      "desk": "ui-designer",
+      "task": "rough 3, type only",
+      "model": "google/flash",
+      "via": "cli"
+    },
+    {
+      "desk": "ui-designer",
+      "task": "rough 1, editorial split",
+      "model": "google/flash-low",
+      "via": "cli"
+    },
+    {
+      "desk": "ui-designer",
+      "task": "rough 2, full bleed with scrim",
+      "model": "google/flash-low",
+      "via": "cli"
+    },
+    {
+      "desk": "ui-designer",
+      "task": "rough 3, type only",
+      "model": "google/flash-low",
+      "via": "cli"
+    },
+    {
+      "desk": "art-director",
+      "task": "pick",
+      "model": "google/flash-high",
+      "via": "cli"
+    },
+    {
+      "desk": "ui-designer",
+      "task": "polish round 1",
+      "model": "google/flash-low",
+      "via": "cli"
+    },
+    {
+      "desk": "creative-director",
+      "task": "sign-off round 1",
+      "model": "google/flash-high",
+      "via": "cli"
+    },
+    {
+      "desk": "ui-designer",
+      "task": "polish round 2",
+      "model": "google/flash-low",
+      "via": "cli"
+    },
+    {
+      "desk": "creative-director",
+      "task": "sign-off round 2",
+      "model": "google/flash-high",
+      "via": "cli"
+    },
+    {
+      "desk": "ui-designer",
+      "task": "polish round 3",
+      "model": "google/flash-low",
+      "via": "cli"
+    },
+    {
+      "desk": "creative-director",
+      "task": "sign-off round 3",
+      "model": "google/flash-high",
+      "via": "cli"
+    }
+  ],
+  "failed_desks": [
+    {
+      "desk": "ui-designer",
+      "task": "rough 1, editorial split",
+      "model": "google/flash"
+    },
+    {
+      "desk": "art-director",
+      "task": "pick",
+      "model": "google/flash-high"
+    },
+    {
+      "desk": "ui-designer",
+      "task": "polish round 2",
+      "model": "google/flash-low"
+    },
+    {
+      "desk": "ui-designer",
+      "task": "polish round 3",
+      "model": "google/flash-low"
+    }
+  ]
+}

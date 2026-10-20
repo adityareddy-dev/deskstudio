@@ -1,0 +1,12 @@
+{
+  "command": "design-qa",
+  "ask": "qa page.html",
+  "brand": "northlight",
+  "files": {
+    "page.html": "fixtures/page-flawed.html"
+  },
+  "rounds": 2,
+  "expect": {
+    "kind": "report"
+  }
+}

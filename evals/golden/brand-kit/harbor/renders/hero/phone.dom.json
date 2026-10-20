@@ -1,0 +1,741 @@
+{
+  "width": 390,
+  "height": 844,
+  "scrollWidth": 390,
+  "scrollHeight": 844,
+  "boxes": [
+    {
+      "x": 59.17849349975586,
+      "y": 28.257986068725586,
+      "width": 76.59375,
+      "height": 31.999998092651367,
+      "text": "harbor",
+      "color": "rgb(0, 0, 0)",
+      "opacity": 1,
+      "fontSize": 95.5,
+      "fontWeight": 600,
+      "fontFamily": "\"Source Serif 4\", \"Source Serif Pro\", Georgia, serif",
+      "clips": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844,
+          "clipX": true,
+          "clipY": true
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844,
+          "clipX": true,
+          "clipY": true
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 314.765625,
+      "y": 30,
+      "width": 51.234375,
+      "height": 20,
+      "text": "Sign in",
+      "color": "rgb(28, 25, 23)",
+      "opacity": 1,
+      "fontSize": 16,
+      "fontWeight": 400,
+      "fontFamily": "Inter, \"Helvetica Neue\", Arial, sans-serif",
+      "clips": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844,
+          "clipX": true,
+          "clipY": true
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844,
+          "clipX": true,
+          "clipY": true
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 24,
+      "y": 121.109375,
+      "width": 326.265625,
+      "height": 53,
+      "text": "Your own payday, every month.",
+      "color": "rgb(28, 25, 23)",
+      "opacity": 1,
+      "fontSize": 39,
+      "fontWeight": 600,
+      "fontFamily": "\"Source Serif 4\", \"Source Serif Pro\", Georgia, serif",
+      "clips": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844,
+          "clipX": true,
+          "clipY": true
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844,
+          "clipX": true,
+          "clipY": true
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 24,
+      "y": 164,
+      "width": 247.78125,
+      "height": 53,
+      "text": "Your own payday, every month.",
+      "color": "rgb(28, 25, 23)",
+      "opacity": 1,
+      "fontSize": 39,
+      "fontWeight": 600,
+      "fontFamily": "\"Source Serif 4\", \"Source Serif Pro\", Georgia, serif",
+      "clips": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844,
+          "clipX": true,
+          "clipY": true
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844,
+          "clipX": true,
+          "clipY": true
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 24,
+      "y": 230.890625,
+      "width": 231.15625,
+      "height": 20,
+      "text": "As clients pay, Harbor puts tax and bills aside and keeps one steady amount for each month.",
+      "color": "rgb(28, 25, 23)",
+      "opacity": 1,
+      "fontSize": 16,
+      "fontWeight": 400,
+      "fontFamily": "Inter, \"Helvetica Neue\", Arial, sans-serif",
+      "clips": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844,
+          "clipX": true,
+          "clipY": true
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844,
+          "clipX": true,
+          "clipY": true
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 24,
+      "y": 254.890625,
+      "width": 222.96875,
+      "height": 20,
+      "text": "As clients pay, Harbor puts tax and bills aside and keeps one steady amount for each month.",
+      "color": "rgb(28, 25, 23)",
+      "opacity": 1,
+      "fontSize": 16,
+      "fontWeight": 400,
+      "fontFamily": "Inter, \"Helvetica Neue\", Arial, sans-serif",
+      "clips": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844,
+          "clipX": true,
+          "clipY": true
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844,
+          "clipX": true,
+          "clipY": true
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 24,
+      "y": 278.890625,
+      "width": 236.109375,
+      "height": 20,
+      "text": "As clients pay, Harbor puts tax and bills aside and keeps one steady amount for each month.",
+      "color": "rgb(28, 25, 23)",
+      "opacity": 1,
+      "fontSize": 16,
+      "fontWeight": 400,
+      "fontFamily": "Inter, \"Helvetica Neue\", Arial, sans-serif",
+      "clips": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844,
+          "clipX": true,
+          "clipY": true
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844,
+          "clipX": true,
+          "clipY": true
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 130.140625,
+      "y": 342.890625,
+      "width": 129.703125,
+      "height": 20,
+      "text": "Pick your payday",
+      "color": "rgb(250, 247, 242)",
+      "opacity": 1,
+      "fontSize": 16,
+      "fontWeight": 400,
+      "fontFamily": "Inter, sans-serif",
+      "clips": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844,
+          "clipX": true,
+          "clipY": true
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844,
+          "clipX": true,
+          "clipY": true
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 161.828125,
+      "y": 472.890625,
+      "width": 66.328125,
+      "height": 16,
+      "text": "Example",
+      "color": "rgb(107, 100, 92)",
+      "opacity": 1,
+      "fontSize": 13,
+      "fontWeight": 400,
+      "fontFamily": "Inter, \"Helvetica Neue\", Arial, sans-serif",
+      "clips": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844,
+          "clipX": true,
+          "clipY": true
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844,
+          "clipX": true,
+          "clipY": true
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 48,
+      "y": 522.890625,
+      "width": 83.828125,
+      "height": 20,
+      "text": "Payment in",
+      "color": "rgb(28, 25, 23)",
+      "opacity": 1,
+      "fontSize": 16,
+      "fontWeight": 400,
+      "fontFamily": "Inter, \"Helvetica Neue\", Arial, sans-serif",
+      "clips": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844,
+          "clipX": true,
+          "clipY": true
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844,
+          "clipX": true,
+          "clipY": true
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 285.9375,
+      "y": 522.890625,
+      "width": 56.0625,
+      "height": 20,
+      "text": "$3,200",
+      "color": "rgb(28, 25, 23)",
+      "opacity": 1,
+      "fontSize": 16,
+      "fontWeight": 400,
+      "fontFamily": "Inter, \"Helvetica Neue\", Arial, sans-serif",
+      "clips": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844,
+          "clipX": true,
+          "clipY": true
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844,
+          "clipX": true,
+          "clipY": true
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 48,
+      "y": 570.890625,
+      "width": 101.859375,
+      "height": 20,
+      "text": "Tax set-aside",
+      "color": "rgb(28, 25, 23)",
+      "opacity": 1,
+      "fontSize": 16,
+      "fontWeight": 400,
+      "fontFamily": "Inter, \"Helvetica Neue\", Arial, sans-serif",
+      "clips": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844,
+          "clipX": true,
+          "clipY": true
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844,
+          "clipX": true,
+          "clipY": true
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 300.609375,
+      "y": 570.890625,
+      "width": 41.390625,
+      "height": 20,
+      "text": "$800",
+      "color": "rgb(28, 25, 23)",
+      "opacity": 1,
+      "fontSize": 16,
+      "fontWeight": 400,
+      "fontFamily": "Inter, \"Helvetica Neue\", Arial, sans-serif",
+      "clips": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844,
+          "clipX": true,
+          "clipY": true
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844,
+          "clipX": true,
+          "clipY": true
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 48,
+      "y": 618.890625,
+      "width": 30.546875,
+      "height": 20,
+      "text": "Bills",
+      "color": "rgb(28, 25, 23)",
+      "opacity": 1,
+      "fontSize": 16,
+      "fontWeight": 400,
+      "fontFamily": "Inter, \"Helvetica Neue\", Arial, sans-serif",
+      "clips": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844,
+          "clipX": true,
+          "clipY": true
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844,
+          "clipX": true,
+          "clipY": true
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 285.9375,
+      "y": 618.890625,
+      "width": 56.0625,
+      "height": 20,
+      "text": "$1,100",
+      "color": "rgb(28, 25, 23)",
+      "opacity": 1,
+      "fontSize": 16,
+      "fontWeight": 400,
+      "fontFamily": "Inter, \"Helvetica Neue\", Arial, sans-serif",
+      "clips": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844,
+          "clipX": true,
+          "clipY": true
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844,
+          "clipX": true,
+          "clipY": true
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 48,
+      "y": 666.890625,
+      "width": 46.03125,
+      "height": 20,
+      "text": "Buffer",
+      "color": "rgb(28, 25, 23)",
+      "opacity": 1,
+      "fontSize": 16,
+      "fontWeight": 400,
+      "fontFamily": "Inter, \"Helvetica Neue\", Arial, sans-serif",
+      "clips": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844,
+          "clipX": true,
+          "clipY": true
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844,
+          "clipX": true,
+          "clipY": true
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 300.609375,
+      "y": 666.890625,
+      "width": 41.390625,
+      "height": 20,
+      "text": "$300",
+      "color": "rgb(28, 25, 23)",
+      "opacity": 1,
+      "fontSize": 16,
+      "fontWeight": 400,
+      "fontFamily": "Inter, \"Helvetica Neue\", Arial, sans-serif",
+      "clips": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844,
+          "clipX": true,
+          "clipY": true
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844,
+          "clipX": true,
+          "clipY": true
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 48,
+      "y": 715.390625,
+      "width": 93.34375,
+      "height": 20,
+      "text": "Monthly pay",
+      "color": "rgb(28, 25, 23)",
+      "opacity": 1,
+      "fontSize": 16,
+      "fontWeight": 400,
+      "fontFamily": "Inter, \"Helvetica Neue\", Arial, sans-serif",
+      "clips": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844,
+          "clipX": true,
+          "clipY": true
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844,
+          "clipX": true,
+          "clipY": true
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 285.9375,
+      "y": 715.390625,
+      "width": 56.0625,
+      "height": 20,
+      "text": "$1,000",
+      "color": "rgb(28, 25, 23)",
+      "opacity": 1,
+      "fontSize": 16,
+      "fontWeight": 400,
+      "fontFamily": "Inter, \"Helvetica Neue\", Arial, sans-serif",
+      "clips": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844,
+          "clipX": true,
+          "clipY": true
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844,
+          "clipX": true,
+          "clipY": true
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    }
+  ],
+  "fonts": {
+    "Source Serif 4": true,
+    "Source Serif Pro": false,
+    "Georgia": true,
+    "serif": true,
+    "Inter": true,
+    "Helvetica Neue": false,
+    "Arial": true,
+    "sans-serif": true
+  },
+  "images": 0
+}

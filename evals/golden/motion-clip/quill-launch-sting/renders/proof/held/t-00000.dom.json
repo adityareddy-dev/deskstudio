@@ -1,0 +1,91 @@
+{
+  "width": 1920,
+  "height": 1080,
+  "scrollWidth": 1920,
+  "scrollHeight": 1080,
+  "boxes": [
+    {
+      "x": 192,
+      "y": 208,
+      "width": 470.28125,
+      "height": 233,
+      "text": "Cut it.",
+      "color": "rgb(237, 237, 240)",
+      "opacity": 1,
+      "fontSize": 170,
+      "fontWeight": 600,
+      "fontFamily": "\"Source Serif 4\", Georgia, \"Times New Roman\", serif",
+      "clips": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1920,
+          "height": 1080,
+          "clipX": true,
+          "clipY": true
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1920,
+          "height": 1080,
+          "clipX": true,
+          "clipY": true
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1920,
+          "height": 1080,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 192,
+      "y": 392,
+      "width": 596.375,
+      "height": 233,
+      "text": "It stays.",
+      "color": "rgb(237, 237, 240)",
+      "opacity": 1,
+      "fontSize": 170,
+      "fontWeight": 600,
+      "fontFamily": "\"Source Serif 4\", Georgia, \"Times New Roman\", serif",
+      "clips": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1920,
+          "height": 1080,
+          "clipX": true,
+          "clipY": true
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1920,
+          "height": 1080,
+          "clipX": true,
+          "clipY": true
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1920,
+          "height": 1080,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    }
+  ],
+  "fonts": {
+    "Source Serif 4": true,
+    "Georgia": true,
+    "Times New Roman": true,
+    "serif": true
+  },
+  "images": 0
+}

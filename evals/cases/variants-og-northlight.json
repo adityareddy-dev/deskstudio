@@ -1,0 +1,12 @@
+{
+  "command": "variants",
+  "ask": "three directions for an Open Graph image for the battery page",
+  "brand": "northlight",
+  "mustAppear": [
+    "Battery now included."
+  ],
+  "rounds": 2,
+  "expect": {
+    "kind": "report"
+  }
+}

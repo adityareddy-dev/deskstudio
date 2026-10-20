@@ -1,0 +1,13 @@
+{
+  "command": "chart-design",
+  "ask": "a chart answering which states pay back fastest, from payback.csv, for a slide",
+  "brand": "northlight",
+  "files": {
+    "payback.csv": "fixtures/payback.csv"
+  },
+  "rounds": 5,
+  "expect": {
+    "pass": true,
+    "minAverage": 8.5
+  }
+}

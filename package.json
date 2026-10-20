@@ -1,0 +1,18 @@
+{
+  "name": "deskstudio-plugin",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Desk Studio plugin for Claude Code and the desk-run, desk-proof and desk-floor tools.",
+  "type": "module",
+  "license": "MIT",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "test": "node --test \"proof/test/*.test.mjs\" \"dashboard/test/*.test.mjs\" \"runner/test/*.test.mjs\"",
+    "validate": "claude plugin validate .",
+    "proof": "node proof/cli.mjs"
+  },
+  "dependencies": {
+    "playwright-core": "^1.58.0",
+    "pngjs": "^7.0.0"
+  }
+}

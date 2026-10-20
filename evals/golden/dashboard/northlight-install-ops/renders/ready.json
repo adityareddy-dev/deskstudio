@@ -1,0 +1,38 @@
+{
+  "pass": true,
+  "file": "final.html",
+  "renders": [
+    {
+      "size": "phone",
+      "scheme": "light",
+      "width": 390,
+      "height": 844,
+      "png": "C:\\Users\\adity\\AppData\\Local\\Temp\\desk-eval-dashboard-ops-northlight-1792370882693\\.desk\\jobs\\20261018-1950-install-team-ops-dashboard\\renders\\round-3\\ready\\phone.png",
+      "pass": true,
+      "failures": []
+    },
+    {
+      "size": "tablet",
+      "scheme": "light",
+      "width": 768,
+      "height": 1024,
+      "png": "C:\\Users\\adity\\AppData\\Local\\Temp\\desk-eval-dashboard-ops-northlight-1792370882693\\.desk\\jobs\\20261018-1950-install-team-ops-dashboard\\renders\\round-3\\ready\\tablet.png",
+      "pass": true,
+      "failures": []
+    },
+    {
+      "size": "desktop",
+      "scheme": "light",
+      "width": 1440,
+      "height": 900,
+      "png": "C:\\Users\\adity\\AppData\\Local\\Temp\\desk-eval-dashboard-ops-northlight-1792370882693\\.desk\\jobs\\20261018-1950-install-team-ops-dashboard\\renders\\round-3\\ready\\desktop.png",
+      "pass": true,
+      "failures": []
+    }
+  ],
+  "screenshots": [
+    "C:\\Users\\adity\\AppData\\Local\\Temp\\desk-eval-dashboard-ops-northlight-1792370882693\\.desk\\jobs\\20261018-1950-install-team-ops-dashboard\\renders\\round-3\\ready\\phone.png",
+    "C:\\Users\\adity\\AppData\\Local\\Temp\\desk-eval-dashboard-ops-northlight-1792370882693\\.desk\\jobs\\20261018-1950-install-team-ops-dashboard\\renders\\round-3\\ready\\tablet.png",
+    "C:\\Users\\adity\\AppData\\Local\\Temp\\desk-eval-dashboard-ops-northlight-1792370882693\\.desk\\jobs\\20261018-1950-install-team-ops-dashboard\\renders\\round-3\\ready\\desktop.png"
+  ]
+}

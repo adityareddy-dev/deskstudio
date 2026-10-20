@@ -1,0 +1,22 @@
+{
+ "command": "design",
+ "ask": "a LinkedIn card and a square Instagram card for my site, A Day in the Life of Adi, a small 3D game about one working day where the resume is in the phone. Find the brand in this project.",
+ "brand": null,
+ "sizes": [
+  "linkedin",
+  "ig-square"
+ ],
+ "mustAppear": [
+  "A Day in the Life of Adi"
+ ],
+ "rounds": 6,
+ "external": {
+  "index.html": "C:/Users/adity/Desktop/Adi/adityareddy-dev.github.io/index.html",
+  "game/style.css": "C:/Users/adity/Desktop/Adi/adityareddy-dev.github.io/game/style.css",
+  "README.md": "C:/Users/adity/Desktop/Adi/adityareddy-dev.github.io/README.md"
+ },
+ "expect": {
+  "pass": true,
+  "minAverage": 8.5
+ }
+}

@@ -1,0 +1,31 @@
+{
+  "quality": "studio",
+  "models": {
+    "director": "anthropic/opus",
+    "senior": "anthropic/sonnet",
+    "builder": "anthropic/haiku"
+  },
+  "presets": {
+    "studio": {
+      "director": "anthropic/opus",
+      "senior": "anthropic/sonnet",
+      "builder": "anthropic/haiku"
+    },
+    "best": {
+      "director": "anthropic/fable",
+      "senior": "anthropic/opus",
+      "builder": "anthropic/sonnet"
+    },
+    "thrifty": {
+      "director": "anthropic/sonnet",
+      "senior": "anthropic/haiku",
+      "builder": "anthropic/haiku"
+    }
+  },
+  "maxRounds": 8,
+  "framework": null,
+  "constraints": {},
+  "decisions": [
+    "Full bleed with scrim works for this brand's social-card (2026-10-19)"
+  ]
+}

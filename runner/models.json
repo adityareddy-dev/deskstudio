@@ -1,0 +1,47 @@
+{
+  "checkedAt": "2026-10-19",
+  "note": "Model ids per provider and the three tiers. Prices are list prices in USD per million tokens (input, output, and where published cacheRead and cacheWrite), used when a CLI reports tokens but not dollars. Checked against each CLI or its docs on the date above. Anthropic cache prices match scripts/prices.json.",
+  "providers": {
+    "anthropic": {
+      "label": "Anthropic",
+      "cli": "claude",
+      "keyEnv": ["ANTHROPIC_API_KEY"],
+      "tiers": { "director": "opus", "senior": "sonnet", "builder": "haiku" },
+      "models": {
+        "fable":  { "id": "claude-fable-5-1",  "cli": "fable",  "input": 10,   "output": 50,   "cacheRead": 0.25, "cacheWrite": 12.5,  "vision": true },
+        "opus":   { "id": "claude-opus-5-5",   "cli": "opus",   "input": 4,    "output": 20,   "cacheRead": 0.20, "cacheWrite": 5.0,   "vision": true },
+        "sonnet": { "id": "claude-sonnet-5-5", "cli": "sonnet", "input": 2,    "output": 10,   "cacheRead": 0.20, "cacheWrite": 2.5,   "vision": true },
+        "haiku":  { "id": "claude-haiku-5-5",  "cli": "haiku",  "input": 0.10, "output": 0.50, "cacheRead": 0.01, "cacheWrite": 0.125, "vision": true }
+      },
+      "source": "claude --help (aliases fable, opus, sonnet, haiku), ids and list prices from the Claude API model table, 2026-10-18"
+    },
+    "openai": {
+      "label": "OpenAI",
+      "cli": "codex",
+      "keyEnv": ["OPENAI_API_KEY"],
+      "tiers": { "director": "large", "senior": "mini", "builder": "nano" },
+      "models": {
+        "large": { "id": "gpt-6-astra",  "cli": "gpt-6-astra",  "input": 10,   "output": 50,   "cacheRead": 1.00, "cacheWrite": 12.5,  "vision": true },
+        "mini":  { "id": "gpt-6.1-sol",  "cli": "gpt-6.1-sol",  "input": 2,    "output": 10,   "cacheRead": 0.10, "cacheWrite": 2.5,   "vision": true },
+        "nano":  { "id": "gpt-6-luna",   "cli": "gpt-6-luna",   "input": 0.10, "output": 0.50, "cacheRead": 0.01, "cacheWrite": 0.125, "vision": true }
+      },
+      "source": "~/.codex/models_cache.json fetched by codex 0.162.1 on 2026-10-16 (gpt-6-astra frontier, gpt-6.1-sol workhorse, gpt-6-luna fast and affordable), prices from developers.openai.com/api/docs/pricing 2026-10-18"
+    },
+    "google": {
+      "label": "Google",
+      "cli": "agy",
+      "login": "agy",
+      "keyEnv": ["GEMINI_API_KEY", "GOOGLE_API_KEY"],
+      "tiers": { "director": "flash-high", "senior": "flash", "builder": "flash-low" },
+      "models": {
+        "argon":      { "id": "gemini-4-argon",        "cli": "gemini-4-argon-high",    "effort": "high", "input": null, "output": null, "vision": true, "api": false },
+        "pro":        { "id": "gemini-3.1-pro-preview", "cli": "gemini-3.1-pro-high",    "effort": "high", "input": 2,    "output": 12,   "vision": true },
+        "flash":      { "id": "gemini-3.8-flash",       "cli": "gemini-3.8-flash-medium", "effort": "medium", "input": 0.75, "output": 3.75, "vision": true },
+        "flash-high": { "id": "gemini-3.8-flash",       "cli": "gemini-3.8-flash-high", "effort": "high", "input": 0.75, "output": 3.75, "vision": true },
+        "flash-low":  { "id": "gemini-3.8-flash",       "cli": "gemini-3.8-flash-low",  "effort": "low", "input": 0.75, "output": 3.75, "vision": true },
+        "flash-lite": { "id": "gemini-3.5-flash-lite",  "cli": "gemini-3.5-flash-lite",  "input": 0.30, "output": 2.50, "vision": true }
+      },
+      "source": "Antigravity CLI 1.4.2 agy models and antigravity.google/docs/cli/headless on 2026-10-19. Individual Gemini CLI sign-in is no longer supported. Argon High, Flash Medium and Flash Low were listed for the signed-in account. Pro is offered only on some plans; Flash-Lite is retained for the API. API list prices from ai.google.dev on 2026-10-18; Argon price is unknown. Cached-token prices not recorded, cached tokens are priced as input."
+    }
+  }
+}

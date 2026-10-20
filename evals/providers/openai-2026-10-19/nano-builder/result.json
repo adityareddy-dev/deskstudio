@@ -1,0 +1,39 @@
+{
+  "job_id": "20261019-2221-linkedin-instagram-portrait-new",
+  "exit_code": 4,
+  "outcome": "under the bar at the six-round cap",
+  "models": {
+    "director": "openai/large",
+    "senior": "openai/mini",
+    "builder": "openai/nano"
+  },
+  "rounds": 6,
+  "last_score": {
+    "round": 6,
+    "by": "creative-director",
+    "axes": {
+      "hierarchy": 9,
+      "typography": 9,
+      "spacing": 8,
+      "colour": 9,
+      "composition": 8,
+      "originality": 6,
+      "brand": 9,
+      "copy": 10
+    },
+    "average": 8.5,
+    "pass": false,
+    "notes": [
+      "spacing: Move the portrait supporting text box to y=752px as specified at the pick; retain x=80px.",
+      "composition: Move the portrait URL text box to y=1120px to tighten the lower grouping while preserving the bottom safe zone.",
+      "originality: Develop 1 alternative type-only lockup using a shared vertical alignment between the end of \u201cSeven\u201d and \u201cThen free.\u201d; retain the single accent, supplied copy, and 3-size limit."
+    ],
+    "polish": [
+      "None."
+    ]
+  },
+  "final_proof_pass": true,
+  "list_price_estimate_usd": 0.6704,
+  "all_desks_via": "codex CLI",
+  "note": "Paused before pick to repair Markdown brief parsing, then resumed. The completed result is not golden."
+}

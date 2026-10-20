@@ -1,0 +1,164 @@
+{
+  "id": "20261018-2052-spec-reveal-clip-x",
+  "command": "video",
+  "deliverable": "video",
+  "sizes": [
+    "slide"
+  ],
+  "quality": "studio",
+  "models": {
+    "director": "anthropic/opus",
+    "senior": "anthropic/sonnet",
+    "builder": "anthropic/haiku"
+  },
+  "phase": "done",
+  "round": 1,
+  "maxRounds": 5,
+  "desks": [
+    {
+      "desk": "video-content-producer",
+      "task": "script beats",
+      "status": "done",
+      "model": "anthropic/haiku",
+      "startedAt": "2026-10-19T01:53:55.153Z",
+      "updatedAt": "2026-10-19T01:55:19.546Z"
+    },
+    {
+      "desk": "copy-editor",
+      "task": "script pass",
+      "status": "done",
+      "model": "anthropic/sonnet",
+      "startedAt": "2026-10-19T01:55:19.687Z",
+      "updatedAt": "2026-10-19T01:56:14.608Z"
+    },
+    {
+      "desk": "storyboard-artist",
+      "task": "rough 1, type-led",
+      "status": "done",
+      "model": "anthropic/sonnet",
+      "startedAt": "2026-10-19T01:56:14.821Z",
+      "updatedAt": "2026-10-19T01:58:05.793Z"
+    },
+    {
+      "desk": "storyboard-artist",
+      "task": "rough 2, zoom and hold",
+      "status": "done",
+      "model": "anthropic/sonnet",
+      "startedAt": "2026-10-19T01:56:14.889Z",
+      "updatedAt": "2026-10-19T01:58:20.147Z"
+    },
+    {
+      "desk": "storyboard-artist",
+      "task": "rough 3, split screen",
+      "status": "done",
+      "model": "anthropic/sonnet",
+      "startedAt": "2026-10-19T01:56:14.958Z",
+      "updatedAt": "2026-10-19T01:57:38.412Z"
+    },
+    {
+      "desk": "art-director",
+      "task": "pick",
+      "status": "done",
+      "model": "anthropic/opus",
+      "startedAt": "2026-10-19T01:58:30.953Z",
+      "updatedAt": "2026-10-19T02:06:16.028Z"
+    },
+    {
+      "desk": "motion-designer",
+      "task": "build final.html, round 1",
+      "status": "done",
+      "model": "anthropic/haiku",
+      "startedAt": "2026-10-19T02:06:16.475Z",
+      "updatedAt": "2026-10-19T02:11:36.718Z"
+    },
+    {
+      "desk": "storyboard-artist",
+      "task": "board update from pick notes",
+      "status": "done",
+      "model": "anthropic/haiku",
+      "startedAt": "2026-10-19T02:06:16.541Z",
+      "updatedAt": "2026-10-19T02:07:53.838Z"
+    },
+    {
+      "desk": "video-editor",
+      "task": "pacing and caption review, round 1",
+      "status": "done",
+      "model": "anthropic/haiku",
+      "startedAt": "2026-10-19T02:12:39.946Z",
+      "updatedAt": "2026-10-19T02:14:35.064Z"
+    },
+    {
+      "desk": "creative-director",
+      "task": "sign-off, round 1",
+      "status": "done",
+      "model": "anthropic/opus",
+      "startedAt": "2026-10-19T02:14:35.275Z",
+      "updatedAt": "2026-10-19T02:20:27.524Z"
+    },
+    {
+      "desk": "video-editor",
+      "task": "exports and captions.vtt",
+      "status": "done",
+      "model": "anthropic/haiku",
+      "startedAt": "2026-10-19T02:20:27.897Z",
+      "updatedAt": "2026-10-19T02:24:27.330Z"
+    }
+  ],
+  "pick": {
+    "by": "art-director",
+    "rough": 2,
+    "reason": "the only board that shows the spec instead of stating it, one line per frame on white, red only on the figure; rough 1's dimension line brought over for frames 3 and 4",
+    "at": "2026-10-19T02:06:16.094Z"
+  },
+  "proof": [
+    {
+      "round": 1,
+      "pass": true,
+      "failures": 0
+    }
+  ],
+  "scores": [
+    {
+      "round": 1,
+      "by": "creative-director",
+      "average": 8.5,
+      "pass": true,
+      "axes": {
+        "hierarchy": 9,
+        "typography": 8,
+        "spacing": 8,
+        "colour": 9,
+        "composition": 9,
+        "originality": 8,
+        "brand": 9,
+        "copy": 8
+      }
+    }
+  ],
+  "waitingOn": null,
+  "cost": {
+    "director": 1.4989,
+    "senior": 0.6765,
+    "builder": 0.1138,
+    "total": 2.2892,
+    "complete": true
+  },
+  "tokens": {
+    "director": 609802,
+    "senior": 653312,
+    "builder": 3033773
+  },
+  "files": {
+    "script": ".desk/out/20261018-2052-spec-reveal-clip-x/script.md",
+    "storyboard": ".desk/out/20261018-2052-spec-reveal-clip-x/storyboard.html",
+    "final": ".desk/out/20261018-2052-spec-reveal-clip-x/final.html",
+    "mp4": ".desk/out/20261018-2052-spec-reveal-clip-x/clip-16x9.mp4",
+    "webm": ".desk/out/20261018-2052-spec-reveal-clip-x/clip-16x9.webm",
+    "poster": ".desk/out/20261018-2052-spec-reveal-clip-x/poster-16x9.png",
+    "captions": ".desk/out/20261018-2052-spec-reveal-clip-x/captions.vtt",
+    "export": ".desk/out/20261018-2052-spec-reveal-clip-x/export.md"
+  },
+  "startedAt": "2026-10-19T01:53:11.389Z",
+  "updatedAt": "2026-10-19T02:24:39.944Z",
+  "finishedAt": "2026-10-19T02:24:27.519Z"
+}

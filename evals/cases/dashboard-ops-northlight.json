@@ -1,0 +1,10 @@
+{
+  "command": "dashboard-layout",
+  "ask": "an operations dashboard for the install team: installs this week, crews, delays, revenue, a table of jobs",
+  "brand": "northlight",
+  "rounds": 5,
+  "expect": {
+    "pass": true,
+    "minAverage": 8.5
+  }
+}

@@ -1,0 +1,331 @@
+{
+  "id": "20261018-2114-desk-studio-brand-kit",
+  "command": "brand-kit",
+  "deliverable": "brand-kit",
+  "sizes": [
+    "desktop",
+    "linkedin",
+    "ig-post",
+    "phone",
+    "slide"
+  ],
+  "quality": "studio",
+  "models": {
+    "director": "anthropic/opus",
+    "senior": "anthropic/sonnet",
+    "builder": "anthropic/haiku"
+  },
+  "phase": "done",
+  "round": 3,
+  "maxRounds": 6,
+  "desks": [
+    {
+      "desk": "brand-strategist",
+      "task": "position line and three direction briefs",
+      "status": "done",
+      "model": "anthropic/opus",
+      "startedAt": "2026-10-19T02:15:56.923Z",
+      "updatedAt": "2026-10-19T02:25:21.181Z"
+    },
+    {
+      "desk": "typographer",
+      "task": "direction 1 type",
+      "status": "done",
+      "model": "anthropic/sonnet",
+      "startedAt": "2026-10-19T02:25:21.499Z",
+      "updatedAt": "2026-10-19T02:26:53.802Z"
+    },
+    {
+      "desk": "typographer",
+      "task": "direction 2 type",
+      "status": "done",
+      "model": "anthropic/sonnet",
+      "startedAt": "2026-10-19T02:25:21.563Z",
+      "updatedAt": "2026-10-19T02:27:20.140Z"
+    },
+    {
+      "desk": "typographer",
+      "task": "direction 3 type",
+      "status": "done",
+      "model": "anthropic/sonnet",
+      "startedAt": "2026-10-19T02:25:21.624Z",
+      "updatedAt": "2026-10-19T02:27:20.206Z"
+    },
+    {
+      "desk": "design-system-lead",
+      "task": "direction 1 palette, DESIGN.md, palette.css, type.md, README",
+      "status": "done",
+      "model": "anthropic/sonnet",
+      "startedAt": "2026-10-19T02:26:53.921Z",
+      "updatedAt": "2026-10-19T02:29:59.943Z"
+    },
+    {
+      "desk": "icon-designer",
+      "task": "direction 1 mark, wordmark, lockups",
+      "status": "done",
+      "model": "anthropic/sonnet",
+      "startedAt": "2026-10-19T02:26:53.986Z",
+      "updatedAt": "2026-10-19T02:30:13.955Z"
+    },
+    {
+      "desk": "design-system-lead",
+      "task": "direction 2 palette, DESIGN.md, palette.css, type.md, README",
+      "status": "done",
+      "model": "anthropic/sonnet",
+      "startedAt": "2026-10-19T02:27:20.279Z",
+      "updatedAt": "2026-10-19T02:30:13.887Z"
+    },
+    {
+      "desk": "icon-designer",
+      "task": "direction 2 mark, wordmark, lockups",
+      "status": "done",
+      "model": "anthropic/sonnet",
+      "startedAt": "2026-10-19T02:27:20.343Z",
+      "updatedAt": "2026-10-19T02:32:52.678Z"
+    },
+    {
+      "desk": "design-system-lead",
+      "task": "direction 3 palette, DESIGN.md, palette.css, type.md, README",
+      "status": "done",
+      "model": "anthropic/sonnet",
+      "startedAt": "2026-10-19T02:27:20.410Z",
+      "updatedAt": "2026-10-19T02:30:37.533Z"
+    },
+    {
+      "desk": "icon-designer",
+      "task": "direction 3 mark, wordmark, lockups",
+      "status": "done",
+      "model": "anthropic/sonnet",
+      "startedAt": "2026-10-19T02:27:20.475Z",
+      "updatedAt": "2026-10-19T02:32:52.587Z"
+    },
+    {
+      "desk": "motion-designer",
+      "task": "direction 1 motion language and sting",
+      "status": "done",
+      "model": "anthropic/sonnet",
+      "startedAt": "2026-10-19T02:30:37.656Z",
+      "updatedAt": "2026-10-19T02:33:35.490Z"
+    },
+    {
+      "desk": "ui-designer",
+      "task": "direction 1 card and hero",
+      "status": "done",
+      "model": "anthropic/sonnet",
+      "startedAt": "2026-10-19T02:30:37.728Z",
+      "updatedAt": "2026-10-19T02:33:35.423Z"
+    },
+    {
+      "desk": "ui-designer",
+      "task": "direction 1 kit sheet",
+      "status": "done",
+      "model": "anthropic/sonnet",
+      "startedAt": "2026-10-19T02:30:37.794Z",
+      "updatedAt": "2026-10-19T02:34:30.161Z"
+    },
+    {
+      "desk": "motion-designer",
+      "task": "direction 3 motion language and sting",
+      "status": "done",
+      "model": "anthropic/sonnet",
+      "startedAt": "2026-10-19T02:32:52.839Z",
+      "updatedAt": "2026-10-19T02:33:49.137Z"
+    },
+    {
+      "desk": "ui-designer",
+      "task": "direction 3 card and hero",
+      "status": "done",
+      "model": "anthropic/sonnet",
+      "startedAt": "2026-10-19T02:32:52.910Z",
+      "updatedAt": "2026-10-19T02:34:08.782Z"
+    },
+    {
+      "desk": "ui-designer",
+      "task": "direction 3 kit sheet",
+      "status": "done",
+      "model": "anthropic/sonnet",
+      "startedAt": "2026-10-19T02:32:52.989Z",
+      "updatedAt": "2026-10-19T02:36:53.210Z"
+    },
+    {
+      "desk": "motion-designer",
+      "task": "direction 2 motion language and sting",
+      "status": "done",
+      "model": "anthropic/sonnet",
+      "startedAt": "2026-10-19T02:32:53.089Z",
+      "updatedAt": "2026-10-19T02:35:28.437Z"
+    },
+    {
+      "desk": "ui-designer",
+      "task": "direction 2 card and hero",
+      "status": "done",
+      "model": "anthropic/sonnet",
+      "startedAt": "2026-10-19T02:32:53.183Z",
+      "updatedAt": "2026-10-19T02:36:06.211Z"
+    },
+    {
+      "desk": "ui-designer",
+      "task": "direction 2 kit sheet",
+      "status": "done",
+      "model": "anthropic/sonnet",
+      "startedAt": "2026-10-19T02:32:53.291Z",
+      "updatedAt": "2026-10-19T02:36:30.539Z"
+    },
+    {
+      "desk": "art-director",
+      "task": "notes on three directions, no pick",
+      "status": "done",
+      "model": "anthropic/opus",
+      "startedAt": "2026-10-19T02:37:50.636Z",
+      "updatedAt": "2026-10-19T04:20:39.766Z"
+    },
+    {
+      "desk": "ui-designer",
+      "task": "compare.html",
+      "status": "done",
+      "model": "anthropic/haiku",
+      "startedAt": "2026-10-19T02:38:08.452Z",
+      "updatedAt": "2026-10-19T02:38:57.632Z"
+    },
+    {
+      "desk": "art-director",
+      "task": "pick notes for direction 3 with the borrowed ring",
+      "status": "done",
+      "model": "anthropic/opus",
+      "startedAt": "2026-10-19T04:20:59.487Z",
+      "updatedAt": "2026-10-19T04:34:04.030Z"
+    },
+    {
+      "desk": "design-system-lead",
+      "task": "polish 1, DESIGN.md, palette.css, type.md, README",
+      "status": "done",
+      "model": "anthropic/haiku",
+      "startedAt": "2026-10-19T04:34:04.083Z",
+      "updatedAt": "2026-10-19T04:35:15.510Z"
+    },
+    {
+      "desk": "motion-designer",
+      "task": "polish 1, motion.md and sting",
+      "status": "done",
+      "model": "anthropic/haiku",
+      "startedAt": "2026-10-19T04:34:04.137Z",
+      "updatedAt": "2026-10-19T04:37:26.630Z"
+    },
+    {
+      "desk": "ui-designer",
+      "task": "polish 1, card and hero",
+      "status": "done",
+      "model": "anthropic/haiku",
+      "startedAt": "2026-10-19T04:34:04.192Z",
+      "updatedAt": "2026-10-19T04:39:08.468Z"
+    },
+    {
+      "desk": "ui-designer",
+      "task": "polish 2, hero lockup and ring overrun",
+      "status": "done",
+      "model": "anthropic/haiku",
+      "startedAt": "2026-10-19T04:40:02.628Z",
+      "updatedAt": "2026-10-19T04:46:58.895Z"
+    },
+    {
+      "desk": "ui-designer",
+      "task": "polish 2, kit sheet",
+      "status": "done",
+      "model": "anthropic/haiku",
+      "startedAt": "2026-10-19T04:40:02.698Z",
+      "updatedAt": "2026-10-19T04:44:08.711Z"
+    },
+    {
+      "desk": "ui-designer",
+      "task": "polish 3, ring, hero lockup, sheet stills (escalated)",
+      "status": "done",
+      "model": "anthropic/sonnet",
+      "startedAt": "2026-10-19T04:46:59.242Z",
+      "updatedAt": "2026-10-19T04:50:33.871Z"
+    },
+    {
+      "desk": "design-system-lead",
+      "task": "polish 3, ring wording",
+      "status": "done",
+      "model": "anthropic/haiku",
+      "startedAt": "2026-10-19T04:46:59.310Z",
+      "updatedAt": "2026-10-19T04:47:41.650Z"
+    },
+    {
+      "desk": "creative-director",
+      "task": "sign-off, round 3",
+      "status": "done",
+      "model": "anthropic/opus",
+      "startedAt": "2026-10-19T04:50:34.206Z",
+      "updatedAt": "2026-10-19T04:56:03.815Z"
+    }
+  ],
+  "pick": {
+    "by": "user",
+    "rough": 3,
+    "reason": "the user's call, direction 3 with the pick ring from direction 2",
+    "at": "2026-10-19T04:20:39.825Z"
+  },
+  "proof": [
+    {
+      "round": 0,
+      "pass": true,
+      "failures": 0
+    },
+    {
+      "round": 1,
+      "pass": true,
+      "failures": 0
+    },
+    {
+      "round": 2,
+      "pass": false,
+      "failures": 2
+    },
+    {
+      "round": 3,
+      "pass": true,
+      "failures": 0
+    }
+  ],
+  "scores": [
+    {
+      "round": 3,
+      "by": "creative-director",
+      "average": 8.6,
+      "pass": true,
+      "axes": {
+        "hierarchy": 8,
+        "typography": 8,
+        "spacing": 8,
+        "colour": 9,
+        "composition": 9,
+        "originality": 9,
+        "brand": 9,
+        "copy": 9
+      }
+    }
+  ],
+  "waitingOn": null,
+  "cost": {
+    "director": 5.5684,
+    "senior": 5.724,
+    "builder": 0.3081,
+    "total": 11.6005,
+    "complete": true
+  },
+  "tokens": {
+    "director": 3868144,
+    "senior": 6797721,
+    "builder": 7124530
+  },
+  "files": {
+    "strategy": ".desk/jobs/20261018-2114-desk-studio-brand-kit/strategy.md",
+    "brand": "brand/",
+    "design": ".desk/DESIGN.md",
+    "sheet": "brand/sheet.html"
+  },
+  "startedAt": "2026-10-19T02:15:39.221Z",
+  "updatedAt": "2026-10-19T04:56:04.313Z",
+  "finishedAt": "2026-10-19T04:56:04.312Z"
+}

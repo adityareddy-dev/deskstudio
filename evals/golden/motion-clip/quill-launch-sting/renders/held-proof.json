@@ -1,0 +1,62 @@
+{
+  "pass": true,
+  "mode": "held",
+  "file": "C:\\Users\\adity\\AppData\\Local\\Temp\\desk-eval-motion-sting-quill-1792372989670\\.desk\\out\\20261018-2024-launch-sting-wordmark\\final.html",
+  "size": "1920x1080",
+  "out": "C:\\Users\\adity\\AppData\\Local\\Temp\\desk-eval-motion-sting-quill-1792372989670\\.desk\\jobs\\20261018-2024-launch-sting-wordmark\\renders\\round-2\\proof\\held",
+  "failures": [],
+  "frames": [
+    {
+      "t": 0,
+      "png": "C:\\Users\\adity\\AppData\\Local\\Temp\\desk-eval-motion-sting-quill-1792372989670\\.desk\\jobs\\20261018-2024-launch-sting-wordmark\\renders\\round-2\\proof\\held\\t-00000.png",
+      "texts": [
+        "Cut it.",
+        "It stays."
+      ],
+      "failures": []
+    },
+    {
+      "t": 1155,
+      "png": "C:\\Users\\adity\\AppData\\Local\\Temp\\desk-eval-motion-sting-quill-1792372989670\\.desk\\jobs\\20261018-2024-launch-sting-wordmark\\renders\\round-2\\proof\\held\\t-01155.png",
+      "texts": [
+        "Cut it.",
+        "It stays."
+      ],
+      "failures": []
+    },
+    {
+      "t": 2046,
+      "png": "C:\\Users\\adity\\AppData\\Local\\Temp\\desk-eval-motion-sting-quill-1792372989670\\.desk\\jobs\\20261018-2024-launch-sting-wordmark\\renders\\round-2\\proof\\held\\t-02046.png",
+      "texts": [
+        "Cut it.",
+        "It stays."
+      ],
+      "failures": []
+    },
+    {
+      "t": 3234,
+      "png": "C:\\Users\\adity\\AppData\\Local\\Temp\\desk-eval-motion-sting-quill-1792372989670\\.desk\\jobs\\20261018-2024-launch-sting-wordmark\\renders\\round-2\\proof\\held\\t-03234.png",
+      "texts": [
+        "Cut it.",
+        "It stays."
+      ],
+      "failures": []
+    },
+    {
+      "t": 4125,
+      "png": "C:\\Users\\adity\\AppData\\Local\\Temp\\desk-eval-motion-sting-quill-1792372989670\\.desk\\jobs\\20261018-2024-launch-sting-wordmark\\renders\\round-2\\proof\\held\\t-04125.png",
+      "texts": [
+        "Quill"
+      ],
+      "failures": []
+    },
+    {
+      "t": 5967,
+      "png": "C:\\Users\\adity\\AppData\\Local\\Temp\\desk-eval-motion-sting-quill-1792372989670\\.desk\\jobs\\20261018-2024-launch-sting-wordmark\\renders\\round-2\\proof\\held\\t-05967.png",
+      "texts": [
+        "Quill"
+      ],
+      "failures": []
+    }
+  ]
+}

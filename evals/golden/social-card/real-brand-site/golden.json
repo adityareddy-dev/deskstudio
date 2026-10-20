@@ -1,0 +1,37 @@
+{
+  "from": "evals/results/2026-10-19T15-41-16-studio-design-card-real-brand/design-card-real-brand",
+  "markedAt": "2026-10-19T16:05:27.799Z",
+  "deliverable": "social-card",
+  "sizes": [
+    "linkedin",
+    "ig-square"
+  ],
+  "quality": "studio",
+  "models": {
+    "director": "anthropic/opus",
+    "senior": "anthropic/sonnet",
+    "builder": "anthropic/haiku"
+  },
+  "rounds": 4,
+  "average": 8.5,
+  "axes": {
+    "hierarchy": 9,
+    "typography": 8,
+    "spacing": 8,
+    "colour": 9,
+    "composition": 8,
+    "originality": 8,
+    "brand": 9,
+    "copy": 9
+  },
+  "cost": {
+    "director": 0.7894,
+    "senior": 0.3886,
+    "builder": 0.0554,
+    "total": 1.2334,
+    "complete": true
+  },
+  "command": "design",
+  "brand": "A Day in the Life of Adi",
+  "note": "Brand found in Adi's own site (index.html and game/style.css), not handed over."
+}

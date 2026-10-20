@@ -1,0 +1,11 @@
+{
+  "quality": "studio",
+  "models": { "director": "anthropic/opus", "senior": "anthropic/sonnet", "builder": "anthropic/haiku" },
+  "presets": {
+    "studio": { "director": "anthropic/opus", "senior": "anthropic/sonnet", "builder": "anthropic/haiku" },
+    "thrifty": { "director": "anthropic/sonnet", "senior": "anthropic/haiku", "builder": "anthropic/haiku" }
+  },
+  "maxRounds": 8,
+  "framework": null,
+  "constraints": {}
+}

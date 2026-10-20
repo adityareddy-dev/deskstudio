@@ -1,0 +1,33 @@
+{
+  "from": "evals/results/2026-10-19T01-12-15-studio-social-content-carousel-quill/social-content-carousel-quill",
+  "markedAt": "2026-10-19T01:46:43.289Z",
+  "deliverable": "carousel",
+  "sizes": [
+    "ig-post"
+  ],
+  "quality": "studio",
+  "models": {
+    "director": "anthropic/opus",
+    "senior": "anthropic/sonnet",
+    "builder": "anthropic/haiku"
+  },
+  "rounds": 2,
+  "average": 8.9,
+  "axes": {
+    "hierarchy": 9,
+    "typography": 9,
+    "spacing": 9,
+    "colour": 9,
+    "composition": 9,
+    "originality": 8,
+    "brand": 9,
+    "copy": 9
+  },
+  "cost": {
+    "director": 1.2802,
+    "senior": 0.7702,
+    "builder": 0.0551,
+    "total": 2.1055,
+    "complete": true
+  }
+}

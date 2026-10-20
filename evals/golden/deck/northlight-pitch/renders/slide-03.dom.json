@@ -1,0 +1,168 @@
+{
+  "width": 1920,
+  "height": 1080,
+  "scrollWidth": 1920,
+  "scrollHeight": 1080,
+  "boxes": [
+    {
+      "x": 96,
+      "y": 258,
+      "width": 594.3125,
+      "height": 74,
+      "text": "Our first buyers have",
+      "color": "rgb(22, 22, 20)",
+      "opacity": 1,
+      "fontSize": 61,
+      "fontWeight": 600,
+      "fontFamily": "Inter, Arial, sans-serif",
+      "clips": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1920,
+          "height": 1080,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 96,
+      "y": 322,
+      "width": 453.3125,
+      "height": 74,
+      "text": "the most to gain",
+      "color": "rgb(217, 72, 15)",
+      "opacity": 1,
+      "fontSize": 61,
+      "fontWeight": 600,
+      "fontFamily": "Inter, Arial, sans-serif",
+      "clips": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1920,
+          "height": 1080,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 96,
+      "y": 672,
+      "width": 241.15625,
+      "height": 39,
+      "text": "Roofs in full sun",
+      "color": "rgb(22, 22, 20)",
+      "opacity": 1,
+      "fontSize": 32,
+      "fontWeight": 400,
+      "fontFamily": "Inter, Arial, sans-serif",
+      "clips": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1920,
+          "height": 1080,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 96,
+      "y": 752,
+      "width": 429.609375,
+      "height": 39,
+      "text": "States with high power rates",
+      "color": "rgb(22, 22, 20)",
+      "opacity": 1,
+      "fontSize": 32,
+      "fontWeight": 400,
+      "fontFamily": "Inter, Arial, sans-serif",
+      "clips": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1920,
+          "height": 1080,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 96,
+      "y": 832,
+      "width": 515.703125,
+      "height": 39,
+      "text": "Owners who lost power in a storm",
+      "color": "rgb(22, 22, 20)",
+      "opacity": 1,
+      "fontSize": 32,
+      "fontWeight": 400,
+      "fontFamily": "Inter, Arial, sans-serif",
+      "clips": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1920,
+          "height": 1080,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 1654.921875,
+      "y": 960,
+      "width": 15.453125,
+      "height": 30,
+      "text": "3",
+      "color": "rgb(107, 106, 102)",
+      "opacity": 1,
+      "fontSize": 25,
+      "fontWeight": 400,
+      "fontFamily": "Inter, Arial, sans-serif",
+      "clips": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1920,
+          "height": 1080,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 1702.375,
+      "y": 960,
+      "width": 121.625,
+      "height": 30,
+      "text": "Northlight",
+      "color": "rgb(22, 22, 20)",
+      "opacity": 1,
+      "fontSize": 25,
+      "fontWeight": 600,
+      "fontFamily": "Inter, Arial, sans-serif",
+      "clips": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1920,
+          "height": 1080,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    }
+  ],
+  "fonts": {
+    "Inter": true,
+    "Arial": true,
+    "sans-serif": true
+  },
+  "images": 0
+}

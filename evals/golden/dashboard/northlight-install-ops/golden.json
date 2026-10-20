@@ -1,0 +1,35 @@
+{
+  "from": "evals/results/2026-10-19T00-48-02-studio-dashboard-ops-northlight/dashboard-ops-northlight",
+  "markedAt": "2026-10-19T01:56:54.550Z",
+  "deliverable": "dashboard",
+  "sizes": [
+    "phone",
+    "tablet",
+    "desktop"
+  ],
+  "quality": "studio",
+  "models": {
+    "director": "anthropic/opus",
+    "senior": "anthropic/sonnet",
+    "builder": "anthropic/haiku"
+  },
+  "rounds": 3,
+  "average": 8.5,
+  "axes": {
+    "hierarchy": 9,
+    "typography": 8,
+    "spacing": 8,
+    "colour": 9,
+    "composition": 8,
+    "originality": 8,
+    "brand": 9,
+    "copy": 9
+  },
+  "cost": {
+    "director": 3.4751,
+    "senior": 2.5464,
+    "builder": 0.185,
+    "total": 6.2065,
+    "complete": true
+  }
+}

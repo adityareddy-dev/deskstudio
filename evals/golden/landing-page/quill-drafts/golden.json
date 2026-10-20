@@ -1,0 +1,34 @@
+{
+  "from": "evals/results/2026-10-19T00-48-03-studio-template-landing-quill/template-landing-quill",
+  "markedAt": "2026-10-19T01:12:13.940Z",
+  "deliverable": "landing-page",
+  "sizes": [
+    "phone",
+    "desktop"
+  ],
+  "quality": "studio",
+  "models": {
+    "director": "anthropic/opus",
+    "senior": "anthropic/sonnet",
+    "builder": "anthropic/haiku"
+  },
+  "rounds": 2,
+  "average": 8.5,
+  "axes": {
+    "hierarchy": 9,
+    "typography": 8,
+    "spacing": 8,
+    "colour": 9,
+    "composition": 8,
+    "originality": 8,
+    "brand": 9,
+    "copy": 9
+  },
+  "cost": {
+    "director": 0.9386,
+    "senior": 1.1357,
+    "builder": 0.0499,
+    "total": 2.1242,
+    "complete": true
+  }
+}

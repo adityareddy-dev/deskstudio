@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Northlight</title>
+<style>
+  body { margin: 0; font-family: Arial, sans-serif; background: #f7f5f0; color: #161614; }
+  .nav { display: flex; gap: 24px; padding: 16px 32px; }
+  .nav div { cursor: pointer; color: #6b6a66; font-size: 13px; }
+  .hero { padding: 80px 32px; }
+  .hero h3 { font-size: 44px; margin: 0 0 12px; }
+  .hero p { color: #9a9a96; font-size: 15px; max-width: 520px; }
+  .cta { display: inline-block; margin-top: 24px; background: #f08c4b; color: #fff; padding: 10px 14px; border-radius: 4px; font-size: 13px; }
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; padding: 0 32px 64px; }
+  .card { background: #ebe8e0; padding: 16px; border-radius: 4px; }
+  .card img { width: 100%; height: 120px; object-fit: cover; }
+  .card h5 { font-size: 15px; margin: 12px 0 4px; }
+  .card span { color: #d9480f; }
+  form { padding: 0 32px 64px; }
+  input { display: block; width: 320px; padding: 8px; margin-bottom: 8px; border: 1px solid #ccc; }
+  .err { color: #e5173f; font-size: 12px; }
+  a { color: #d9480f; }
+  a:focus { outline: none; }
+  @keyframes pulse { 0% { opacity: 1 } 50% { opacity: .2 } 100% { opacity: 1 } }
+  .pulse { animation: pulse 0.25s infinite; }
+</style>
+</head>
+<body>
+  <div class="nav"><div>Home</div><div>Plans</div><div>Battery</div><div onclick="location.href='/signup'">Sign up</div></div>
+  <section class="hero">
+    <h3>Seven years to break even. Then free.</h3>
+    <p>Northlight installs home solar with a battery that keeps the lights on. Pricing is simple and the panels come with a 25 year warranty.</p>
+    <div class="cta" onclick="location.href='/quote'">Learn more</div>
+  </section>
+  <section class="grid">
+    <div class="card"><img src="roof.jpg"><h5>Panels</h5><span class="pulse">New</span> 22% efficient, black on black.</div>
+    <div class="card"><img src="battery.jpg" alt="image"><h5>Battery</h5>13.5 kWh, sized for a night.</div>
+    <div class="card"><img src="app.jpg" alt=""><h5>App</h5>See production and savings. <a href="#">here</a></div>
+  </section>
+  <form>
+    <input type="text" placeholder="Email">
+    <input type="text" placeholder="ZIP code">
+    <div class="err">Something went wrong</div>
+    <div class="cta">Submit</div>
+  </form>
+</body>
+</html>

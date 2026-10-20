@@ -1,0 +1,91 @@
+/* Desk Studio. Dark is the default, light is designed, not inverted. */
+
+:root,
+[data-theme="dark"] {
+  --background: #12110f;
+  --foreground: #f4f0e8;
+  --accent: #ffaa1c;
+  --muted: #9a948a;
+  --surface: #1c1a17;
+  --line: #3b3830;
+  --danger: #ff6b5e;
+
+  --data-1: #ffaa1c;
+  --data-2: #56b4e9;
+  --data-3: #009e73;
+  --data-4: #cc79a7;
+  --data-5: #0072b2;
+  --data-6: #d55e00;
+
+  --seq-1: #3b2d12;
+  --seq-2: #5f4511;
+  --seq-3: #85600f;
+  --seq-4: #ad7b10;
+  --seq-5: #d49416;
+  --seq-6: #ffaa1c;
+  --seq-7: #ffd27a;
+
+  --div-low: #56b4e9;
+  --div-mid: #9a948a;
+  --div-high: #ffaa1c;
+}
+
+[data-theme="light"] {
+  --background: #ffffff;
+  --foreground: #17140f;
+  --accent: #c27a00;
+  --muted: #6b655b;
+  --surface: #f6f3ec;
+  --line: #d9d4c8;
+  --danger: #c4281c;
+
+  --data-1: #c27a00;
+  --data-2: #1a78b0;
+  --data-3: #007a5a;
+  --data-4: #a5497f;
+  --data-5: #2a3f9e;
+  --data-6: #b34700;
+
+  --seq-1: #f7ead2;
+  --seq-2: #f0d3a0;
+  --seq-3: #e4b668;
+  --seq-4: #d29a35;
+  --seq-5: #c27a00;
+  --seq-6: #8f5a00;
+  --seq-7: #5c3a00;
+
+  --div-low: #1a78b0;
+  --div-mid: #e8e3d8;
+  --div-high: #c27a00;
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme]) {
+    --background: #ffffff;
+    --foreground: #17140f;
+    --accent: #c27a00;
+    --muted: #6b655b;
+    --surface: #f6f3ec;
+    --line: #d9d4c8;
+    --danger: #c4281c;
+
+    --data-1: #c27a00;
+    --data-2: #1a78b0;
+    --data-3: #007a5a;
+    --data-4: #a5497f;
+    --data-5: #2a3f9e;
+    --data-6: #b34700;
+
+    --seq-1: #f7ead2;
+    --seq-2: #f0d3a0;
+    --seq-3: #e4b668;
+    --seq-4: #d29a35;
+    --seq-5: #c27a00;
+    --seq-6: #8f5a00;
+    --seq-7: #5c3a00;
+
+    --div-low: #1a78b0;
+    --div-mid: #e8e3d8;
+    --div-high: #c27a00;
+  }
+}

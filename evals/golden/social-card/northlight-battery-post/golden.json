@@ -1,0 +1,34 @@
+{
+  "from": "evals/results/2026-10-19T00-30-30-studio-social-content-post-northlight/social-content-post-northlight",
+  "markedAt": "2026-10-19T00:44:36.184Z",
+  "deliverable": "social-card",
+  "sizes": [
+    "linkedin",
+    "ig-square"
+  ],
+  "quality": "studio",
+  "models": {
+    "director": "anthropic/opus",
+    "senior": "anthropic/sonnet",
+    "builder": "anthropic/haiku"
+  },
+  "rounds": 1,
+  "average": 8.6,
+  "axes": {
+    "hierarchy": 9,
+    "typography": 9,
+    "spacing": 9,
+    "colour": 9,
+    "composition": 8,
+    "originality": 8,
+    "brand": 9,
+    "copy": 8
+  },
+  "cost": {
+    "director": 0.2318,
+    "senior": 0.3962,
+    "builder": 0.0236,
+    "total": 0.6516,
+    "complete": true
+  }
+}

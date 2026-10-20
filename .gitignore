@@ -1,0 +1,9 @@
+node_modules/
+site/dist/
+.desk/
+*.log
+.DS_Store
+Thumbs.db
+proof/test/out/
+clips/takes/
+evals/results/

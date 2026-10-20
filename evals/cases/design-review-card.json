@@ -1,0 +1,12 @@
+{
+  "command": "design-review",
+  "ask": "review card.html",
+  "brand": "deskstudio",
+  "files": {
+    "card.html": "fixtures/card-product-update.html"
+  },
+  "rounds": 2,
+  "expect": {
+    "kind": "report"
+  }
+}

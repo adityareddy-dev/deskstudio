@@ -1,0 +1,191 @@
+{
+  "width": 1080,
+  "height": 1350,
+  "scrollWidth": 1080,
+  "scrollHeight": 1350,
+  "boxes": [
+    {
+      "x": 72,
+      "y": 514.3125,
+      "width": 778.171875,
+      "height": 175,
+      "text": "Losing a line",
+      "color": "rgb(237, 237, 240)",
+      "opacity": 1,
+      "fontSize": 127.2,
+      "fontWeight": 600,
+      "fontFamily": "\"Source Serif 4\", Georgia, \"Times New Roman\", serif",
+      "clips": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1080,
+          "height": 1350,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 72,
+      "y": 647.875,
+      "width": 544.71875,
+      "height": 175,
+      "text": "feels like",
+      "color": "rgb(237, 237, 240)",
+      "opacity": 1,
+      "fontSize": 127.2,
+      "fontWeight": 600,
+      "fontFamily": "\"Source Serif 4\", Georgia, \"Times New Roman\", serif",
+      "clips": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1080,
+          "height": 1350,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 72,
+      "y": 781.4375,
+      "width": 405.734375,
+      "height": 175,
+      "text": "losing",
+      "color": "rgb(237, 237, 240)",
+      "opacity": 1,
+      "fontSize": 127.2,
+      "fontWeight": 600,
+      "fontFamily": "\"Source Serif 4\", Georgia, \"Times New Roman\", serif",
+      "clips": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1080,
+          "height": 1350,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 477.734375,
+      "y": 781.4375,
+      "width": 316.921875,
+      "height": 175,
+      "text": "work",
+      "color": "rgb(124, 156, 255)",
+      "opacity": 1,
+      "fontSize": 127.2,
+      "fontWeight": 600,
+      "fontFamily": "\"Source Serif 4\", Georgia, \"Times New Roman\", serif",
+      "clips": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1080,
+          "height": 1350,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 72,
+      "y": 975,
+      "width": 834.625,
+      "height": 56,
+      "text": "So the safe move is keeping every line, even the weak ones.",
+      "color": "rgb(237, 237, 240)",
+      "opacity": 1,
+      "fontSize": 40.3,
+      "fontWeight": 400,
+      "fontFamily": "\"Source Serif 4\", Georgia, \"Times New Roman\", serif",
+      "clips": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1080,
+          "height": 1350,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 72,
+      "y": 1029.390625,
+      "width": 281.625,
+      "height": 56,
+      "text": "So the safe move is keeping every line, even the weak ones.",
+      "color": "rgb(237, 237, 240)",
+      "opacity": 1,
+      "fontSize": 40.3,
+      "fontWeight": 400,
+      "fontFamily": "\"Source Serif 4\", Georgia, \"Times New Roman\", serif",
+      "clips": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1080,
+          "height": 1350,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 72,
+      "y": 82,
+      "width": 72.25,
+      "height": 41,
+      "text": "Quill",
+      "color": "rgb(237, 237, 240)",
+      "opacity": 1,
+      "fontSize": 30.2,
+      "fontWeight": 600,
+      "fontFamily": "\"Source Serif 4\", Georgia, \"Times New Roman\", serif",
+      "clips": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1080,
+          "height": 1350,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 919.46875,
+      "y": 1163.796875,
+      "width": 88.53125,
+      "height": 41,
+      "text": "05 / 10",
+      "color": "rgb(139, 141, 153)",
+      "opacity": 1,
+      "fontSize": 30.2,
+      "fontWeight": 400,
+      "fontFamily": "\"Source Serif 4\", Georgia, \"Times New Roman\", serif",
+      "clips": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1080,
+          "height": 1350,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    }
+  ],
+  "fonts": {
+    "Source Serif 4": true,
+    "Georgia": true,
+    "Times New Roman": true,
+    "serif": true
+  },
+  "images": 0
+}

@@ -1,0 +1,331 @@
+{
+  "id": "20261019-0137-seed-pitch-deck-solar",
+  "command": "presentation-design",
+  "deliverable": "deck",
+  "sizes": [
+    "slide"
+  ],
+  "quality": "studio",
+  "models": {
+    "director": "anthropic/opus",
+    "senior": "anthropic/sonnet",
+    "builder": "anthropic/haiku"
+  },
+  "phase": "done",
+  "round": 4,
+  "maxRounds": 5,
+  "desks": [
+    {
+      "desk": "content-designer",
+      "task": "outline",
+      "status": "done",
+      "model": "anthropic/haiku",
+      "startedAt": "2026-10-19T06:40:04.406Z",
+      "updatedAt": "2026-10-19T06:44:21.955Z"
+    },
+    {
+      "desk": "copy-editor",
+      "task": "outline approval",
+      "status": "done",
+      "model": "anthropic/sonnet",
+      "startedAt": "2026-10-19T06:44:22.271Z",
+      "updatedAt": "2026-10-19T06:48:08.647Z"
+    },
+    {
+      "desk": "data-viz-designer",
+      "task": "charts, slides 7 and 8",
+      "status": "done",
+      "model": "anthropic/haiku",
+      "startedAt": "2026-10-19T06:48:08.961Z",
+      "updatedAt": "2026-10-19T06:50:29.190Z"
+    },
+    {
+      "desk": "presentation-designer",
+      "task": "rough 1",
+      "status": "done",
+      "model": "anthropic/sonnet",
+      "startedAt": "2026-10-19T06:48:09.045Z",
+      "updatedAt": "2026-10-19T06:50:39.108Z"
+    },
+    {
+      "desk": "presentation-designer",
+      "task": "rough 2",
+      "status": "done",
+      "model": "anthropic/sonnet",
+      "startedAt": "2026-10-19T06:48:09.132Z",
+      "updatedAt": "2026-10-19T06:50:01.806Z"
+    },
+    {
+      "desk": "presentation-designer",
+      "task": "rough 3",
+      "status": "done",
+      "model": "anthropic/sonnet",
+      "startedAt": "2026-10-19T06:48:09.216Z",
+      "updatedAt": "2026-10-19T06:50:22.863Z"
+    },
+    {
+      "desk": "art-director",
+      "task": "pick",
+      "status": "done",
+      "model": "anthropic/opus",
+      "startedAt": "2026-10-19T06:50:48.702Z",
+      "updatedAt": "2026-10-19T06:56:49.914Z"
+    },
+    {
+      "desk": "data-viz-designer",
+      "task": "chart 8 pick notes",
+      "status": "done",
+      "model": "anthropic/haiku",
+      "startedAt": "2026-10-19T06:56:50.549Z",
+      "updatedAt": "2026-10-19T06:57:56.362Z"
+    },
+    {
+      "desk": "presentation-designer",
+      "task": "full deck, round 1",
+      "status": "done",
+      "model": "anthropic/sonnet",
+      "startedAt": "2026-10-19T06:57:56.709Z",
+      "updatedAt": "2026-10-19T07:00:03.095Z"
+    },
+    {
+      "desk": "art-director",
+      "task": "flags, round 1",
+      "status": "done",
+      "model": "anthropic/opus",
+      "startedAt": "2026-10-19T07:00:13.574Z",
+      "updatedAt": "2026-10-19T07:02:49.399Z"
+    },
+    {
+      "desk": "creative-director",
+      "task": "sign-off, round 1",
+      "status": "done",
+      "model": "anthropic/opus",
+      "startedAt": "2026-10-19T07:02:49.556Z",
+      "updatedAt": "2026-10-19T07:08:43.526Z"
+    },
+    {
+      "desk": "copy-editor",
+      "task": "round 2 copy notes",
+      "status": "done",
+      "model": "anthropic/sonnet",
+      "startedAt": "2026-10-19T07:08:44.029Z",
+      "updatedAt": "2026-10-19T07:09:51.268Z"
+    },
+    {
+      "desk": "data-viz-designer",
+      "task": "chart 8, round 2",
+      "status": "done",
+      "model": "anthropic/haiku",
+      "startedAt": "2026-10-19T07:09:51.421Z",
+      "updatedAt": "2026-10-19T07:10:45.706Z"
+    },
+    {
+      "desk": "presentation-designer",
+      "task": "polish round 2",
+      "status": "done",
+      "model": "anthropic/haiku",
+      "startedAt": "2026-10-19T07:10:45.850Z",
+      "updatedAt": "2026-10-19T07:13:04.892Z"
+    },
+    {
+      "desk": "art-director",
+      "task": "flags, round 2",
+      "status": "done",
+      "model": "anthropic/opus",
+      "startedAt": "2026-10-19T07:13:15.505Z",
+      "updatedAt": "2026-10-19T07:16:00.754Z"
+    },
+    {
+      "desk": "creative-director",
+      "task": "sign-off, round 2",
+      "status": "done",
+      "model": "anthropic/opus",
+      "startedAt": "2026-10-19T07:16:00.896Z",
+      "updatedAt": "2026-10-19T07:27:38.262Z"
+    },
+    {
+      "desk": "copy-editor",
+      "task": "round 3 copy notes",
+      "status": "done",
+      "model": "anthropic/sonnet",
+      "startedAt": "2026-10-19T07:27:38.657Z",
+      "updatedAt": "2026-10-19T07:28:22.130Z"
+    },
+    {
+      "desk": "data-viz-designer",
+      "task": "charts 7 and 8, round 3",
+      "status": "done",
+      "model": "anthropic/haiku",
+      "startedAt": "2026-10-19T07:28:22.240Z",
+      "updatedAt": "2026-10-19T07:30:01.022Z"
+    },
+    {
+      "desk": "presentation-designer",
+      "task": "polish round 3",
+      "status": "done",
+      "model": "anthropic/haiku",
+      "startedAt": "2026-10-19T07:30:01.163Z",
+      "updatedAt": "2026-10-19T07:32:22.802Z"
+    },
+    {
+      "desk": "art-director",
+      "task": "flags, round 3",
+      "status": "done",
+      "model": "anthropic/opus",
+      "startedAt": "2026-10-19T07:32:30.800Z",
+      "updatedAt": "2026-10-19T07:35:16.218Z"
+    },
+    {
+      "desk": "creative-director",
+      "task": "sign-off, round 3",
+      "status": "done",
+      "model": "anthropic/opus",
+      "startedAt": "2026-10-19T07:35:16.321Z",
+      "updatedAt": "2026-10-19T07:40:55.035Z"
+    },
+    {
+      "desk": "presentation-designer",
+      "task": "polish round 4",
+      "status": "done",
+      "model": "anthropic/haiku",
+      "startedAt": "2026-10-19T07:40:55.414Z",
+      "updatedAt": "2026-10-19T07:42:55.739Z"
+    },
+    {
+      "desk": "art-director",
+      "task": "flags, round 4",
+      "status": "done",
+      "model": "anthropic/opus",
+      "startedAt": "2026-10-19T07:43:05.179Z",
+      "updatedAt": "2026-10-19T07:45:59.343Z"
+    },
+    {
+      "desk": "creative-director",
+      "task": "sign-off, round 4",
+      "status": "done",
+      "model": "anthropic/opus",
+      "startedAt": "2026-10-19T07:45:59.453Z",
+      "updatedAt": "2026-10-19T07:50:25.227Z"
+    }
+  ],
+  "pick": {
+    "by": "art-director",
+    "rough": 3,
+    "reason": "column of type keeps 10 to 12 word headlines to two lines and holds both 1400x640 charts at x 96, y 304 with four notes",
+    "at": "2026-10-19T06:56:50.019Z"
+  },
+  "proof": [
+    {
+      "round": 1,
+      "pass": true,
+      "failures": 0
+    },
+    {
+      "round": 2,
+      "pass": true,
+      "failures": 0
+    },
+    {
+      "round": 3,
+      "pass": true,
+      "failures": 0
+    },
+    {
+      "round": 4,
+      "pass": true,
+      "failures": 0
+    }
+  ],
+  "scores": [
+    {
+      "round": 1,
+      "by": "creative-director",
+      "average": 7.6,
+      "pass": false,
+      "axes": {
+        "hierarchy": 8,
+        "typography": 8,
+        "spacing": 7,
+        "colour": 9,
+        "composition": 6,
+        "originality": 6,
+        "brand": 9,
+        "copy": 8
+      }
+    },
+    {
+      "round": 2,
+      "by": "creative-director",
+      "average": 7.9,
+      "pass": false,
+      "axes": {
+        "hierarchy": 8,
+        "typography": 8,
+        "spacing": 8,
+        "colour": 9,
+        "composition": 7,
+        "originality": 7,
+        "brand": 9,
+        "copy": 7
+      }
+    },
+    {
+      "round": 3,
+      "by": "creative-director",
+      "average": 8.4,
+      "pass": false,
+      "axes": {
+        "hierarchy": 9,
+        "typography": 8,
+        "spacing": 8,
+        "colour": 9,
+        "composition": 8,
+        "originality": 8,
+        "brand": 9,
+        "copy": 8
+      }
+    },
+    {
+      "round": 4,
+      "by": "creative-director",
+      "average": 8.5,
+      "pass": true,
+      "axes": {
+        "hierarchy": 9,
+        "typography": 8,
+        "spacing": 9,
+        "colour": 9,
+        "composition": 8,
+        "originality": 8,
+        "brand": 9,
+        "copy": 8
+      }
+    }
+  ],
+  "waitingOn": null,
+  "cost": {
+    "director": 6.3166,
+    "senior": 1.4652,
+    "builder": 0.1438,
+    "total": 7.9256,
+    "complete": true
+  },
+  "tokens": {
+    "director": 2724909,
+    "senior": 964045,
+    "builder": 3705984
+  },
+  "files": {
+    "outline": ".desk/out/20261019-0137-seed-pitch-deck-solar/outline.md",
+    "deck": ".desk/out/20261019-0137-seed-pitch-deck-solar/deck.html",
+    "rough1": ".desk/out/20261019-0137-seed-pitch-deck-solar/rough-1.html",
+    "rough2": ".desk/out/20261019-0137-seed-pitch-deck-solar/rough-2.html",
+    "rough3": ".desk/out/20261019-0137-seed-pitch-deck-solar/rough-3.html",
+    "final": ".desk/out/20261019-0137-seed-pitch-deck-solar/deck.html",
+    "pdf": ".desk/out/20261019-0137-seed-pitch-deck-solar/deck.pdf",
+    "renders": ".desk/out/20261019-0137-seed-pitch-deck-solar/renders/"
+  },
+  "startedAt": "2026-10-19T06:39:41.982Z",
+  "updatedAt": "2026-10-19T07:50:51.243Z",
+  "finishedAt": "2026-10-19T07:50:39.180Z"
+}

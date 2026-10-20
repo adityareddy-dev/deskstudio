@@ -1,0 +1,37 @@
+{
+  "from": "C:\\Users\\adity\\AppData\\Local\\Temp/own/launch-card",
+  "markedAt": "2026-10-19T15:41:49.838Z",
+  "deliverable": "social-card",
+  "sizes": [
+    "linkedin",
+    "ig-post"
+  ],
+  "quality": "studio",
+  "models": {
+    "director": "anthropic/opus",
+    "senior": "anthropic/sonnet",
+    "builder": "anthropic/haiku"
+  },
+  "rounds": 3,
+  "average": 8.9,
+  "axes": {
+    "hierarchy": 9,
+    "typography": 9,
+    "spacing": 9,
+    "colour": 9,
+    "composition": 9,
+    "originality": 8,
+    "brand": 9,
+    "copy": 9
+  },
+  "cost": {
+    "director": 0.8087,
+    "senior": 0.4296,
+    "builder": 0.0971,
+    "total": 1.3354,
+    "complete": true
+  },
+  "command": "design",
+  "brand": "Desk Studio",
+  "note": "The launch card the clips replay (clips/fixtures/card)."
+}

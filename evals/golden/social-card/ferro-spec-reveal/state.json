@@ -1,0 +1,158 @@
+{
+  "id": "20261018-1906-spec-reveal-card-thumbnail",
+  "command": "design",
+  "deliverable": "social-card",
+  "sizes": [
+    "linkedin",
+    "ig-post",
+    "yt-thumb"
+  ],
+  "quality": "studio",
+  "models": {
+    "director": "anthropic/opus",
+    "senior": "anthropic/sonnet",
+    "builder": "anthropic/haiku"
+  },
+  "phase": "done",
+  "round": 2,
+  "maxRounds": 6,
+  "desks": [
+    {
+      "desk": "social-media-designer",
+      "task": "rough 1, type only",
+      "status": "done",
+      "model": "anthropic/sonnet",
+      "startedAt": "2026-10-19T00:06:22.470Z",
+      "updatedAt": "2026-10-19T00:07:15.148Z"
+    },
+    {
+      "desk": "social-media-designer",
+      "task": "rough 2, stat card",
+      "status": "done",
+      "model": "anthropic/sonnet",
+      "startedAt": "2026-10-19T00:06:22.524Z",
+      "updatedAt": "2026-10-19T00:07:31.042Z"
+    },
+    {
+      "desk": "social-media-designer",
+      "task": "rough 3, editorial split",
+      "status": "done",
+      "model": "anthropic/sonnet",
+      "startedAt": "2026-10-19T00:06:22.578Z",
+      "updatedAt": "2026-10-19T00:07:49.418Z"
+    },
+    {
+      "desk": "art-director",
+      "task": "pick",
+      "status": "done",
+      "model": "anthropic/opus",
+      "startedAt": "2026-10-19T00:07:58.797Z",
+      "updatedAt": "2026-10-19T00:12:32.426Z"
+    },
+    {
+      "desk": "social-media-designer",
+      "task": "polish round 1",
+      "status": "done",
+      "model": "anthropic/haiku",
+      "startedAt": "2026-10-19T00:12:32.846Z",
+      "updatedAt": "2026-10-19T00:13:45.563Z"
+    },
+    {
+      "desk": "creative-director",
+      "task": "sign-off round 1",
+      "status": "done",
+      "model": "anthropic/opus",
+      "startedAt": "2026-10-19T00:13:52.162Z",
+      "updatedAt": "2026-10-19T00:19:37.845Z"
+    },
+    {
+      "desk": "social-media-designer",
+      "task": "polish round 2",
+      "status": "done",
+      "model": "anthropic/haiku",
+      "startedAt": "2026-10-19T00:19:38.330Z",
+      "updatedAt": "2026-10-19T00:21:32.020Z"
+    },
+    {
+      "desk": "creative-director",
+      "task": "sign-off round 2",
+      "status": "done",
+      "model": "anthropic/opus",
+      "startedAt": "2026-10-19T00:21:38.758Z",
+      "updatedAt": "2026-10-19T00:28:04.633Z"
+    }
+  ],
+  "pick": {
+    "by": "art-director",
+    "rough": 2,
+    "reason": "the figure carries it and everything steps down from it, red only on 0.01mm, fewest notes; 1 had no scale jump, 3 had a broken ruler and a black half fighting the white brand",
+    "at": "2026-10-19T00:12:32.481Z"
+  },
+  "proof": [
+    {
+      "round": 1,
+      "pass": true,
+      "failures": 0
+    },
+    {
+      "round": 2,
+      "pass": true,
+      "failures": 0
+    }
+  ],
+  "scores": [
+    {
+      "round": 1,
+      "by": "creative-director",
+      "average": 8.8,
+      "pass": false,
+      "axes": {
+        "hierarchy": 9,
+        "typography": 9,
+        "spacing": 8,
+        "colour": 10,
+        "composition": 8,
+        "originality": 7,
+        "brand": 9,
+        "copy": 10
+      }
+    },
+    {
+      "round": 2,
+      "by": "creative-director",
+      "average": 8.75,
+      "pass": true,
+      "axes": {
+        "hierarchy": 9,
+        "typography": 9,
+        "spacing": 8,
+        "colour": 10,
+        "composition": 8,
+        "originality": 8,
+        "brand": 9,
+        "copy": 9
+      }
+    }
+  ],
+  "waitingOn": null,
+  "cost": {
+    "director": 0.394,
+    "senior": 0.3754,
+    "builder": 0.028,
+    "total": 0.7974,
+    "complete": true
+  },
+  "tokens": {
+    "director": 178689,
+    "senior": 304523,
+    "builder": 538006
+  },
+  "files": {
+    "final": ".desk/out/20261018-1906-spec-reveal-card-thumbnail/final.html",
+    "renders": ".desk/jobs/20261018-1906-spec-reveal-card-thumbnail/renders/round-2",
+    "fonts": ".desk/out/20261018-1906-spec-reveal-card-thumbnail/fonts-geist.css"
+  },
+  "startedAt": "2026-10-19T00:06:15.654Z",
+  "updatedAt": "2026-10-19T00:28:04.912Z",
+  "finishedAt": "2026-10-19T00:28:04.912Z"
+}

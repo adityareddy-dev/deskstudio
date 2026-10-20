@@ -1,0 +1,1 @@
+{ "command": "design", "ask": "an X card and a square Instagram card for a feature launch.", "brand": "quill", "sizes": ["x", "ig-square"], "mustAppear": ["Cut it. It stays.", "Drafts, not versions.", "quill.app"], "rounds": 6, "expect": { "pass": true, "minAverage": 8.5 } }

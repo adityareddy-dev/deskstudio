@@ -1,0 +1,169 @@
+{
+  "width": 1080,
+  "height": 1350,
+  "scrollWidth": 1080,
+  "scrollHeight": 1350,
+  "boxes": [
+    {
+      "x": 72,
+      "y": 514.3125,
+      "width": 624.765625,
+      "height": 175,
+      "text": "Each copy",
+      "color": "rgb(237, 237, 240)",
+      "opacity": 1,
+      "fontSize": 127.2,
+      "fontWeight": 600,
+      "fontFamily": "\"Source Serif 4\", Georgia, \"Times New Roman\", serif",
+      "clips": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1080,
+          "height": 1350,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 72,
+      "y": 647.875,
+      "width": 436.140625,
+      "height": 175,
+      "text": "freezes",
+      "color": "rgb(124, 156, 255)",
+      "opacity": 1,
+      "fontSize": 127.2,
+      "fontWeight": 600,
+      "fontFamily": "\"Source Serif 4\", Georgia, \"Times New Roman\", serif",
+      "clips": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1080,
+          "height": 1350,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 72,
+      "y": 781.4375,
+      "width": 773.296875,
+      "height": 175,
+      "text": "one moment",
+      "color": "rgb(237, 237, 240)",
+      "opacity": 1,
+      "fontSize": 127.2,
+      "fontWeight": 600,
+      "fontFamily": "\"Source Serif 4\", Georgia, \"Times New Roman\", serif",
+      "clips": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1080,
+          "height": 1350,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 72,
+      "y": 975,
+      "width": 826.3125,
+      "height": 56,
+      "text": "The cuts sit in an old file, and the draft goes on without them.",
+      "color": "rgb(237, 237, 240)",
+      "opacity": 1,
+      "fontSize": 40.3,
+      "fontWeight": 400,
+      "fontFamily": "\"Source Serif 4\", Georgia, \"Times New Roman\", serif",
+      "clips": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1080,
+          "height": 1350,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 72,
+      "y": 1029.390625,
+      "width": 330.953125,
+      "height": 56,
+      "text": "The cuts sit in an old file, and the draft goes on without them.",
+      "color": "rgb(237, 237, 240)",
+      "opacity": 1,
+      "fontSize": 40.3,
+      "fontWeight": 400,
+      "fontFamily": "\"Source Serif 4\", Georgia, \"Times New Roman\", serif",
+      "clips": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1080,
+          "height": 1350,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 72,
+      "y": 82,
+      "width": 72.25,
+      "height": 41,
+      "text": "Quill",
+      "color": "rgb(237, 237, 240)",
+      "opacity": 1,
+      "fontSize": 30.2,
+      "fontWeight": 600,
+      "fontFamily": "\"Source Serif 4\", Georgia, \"Times New Roman\", serif",
+      "clips": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1080,
+          "height": 1350,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 919.46875,
+      "y": 1163.796875,
+      "width": 88.53125,
+      "height": 41,
+      "text": "03 / 10",
+      "color": "rgb(139, 141, 153)",
+      "opacity": 1,
+      "fontSize": 30.2,
+      "fontWeight": 400,
+      "fontFamily": "\"Source Serif 4\", Georgia, \"Times New Roman\", serif",
+      "clips": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1080,
+          "height": 1350,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    }
+  ],
+  "fonts": {
+    "Source Serif 4": true,
+    "Georgia": true,
+    "Times New Roman": true,
+    "serif": true
+  },
+  "images": 0
+}

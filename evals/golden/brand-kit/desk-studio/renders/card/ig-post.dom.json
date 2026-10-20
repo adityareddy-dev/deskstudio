@@ -1,0 +1,86 @@
+{
+  "width": 1080,
+  "height": 1350,
+  "scrollWidth": 1080,
+  "scrollHeight": 1350,
+  "boxes": [
+    {
+      "x": 72,
+      "y": 165,
+      "width": 334.15625,
+      "height": 116,
+      "text": "You run",
+      "color": "rgb(244, 240, 232)",
+      "opacity": 1,
+      "fontSize": 95.5,
+      "fontWeight": 600,
+      "fontFamily": "Inter, \"Inter Fallback\", ui-sans-serif, -apple-system, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+      "clips": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1080,
+          "height": 1350,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 72,
+      "y": 260.5,
+      "width": 385.046875,
+      "height": 116,
+      "text": "the floor.",
+      "color": "rgb(244, 240, 232)",
+      "opacity": 1,
+      "fontSize": 95.5,
+      "fontWeight": 600,
+      "fontFamily": "Inter, \"Inter Fallback\", ui-sans-serif, -apple-system, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+      "clips": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1080,
+          "height": 1350,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 124,
+      "y": 1178.5,
+      "width": 139.375,
+      "height": 30,
+      "text": "Desk Studio",
+      "color": "rgb(244, 240, 232)",
+      "opacity": 1,
+      "fontSize": 25,
+      "fontWeight": 600,
+      "fontFamily": "Inter, \"Inter Fallback\", ui-sans-serif, -apple-system, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+      "clips": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1080,
+          "height": 1350,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    }
+  ],
+  "fonts": {
+    "Inter": true,
+    "Inter Fallback": false,
+    "ui-sans-serif": true,
+    "-apple-system": false,
+    "Segoe UI": true,
+    "Roboto": false,
+    "Helvetica Neue": false,
+    "Arial": true,
+    "sans-serif": true
+  },
+  "images": 0
+}

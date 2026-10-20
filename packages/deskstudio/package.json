@@ -1,0 +1,51 @@
+{
+  "name": "deskstudio",
+  "version": "1.0.0",
+  "description": "Your own design studio. A full design studio inside the coding agent you already use. One command, free, nothing leaves your machine.",
+  "type": "module",
+  "license": "MIT",
+  "homepage": "https://deskstudio.ai",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/adityareddy-dev/deskstudio"
+  },
+  "author": "Aditya Reddy",
+  "keywords": [
+    "design",
+    "design-studio",
+    "ui",
+    "brand",
+    "social",
+    "email",
+    "motion",
+    "presentation",
+    "creative-director",
+    "art-director",
+    "coding-agent"
+  ],
+  "bin": {
+    "deskstudio": "bin/deskstudio.mjs",
+    "desk-run": "bin/desk-run.mjs",
+    "desk-proof": "bin/desk-proof.mjs",
+    "desk-event": "bin/desk-event.mjs",
+    "desk-floor": "bin/desk-floor.mjs"
+  },
+  "files": [
+    "bin",
+    "runner",
+    "proof",
+    "dashboard",
+    "skills",
+    "scripts",
+    "adapters",
+    "fonts",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "playwright-core": "^1.58.0",
+    "pngjs": "^7.0.0"
+  }
+}

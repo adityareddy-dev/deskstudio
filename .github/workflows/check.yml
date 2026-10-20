@@ -1,0 +1,33 @@
+name: check
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      # The motion proof captures with Playwright's own ffmpeg and encodes webm and mp4 with the system one.
+      - run: npx playwright-core install ffmpeg
+      - run: sudo apt-get update -q && sudo apt-get install -y -q ffmpeg
+      - run: npm test
+      - run: node scripts/build-agents.mjs && git diff --exit-code agents docs/roles.md
+      - run: node scripts/build-adapters.mjs && git diff --exit-code adapters
+
+  plugin:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm install -g @anthropic-ai/claude-code
+      - run: claude plugin validate .

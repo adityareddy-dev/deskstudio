@@ -1,0 +1,54 @@
+[desk] job 20261019-2351-northlight-battery-announcement-social in .desk/jobs/20261019-2351-northlight-battery-announcement-social (studio: director openai/large, senior google/flash, builder google/flash-low, 6 rounds)
+[desk] design-manager: intake at openai/large
+[desk] design-manager: done in 18s, 0.1226 usd
+[desk] brief written: sizes linkedin, ig-post, 4 copy lines
+[desk] brand font Inter inlined by the runner into every file (63 KB)
+[desk] ui-designer: rough 1, editorial split at google/flash
+[desk] ui-designer: rough 2, full bleed with scrim at google/flash
+[desk] ui-designer: rough 3, type only at google/flash
+[desk] ui-designer: done in 17s, 0.0107 usd
+[desk] failed at roughs: agy did not answer within 300s.
+Failed at roughs: agy did not answer within 300s.
+Fix the cause and run: desk-run resume 20261019-2351-northlight-battery-announcement-social --project "/workspace/scratch/deskstudio-google-mixed-run"
+[desk] resuming 20261019-2351-northlight-battery-announcement-social at roughs
+[desk] brand font Inter inlined by the runner into every file (63 KB)
+[desk] ui-designer: rough 1, editorial split at google/flash
+[desk] ui-designer: rough 2, full bleed with scrim at google/flash
+[desk] ui-designer: rough 3, type only at google/flash
+[desk] ui-designer: done in 291s, 0.1705 usd
+[desk] ui-designer: done in 347s, 0.1847 usd
+[desk] ui-designer: done in 359s, 0.1872 usd
+[desk] rough 1 rendered to .desk/jobs/20261019-2351-northlight-battery-announcement-social/renders/roughs/rough-1
+[desk] rough 2 rendered to .desk/jobs/20261019-2351-northlight-battery-announcement-social/renders/roughs/rough-2
+[desk] rough 3 rendered to .desk/jobs/20261019-2351-northlight-battery-announcement-social/renders/roughs/rough-3
+[desk] art-director: pick at openai/large with 6 screenshots
+[desk] art-director: done in 17s, 0.1938 usd
+[desk] pick: rough 3 (type only) by art-director, 4 notes
+[desk] ui-designer: polish round 1 at google/flash-low with 2 screenshots
+{"event": "verification.interrupt", "at": "2026-10-19T19:09:53.052335-05:00", "reason": "stopped the stale adapter request after the screenshot path and read-event fixes; resume keeps the picked rough"}
+[desk] resuming 20261019-2351-northlight-battery-announcement-social at polish round 1
+[desk] brand font Inter inlined by the runner into every file (63 KB)
+[desk] ui-designer: polish round 1 at google/flash-low with 2 screenshots
+[desk] failed at polish: agy failed (exit null): SUCCESS
+[desk] ui-designer: done in 20s, 0.0277 usd
+[desk] proof round 1: 1 failure (safe-zone)
+[desk] ui-designer: polish round 2 at google/flash-low with 2 screenshots
+[desk] ui-designer: done in 19s, 0.0277 usd
+[desk] proof round 2: pass
+[desk] creative-director: sign-off round 2 at openai/large with 2 screenshots
+[desk] creative-director: done in 15s, 0.1356 usd
+[desk] sign-off round 2: hierarchy 9, typography 9, spacing 8, colour 9, composition 8, originality 9, brand 9, copy 9, average 8.75, pass
+Done: social-card for A Northlight battery announcement social, 6 files in .desk/out/20261019-2351-northlight-battery-announcement-social/
+  final.html, renders at linkedin and ig-post in .desk/jobs/20261019-2351-northlight-battery-announcement-social/renders/round-2/
+Desks: UI Designer x4 roughs (flash), Art Director pick (large), UI Designer polish x2 (flash-low), Creative Director sign-off x1 (large)
+Pick: rough 3, type only, "The timeline connects the claim to the payoff immediately, with the strongest hierarchy across both formats."
+Scores: hierarchy 9, typography 9, spacing 8, colour 9, composition 8, originality 9, brand 9, copy 9, average 8.75, pass
+Rounds: 2 of 6. Proof: passed on round 2 after 1 fix.
+Cost: director 0.45, senior 0.55, builder 0.06, total 1.06 (list prices, from the CLI) (some costs are unknown)
+Open: none
+
+<!-- desk:memory
+decisions:
+  - "Type only works for this brand's social-card (2026-10-20)"
+-->
+[desk] job 20261019-2351-northlight-battery-announcement-social is already done

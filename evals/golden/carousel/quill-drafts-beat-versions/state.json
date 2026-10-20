@@ -1,0 +1,188 @@
+{
+  "id": "20261018-2012-drafts-beat-versions-carousel",
+  "command": "social-content",
+  "deliverable": "carousel",
+  "sizes": [
+    "ig-post"
+  ],
+  "quality": "studio",
+  "models": {
+    "director": "anthropic/opus",
+    "senior": "anthropic/sonnet",
+    "builder": "anthropic/haiku"
+  },
+  "phase": "done",
+  "round": 2,
+  "maxRounds": 6,
+  "desks": [
+    {
+      "desk": "social-media-copywriter",
+      "task": "carousel copy and caption",
+      "status": "done",
+      "model": "anthropic/haiku",
+      "startedAt": "2026-10-19T01:13:31.815Z",
+      "updatedAt": "2026-10-19T01:14:57.521Z"
+    },
+    {
+      "desk": "copy-editor",
+      "task": "copy pass",
+      "status": "done",
+      "model": "anthropic/sonnet",
+      "startedAt": "2026-10-19T01:14:57.608Z",
+      "updatedAt": "2026-10-19T01:16:03.722Z"
+    },
+    {
+      "desk": "social-media-designer",
+      "task": "rough 1, type only big",
+      "status": "done",
+      "model": "anthropic/sonnet",
+      "startedAt": "2026-10-19T01:17:42.081Z",
+      "updatedAt": "2026-10-19T01:19:46.222Z"
+    },
+    {
+      "desk": "social-media-designer",
+      "task": "rough 2, left rail",
+      "status": "done",
+      "model": "anthropic/sonnet",
+      "startedAt": "2026-10-19T01:17:42.143Z",
+      "updatedAt": "2026-10-19T01:19:46.289Z"
+    },
+    {
+      "desk": "social-media-designer",
+      "task": "rough 3, numbered steps",
+      "status": "done",
+      "model": "anthropic/sonnet",
+      "startedAt": "2026-10-19T01:17:42.204Z",
+      "updatedAt": "2026-10-19T01:19:46.361Z"
+    },
+    {
+      "desk": "art-director",
+      "task": "pick",
+      "status": "done",
+      "model": "anthropic/opus",
+      "startedAt": "2026-10-19T01:20:02.941Z",
+      "updatedAt": "2026-10-19T01:27:27.685Z"
+    },
+    {
+      "desk": "social-media-designer",
+      "task": "polish round 1, build ten",
+      "status": "done",
+      "model": "anthropic/haiku",
+      "startedAt": "2026-10-19T01:27:28.126Z",
+      "updatedAt": "2026-10-19T01:29:54.297Z"
+    },
+    {
+      "desk": "creative-director",
+      "task": "sign-off round 1",
+      "status": "done",
+      "model": "anthropic/opus",
+      "startedAt": "2026-10-19T01:30:14.343Z",
+      "updatedAt": "2026-10-19T01:35:15.403Z"
+    },
+    {
+      "desk": "copy-editor",
+      "task": "copy notes round 2",
+      "status": "done",
+      "model": "anthropic/sonnet",
+      "startedAt": "2026-10-19T01:35:15.830Z",
+      "updatedAt": "2026-10-19T01:35:59.366Z"
+    },
+    {
+      "desk": "social-media-designer",
+      "task": "polish round 2",
+      "status": "done",
+      "model": "anthropic/haiku",
+      "startedAt": "2026-10-19T01:35:59.753Z",
+      "updatedAt": "2026-10-19T01:40:23.284Z"
+    },
+    {
+      "desk": "creative-director",
+      "task": "sign-off round 2",
+      "status": "done",
+      "model": "anthropic/opus",
+      "startedAt": "2026-10-19T01:40:42.733Z",
+      "updatedAt": "2026-10-19T01:43:50.513Z"
+    },
+    {
+      "desk": "copy-editor",
+      "task": "alt text for cover strike",
+      "status": "done",
+      "model": "anthropic/sonnet",
+      "startedAt": "2026-10-19T01:43:50.770Z",
+      "updatedAt": "2026-10-19T01:44:36.817Z"
+    }
+  ],
+  "pick": {
+    "by": "art-director",
+    "rough": 1,
+    "reason": "reads in two seconds as a thumbnail, one big serif claim with one blue word, fewest notes",
+    "at": "2026-10-19T01:27:27.750Z"
+  },
+  "proof": [
+    {
+      "round": 1,
+      "pass": true,
+      "failures": 0
+    },
+    {
+      "round": 2,
+      "pass": true,
+      "failures": 0
+    }
+  ],
+  "scores": [
+    {
+      "round": 1,
+      "by": "creative-director",
+      "average": 8.3,
+      "pass": false,
+      "axes": {
+        "hierarchy": 9,
+        "typography": 8,
+        "spacing": 9,
+        "colour": 9,
+        "composition": 7,
+        "originality": 7,
+        "brand": 9,
+        "copy": 8
+      }
+    },
+    {
+      "round": 2,
+      "by": "creative-director",
+      "average": 8.9,
+      "pass": true,
+      "axes": {
+        "hierarchy": 9,
+        "typography": 9,
+        "spacing": 9,
+        "colour": 9,
+        "composition": 9,
+        "originality": 8,
+        "brand": 9,
+        "copy": 9
+      }
+    }
+  ],
+  "waitingOn": null,
+  "cost": {
+    "director": 1.2802,
+    "senior": 0.7702,
+    "builder": 0.0551,
+    "total": 2.1055,
+    "complete": true
+  },
+  "tokens": {
+    "director": 544789,
+    "senior": 539448,
+    "builder": 1858273
+  },
+  "files": {
+    "final": ".desk/out/20261018-2012-drafts-beat-versions-carousel/final.html",
+    "caption": ".desk/out/20261018-2012-drafts-beat-versions-carousel/caption.md",
+    "renders": ".desk/out/20261018-2012-drafts-beat-versions-carousel/renders"
+  },
+  "startedAt": "2026-10-19T01:12:58.991Z",
+  "updatedAt": "2026-10-19T01:44:37.496Z",
+  "finishedAt": "2026-10-19T01:44:37.495Z"
+}

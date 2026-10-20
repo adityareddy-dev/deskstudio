@@ -1,0 +1,185 @@
+{
+  "id": "20261019-0032-ferro-welcome-setup-guide",
+  "command": "email-template",
+  "deliverable": "email",
+  "sizes": [
+    "email-600"
+  ],
+  "quality": "studio",
+  "models": {
+    "director": "anthropic/opus",
+    "senior": "anthropic/sonnet",
+    "builder": "anthropic/haiku"
+  },
+  "phase": "done",
+  "round": 2,
+  "maxRounds": 6,
+  "desks": [
+    {
+      "desk": "email-copywriter",
+      "task": "copy draft",
+      "status": "done",
+      "model": "anthropic/haiku",
+      "startedAt": "2026-10-19T00:32:28.759Z",
+      "updatedAt": "2026-10-19T00:33:24.986Z"
+    },
+    {
+      "desk": "compliance-designer",
+      "task": "footer",
+      "status": "done",
+      "model": "anthropic/sonnet",
+      "startedAt": "2026-10-19T00:32:28.816Z",
+      "updatedAt": "2026-10-19T00:33:31.876Z"
+    },
+    {
+      "desk": "copy-editor",
+      "task": "copy pass",
+      "status": "done",
+      "model": "anthropic/sonnet",
+      "startedAt": "2026-10-19T00:33:31.987Z",
+      "updatedAt": "2026-10-19T00:34:37.964Z"
+    },
+    {
+      "desk": "email-designer",
+      "task": "rough 1, letter",
+      "status": "done",
+      "model": "anthropic/sonnet",
+      "startedAt": "2026-10-19T00:35:15.224Z",
+      "updatedAt": "2026-10-19T00:36:09.185Z"
+    },
+    {
+      "desk": "email-designer",
+      "task": "rough 2, hero and one card",
+      "status": "done",
+      "model": "anthropic/sonnet",
+      "startedAt": "2026-10-19T00:35:15.287Z",
+      "updatedAt": "2026-10-19T00:36:23.334Z"
+    },
+    {
+      "desk": "email-designer",
+      "task": "rough 3, numbered steps",
+      "status": "done",
+      "model": "anthropic/sonnet",
+      "startedAt": "2026-10-19T00:35:15.349Z",
+      "updatedAt": "2026-10-19T00:36:57.380Z"
+    },
+    {
+      "desk": "art-director",
+      "task": "pick",
+      "status": "done",
+      "model": "anthropic/opus",
+      "startedAt": "2026-10-19T00:37:08.492Z",
+      "updatedAt": "2026-10-19T00:40:24.914Z"
+    },
+    {
+      "desk": "email-designer",
+      "task": "polish round 1",
+      "status": "done",
+      "model": "anthropic/haiku",
+      "startedAt": "2026-10-19T00:40:25.326Z",
+      "updatedAt": "2026-10-19T00:41:51.698Z"
+    },
+    {
+      "desk": "creative-director",
+      "task": "sign-off round 1",
+      "status": "done",
+      "model": "anthropic/opus",
+      "startedAt": "2026-10-19T00:41:57.938Z",
+      "updatedAt": "2026-10-19T00:46:19.156Z"
+    },
+    {
+      "desk": "email-designer",
+      "task": "polish round 2",
+      "status": "done",
+      "model": "anthropic/haiku",
+      "startedAt": "2026-10-19T00:46:19.547Z",
+      "updatedAt": "2026-10-19T00:47:30.457Z"
+    },
+    {
+      "desk": "creative-director",
+      "task": "sign-off round 2",
+      "status": "done",
+      "model": "anthropic/opus",
+      "startedAt": "2026-10-19T00:47:36.373Z",
+      "updatedAt": "2026-10-19T00:50:25.364Z"
+    }
+  ],
+  "pick": {
+    "by": "art-director",
+    "rough": 1,
+    "reason": "reads in order at a squint, the red bar under the type mark is the one extra mark, dark mode designed not inverted",
+    "at": "2026-10-19T00:40:24.974Z"
+  },
+  "proof": [
+    {
+      "round": 1,
+      "pass": true,
+      "failures": 0
+    },
+    {
+      "round": 2,
+      "pass": true,
+      "failures": 0
+    }
+  ],
+  "scores": [
+    {
+      "round": 1,
+      "by": "creative-director",
+      "average": 8.4,
+      "pass": false,
+      "axes": {
+        "hierarchy": 9,
+        "typography": 8,
+        "spacing": 8,
+        "colour": 9,
+        "composition": 9,
+        "originality": 7,
+        "brand": 9,
+        "copy": 8
+      }
+    },
+    {
+      "round": 2,
+      "by": "creative-director",
+      "average": 8.8,
+      "pass": true,
+      "axes": {
+        "hierarchy": 9,
+        "typography": 9,
+        "spacing": 9,
+        "colour": 9,
+        "composition": 9,
+        "originality": 8,
+        "brand": 9,
+        "copy": 8
+      }
+    }
+  ],
+  "waitingOn": null,
+  "cost": {
+    "director": 0.8525,
+    "senior": 0.5381,
+    "builder": 0.0265,
+    "total": 1.4171,
+    "complete": true
+  },
+  "tokens": {
+    "director": 328236,
+    "senior": 300245,
+    "builder": 442977
+  },
+  "files": {
+    "subjects": ".desk/out/20261019-0032-ferro-welcome-setup-guide/subjects.md",
+    "brief": ".desk/jobs/20261019-0032-ferro-welcome-setup-guide/brief.md",
+    "copy": ".desk/jobs/20261019-0032-ferro-welcome-setup-guide/copy.md",
+    "final": ".desk/out/20261019-0032-ferro-welcome-setup-guide/final.html",
+    "text": ".desk/out/20261019-0032-ferro-welcome-setup-guide/final.txt",
+    "clients": ".desk/out/20261019-0032-ferro-welcome-setup-guide/clients.md",
+    "renders": ".desk/out/20261019-0032-ferro-welcome-setup-guide/renders"
+  },
+  "startedAt": "2026-10-19T00:32:08.089Z",
+  "updatedAt": "2026-10-19T00:50:32.325Z",
+  "sizeKB": 5.9,
+  "finishedAt": "2026-10-19T00:50:32.324Z"
+}

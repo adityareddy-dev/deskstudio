@@ -1,0 +1,257 @@
+[
+  {
+    "path": "DESIGN.md",
+    "bytes": 771,
+    "sha256": "9b80358e9fd1115d34572dcb24d38149dcb30e71fd97b5a82e529884ac3baefc"
+  },
+  {
+    "path": "brief-original-intake.md",
+    "bytes": 2411,
+    "sha256": "b895e8b8ce22a00b66510f1c8e246ecd89992ef8a02cffded45be6aedd17ccdd"
+  },
+  {
+    "path": "brief.md",
+    "bytes": 2412,
+    "sha256": "55f10d4fea7304a758b19ac0aca7f9139bbd59ee2fa57ebe756d4e1663d77244"
+  },
+  {
+    "path": "control.json",
+    "bytes": 92,
+    "sha256": "e814eca21970b40cb27d24225e8471562bf550f9347f0b8c8e32c4faf46b6297"
+  },
+  {
+    "path": "events.jsonl",
+    "bytes": 13125,
+    "sha256": "d1a281f928012d4a9a28bf79949e0ebe2e3a4434a9a3444107fb7fa23a43ee29"
+  },
+  {
+    "path": "out/final.html",
+    "bytes": 69687,
+    "sha256": "f8ba19879045a53544eab8cd02bb25292525e75ce588430c1bd6d710aba66ae0"
+  },
+  {
+    "path": "out/fonts-inter.css",
+    "bytes": 64497,
+    "sha256": "8bce66ee685fc4d113bd19a4076fdd3da185dc90e57e7f630dd4c0221c58fc4d"
+  },
+  {
+    "path": "out/handback.md",
+    "bytes": 995,
+    "sha256": "b97b23cbb45f7c4fe035fe46bd936c8a000205795f84d8c3e7a8258d1cfec417"
+  },
+  {
+    "path": "out/rough-1.html",
+    "bytes": 70407,
+    "sha256": "03c0fe34aee8a79347efb861d4d97b3cb68ea9fb9933683435e9749f135e4682"
+  },
+  {
+    "path": "out/rough-2.html",
+    "bytes": 69792,
+    "sha256": "542c32f7db0d147e7caf8dfa0a2b65eb7ed22486fab0aa2312343eaa647206cb"
+  },
+  {
+    "path": "out/rough-3.html",
+    "bytes": 69140,
+    "sha256": "a582ea269f78e320361eafc32ef5d8cc16b5248f9ec8e1e3cfa4d36cbad836a3"
+  },
+  {
+    "path": "renders/roughs/rough-1/ig-post.background.png",
+    "bytes": 8067,
+    "sha256": "f3f9f8192756784f1433d6c885e2218b076fae26385af5af4c870bc322c4d209"
+  },
+  {
+    "path": "renders/roughs/rough-1/ig-post.dom.json",
+    "bytes": 4511,
+    "sha256": "79c00f3717528d4adb6773d053463a3a7b8b457a19c7fac613adea9548832594"
+  },
+  {
+    "path": "renders/roughs/rough-1/ig-post.png",
+    "bytes": 42842,
+    "sha256": "aa2bf9cd06b0bf159c920c33ae388a65538336fe56468e537fe96855e4e488af"
+  },
+  {
+    "path": "renders/roughs/rough-1/linkedin.background.png",
+    "bytes": 4333,
+    "sha256": "c761a8bb43de12116afe46ebf3e04dd803e451e46eecfb8fc68017a496938d21"
+  },
+  {
+    "path": "renders/roughs/rough-1/linkedin.dom.json",
+    "bytes": 5718,
+    "sha256": "f801a2361521e60b69e2e76d5baa017128ccebc877226ef59811547a19972c64"
+  },
+  {
+    "path": "renders/roughs/rough-1/linkedin.png",
+    "bytes": 35447,
+    "sha256": "25a7505edaceb4ab732e5cf0bd0ecf2a11059cec1eaeb3885c259187f4f93a59"
+  },
+  {
+    "path": "renders/roughs/rough-2/ig-post.background.png",
+    "bytes": 9038,
+    "sha256": "d4946d487a80b387dacc8eea14d4b04f89a2f37c0cd5560118c9b415cff4e7f5"
+  },
+  {
+    "path": "renders/roughs/rough-2/ig-post.dom.json",
+    "bytes": 4078,
+    "sha256": "2b4c52e3f280d37e93ba575022189338434458b1d155e4f7feef9a20c9536a3e"
+  },
+  {
+    "path": "renders/roughs/rough-2/ig-post.png",
+    "bytes": 38057,
+    "sha256": "f7e897be09eb55e8a55f55fbd5a6f7c9be594ef6f8e42432880d60f7720fa2c1"
+  },
+  {
+    "path": "renders/roughs/rough-2/linkedin.background.png",
+    "bytes": 4700,
+    "sha256": "93961711b1c5fc372168833660a6ee16a34b0a7466cc8f76afd3c073f507c1a5"
+  },
+  {
+    "path": "renders/roughs/rough-2/linkedin.dom.json",
+    "bytes": 4054,
+    "sha256": "f1d9bc0eeec21d167f40f2af9b3e493076d0d0c56212ef670c82c722d4af1ba2"
+  },
+  {
+    "path": "renders/roughs/rough-2/linkedin.png",
+    "bytes": 25296,
+    "sha256": "fed5b27ee021e08051fd46f1f39ca66e006617b2c08db5a8d2fabd277b149bad"
+  },
+  {
+    "path": "renders/roughs/rough-3/ig-post.background.png",
+    "bytes": 7654,
+    "sha256": "aae369ada86a7caca951ed2d5bbc1586aa626864f5da87dfe96e83972eecd7b8"
+  },
+  {
+    "path": "renders/roughs/rough-3/ig-post.dom.json",
+    "bytes": 4080,
+    "sha256": "4310e58e80afdc41ed87e779bc22923b4cb45fe27a6a5134656ce8f0f81050f4"
+  },
+  {
+    "path": "renders/roughs/rough-3/ig-post.png",
+    "bytes": 42841,
+    "sha256": "ba95c3ff21b3081fa4db4c2c86fa8733dba0fa1f15df4307088aefe9b32a1b6c"
+  },
+  {
+    "path": "renders/roughs/rough-3/linkedin.background.png",
+    "bytes": 3903,
+    "sha256": "c8b7e828a84820a3d35e3fc71f5ce914eddadfee991e45609a3b6a1ef18a158d"
+  },
+  {
+    "path": "renders/roughs/rough-3/linkedin.dom.json",
+    "bytes": 3269,
+    "sha256": "690b0752eac1790c5c206df4759ad88768962e341200c9131b069991f847d057"
+  },
+  {
+    "path": "renders/roughs/rough-3/linkedin.png",
+    "bytes": 24975,
+    "sha256": "8a8b24139f153679a6905d2858911d5587d970d505c2b3f5268259309bd0a035"
+  },
+  {
+    "path": "renders/round-1/ig-post.background.png",
+    "bytes": 7892,
+    "sha256": "3130a107dec9b2536683bdabb46182a09f06d1b883b4171ab2b712f6561779e9"
+  },
+  {
+    "path": "renders/round-1/ig-post.dom.json",
+    "bytes": 3277,
+    "sha256": "1057f29202dd8ce0e04f500d108621ed3d680138e00c5cc7dea930d9b730a07e"
+  },
+  {
+    "path": "renders/round-1/ig-post.png",
+    "bytes": 39377,
+    "sha256": "973d316f83ed45943d646305e81c594f7ae3507f63986ccc83646db54172d380"
+  },
+  {
+    "path": "renders/round-1/linkedin.background.png",
+    "bytes": 4224,
+    "sha256": "e189268d23ca0e250728ca5c6124b14405756eb601a6a7f34e4f46079c8aa116"
+  },
+  {
+    "path": "renders/round-1/linkedin.dom.json",
+    "bytes": 3271,
+    "sha256": "d63edd18821cf7cf102f06a26a62ab7fa6242a8e9e7fb7cbca61a97273da834f"
+  },
+  {
+    "path": "renders/round-1/linkedin.png",
+    "bytes": 32000,
+    "sha256": "0e8d260591b7cb5549b70a218a84a684de07368e3ce3152a18b758529b09c35c"
+  },
+  {
+    "path": "renders/round-2/ig-post.background.png",
+    "bytes": 7892,
+    "sha256": "37d7a473e5cb2c335b5c772580adf94a3babe9c4ea4485bbd88436008ad73132"
+  },
+  {
+    "path": "renders/round-2/ig-post.dom.json",
+    "bytes": 3277,
+    "sha256": "81bee721f8b65c9a91ddb6c94636ad9ecda0dad1c622447ffd27dcf02ff4737c"
+  },
+  {
+    "path": "renders/round-2/ig-post.png",
+    "bytes": 41522,
+    "sha256": "cc7fd9b4fd85bc4ca3b5abde4e689c82573c3be38d4bf8ec74df2cb181e1e436"
+  },
+  {
+    "path": "renders/round-2/linkedin.background.png",
+    "bytes": 4224,
+    "sha256": "8546676b3cc247ede28b5b671029a9bfa961434d54cac81c858d520012d6c34d"
+  },
+  {
+    "path": "renders/round-2/linkedin.dom.json",
+    "bytes": 3271,
+    "sha256": "01be2dba2ca7427f26a31213f478a5d3ae07360d74c59947004615e7e6dde20a"
+  },
+  {
+    "path": "renders/round-2/linkedin.png",
+    "bytes": 32020,
+    "sha256": "97032e652767d9666ce5d30afb45f1975063a371df4a72a674b916f8a796e585"
+  },
+  {
+    "path": "renders/round-3/ig-post.background.png",
+    "bytes": 7898,
+    "sha256": "28a92c1e14801c2d4a1910a75194752b37ef4bbf26bac50caab078b2a789cf75"
+  },
+  {
+    "path": "renders/round-3/ig-post.dom.json",
+    "bytes": 3258,
+    "sha256": "76db6c55a3459b239735cfb546853abb795c0ce0d5e2dc7b8d67337a2455fd8a"
+  },
+  {
+    "path": "renders/round-3/ig-post.png",
+    "bytes": 47211,
+    "sha256": "4e53d753b6c0894e3282c4039ec99ac8b6d80e59caed1fab169c336b15b71b28"
+  },
+  {
+    "path": "renders/round-3/linkedin.background.png",
+    "bytes": 4224,
+    "sha256": "39504ee59e9a952b153c34c7b75e8f81567c989830c44b1be7f7bc02913e995c"
+  },
+  {
+    "path": "renders/round-3/linkedin.dom.json",
+    "bytes": 3244,
+    "sha256": "d24bf8dbbf1b1a70ee05de942296077b3f4be86c72a3fe178b7104d01dc63159"
+  },
+  {
+    "path": "renders/round-3/linkedin.png",
+    "bytes": 32029,
+    "sha256": "eac40e1f4d1c19a51a1b5e7ddf601b7bc342891926ccb2c9961fbb579621f2f2"
+  },
+  {
+    "path": "result.json",
+    "bytes": 3482,
+    "sha256": "d82fa2d8757cb157d6c136d2074d98501aef74a625be121a07165205680a2b1c"
+  },
+  {
+    "path": "runner.log.txt",
+    "bytes": 5871,
+    "sha256": "552f5dad01126d7a4fb572a4c508dce57ab368c7940c677e2432e00b37c496cc"
+  },
+  {
+    "path": "state.json",
+    "bytes": 11448,
+    "sha256": "99008df90d83a353f7e2257821080651dbcc4d2174ea4ce1f37362ea6d8c02e8"
+  },
+  {
+    "path": "steering.md",
+    "bytes": 2474,
+    "sha256": "09e1f597e7eab8750122f89a437550c71cc6e14e8d5ec70b20da82026a646e01"
+  }
+]

@@ -1,0 +1,172 @@
+{
+  "width": 1080,
+  "height": 1350,
+  "scrollWidth": 1080,
+  "scrollHeight": 1350,
+  "boxes": [
+    {
+      "x": 112.20575714111328,
+      "y": 97.07839965820312,
+      "width": 87.54688262939453,
+      "height": 37,
+      "text": "harbor",
+      "color": "rgb(0, 0, 0)",
+      "opacity": 1,
+      "fontSize": 95.5,
+      "fontWeight": 600,
+      "fontFamily": "\"Source Serif 4\", \"Source Serif Pro\", Georgia, \"Times New Roman\", serif",
+      "clips": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1080,
+          "height": 1350,
+          "clipX": true,
+          "clipY": true
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1080,
+          "height": 1350,
+          "clipX": true,
+          "clipY": true
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1080,
+          "height": 1350,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 72,
+      "y": 193.140625,
+      "width": 783.625,
+      "height": 131,
+      "text": "Your own payday, every month.",
+      "color": "rgb(28, 25, 23)",
+      "opacity": 1,
+      "fontSize": 95.5,
+      "fontWeight": 600,
+      "fontFamily": "\"Source Serif 4\", \"Source Serif Pro\", Georgia, \"Times New Roman\", serif",
+      "clips": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1080,
+          "height": 1350,
+          "clipX": true,
+          "clipY": true
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1080,
+          "height": 1350,
+          "clipX": true,
+          "clipY": true
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1080,
+          "height": 1350,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 72,
+      "y": 298.1875,
+      "width": 595.265625,
+      "height": 131,
+      "text": "Your own payday, every month.",
+      "color": "rgb(28, 25, 23)",
+      "opacity": 1,
+      "fontSize": 95.5,
+      "fontWeight": 600,
+      "fontFamily": "\"Source Serif 4\", \"Source Serif Pro\", Georgia, \"Times New Roman\", serif",
+      "clips": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1080,
+          "height": 1350,
+          "clipX": true,
+          "clipY": true
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1080,
+          "height": 1350,
+          "clipX": true,
+          "clipY": true
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1080,
+          "height": 1350,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    },
+    {
+      "x": 120,
+      "y": 1066,
+      "width": 643.84375,
+      "height": 47,
+      "text": "For pay that comes when it comes.",
+      "color": "rgb(28, 25, 23)",
+      "opacity": 1,
+      "fontSize": 39,
+      "fontWeight": 400,
+      "fontFamily": "Inter, \"Helvetica Neue\", Arial, sans-serif",
+      "clips": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1080,
+          "height": 1350,
+          "clipX": true,
+          "clipY": true
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1080,
+          "height": 1350,
+          "clipX": true,
+          "clipY": true
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1080,
+          "height": 1350,
+          "clipX": true,
+          "clipY": true
+        }
+      ]
+    }
+  ],
+  "fonts": {
+    "Source Serif 4": true,
+    "Source Serif Pro": false,
+    "Georgia": true,
+    "Times New Roman": true,
+    "serif": true,
+    "Inter": true,
+    "Helvetica Neue": false,
+    "Arial": true,
+    "sans-serif": true
+  },
+  "images": 0
+}

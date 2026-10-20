@@ -1,0 +1,40 @@
+{
+  "from": "C:\\Users\\adity\\AppData\\Local\\Temp/own/brand-kit",
+  "markedAt": "2026-10-19T15:41:50.038Z",
+  "deliverable": "brand-kit",
+  "sizes": [
+    "desktop",
+    "linkedin",
+    "ig-post",
+    "phone",
+    "slide"
+  ],
+  "quality": "studio",
+  "models": {
+    "director": "anthropic/opus",
+    "senior": "anthropic/sonnet",
+    "builder": "anthropic/haiku"
+  },
+  "rounds": 3,
+  "average": 8.6,
+  "axes": {
+    "hierarchy": 8,
+    "typography": 8,
+    "spacing": 8,
+    "colour": 9,
+    "composition": 9,
+    "originality": 9,
+    "brand": 9,
+    "copy": 9
+  },
+  "cost": {
+    "director": 5.5684,
+    "senior": 5.724,
+    "builder": 0.3081,
+    "total": 11.6005,
+    "complete": true
+  },
+  "command": "brand-kit",
+  "brand": "Desk Studio",
+  "note": "The studio's own brand kit, direction 3 (brand/)."
+}

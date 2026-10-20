@@ -1,0 +1,205 @@
+{
+  "id": "20261018-1948-quill-copy-landing-page",
+  "command": "design-template",
+  "deliverable": "landing-page",
+  "sizes": [
+    "phone",
+    "desktop"
+  ],
+  "quality": "studio",
+  "models": {
+    "director": "anthropic/opus",
+    "senior": "anthropic/sonnet",
+    "builder": "anthropic/haiku"
+  },
+  "phase": "done",
+  "round": 2,
+  "maxRounds": 6,
+  "desks": [
+    {
+      "desk": "content-designer",
+      "task": "page copy",
+      "status": "done",
+      "model": "anthropic/haiku",
+      "startedAt": "2026-10-19T00:49:18.043Z",
+      "updatedAt": "2026-10-19T00:50:24.914Z"
+    },
+    {
+      "desk": "creative-director",
+      "task": "direction",
+      "status": "done",
+      "model": "anthropic/opus",
+      "startedAt": "2026-10-19T00:49:18.098Z",
+      "updatedAt": "2026-10-19T00:50:24.972Z"
+    },
+    {
+      "desk": "copy-editor",
+      "task": "copy pass",
+      "status": "done",
+      "model": "anthropic/sonnet",
+      "startedAt": "2026-10-19T00:50:25.089Z",
+      "updatedAt": "2026-10-19T00:51:18.606Z"
+    },
+    {
+      "desk": "landing-page-designer",
+      "task": "rough 1, type-led editorial",
+      "status": "done",
+      "model": "anthropic/sonnet",
+      "startedAt": "2026-10-19T00:51:18.774Z",
+      "updatedAt": "2026-10-19T00:53:47.242Z"
+    },
+    {
+      "desk": "landing-page-designer",
+      "task": "rough 2, narrow column",
+      "status": "done",
+      "model": "anthropic/sonnet",
+      "startedAt": "2026-10-19T00:51:18.833Z",
+      "updatedAt": "2026-10-19T00:52:23.789Z"
+    },
+    {
+      "desk": "landing-page-designer",
+      "task": "rough 3, left copy right product",
+      "status": "done",
+      "model": "anthropic/sonnet",
+      "startedAt": "2026-10-19T00:51:18.890Z",
+      "updatedAt": "2026-10-19T00:54:01.945Z"
+    },
+    {
+      "desk": "art-director",
+      "task": "pick",
+      "status": "done",
+      "model": "anthropic/opus",
+      "startedAt": "2026-10-19T00:54:03.480Z",
+      "updatedAt": "2026-10-19T00:56:56.294Z"
+    },
+    {
+      "desk": "ui-designer",
+      "task": "polish round 1",
+      "status": "done",
+      "model": "anthropic/haiku",
+      "startedAt": "2026-10-19T00:56:56.664Z",
+      "updatedAt": "2026-10-19T00:57:27.873Z"
+    },
+    {
+      "desk": "copy-editor",
+      "task": "drop nav cta line",
+      "status": "done",
+      "model": "anthropic/sonnet",
+      "startedAt": "2026-10-19T00:56:56.720Z",
+      "updatedAt": "2026-10-19T00:57:27.816Z"
+    },
+    {
+      "desk": "creative-director",
+      "task": "sign-off round 1",
+      "status": "done",
+      "model": "anthropic/opus",
+      "startedAt": "2026-10-19T00:57:42.343Z",
+      "updatedAt": "2026-10-19T01:01:06.320Z"
+    },
+    {
+      "desk": "content-designer",
+      "task": "faq heading",
+      "status": "done",
+      "model": "anthropic/haiku",
+      "startedAt": "2026-10-19T01:01:22.161Z",
+      "updatedAt": "2026-10-19T01:01:42.962Z"
+    },
+    {
+      "desk": "copy-editor",
+      "task": "round 2 copy changes",
+      "status": "done",
+      "model": "anthropic/sonnet",
+      "startedAt": "2026-10-19T01:01:43.024Z",
+      "updatedAt": "2026-10-19T01:02:18.998Z"
+    },
+    {
+      "desk": "ui-designer",
+      "task": "polish round 2",
+      "status": "done",
+      "model": "anthropic/haiku",
+      "startedAt": "2026-10-19T01:02:19.053Z",
+      "updatedAt": "2026-10-19T01:04:58.158Z"
+    },
+    {
+      "desk": "creative-director",
+      "task": "sign-off round 2",
+      "status": "done",
+      "model": "anthropic/opus",
+      "startedAt": "2026-10-19T01:05:06.452Z",
+      "updatedAt": "2026-10-19T01:10:29.223Z"
+    }
+  ],
+  "pick": {
+    "by": "art-director",
+    "rough": 2,
+    "reason": "the only rough where both folds read headline, subline, CTA, then a real draft with its cuts in the margin",
+    "at": "2026-10-19T00:56:56.350Z"
+  },
+  "proof": [
+    {
+      "round": 1,
+      "pass": true,
+      "failures": 0
+    },
+    {
+      "round": 2,
+      "pass": true,
+      "failures": 0
+    }
+  ],
+  "scores": [
+    {
+      "round": 1,
+      "by": "creative-director",
+      "average": 7.9,
+      "pass": false,
+      "axes": {
+        "hierarchy": 8,
+        "typography": 7,
+        "spacing": 7,
+        "colour": 9,
+        "composition": 7,
+        "originality": 8,
+        "brand": 9,
+        "copy": 8
+      }
+    },
+    {
+      "round": 2,
+      "by": "creative-director",
+      "average": 8.5,
+      "pass": true,
+      "axes": {
+        "hierarchy": 9,
+        "typography": 8,
+        "spacing": 8,
+        "colour": 9,
+        "composition": 8,
+        "originality": 8,
+        "brand": 9,
+        "copy": 9
+      }
+    }
+  ],
+  "waitingOn": null,
+  "cost": {
+    "director": 0.9386,
+    "senior": 1.1357,
+    "builder": 0.0499,
+    "total": 2.1242,
+    "complete": true
+  },
+  "tokens": {
+    "director": 485240,
+    "senior": 1103387,
+    "builder": 1061484
+  },
+  "files": {
+    "copy": ".desk/out/20261018-1948-quill-copy-landing-page/copy.md",
+    "final": ".desk/out/20261018-1948-quill-copy-landing-page/final.html",
+    "renders": ".desk/out/20261018-1948-quill-copy-landing-page/renders/"
+  },
+  "startedAt": "2026-10-19T00:48:40.896Z",
+  "updatedAt": "2026-10-19T01:10:38.778Z",
+  "finishedAt": "2026-10-19T01:10:38.778Z"
+}

@@ -1,0 +1,42 @@
+{
+  "pass": true,
+  "mode": "frames",
+  "file": "C:\\Users\\adity\\AppData\\Local\\Temp\\desk-eval-motion-sting-quill-1792372989670\\.desk\\out\\20261018-2024-launch-sting-wordmark\\final.html",
+  "size": "1920x1080",
+  "out": "C:\\Users\\adity\\AppData\\Local\\Temp\\desk-eval-motion-sting-quill-1792372989670\\.desk\\jobs\\20261018-2024-launch-sting-wordmark\\renders\\round-2\\proof",
+  "failures": [],
+  "reading": [
+    {
+      "text": "Cut it.",
+      "words": 2,
+      "heldStill": 3.433,
+      "from": 0,
+      "need": 1.2
+    },
+    {
+      "text": "It stays.",
+      "words": 2,
+      "heldStill": 3.433,
+      "from": 0,
+      "need": 1.2
+    },
+    {
+      "text": "Quill",
+      "words": 1,
+      "heldStill": 2.067,
+      "from": 3933.333,
+      "need": 1.2
+    }
+  ],
+  "luminance": {
+    "min": 0.06,
+    "max": 0.077,
+    "jumps": 0
+  },
+  "frames": 180,
+  "fps": 30,
+  "framesDir": "C:\\Users\\adity\\AppData\\Local\\Temp\\desk-eval-motion-sting-quill-1792372989670\\.desk\\jobs\\20261018-2024-launch-sting-wordmark\\renders\\round-2\\proof\\frames",
+  "poster": "C:\\Users\\adity\\AppData\\Local\\Temp\\desk-eval-motion-sting-quill-1792372989670\\.desk\\jobs\\20261018-2024-launch-sting-wordmark\\renders\\round-2\\proof\\frames\\f-0000.png",
+  "sheet": "C:\\Users\\adity\\AppData\\Local\\Temp\\desk-eval-motion-sting-quill-1792372989670\\.desk\\jobs\\20261018-2024-launch-sting-wordmark\\renders\\round-2\\proof\\sheet.png",
+  "sheetStepMs": 500
+}

@@ -1,0 +1,33 @@
+{
+  "from": "evals/results/2026-10-19T01-50-41-studio-video-clip-ferro/video-clip-ferro",
+  "markedAt": "2026-10-19T02:24:58.017Z",
+  "deliverable": "video",
+  "sizes": [
+    "slide"
+  ],
+  "quality": "studio",
+  "models": {
+    "director": "anthropic/opus",
+    "senior": "anthropic/sonnet",
+    "builder": "anthropic/haiku"
+  },
+  "rounds": 1,
+  "average": 8.5,
+  "axes": {
+    "hierarchy": 9,
+    "typography": 8,
+    "spacing": 8,
+    "colour": 9,
+    "composition": 9,
+    "originality": 8,
+    "brand": 9,
+    "copy": 8
+  },
+  "cost": {
+    "director": 1.4989,
+    "senior": 0.6765,
+    "builder": 0.1138,
+    "total": 2.2892,
+    "complete": true
+  }
+}

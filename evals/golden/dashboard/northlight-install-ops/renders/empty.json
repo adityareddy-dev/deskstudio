@@ -1,0 +1,18 @@
+{
+  "pass": true,
+  "file": "final.empty.html",
+  "renders": [
+    {
+      "size": "desktop",
+      "scheme": "light",
+      "width": 1440,
+      "height": 900,
+      "png": "C:\\Users\\adity\\AppData\\Local\\Temp\\desk-eval-dashboard-ops-northlight-1792370882693\\.desk\\jobs\\20261018-1950-install-team-ops-dashboard\\renders\\round-3\\empty\\desktop.png",
+      "pass": true,
+      "failures": []
+    }
+  ],
+  "screenshots": [
+    "C:\\Users\\adity\\AppData\\Local\\Temp\\desk-eval-dashboard-ops-northlight-1792370882693\\.desk\\jobs\\20261018-1950-install-team-ops-dashboard\\renders\\round-3\\empty\\desktop.png"
+  ]
+}

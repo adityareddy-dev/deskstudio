@@ -1,0 +1,12 @@
+{
+  "command": "design-system",
+  "ask": "extract tokens from tokens.css and write the design system",
+  "brand": "northlight",
+  "files": {
+    "src/tokens.css": "fixtures/tokens.css"
+  },
+  "rounds": 4,
+  "expect": {
+    "kind": "report"
+  }
+}

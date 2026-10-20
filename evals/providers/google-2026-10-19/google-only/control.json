@@ -1,0 +1,6 @@
+{
+  "models": {
+    "director": "google/flash-high",
+    "senior": "google/flash-low"
+  }
+}

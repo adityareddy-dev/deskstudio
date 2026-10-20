@@ -1,0 +1,1 @@
+{ "command": "design", "ask": "a LinkedIn card and an Instagram portrait card announcing a new battery option.", "brand": "northlight", "sizes": ["linkedin", "ig-post"], "mustAppear": ["Seven years to break even. Then free.", "Battery now included.", "northlight.energy"], "rounds": 6, "expect": { "pass": true, "minAverage": 8.5 } }

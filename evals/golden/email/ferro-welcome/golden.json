@@ -1,0 +1,33 @@
+{
+  "from": "evals/results/2026-10-19T00-30-31-studio-email-template-welcome-ferro/email-template-welcome-ferro",
+  "markedAt": "2026-10-19T00:51:23.229Z",
+  "deliverable": "email",
+  "sizes": [
+    "email-600"
+  ],
+  "quality": "studio",
+  "models": {
+    "director": "anthropic/opus",
+    "senior": "anthropic/sonnet",
+    "builder": "anthropic/haiku"
+  },
+  "rounds": 2,
+  "average": 8.8,
+  "axes": {
+    "hierarchy": 9,
+    "typography": 9,
+    "spacing": 9,
+    "colour": 9,
+    "composition": 9,
+    "originality": 8,
+    "brand": 9,
+    "copy": 8
+  },
+  "cost": {
+    "director": 0.8525,
+    "senior": 0.5381,
+    "builder": 0.0265,
+    "total": 1.4171,
+    "complete": true
+  }
+}

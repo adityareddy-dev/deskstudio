@@ -1,0 +1,13 @@
+{
+  "command": "social-content",
+  "ask": "carousel about why drafts beat versions, from this README --platform instagram",
+  "brand": "quill",
+  "files": {
+    "README.md": "brands/quill/DESIGN.md"
+  },
+  "rounds": 6,
+  "expect": {
+    "pass": true,
+    "minAverage": 8.5
+  }
+}

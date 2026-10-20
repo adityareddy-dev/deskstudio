@@ -1,0 +1,196 @@
+{
+  "id": "20261019-2225-northlight-battery-announcement-distinctive",
+  "command": "design",
+  "deliverable": "social-card",
+  "sizes": [
+    "linkedin",
+    "ig-post"
+  ],
+  "quality": "studio",
+  "models": {
+    "director": "openai/large",
+    "senior": "openai/mini",
+    "builder": "openai/mini"
+  },
+  "phase": "done",
+  "round": 2,
+  "maxRounds": 6,
+  "desks": [
+    {
+      "desk": "design-manager",
+      "task": "intake",
+      "status": "done",
+      "model": "openai/large",
+      "startedAt": "2026-10-19T22:25:21+00:00",
+      "updatedAt": "2026-10-19T22:25:37+00:00",
+      "via": "cli"
+    },
+    {
+      "desk": "ui-designer",
+      "task": "rough 1, editorial split",
+      "status": "done",
+      "model": "openai/mini",
+      "startedAt": "2026-10-19T22:25:37+00:00",
+      "updatedAt": "2026-10-19T22:26:21+00:00",
+      "via": "cli"
+    },
+    {
+      "desk": "ui-designer",
+      "task": "rough 2, full bleed with scrim",
+      "status": "done",
+      "model": "openai/mini",
+      "startedAt": "2026-10-19T22:25:37+00:00",
+      "updatedAt": "2026-10-19T22:26:19+00:00",
+      "via": "cli"
+    },
+    {
+      "desk": "ui-designer",
+      "task": "rough 3, type only",
+      "status": "done",
+      "model": "openai/mini",
+      "startedAt": "2026-10-19T22:25:37+00:00",
+      "updatedAt": "2026-10-19T22:26:16+00:00",
+      "via": "cli"
+    },
+    {
+      "desk": "art-director",
+      "task": "pick",
+      "status": "done",
+      "model": "openai/large",
+      "startedAt": "2026-10-19T22:26:27+00:00",
+      "updatedAt": "2026-10-19T22:26:46+00:00",
+      "via": "cli"
+    },
+    {
+      "desk": "ui-designer",
+      "task": "polish round 1",
+      "status": "done",
+      "model": "openai/mini",
+      "startedAt": "2026-10-19T22:26:47+00:00",
+      "updatedAt": "2026-10-19T22:27:02+00:00",
+      "via": "cli"
+    },
+    {
+      "desk": "ui-designer",
+      "task": "polish round 2",
+      "status": "done",
+      "model": "openai/mini",
+      "startedAt": "2026-10-19T22:27:03+00:00",
+      "updatedAt": "2026-10-19T22:27:17+00:00",
+      "via": "cli"
+    },
+    {
+      "desk": "creative-director",
+      "task": "sign-off round 2",
+      "status": "done",
+      "model": "openai/large",
+      "startedAt": "2026-10-19T22:27:19+00:00",
+      "updatedAt": "2026-10-19T22:27:33+00:00",
+      "via": "cli"
+    }
+  ],
+  "pick": {
+    "by": "art-director",
+    "rough": 3,
+    "pattern": "Type only",
+    "combineWith": null,
+    "reason": "Seven discrete markers make the payback count immediate, and the orange payoff gives Northlight the clearest two-second read.",
+    "lost": "1 the heavy horizontal rules overpower the payoff, 2 the dark field dominates and the timeline changes visual language between formats.",
+    "notes": [
+      "In portrait, extend all seven year markers from 80px to 240px tall, keeping their tops at y=368px and their current equal spacing. This fills the middle with the core idea, following the standard’s “owns the whole canvas” rule.",
+      "In portrait, move “Then free.” to a text-box top of y=656px, leaving 48px after the markers end so the payoff clearly follows year seven.",
+      "In portrait, move “Battery now included.” to a text-box top of y=816px, bringing supporting copy into the lower composition and eliminating the vacant middle-to-footer band."
+    ],
+    "at": "2026-10-19T22:26:46+00:00"
+  },
+  "proof": [
+    {
+      "round": 1,
+      "pass": false,
+      "failures": 1
+    },
+    {
+      "round": 2,
+      "pass": true,
+      "failures": 0
+    }
+  ],
+  "scores": [
+    {
+      "round": 2,
+      "by": "creative-director",
+      "axes": {
+        "hierarchy": 9,
+        "typography": 9,
+        "spacing": 9,
+        "colour": 9,
+        "composition": 8,
+        "originality": 8,
+        "brand": 9,
+        "copy": 9
+      },
+      "average": 8.75,
+      "pass": true,
+      "notes": [
+        "composition: In landscape, increase marker spacing from 48px to 64px and move “Then free.” from x=416px to x=512px, extending the central sequence across the canvas.",
+        "originality: In landscape, align all seven marker tops and bottoms with the visible capital height of “Then free.” so the count and payoff read as one typographic line."
+      ],
+      "polish": [
+        "Keep the portrait’s 240px markers and current text positions."
+      ]
+    }
+  ],
+  "waitingOn": null,
+  "cost": {
+    "director": 0.4334,
+    "senior": 0.1271,
+    "builder": 0.0602,
+    "total": 0.6207,
+    "complete": true
+  },
+  "tokens": {
+    "director": 69510,
+    "senior": 62375,
+    "builder": 44950
+  },
+  "files": {
+    "final": ".desk/out/20261019-2225-northlight-battery-announcement-distinctive/final.html",
+    "brief": ".desk/jobs/20261019-2225-northlight-battery-announcement-distinctive/brief.md",
+    "handback": ".desk/out/20261019-2225-northlight-battery-announcement-distinctive/handback.md"
+  },
+  "pen": "builder",
+  "notes": [
+    "proof safe-zone at ig-post: \"Seven years\" 80px from the top edge, the safe zone starts at 81px"
+  ],
+  "misses": {
+    "proof:safe-zone": 1
+  },
+  "startedAt": "2026-10-19T22:25:21+00:00",
+  "updatedAt": "2026-10-19T22:27:33+00:00",
+  "roughs": [
+    {
+      "n": 1,
+      "pattern": "Editorial split",
+      "file": ".desk/out/20261019-2225-northlight-battery-announcement-distinctive/rough-1.html",
+      "fonts": "Inter, runner-inlined; Arial fallback declared",
+      "renders": ".desk/jobs/20261019-2225-northlight-battery-announcement-distinctive/renders/roughs/rough-1"
+    },
+    {
+      "n": 2,
+      "pattern": "Full bleed with scrim",
+      "file": ".desk/out/20261019-2225-northlight-battery-announcement-distinctive/rough-2.html",
+      "fonts": "Inter, supplied by runner; Arial fallback declared",
+      "renders": ".desk/jobs/20261019-2225-northlight-battery-announcement-distinctive/renders/roughs/rough-2"
+    },
+    {
+      "n": 3,
+      "pattern": "Type only",
+      "file": ".desk/out/20261019-2225-northlight-battery-announcement-distinctive/rough-3.html",
+      "fonts": "Inter, runner-inlined; no fallback used",
+      "renders": ".desk/jobs/20261019-2225-northlight-battery-announcement-distinctive/renders/roughs/rough-3"
+    }
+  ],
+  "lastRenders": ".desk/jobs/20261019-2225-northlight-battery-announcement-distinctive/renders/round-2",
+  "penNotes": [],
+  "finishedAt": "2026-10-19T22:27:33+00:00"
+}

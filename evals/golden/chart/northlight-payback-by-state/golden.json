@@ -1,0 +1,33 @@
+{
+  "from": "evals/results/2026-10-19T00-30-31-studio-chart-payback-northlight/chart-payback-northlight",
+  "markedAt": "2026-10-19T00:46:15.944Z",
+  "deliverable": "chart",
+  "sizes": [
+    "slide"
+  ],
+  "quality": "studio",
+  "models": {
+    "director": "anthropic/opus",
+    "senior": "anthropic/sonnet",
+    "builder": "anthropic/haiku"
+  },
+  "rounds": 1,
+  "average": 8.6,
+  "axes": {
+    "hierarchy": 9,
+    "typography": 9,
+    "spacing": 8,
+    "colour": 9,
+    "composition": 8,
+    "originality": 8,
+    "brand": 9,
+    "copy": 9
+  },
+  "cost": {
+    "director": 0.2609,
+    "senior": 0.5509,
+    "builder": 0.0288,
+    "total": 0.8406,
+    "complete": true
+  }
+}

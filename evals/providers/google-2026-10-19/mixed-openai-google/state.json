@@ -1,0 +1,231 @@
+{
+  "id": "20261019-2351-northlight-battery-announcement-social",
+  "command": "design",
+  "deliverable": "social-card",
+  "sizes": [
+    "linkedin",
+    "ig-post"
+  ],
+  "quality": "studio",
+  "models": {
+    "director": "openai/large",
+    "senior": "google/flash",
+    "builder": "google/flash-low"
+  },
+  "phase": "done",
+  "round": 2,
+  "maxRounds": 6,
+  "desks": [
+    {
+      "desk": "design-manager",
+      "task": "intake",
+      "status": "done",
+      "model": "openai/large",
+      "startedAt": "2026-10-19T23:51:22+00:00",
+      "updatedAt": "2026-10-19T23:51:39+00:00",
+      "via": "cli"
+    },
+    {
+      "desk": "ui-designer",
+      "task": "rough 1, editorial split",
+      "status": "failed",
+      "model": "google/flash",
+      "startedAt": "2026-10-19T23:51:39+00:00",
+      "updatedAt": "2026-10-19T23:56:40+00:00"
+    },
+    {
+      "desk": "ui-designer",
+      "task": "rough 2, full bleed with scrim",
+      "status": "done",
+      "model": "google/flash",
+      "startedAt": "2026-10-19T23:51:39+00:00",
+      "updatedAt": "2026-10-19T23:51:56+00:00",
+      "via": "cli"
+    },
+    {
+      "desk": "ui-designer",
+      "task": "rough 3, type only",
+      "status": "failed",
+      "model": "google/flash",
+      "startedAt": "2026-10-19T23:51:39+00:00",
+      "updatedAt": "2026-10-19T23:51:39+00:00"
+    },
+    {
+      "desk": "ui-designer",
+      "task": "rough 1, editorial split",
+      "status": "done",
+      "model": "google/flash",
+      "startedAt": "2026-10-19T23:57:32+00:00",
+      "updatedAt": "2026-10-20T00:02:23+00:00",
+      "via": "cli"
+    },
+    {
+      "desk": "ui-designer",
+      "task": "rough 2, full bleed with scrim",
+      "status": "done",
+      "model": "google/flash",
+      "startedAt": "2026-10-19T23:57:34+00:00",
+      "updatedAt": "2026-10-20T00:03:33+00:00",
+      "via": "cli"
+    },
+    {
+      "desk": "ui-designer",
+      "task": "rough 3, type only",
+      "status": "done",
+      "model": "google/flash",
+      "startedAt": "2026-10-19T23:57:34+00:00",
+      "updatedAt": "2026-10-20T00:03:21+00:00",
+      "via": "cli"
+    },
+    {
+      "desk": "art-director",
+      "task": "pick",
+      "status": "done",
+      "model": "openai/large",
+      "startedAt": "2026-10-20T00:03:39+00:00",
+      "updatedAt": "2026-10-20T00:03:56+00:00",
+      "via": "cli"
+    },
+    {
+      "desk": "ui-designer",
+      "task": "polish round 1",
+      "status": "failed",
+      "model": "google/flash-low",
+      "startedAt": "2026-10-20T00:03:56+00:00",
+      "updatedAt": "2026-10-20T00:03:56+00:00"
+    },
+    {
+      "desk": "ui-designer",
+      "task": "polish round 1",
+      "status": "done",
+      "model": "google/flash-low",
+      "startedAt": "2026-10-20T00:09:53+00:00",
+      "updatedAt": "2026-10-20T00:10:13+00:00",
+      "via": "cli"
+    },
+    {
+      "desk": "ui-designer",
+      "task": "polish round 2",
+      "status": "done",
+      "model": "google/flash-low",
+      "startedAt": "2026-10-20T00:10:15+00:00",
+      "updatedAt": "2026-10-20T00:10:34+00:00",
+      "via": "cli"
+    },
+    {
+      "desk": "creative-director",
+      "task": "sign-off round 2",
+      "status": "done",
+      "model": "openai/large",
+      "startedAt": "2026-10-20T00:10:35+00:00",
+      "updatedAt": "2026-10-20T00:10:51+00:00",
+      "via": "cli"
+    }
+  ],
+  "pick": {
+    "by": "art-director",
+    "rough": 3,
+    "pattern": "Type only",
+    "combineWith": null,
+    "reason": "The timeline connects the claim to the payoff immediately, with the strongest hierarchy across both formats.",
+    "lost": "1 delays the portrait headline with excessive top space, 2 reads as an unlabelled growth chart rather than a seven-year interval.",
+    "notes": [
+      "On portrait, extend the seven markers from y=328 to y=648, keeping their existing horizontal positions and moving the baseline to y=648; this fills the vacant middle band required by the social-card composition standard.",
+      "On portrait, move “Then free.” to top=704px, retaining its left alignment with the seventh marker at x=464px.",
+      "Set the seventh marker and “Then free.” to the exact brand orange #d9480f in both formats, treating them as one connected payoff.",
+      "Set “northlight.energy.” to weight 400 in both formats; the brief specifies supporting weight 400."
+    ],
+    "at": "2026-10-20T00:03:56+00:00"
+  },
+  "proof": [
+    {
+      "round": 1,
+      "pass": false,
+      "failures": 1
+    },
+    {
+      "round": 2,
+      "pass": true,
+      "failures": 0
+    }
+  ],
+  "scores": [
+    {
+      "round": 2,
+      "by": "creative-director",
+      "axes": {
+        "hierarchy": 9,
+        "typography": 9,
+        "spacing": 8,
+        "colour": 9,
+        "composition": 8,
+        "originality": 9,
+        "brand": 9,
+        "copy": 9
+      },
+      "average": 8.75,
+      "pass": true,
+      "notes": [
+        "spacing: On portrait, reduce the visible gap between the timeline baseline and “Then free.” from approximately 70px to 48px.",
+        "composition: Move the portrait footer group up 64px, preserving its left edge and internal spacing, to tighten the connection between payoff and battery announcement."
+      ],
+      "polish": [
+        "Keep the landscape layout as rendered."
+      ]
+    }
+  ],
+  "waitingOn": null,
+  "cost": {
+    "director": 0.452,
+    "senior": 0.5531,
+    "builder": 0.0554,
+    "total": 1.0605,
+    "complete": false
+  },
+  "tokens": {
+    "director": 71058,
+    "senior": 178759,
+    "builder": 58893
+  },
+  "files": {
+    "final": ".desk/out/20261019-2351-northlight-battery-announcement-social/final.html",
+    "brief": ".desk/jobs/20261019-2351-northlight-battery-announcement-social/brief.md",
+    "handback": ".desk/out/20261019-2351-northlight-battery-announcement-social/handback.md"
+  },
+  "pen": "builder",
+  "notes": [
+    "proof safe-zone at ig-post: \"Seven years to break even.\" 72px from the top edge, the safe zone starts at 81px"
+  ],
+  "misses": {
+    "proof:safe-zone": 1
+  },
+  "startedAt": "2026-10-19T23:51:21+00:00",
+  "updatedAt": "2026-10-20T00:10:51+00:00",
+  "roughs": [
+    {
+      "n": 1,
+      "pattern": "Editorial split",
+      "file": ".desk/out/20261019-2351-northlight-battery-announcement-social/rough-1.html",
+      "fonts": "Inter, Arial, sans-serif",
+      "renders": ".desk/jobs/20261019-2351-northlight-battery-announcement-social/renders/roughs/rough-1"
+    },
+    {
+      "n": 2,
+      "pattern": "Full bleed with scrim",
+      "file": ".desk/out/20261019-2351-northlight-battery-announcement-social/rough-2.html",
+      "fonts": "Inter, declared fallback Arial",
+      "renders": ".desk/jobs/20261019-2351-northlight-battery-announcement-social/renders/roughs/rough-2"
+    },
+    {
+      "n": 3,
+      "pattern": "Type only",
+      "file": ".desk/out/20261019-2351-northlight-battery-announcement-social/rough-3.html",
+      "fonts": "Inter, not fallback",
+      "renders": ".desk/jobs/20261019-2351-northlight-battery-announcement-social/renders/roughs/rough-3"
+    }
+  ],
+  "next": "roughs",
+  "lastRenders": ".desk/jobs/20261019-2351-northlight-battery-announcement-social/renders/round-2",
+  "penNotes": [],
+  "finishedAt": "2026-10-20T00:10:51+00:00"
+}

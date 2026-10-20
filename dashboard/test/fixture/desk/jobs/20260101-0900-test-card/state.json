@@ -1,0 +1,98 @@
+{
+  "id": "20260101-0900-test-card",
+  "command": "design",
+  "deliverable": "social-card",
+  "sizes": [
+    "linkedin"
+  ],
+  "quality": "studio",
+  "models": {
+    "director": "anthropic/opus",
+    "senior": "anthropic/sonnet",
+    "builder": "anthropic/haiku"
+  },
+  "phase": "polish",
+  "round": 1,
+  "maxRounds": 8,
+  "desks": [
+    {
+      "desk": "ui-designer",
+      "task": "rough 1, type only",
+      "status": "done",
+      "model": "anthropic/sonnet",
+      "startedAt": "2026-01-01T15:00:10.000Z",
+      "updatedAt": "2026-01-01T15:00:20.000Z"
+    },
+    {
+      "desk": "ui-designer",
+      "task": "rough 2, editorial split",
+      "status": "done",
+      "model": "anthropic/sonnet"
+    },
+    {
+      "desk": "art-director",
+      "task": "pick",
+      "status": "done",
+      "model": "anthropic/opus"
+    },
+    {
+      "desk": "ui-designer",
+      "task": "polish round 1",
+      "status": "working",
+      "model": "anthropic/haiku",
+      "startedAt": "2026-01-01T15:01:45.000Z"
+    }
+  ],
+  "pick": {
+    "by": "art-director",
+    "rough": 2,
+    "reason": "Strongest hierarchy.",
+    "notes": [
+      "headline up 24px",
+      "one weight for the mark"
+    ]
+  },
+  "proof": [
+    {
+      "round": 1,
+      "pass": false,
+      "failures": 2
+    }
+  ],
+  "scores": [
+    {
+      "round": 1,
+      "by": "creative-director",
+      "axes": {
+        "hierarchy": 8,
+        "typography": 7,
+        "spacing": 8,
+        "colour": 9,
+        "composition": 8,
+        "originality": 7,
+        "brand": 9,
+        "copy": 8
+      },
+      "average": 8,
+      "pass": false
+    }
+  ],
+  "waitingOn": null,
+  "cost": {
+    "director": 0.12,
+    "senior": 0.08,
+    "builder": 0.01,
+    "total": 0.21,
+    "complete": false
+  },
+  "files": {
+    "final": ".desk/out/20260101-0900-test-card/final.html"
+  },
+  "startedAt": "2026-01-01T09:00:00-06:00",
+  "updatedAt": "2026-01-01T09:01:05-06:00",
+  "tokens": {
+    "director": 0,
+    "senior": 0,
+    "builder": 12000
+  }
+}

@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<title>Desk Studio floor</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect y='18' width='24' height='6' fill='%23f4f0e8'/%3E%3Ccircle cx='17' cy='10' r='4' fill='%23ffaa1c'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <div class="brand">
+    <svg class="mark" viewBox="0 0 24 24" aria-hidden="true"><rect y="18" width="24" height="6"/><circle cx="17" cy="10" r="4"/></svg>
+    <strong>Desk Studio</strong>
+    <span class="muted" id="projectName"></span>
+  </div>
+  <div class="top-right">
+    <label class="jobpick"><span class="muted">Job</span> <select id="jobSelect" aria-label="Job"></select></label>
+    <span id="conn" class="dot" title="Not connected"></span>
+    <button id="scheme" class="ghost small" type="button">Light</button>
+  </div>
+</header>
+
+<main class="layout">
+  <section id="banner" class="banner" hidden></section>
+  <section class="panel job" id="job"><div class="panel-head"><h2>Job</h2></div><p class="muted">Loading.</p></section>
+  <section class="panel floor" id="floor"><div class="panel-head"><h2>The floor</h2></div><p class="muted">Loading.</p></section>
+  <section class="panel board" id="board"><div class="panel-head"><h2>Review board</h2></div><p class="muted">Loading.</p></section>
+  <section class="panel memory" id="memory"><div class="panel-head"><h2>Memory</h2></div><p class="muted">Loading.</p></section>
+  <section class="panel feed" id="feed"><div class="panel-head"><h2>Events</h2></div><p class="muted">Loading.</p></section>
+</main>
+
+<aside id="sheet" class="sheet" hidden></aside>
+<div id="toast" class="toast" role="status" hidden></div>
+
+<script src="app.js"></script>
+</body>
+</html>

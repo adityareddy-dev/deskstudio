@@ -1,0 +1,33 @@
+{
+  "from": "evals/results/2026-10-19T01-23-09-studio-motion-sting-quill/motion-sting-quill",
+  "markedAt": "2026-10-19T02:03:53.259Z",
+  "deliverable": "motion-clip",
+  "sizes": [
+    "slide"
+  ],
+  "quality": "studio",
+  "models": {
+    "director": "anthropic/opus",
+    "senior": "anthropic/sonnet",
+    "builder": "anthropic/haiku"
+  },
+  "rounds": 2,
+  "average": 9,
+  "axes": {
+    "hierarchy": 9,
+    "typography": 9,
+    "spacing": 9,
+    "colour": 9,
+    "composition": 9,
+    "originality": 9,
+    "brand": 9,
+    "copy": 9
+  },
+  "cost": {
+    "director": 2.3063,
+    "senior": 0.8875,
+    "builder": 0.1411,
+    "total": 3.3349,
+    "complete": true
+  }
+}

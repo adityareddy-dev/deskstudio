@@ -1,0 +1,2 @@
+:root{--bg:#f7f5f0;--fg:#161614;--brand:#d9480f;--brand-2:#f08c4b;--gray:#6b6a66;--panel:#ebe8e0;--radius:4px;--space-1:8px;--space-2:16px;--space-3:24px;--font:"Inter",Arial,sans-serif}
+h1{font-size:40px;font-weight:600}h2{font-size:28px}p{font-size:16px;line-height:1.5;color:#161614}.btn{background:#d9480f;color:#fff;padding:12px 20px;border-radius:4px}.card{background:#ebe8e0;padding:15px;border-radius:6px;box-shadow:0 2px 8px rgba(0,0,0,.15)}.muted{color:#999}

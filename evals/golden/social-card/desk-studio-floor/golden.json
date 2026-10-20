@@ -1,0 +1,37 @@
+{
+  "from": "C:\\Users\\adity\\AppData\\Local\\Temp/own/floor-card",
+  "markedAt": "2026-10-19T15:41:49.913Z",
+  "deliverable": "social-card",
+  "sizes": [
+    "linkedin",
+    "ig-post"
+  ],
+  "quality": "studio",
+  "models": {
+    "director": "anthropic/opus",
+    "senior": "anthropic/sonnet",
+    "builder": "anthropic/sonnet"
+  },
+  "rounds": 2,
+  "average": 8.5,
+  "axes": {
+    "hierarchy": 9,
+    "typography": 8,
+    "spacing": 8,
+    "colour": 9,
+    "composition": 8,
+    "originality": 8,
+    "brand": 9,
+    "copy": 9
+  },
+  "cost": {
+    "director": 1.4966,
+    "senior": 0.2367,
+    "builder": 0.6529,
+    "total": 2.3862,
+    "complete": true
+  },
+  "command": "design",
+  "brand": "Desk Studio",
+  "note": "A job steered from the floor: pick, seat swap and note (clips/fixtures/controls)."
+}

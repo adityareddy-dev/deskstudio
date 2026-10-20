@@ -1,0 +1,13 @@
+{
+  "command": "email-template",
+  "ask": "welcome email for new Ferro mill owners, one CTA to the setup guide",
+  "brand": "ferro",
+  "mustAppear": [
+    "Steel, not plastic."
+  ],
+  "rounds": 6,
+  "expect": {
+    "pass": true,
+    "minAverage": 8.5
+  }
+}

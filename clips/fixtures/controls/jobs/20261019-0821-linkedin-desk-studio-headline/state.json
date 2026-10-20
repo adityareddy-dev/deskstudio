@@ -1,0 +1,201 @@
+{
+  "id": "20261019-0821-linkedin-desk-studio-headline",
+  "command": "design",
+  "deliverable": "social-card",
+  "sizes": [
+    "linkedin",
+    "ig-post"
+  ],
+  "quality": "studio",
+  "models": {
+    "director": "anthropic/opus",
+    "senior": "anthropic/sonnet",
+    "builder": "anthropic/sonnet"
+  },
+  "phase": "done",
+  "round": 2,
+  "maxRounds": 4,
+  "desks": [
+    {
+      "desk": "design-manager",
+      "task": "intake",
+      "status": "done",
+      "model": "anthropic/opus",
+      "startedAt": "2026-10-19T08:21:48-05:00",
+      "updatedAt": "2026-10-19T08:22:12-05:00",
+      "via": "cli"
+    },
+    {
+      "desk": "ui-designer",
+      "task": "rough 1, editorial split",
+      "status": "done",
+      "model": "anthropic/sonnet",
+      "startedAt": "2026-10-19T08:22:12-05:00",
+      "updatedAt": "2026-10-19T08:22:54-05:00",
+      "via": "cli"
+    },
+    {
+      "desk": "ui-designer",
+      "task": "rough 2, full bleed with scrim",
+      "status": "done",
+      "model": "anthropic/sonnet",
+      "startedAt": "2026-10-19T08:22:12-05:00",
+      "updatedAt": "2026-10-19T08:22:41-05:00",
+      "via": "cli"
+    },
+    {
+      "desk": "ui-designer",
+      "task": "rough 3, type only",
+      "status": "done",
+      "model": "anthropic/sonnet",
+      "startedAt": "2026-10-19T08:22:12-05:00",
+      "updatedAt": "2026-10-19T08:22:45-05:00",
+      "via": "cli"
+    },
+    {
+      "desk": "art-director",
+      "task": "pick",
+      "status": "done",
+      "model": "anthropic/opus",
+      "startedAt": "2026-10-19T08:23:03-05:00",
+      "updatedAt": "2026-10-19T08:23:47-05:00",
+      "via": "cli"
+    },
+    {
+      "desk": "ui-designer",
+      "task": "polish round 1",
+      "status": "done",
+      "model": "anthropic/sonnet",
+      "startedAt": "2026-10-19T08:23:48-05:00",
+      "updatedAt": "2026-10-19T08:24:22-05:00",
+      "via": "cli"
+    },
+    {
+      "desk": "ui-designer",
+      "task": "polish round 2",
+      "status": "done",
+      "model": "anthropic/sonnet",
+      "startedAt": "2026-10-19T08:24:24-05:00",
+      "updatedAt": "2026-10-19T08:24:46-05:00",
+      "via": "cli"
+    },
+    {
+      "desk": "creative-director",
+      "task": "sign-off round 2",
+      "status": "done",
+      "model": "anthropic/opus",
+      "startedAt": "2026-10-19T08:24:48-05:00",
+      "updatedAt": "2026-10-19T08:25:25-05:00",
+      "via": "cli"
+    }
+  ],
+  "pick": {
+    "by": "user",
+    "rough": 2,
+    "pattern": "Full bleed with scrim",
+    "combineWith": null,
+    "reason": "the user's call",
+    "lost": "1 has the best floor, but on ig-post its grid of slabs-in-boxes reads as a list and not as desks. 3 is strong type, but it has no floor, so the claim has nothing to stand on.",
+    "notes": [
+      "On linkedin, raise the headline from about 72px to 95px (a brand-scale step). Break it after \"run\" so it reads \"You run / the floor.\" on two lines, line height 1.0, tracking -0.02em. Keep the left edge at 72px and put the second line's baseline 64px above the bottom edge. The panel already has room for two lines, and the empty space above the headline becomes type (standard: the headline should read with a thumb over the card).",
+      "On ig-post, keep the headline at 119px and line height 1.0, but move the break to after \"run\" so it reads \"You run / the floor.\", the same as linkedin. \"You run the / floor.\" leaves \"floor.\" alone on its own line and splits the claim in the wrong place.",
+      "Snap the headline panel to the grid gutters so no desk is cut in half at its edge. On linkedin, the panel covers columns 1–5 and rows 4–6 exactly, with its right edge and top edge each sitting in a gutter. On ig-post, it covers columns 1–6 and rows 1–2 exactly, with the right edge in the gutter after column 6 and the bottom edge in the gutter under row 2. The panel stays a solid background fill, so the grid never runs behind text (DESIGN: don't tile the 42-desk grid behind text).",
+      "Snap the mark block to the grid the same way, with no border of its own. On linkedin it covers row 1, columns 6–7 exactly. On ig-post it covers row 6, columns 6–7 exactly. Inside the block, the mark sits 24px from the block's top and left edges, mark height 24px, with the label 16px to its right at 20px in muted. On ig-post the whole group must stay above y=1215, the 10% bottom safe zone.",
+      "Keep the amber disc in the mark as the card's only accent and leave every desk lamp muted. If any lamp in the grid renders amber, set it to muted #9a948a (DESIGN: one accent, on the one thing to look at)."
+    ],
+    "at": "2026-10-19T08:23:47-05:00"
+  },
+  "proof": [
+    {
+      "round": 1,
+      "pass": false,
+      "failures": 1
+    },
+    {
+      "round": 2,
+      "pass": true,
+      "failures": 0
+    }
+  ],
+  "scores": [
+    {
+      "round": 2,
+      "by": "creative-director",
+      "axes": {
+        "hierarchy": 9,
+        "typography": 8,
+        "spacing": 8,
+        "colour": 9,
+        "composition": 8,
+        "originality": 8,
+        "brand": 9,
+        "copy": 9
+      },
+      "average": 8.5,
+      "pass": true,
+      "notes": [
+        "typography: The headline is too small for its panel. On linkedin, take it from 95px to 119px. Keep the \"You run / the floor.\" break, line height 1.0 and tracking -0.02em, keep the left edge at x=72, and put the second baseline 64px above the panel's bottom edge. On ig-post, take it from 119px to 149px with the same break and keep the left edge at x=72.",
+        "spacing: On linkedin there are short vertical stubs under row 3 at about x=175, 345, 515 and 685, running into the gutter above the headline panel. Remove them so that gutter is a clean 8px of background, the same as every other gutter.",
+        "composition: On ig-post there is about 128px of dead space under \"the floor.\" inside the panel. At 149px, place the headline so the cap top of \"You\" sits 64px below the panel's top edge, which leaves about 70px under the second line. Top and bottom insets then match and the block fills the panel.",
+        "originality: Make the headline panel read as the biggest desk on the floor. Give it the same 8px muted #9a948a lamp at the same 12px top-left inset as every other desk, on both sizes. Do not use amber, and change nothing else in the panel."
+      ],
+      "polish": [
+        "Put the mark at the same place in its block on both sizes: 24px from the block's top and left edges, as the Art Director asked. On linkedin it currently sits vertically centred in the block."
+      ]
+    }
+  ],
+  "waitingOn": null,
+  "cost": {
+    "director": 1.4966,
+    "senior": 0.2367,
+    "builder": 0.6529,
+    "total": 2.3862,
+    "complete": true
+  },
+  "tokens": {
+    "director": 290550,
+    "senior": 39943,
+    "builder": 154212
+  },
+  "files": {
+    "final": ".desk/out/20261019-0821-linkedin-desk-studio-headline/final.html",
+    "brief": ".desk/jobs/20261019-0821-linkedin-desk-studio-headline/brief.md",
+    "handback": ".desk/out/20261019-0821-linkedin-desk-studio-headline/handback.md"
+  },
+  "pen": "builder",
+  "notes": [
+    "proof safe-zone at linkedin: \"deskstudio.ai\" 32px from the top edge, the safe zone starts at 38px"
+  ],
+  "misses": {
+    "proof:safe-zone": 1
+  },
+  "startedAt": "2026-10-19T08:21:48-05:00",
+  "updatedAt": "2026-10-19T08:25:25-05:00",
+  "roughs": [
+    {
+      "n": 1,
+      "pattern": "Editorial split",
+      "file": ".desk/out/20261019-0821-linkedin-desk-studio-headline/rough-1.html",
+      "fonts": "Inter, inlined by the runner, not a fallback",
+      "renders": ".desk/jobs/20261019-0821-linkedin-desk-studio-headline/renders/roughs/rough-1"
+    },
+    {
+      "n": 2,
+      "pattern": "Full bleed with scrim",
+      "file": ".desk/out/20261019-0821-linkedin-desk-studio-headline/rough-2.html",
+      "fonts": "Inter, inlined by the runner, not a fallback",
+      "renders": ".desk/jobs/20261019-0821-linkedin-desk-studio-headline/renders/roughs/rough-2"
+    },
+    {
+      "n": 3,
+      "pattern": "Type only",
+      "file": ".desk/out/20261019-0821-linkedin-desk-studio-headline/rough-3.html",
+      "fonts": "Inter, inlined by the runner, not a fallback",
+      "renders": ".desk/jobs/20261019-0821-linkedin-desk-studio-headline/renders/roughs/rough-3"
+    }
+  ],
+  "next": "pick",
+  "lastRenders": ".desk/jobs/20261019-0821-linkedin-desk-studio-headline/renders/round-2",
+  "penNotes": [],
+  "finishedAt": "2026-10-19T08:25:25-05:00"
+}

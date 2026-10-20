@@ -1,0 +1,36 @@
+{"t":"2026-10-19T13:21:48.968Z","type":"job.start","id":"20261019-0821-linkedin-desk-studio-headline","command":"design","deliverable":"social-card"}
+{"t":"2026-10-19T13:21:49.031Z","type":"desk.start","id":"20261019-0821-linkedin-desk-studio-headline","desk":"design-manager","model":"anthropic/opus","tier":"director","task":"intake"}
+{"t":"2026-10-19T13:22:12.086Z","type":"desk.stop","id":"20261019-0821-linkedin-desk-studio-headline","desk":"design-manager","tier":"director","status":"done","seconds":23,"model":"anthropic/opus","modelId":"claude-opus-5-5","tokens":{"input":2,"output":1416,"cacheRead":0,"cacheWrite":12744,"total":14162},"costUsd":0.13028}
+{"t":"2026-10-19T13:22:12.136Z","type":"job.phase","id":"20261019-0821-linkedin-desk-studio-headline","phase":"roughs","round":0}
+{"t":"2026-10-19T13:22:12.278Z","type":"desk.start","id":"20261019-0821-linkedin-desk-studio-headline","desk":"ui-designer","model":"anthropic/sonnet","tier":"senior","task":"rough 1, editorial split"}
+{"t":"2026-10-19T13:22:12.344Z","type":"desk.start","id":"20261019-0821-linkedin-desk-studio-headline","desk":"ui-designer","model":"anthropic/sonnet","tier":"senior","task":"rough 2, full bleed with scrim"}
+{"t":"2026-10-19T13:22:12.423Z","type":"desk.start","id":"20261019-0821-linkedin-desk-studio-headline","desk":"ui-designer","model":"anthropic/sonnet","tier":"senior","task":"rough 3, type only"}
+{"t":"2026-10-19T13:22:12.834Z","type":"control.pause","id":"20261019-0821-linkedin-desk-studio-headline","paused":true}
+{"t":"2026-10-19T13:22:41.965Z","type":"desk.stop","id":"20261019-0821-linkedin-desk-studio-headline","desk":"ui-designer","tier":"senior","status":"done","seconds":30,"model":"anthropic/sonnet","modelId":"claude-sonnet-5-5","tokens":{"input":2,"output":3908,"cacheRead":0,"cacheWrite":9036,"total":12946},"costUsd":0.075228}
+{"t":"2026-10-19T13:22:45.258Z","type":"desk.stop","id":"20261019-0821-linkedin-desk-studio-headline","desk":"ui-designer","tier":"senior","status":"done","seconds":33,"model":"anthropic/sonnet","modelId":"claude-sonnet-5-5","tokens":{"input":2,"output":3331,"cacheRead":0,"cacheWrite":9030,"total":12363},"costUsd":0.069434}
+{"t":"2026-10-19T13:22:54.943Z","type":"desk.stop","id":"20261019-0821-linkedin-desk-studio-headline","desk":"ui-designer","tier":"senior","status":"done","seconds":43,"model":"anthropic/sonnet","modelId":"claude-sonnet-5-5","tokens":{"input":2,"output":5600,"cacheRead":0,"cacheWrite":9032,"total":14634},"costUsd":0.09213199999999999}
+{"t":"2026-10-19T13:22:58.521Z","type":"job.phase","id":"20261019-0821-linkedin-desk-studio-headline","phase":"pick","round":0}
+{"t":"2026-10-19T13:22:58.579Z","type":"job.phase","id":"20261019-0821-linkedin-desk-studio-headline","phase":"paused","round":0}
+{"t":"2026-10-19T13:22:58.600Z","type":"control.pick","id":"20261019-0821-linkedin-desk-studio-headline","rough":2}
+{"t":"2026-10-19T13:22:59.801Z","type":"control.models","id":"20261019-0821-linkedin-desk-studio-headline","scope":"job","builder":"anthropic/sonnet"}
+{"t":"2026-10-19T13:23:01.008Z","type":"control.note","id":"20261019-0821-linkedin-desk-studio-headline","desk":"ui-designer","chars":46}
+{"t":"2026-10-19T13:23:02.213Z","type":"control.pause","id":"20261019-0821-linkedin-desk-studio-headline","paused":false}
+{"t":"2026-10-19T13:23:03.551Z","type":"desk.start","id":"20261019-0821-linkedin-desk-studio-headline","desk":"art-director","model":"anthropic/opus","tier":"director","task":"pick"}
+{"t":"2026-10-19T13:23:47.933Z","type":"desk.stop","id":"20261019-0821-linkedin-desk-studio-headline","desk":"art-director","tier":"director","status":"done","seconds":44,"model":"anthropic/opus","modelId":"claude-opus-5-5","tokens":{"input":2,"output":3469,"cacheRead":0,"cacheWrite":137300,"total":140771},"costUsd":1.167788}
+{"t":"2026-10-19T13:23:47.981Z","type":"job.pick","id":"20261019-0821-linkedin-desk-studio-headline","by":"user","rough":2}
+{"t":"2026-10-19T13:23:48.035Z","type":"job.phase","id":"20261019-0821-linkedin-desk-studio-headline","phase":"polish","round":1}
+{"t":"2026-10-19T13:23:48.187Z","type":"desk.start","id":"20261019-0821-linkedin-desk-studio-headline","desk":"ui-designer","model":"anthropic/sonnet","tier":"builder","task":"polish round 1"}
+{"t":"2026-10-19T13:24:22.811Z","type":"desk.stop","id":"20261019-0821-linkedin-desk-studio-headline","desk":"ui-designer","tier":"builder","status":"done","seconds":35,"model":"anthropic/sonnet","modelId":"claude-sonnet-5-5","tokens":{"input":2,"output":4552,"cacheRead":0,"cacheWrite":133572,"total":138126},"costUsd":0.579812}
+{"t":"2026-10-19T13:24:22.858Z","type":"job.phase","id":"20261019-0821-linkedin-desk-studio-headline","phase":"proof","round":1}
+{"t":"2026-10-19T13:24:24.177Z","type":"job.proof","id":"20261019-0821-linkedin-desk-studio-headline","round":1,"pass":false,"failures":1}
+{"t":"2026-10-19T13:24:24.231Z","type":"job.phase","id":"20261019-0821-linkedin-desk-studio-headline","phase":"polish","round":2}
+{"t":"2026-10-19T13:24:24.285Z","type":"desk.start","id":"20261019-0821-linkedin-desk-studio-headline","desk":"ui-designer","model":"anthropic/sonnet","tier":"builder","task":"polish round 2"}
+{"t":"2026-10-19T13:24:46.819Z","type":"desk.stop","id":"20261019-0821-linkedin-desk-studio-headline","desk":"ui-designer","tier":"builder","status":"done","seconds":23,"model":"anthropic/sonnet","modelId":"claude-sonnet-5-5","tokens":{"input":2,"output":2376,"cacheRead":1401,"cacheWrite":12307,"total":16086},"costUsd":0.0731321}
+{"t":"2026-10-19T13:24:46.865Z","type":"job.phase","id":"20261019-0821-linkedin-desk-studio-headline","phase":"proof","round":2}
+{"t":"2026-10-19T13:24:48.198Z","type":"job.proof","id":"20261019-0821-linkedin-desk-studio-headline","round":2,"pass":true,"failures":0}
+{"t":"2026-10-19T13:24:48.244Z","type":"job.phase","id":"20261019-0821-linkedin-desk-studio-headline","phase":"signoff","round":2}
+{"t":"2026-10-19T13:24:48.294Z","type":"desk.start","id":"20261019-0821-linkedin-desk-studio-headline","desk":"creative-director","model":"anthropic/opus","tier":"director","task":"sign-off round 2"}
+{"t":"2026-10-19T13:25:25.468Z","type":"desk.stop","id":"20261019-0821-linkedin-desk-studio-headline","desk":"creative-director","tier":"director","status":"done","seconds":37,"model":"anthropic/opus","modelId":"claude-opus-5-5","tokens":{"input":2,"output":2952,"cacheRead":118191,"cacheWrite":14472,"total":135617},"costUsd":0.1984622}
+{"t":"2026-10-19T13:25:25.516Z","type":"job.score","id":"20261019-0821-linkedin-desk-studio-headline","round":2,"average":8.5,"pass":true}
+{"t":"2026-10-19T13:25:25.570Z","type":"job.phase","id":"20261019-0821-linkedin-desk-studio-headline","phase":"handback","round":2}
+{"t":"2026-10-19T13:25:25.624Z","type":"job.done","id":"20261019-0821-linkedin-desk-studio-headline","rounds":2,"average":8.5,"pass":true}

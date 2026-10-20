@@ -1,0 +1,137 @@
+{
+  "id": "20261018-1931-battery-launch-linkedin",
+  "command": "social-content",
+  "deliverable": "social-card",
+  "sizes": [
+    "linkedin",
+    "ig-square"
+  ],
+  "quality": "studio",
+  "models": {
+    "director": "anthropic/opus",
+    "senior": "anthropic/sonnet",
+    "builder": "anthropic/haiku"
+  },
+  "phase": "done",
+  "round": 1,
+  "maxRounds": 6,
+  "desks": [
+    {
+      "desk": "social-media-copywriter",
+      "task": "on-card copy and caption",
+      "status": "done",
+      "model": "anthropic/haiku",
+      "startedAt": "2026-10-19T00:31:43.333Z",
+      "updatedAt": "2026-10-19T00:32:42.186Z"
+    },
+    {
+      "desk": "copy-editor",
+      "task": "copy pass",
+      "status": "done",
+      "model": "anthropic/sonnet",
+      "startedAt": "2026-10-19T00:32:42.293Z",
+      "updatedAt": "2026-10-19T00:33:36.977Z"
+    },
+    {
+      "desk": "ui-designer",
+      "task": "rough 1, editorial split",
+      "status": "done",
+      "model": "anthropic/sonnet",
+      "startedAt": "2026-10-19T00:33:37.238Z",
+      "updatedAt": "2026-10-19T00:34:32.582Z"
+    },
+    {
+      "desk": "ui-designer",
+      "task": "rough 2, type only",
+      "status": "done",
+      "model": "anthropic/sonnet",
+      "startedAt": "2026-10-19T00:33:37.294Z",
+      "updatedAt": "2026-10-19T00:34:40.965Z"
+    },
+    {
+      "desk": "ui-designer",
+      "task": "rough 3, frame",
+      "status": "done",
+      "model": "anthropic/sonnet",
+      "startedAt": "2026-10-19T00:33:37.352Z",
+      "updatedAt": "2026-10-19T00:34:41.018Z"
+    },
+    {
+      "desk": "art-director",
+      "task": "pick",
+      "status": "done",
+      "model": "anthropic/opus",
+      "startedAt": "2026-10-19T00:34:49.315Z",
+      "updatedAt": "2026-10-19T00:37:54.710Z"
+    },
+    {
+      "desk": "ui-designer",
+      "task": "polish round 1",
+      "status": "done",
+      "model": "anthropic/haiku",
+      "startedAt": "2026-10-19T00:37:55.105Z",
+      "updatedAt": "2026-10-19T00:40:01.901Z"
+    },
+    {
+      "desk": "creative-director",
+      "task": "sign-off round 1",
+      "status": "done",
+      "model": "anthropic/opus",
+      "startedAt": "2026-10-19T00:40:09.181Z",
+      "updatedAt": "2026-10-19T00:43:43.826Z"
+    }
+  ],
+  "pick": {
+    "by": "art-director",
+    "rough": 2,
+    "reason": "Reads in two seconds at both sizes, one headline, accent only on the payoff",
+    "at": "2026-10-19T00:37:54.765Z"
+  },
+  "proof": [
+    {
+      "round": 1,
+      "pass": true,
+      "failures": 0
+    }
+  ],
+  "scores": [
+    {
+      "round": 1,
+      "by": "creative-director",
+      "average": 8.6,
+      "pass": true,
+      "axes": {
+        "hierarchy": 9,
+        "typography": 9,
+        "spacing": 9,
+        "colour": 9,
+        "composition": 8,
+        "originality": 8,
+        "brand": 9,
+        "copy": 8
+      }
+    }
+  ],
+  "waitingOn": null,
+  "cost": {
+    "director": 0.2318,
+    "senior": 0.3962,
+    "builder": 0.0236,
+    "total": 0.6516,
+    "complete": true
+  },
+  "tokens": {
+    "director": 105358,
+    "senior": 418760,
+    "builder": 526232
+  },
+  "files": {
+    "copy": ".desk/jobs/20261018-1931-battery-launch-linkedin/copy.md",
+    "final": ".desk/out/20261018-1931-battery-launch-linkedin/final.html",
+    "caption": ".desk/out/20261018-1931-battery-launch-linkedin/caption.md",
+    "renders": ".desk/out/20261018-1931-battery-launch-linkedin/renders"
+  },
+  "startedAt": "2026-10-19T00:31:26.034Z",
+  "updatedAt": "2026-10-19T00:43:55.708Z",
+  "finishedAt": "2026-10-19T00:43:55.707Z"
+}

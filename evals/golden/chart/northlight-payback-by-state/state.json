@@ -1,0 +1,145 @@
+{
+  "id": "20261018-1930-states-pay-back-fastest",
+  "command": "chart-design",
+  "deliverable": "chart",
+  "sizes": [
+    "slide"
+  ],
+  "quality": "studio",
+  "models": {
+    "director": "anthropic/opus",
+    "senior": "anthropic/sonnet",
+    "builder": "anthropic/haiku"
+  },
+  "phase": "done",
+  "round": 1,
+  "maxRounds": 5,
+  "desks": [
+    {
+      "desk": "copy-editor",
+      "task": "intake copy pass",
+      "status": "done",
+      "model": "anthropic/sonnet",
+      "startedAt": "2026-10-19T00:32:12.754Z",
+      "updatedAt": "2026-10-19T00:33:18.848Z"
+    },
+    {
+      "desk": "typographer",
+      "task": "intake type spec",
+      "status": "done",
+      "model": "anthropic/sonnet",
+      "startedAt": "2026-10-19T00:32:12.810Z",
+      "updatedAt": "2026-10-19T00:33:18.903Z"
+    },
+    {
+      "desk": "data-viz-designer",
+      "task": "rough 1, ranked bars with the gap",
+      "status": "done",
+      "model": "anthropic/sonnet",
+      "startedAt": "2026-10-19T00:33:19.114Z",
+      "updatedAt": "2026-10-19T00:34:41.815Z"
+    },
+    {
+      "desk": "data-viz-designer",
+      "task": "rough 2, ranked bars with the seven-year line",
+      "status": "done",
+      "model": "anthropic/sonnet",
+      "startedAt": "2026-10-19T00:33:19.170Z",
+      "updatedAt": "2026-10-19T00:35:16.931Z"
+    },
+    {
+      "desk": "data-viz-designer",
+      "task": "rough 3, big number and ranked strip",
+      "status": "done",
+      "model": "anthropic/sonnet",
+      "startedAt": "2026-10-19T00:33:19.224Z",
+      "updatedAt": "2026-10-19T00:35:25.567Z"
+    },
+    {
+      "desk": "art-director",
+      "task": "pick",
+      "status": "done",
+      "model": "anthropic/opus",
+      "startedAt": "2026-10-19T00:35:38.117Z",
+      "updatedAt": "2026-10-19T00:37:58.152Z"
+    },
+    {
+      "desk": "data-viz-designer",
+      "task": "polish round 1",
+      "status": "done",
+      "model": "anthropic/haiku",
+      "startedAt": "2026-10-19T00:37:58.526Z",
+      "updatedAt": "2026-10-19T00:39:46.516Z"
+    },
+    {
+      "desk": "creative-director",
+      "task": "sign-off round 1",
+      "status": "done",
+      "model": "anthropic/opus",
+      "startedAt": "2026-10-19T00:39:59.586Z",
+      "updatedAt": "2026-10-19T00:44:30.027Z"
+    },
+    {
+      "desk": "data-viz-designer",
+      "task": "spec, data and chart notes",
+      "status": "done",
+      "model": "anthropic/haiku",
+      "startedAt": "2026-10-19T00:44:30.340Z",
+      "updatedAt": "2026-10-19T00:45:49.649Z"
+    }
+  ],
+  "pick": {
+    "by": "art-director",
+    "rough": 1,
+    "reason": "reads in two seconds: title, the one orange bar, then the gap to California",
+    "at": "2026-10-19T00:37:58.205Z"
+  },
+  "proof": [
+    {
+      "round": 1,
+      "pass": true,
+      "failures": 0
+    }
+  ],
+  "scores": [
+    {
+      "round": 1,
+      "by": "creative-director",
+      "average": 8.6,
+      "pass": true,
+      "axes": {
+        "hierarchy": 9,
+        "typography": 9,
+        "spacing": 8,
+        "colour": 9,
+        "composition": 8,
+        "originality": 8,
+        "brand": 9,
+        "copy": 9
+      }
+    }
+  ],
+  "waitingOn": null,
+  "cost": {
+    "director": 0.2609,
+    "senior": 0.5509,
+    "builder": 0.0288,
+    "total": 0.8406,
+    "complete": true
+  },
+  "tokens": {
+    "director": 111026,
+    "senior": 395871,
+    "builder": 650164
+  },
+  "files": {
+    "final": ".desk/out/20261018-1930-states-pay-back-fastest/final.html",
+    "spec": ".desk/out/20261018-1930-states-pay-back-fastest/spec.json",
+    "data": ".desk/out/20261018-1930-states-pay-back-fastest/data.csv",
+    "notes": ".desk/out/20261018-1930-states-pay-back-fastest/chart.md",
+    "render": ".desk/out/20261018-1930-states-pay-back-fastest/renders/slide/slide.png"
+  },
+  "startedAt": "2026-10-19T00:31:47.235Z",
+  "updatedAt": "2026-10-19T00:45:49.815Z",
+  "finishedAt": "2026-10-19T00:45:49.814Z"
+}

@@ -1,0 +1,333 @@
+{
+  "id": "20261019-2350-northlight-battery-announcement-social",
+  "command": "design",
+  "deliverable": "social-card",
+  "sizes": [
+    "linkedin",
+    "ig-post"
+  ],
+  "quality": "studio",
+  "models": {
+    "director": "google/flash-high",
+    "senior": "google/flash-low",
+    "builder": "google/flash-low"
+  },
+  "phase": "done",
+  "round": 3,
+  "maxRounds": 6,
+  "desks": [
+    {
+      "desk": "design-manager",
+      "task": "intake",
+      "status": "done",
+      "model": "google/argon",
+      "startedAt": "2026-10-19T23:50:02+00:00",
+      "updatedAt": "2026-10-19T23:50:40+00:00",
+      "via": "cli"
+    },
+    {
+      "desk": "ui-designer",
+      "task": "rough 1, editorial split",
+      "status": "failed",
+      "model": "google/flash",
+      "startedAt": "2026-10-19T23:50:40+00:00",
+      "updatedAt": "2026-10-19T23:55:41+00:00"
+    },
+    {
+      "desk": "ui-designer",
+      "task": "rough 2, full bleed with scrim",
+      "status": "done",
+      "model": "google/flash",
+      "startedAt": "2026-10-19T23:50:40+00:00",
+      "updatedAt": "2026-10-19T23:55:37+00:00",
+      "via": "cli"
+    },
+    {
+      "desk": "ui-designer",
+      "task": "rough 3, type only",
+      "status": "done",
+      "model": "google/flash",
+      "startedAt": "2026-10-19T23:50:40+00:00",
+      "updatedAt": "2026-10-19T23:54:56+00:00",
+      "via": "cli"
+    },
+    {
+      "desk": "ui-designer",
+      "task": "rough 1, editorial split",
+      "status": "done",
+      "model": "google/flash-low",
+      "startedAt": "2026-10-19T23:57:08+00:00",
+      "updatedAt": "2026-10-19T23:57:27+00:00",
+      "via": "cli"
+    },
+    {
+      "desk": "ui-designer",
+      "task": "rough 2, full bleed with scrim",
+      "status": "done",
+      "model": "google/flash-low",
+      "startedAt": "2026-10-19T23:57:10+00:00",
+      "updatedAt": "2026-10-19T23:57:28+00:00",
+      "via": "cli"
+    },
+    {
+      "desk": "ui-designer",
+      "task": "rough 3, type only",
+      "status": "done",
+      "model": "google/flash-low",
+      "startedAt": "2026-10-19T23:57:10+00:00",
+      "updatedAt": "2026-10-19T23:57:26+00:00",
+      "via": "cli"
+    },
+    {
+      "desk": "art-director",
+      "task": "pick",
+      "status": "failed",
+      "model": "google/flash-high",
+      "startedAt": "2026-10-19T23:57:33+00:00",
+      "updatedAt": "2026-10-20T00:02:15+00:00"
+    },
+    {
+      "desk": "art-director",
+      "task": "pick",
+      "status": "done",
+      "model": "google/flash-high",
+      "startedAt": "2026-10-20T00:03:39+00:00",
+      "updatedAt": "2026-10-20T00:08:03+00:00",
+      "via": "cli"
+    },
+    {
+      "desk": "ui-designer",
+      "task": "polish round 1",
+      "status": "done",
+      "model": "google/flash-low",
+      "startedAt": "2026-10-20T00:08:04+00:00",
+      "updatedAt": "2026-10-20T00:08:22+00:00",
+      "via": "cli"
+    },
+    {
+      "desk": "creative-director",
+      "task": "sign-off round 1",
+      "status": "done",
+      "model": "google/flash-high",
+      "startedAt": "2026-10-20T00:08:24+00:00",
+      "updatedAt": "2026-10-20T00:12:50+00:00",
+      "via": "cli"
+    },
+    {
+      "desk": "ui-designer",
+      "task": "polish round 2",
+      "status": "failed",
+      "model": "google/flash-low",
+      "startedAt": "2026-10-20T00:12:50+00:00",
+      "updatedAt": "2026-10-20T00:15:41+00:00"
+    },
+    {
+      "desk": "ui-designer",
+      "task": "polish round 2",
+      "status": "done",
+      "model": "google/flash-low",
+      "startedAt": "2026-10-20T00:15:59+00:00",
+      "updatedAt": "2026-10-20T00:16:22+00:00",
+      "via": "cli"
+    },
+    {
+      "desk": "creative-director",
+      "task": "sign-off round 2",
+      "status": "done",
+      "model": "google/flash-high",
+      "startedAt": "2026-10-20T00:16:23+00:00",
+      "updatedAt": "2026-10-20T00:20:34+00:00",
+      "via": "cli"
+    },
+    {
+      "desk": "ui-designer",
+      "task": "polish round 3",
+      "status": "failed",
+      "model": "google/flash-low",
+      "startedAt": "2026-10-20T00:20:34+00:00",
+      "updatedAt": "2026-10-20T00:24:54+00:00"
+    },
+    {
+      "desk": "ui-designer",
+      "task": "polish round 3",
+      "status": "done",
+      "model": "google/flash-low",
+      "startedAt": "2026-10-20T00:25:06+00:00",
+      "updatedAt": "2026-10-20T00:25:29+00:00",
+      "via": "cli"
+    },
+    {
+      "desk": "creative-director",
+      "task": "sign-off round 3",
+      "status": "done",
+      "model": "google/flash-high",
+      "startedAt": "2026-10-20T00:25:30+00:00",
+      "updatedAt": "2026-10-20T00:29:33+00:00",
+      "via": "cli"
+    }
+  ],
+  "pick": {
+    "by": "art-director",
+    "rough": 1,
+    "pattern": "Editorial split",
+    "combineWith": null,
+    "reason": "Editorial split establishes an immediate two-second hierarchy and solid canvas balance across both aspect ratios with a bold interval graphic.",
+    "lost": "2 uses a banned drop-shadow scrim card with hairline markers detached in the corner, 3 flattens the interval into horizontal dashes and abandons the lower half of ig-post",
+    "notes": [
+      "Remove duplicate 'Seven years to break even.' and 'Then free.' text labels from the marker container so only the seven vertical markers and one payoff marker remain (brief: zero extra copy, no tick labels).",
+      "Convert the floating surface card into a full-bleed editorial split: right panel to width 45% and height 100% on linkedin, bottom panel to width 100% and height 40% on ig-post, both with border-radius 0 (Standard: editorial split, no box inside a box).",
+      "Headline on linkedin to 76px, on ig-post to 95px, both line-height 1.05 and tracking -0.02em; supporting line and mark to 25px (brand scale base 16, ratio 1.25; Standard: three type sizes maximum).",
+      "Set headline 'Then free.' back to foreground #161614, reserving the single #d9480f orange accent exclusively for the eighth payoff marker (Standard: accent appears once, on the one thing to look at).",
+      "On ig-post, move 'northlight.energy' to bottom left at 65px from left edge and 135px from bottom edge to honor the 10% portrait platform safe zone (Standard: mark small in a corner)."
+    ],
+    "at": "2026-10-20T00:08:03+00:00"
+  },
+  "proof": [
+    {
+      "round": 1,
+      "pass": true,
+      "failures": 0
+    },
+    {
+      "round": 2,
+      "pass": true,
+      "failures": 0
+    },
+    {
+      "round": 3,
+      "pass": true,
+      "failures": 0
+    }
+  ],
+  "scores": [
+    {
+      "round": 1,
+      "by": "creative-director",
+      "axes": {
+        "hierarchy": 9,
+        "typography": 8,
+        "spacing": 9,
+        "colour": 9,
+        "composition": 7,
+        "originality": 8,
+        "brand": 9,
+        "copy": 9
+      },
+      "average": 8.5,
+      "pass": false,
+      "notes": [
+        "typography: on ig-post, set headline max-width to 650px to wrap after 3 words ('Seven years to') and eliminate the 1-word widow on line 2",
+        "composition: on ig-post, move 'northlight.energy' to bottom left at 65px from left edge and 135px from bottom edge to anchor the corner and remove the unshaped empty band",
+        "originality: increase orange payoff marker height by 32px above the 7 interval markers to make the break-even payoff more distinct"
+      ],
+      "polish": []
+    },
+    {
+      "round": 2,
+      "by": "creative-director",
+      "axes": {
+        "hierarchy": 7,
+        "typography": 8,
+        "spacing": 6,
+        "colour": 9,
+        "composition": 7,
+        "originality": 8,
+        "brand": 9,
+        "copy": 9
+      },
+      "average": 7.88,
+      "pass": false,
+      "notes": [
+        "hierarchy: on ig-post, add 60px vertical separation between the markers and 'northlight.energy' so the mark reads as an independent tier.",
+        "typography: on ig-post, headline up from 95px to 119px, line-height 1.05, tracking -0.02em.",
+        "spacing: on ig-post, raise marker container bottom from 135px to 220px to eliminate the 0px overlap on 'northlight.energy'.",
+        "composition: on ig-post, increase margin-top on 'Battery now included' from 24px to 64px to break the 430px dead band.",
+        "originality: eighth marker height up from 280px to 360px on linkedin and 340px to 440px on ig-post."
+      ],
+      "polish": []
+    },
+    {
+      "round": 3,
+      "by": "creative-director",
+      "axes": {
+        "hierarchy": 9,
+        "typography": 9,
+        "spacing": 9,
+        "colour": 9,
+        "composition": 8,
+        "originality": 8,
+        "brand": 9,
+        "copy": 9
+      },
+      "average": 8.75,
+      "pass": true,
+      "notes": [
+        "composition: On linkedin, vertically center the marker group within the right 45% panel with 96px padding top and bottom.",
+        "originality: On ig-post, reduce marker width to 64px with 24px gaps to keep them as slender measured markers rather than wide blocks."
+      ],
+      "polish": [
+        "Increase orange payoff marker height by 32px on linkedin for stronger vertical accent contrast."
+      ]
+    }
+  ],
+  "waitingOn": null,
+  "cost": {
+    "director": 0.5815,
+    "senior": 0.3504,
+    "builder": 0.0879,
+    "total": 1.0198,
+    "complete": false
+  },
+  "tokens": {
+    "director": 254653,
+    "senior": 130686,
+    "builder": 92909
+  },
+  "files": {
+    "final": ".desk/out/20261019-2350-northlight-battery-announcement-social/final.html",
+    "brief": ".desk/jobs/20261019-2350-northlight-battery-announcement-social/brief.md",
+    "handback": ".desk/out/20261019-2350-northlight-battery-announcement-social/handback.md"
+  },
+  "pen": "builder",
+  "notes": [
+    "hierarchy: on ig-post, add 60px vertical separation between the markers and 'northlight.energy' so the mark reads as an independent tier.",
+    "typography: on ig-post, headline up from 95px to 119px, line-height 1.05, tracking -0.02em.",
+    "spacing: on ig-post, raise marker container bottom from 135px to 220px to eliminate the 0px overlap on 'northlight.energy'.",
+    "composition: on ig-post, increase margin-top on 'Battery now included' from 24px to 64px to break the 430px dead band.",
+    "originality: eighth marker height up from 280px to 360px on linkedin and 340px to 440px on ig-post."
+  ],
+  "misses": {
+    "hierarchy": 1,
+    "spacing": 1,
+    "composition": 2
+  },
+  "startedAt": "2026-10-19T23:50:02+00:00",
+  "updatedAt": "2026-10-20T00:29:33+00:00",
+  "roughs": [
+    {
+      "n": 1,
+      "pattern": "Editorial split",
+      "file": ".desk/out/20261019-2350-northlight-battery-announcement-social/rough-1.html",
+      "fonts": "Inter, Arial, sans-serif (bundled)",
+      "renders": ".desk/jobs/20261019-2350-northlight-battery-announcement-social/renders/roughs/rough-1"
+    },
+    {
+      "n": 2,
+      "pattern": "Full bleed with scrim",
+      "file": ".desk/out/20261019-2350-northlight-battery-announcement-social/rough-2.html",
+      "fonts": "Inter (bundled)",
+      "renders": ".desk/jobs/20261019-2350-northlight-battery-announcement-social/renders/roughs/rough-2"
+    },
+    {
+      "n": 3,
+      "pattern": "Type only",
+      "file": ".desk/out/20261019-2350-northlight-battery-announcement-social/rough-3.html",
+      "fonts": "Inter (bundled)",
+      "renders": ".desk/jobs/20261019-2350-northlight-battery-announcement-social/renders/roughs/rough-3"
+    }
+  ],
+  "next": "polish",
+  "lastRenders": ".desk/jobs/20261019-2350-northlight-battery-announcement-social/renders/round-3",
+  "penNotes": [],
+  "finishedAt": "2026-10-20T00:29:33+00:00"
+}
