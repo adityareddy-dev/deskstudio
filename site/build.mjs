@@ -115,6 +115,7 @@ const REPO = 'https://github.com/adityareddy-dev/deskstudio';
 // A command breaks between words, never inside one.
 const cmd = t => String(t).split(' ').map(w => `<span class="nb">${esc(w)}</span>`).join(' ');
 const mark = `<svg class="mark" viewBox="0 0 24 24" aria-hidden="true"><rect x="0" y="18" width="24" height="6"/><circle cx="17" cy="10" r="4"/></svg>`;
+const star = `<svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z"/></svg>`;
 
 const css = `
 ${palette}
@@ -154,6 +155,11 @@ p + p { margin-top: 12px; }
 .two.flip > :first-child { order: 2; }
 .cta { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 24px; margin-top: 32px; background: var(--foreground); color: var(--background); border: 2px solid var(--foreground); border-radius: 4px; font-weight: 600; text-decoration: none; }
 .cta:hover { background: var(--background); color: var(--foreground); }
+.ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+.ctas .cta { margin-top: 0; }
+.cta.ghost { background: transparent; color: var(--foreground); }
+.cta.ghost:hover { background: var(--foreground); color: var(--background); }
+.star { width: 16px; height: 16px; fill: currentColor; margin-right: 8px; flex: none; }
 .nb { white-space: nowrap; }
 .install { display: block; margin-top: 24px; color: var(--muted); }
 .cmdblock { padding: 16px; background: var(--surface); border: 1px solid var(--line); line-height: 1.6; margin-top: 8px; }
@@ -266,7 +272,7 @@ const html = `<!doctype html>
   <div>
     <h1>Your own design studio.</h1>
     <p class="lead">A full design studio inside the coding agent you already use. One command, free, nothing leaves your machine but the model calls you already make.</p>
-    <a class="cta" href="#install">Install the plugin</a>
+    <div class="ctas"><a class="cta" href="#install">Install the plugin</a><a class="cta ghost" href="${REPO}">${star}Star on GitHub</a></div>
     <code class="install">${cmd(INSTALL)}</code>
     <p class="open">Open source, MIT. No account, no sign-up.<a href="${REPO}">Read the code</a></p>
   </div>
