@@ -11,6 +11,10 @@ A full design studio inside the coding agent you already use. One command, free,
 
 ![one-command](site/media/one-command.gif)
 
+## How a job runs
+
+![explainer](site/media/explainer.gif)
+
 ## Install
 
 Claude Code:

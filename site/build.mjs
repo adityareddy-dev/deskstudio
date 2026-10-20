@@ -295,6 +295,12 @@ const html = `<!doctype html>
   ${heroLoop('one-command', 'One command typed in a terminal, then every piece the studio has signed off, then the line: your own design studio, at your desk')}
 </div></section>
 
+<section id="how"><div class="wrap">
+  <h2>How a job runs.</h2>
+  <p class="lead">You type one line. The Design Manager staffs the job, three roughs come back, the Art Director picks one, a cheaper model polishes, proof checks the pixels, and the Creative Director signs it off or sends it back with notes. This is the launch card job, retold with its real numbers.</p>
+  <div style="margin-top:32px">${loop('explainer', 'A team of little desk robots passes one job along: three roughs, the pick, polish rounds, proof and the sign-off, then the work comes back')}</div>
+</div></section>
+
 <section id="makes"><div class="wrap">
   <h2>Made by the studio.</h2>
   <p class="lead">${goldens.length} pieces for four made-up brands, one real site and the studio's own, each signed off by the Creative Director against the eight-axis rubric. The score and the cost under each one are from the run that made it.</p>

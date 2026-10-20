@@ -35,13 +35,13 @@ for (const f of readdirSync(takes).filter(f => /-1080x1920\.mp4$/.test(f)).sort(
   rows.push({ name, mp4: r1.status === 0 ? statSync(mp4).size : null, jpg: r2.status === 0 ? statSync(jpg).size : null });
 }
 // GIFs for the README, where video does not play: 640 wide, 12 frames a second, a palette per clip.
-const GIFS = ['one-command', 'one-line', 'the-pick', 'floor-idle', 'before-after', 'cost-meter', 'pick-it-yourself', 'swap-the-seat', 'note-to-the-desk', 'proof'];
+const GIFS = ['one-command', 'explainer', 'one-line', 'the-pick', 'floor-idle', 'before-after', 'cost-meter', 'pick-it-yourself', 'swap-the-seat', 'note-to-the-desk', 'proof'];
 for (const name of GIFS) {
   const src = join(takes, `${name}-1920x1080.mp4`);
   if (!existsSync(src)) continue;
   const gif = join(out, `${name}.gif`);
   // The one-command wall moves every pixel on every frame, so its GIF runs smaller and slower to stay near the others.
-  const [fps, w, colors] = name === 'one-command' ? [10, 560, 96] : [12, 640, 128];
+  const [fps, w, colors] = name === 'one-command' ? [10, 560, 96] : name === 'explainer' ? [10, 640, 128] : [12, 640, 128];
   const r = ff(['-i', src, '-vf', `fps=${fps},scale=${w}:-1:flags=lanczos,split[a][b];[a]palettegen=max_colors=${colors}[p];[b][p]paletteuse=dither=bayer:bayer_scale=4`, '-loop', '0', gif]);
   const row = rows.find(x => x.name === name);
   if (row) row.gif = r.status === 0 ? statSync(gif).size : null;

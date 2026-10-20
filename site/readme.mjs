@@ -62,7 +62,9 @@ Your own design studio.
 
 A full design studio inside the coding agent you already use. One command, free, nothing leaves your machine but the model calls you already make.
 
-${gif('one-command')}## Install
+${gif('one-command')}## How a job runs
+
+${gif('explainer')}## Install
 
 Claude Code:
 
