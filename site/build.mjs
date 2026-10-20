@@ -253,7 +253,7 @@ const html = `<!doctype html>
 <meta name="description" content="Your own design studio. A full design studio inside the coding agent you already use. One command, free, nothing leaves your machine but the model calls you already make.">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="canonical" href="https://deskstudio.ai/">
-<link rel="preload" as="image" href="media/one-line.webp" fetchpriority="high">
+<link rel="preload" as="image" href="media/one-command.webp" fetchpriority="high">
 <meta property="og:title" content="Your own design studio.">
 <meta property="og:description" content="A full design studio inside the coding agent you already use. One command, free, nothing leaves your machine.">
 <meta property="og:image" content="https://deskstudio.ai/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
@@ -276,7 +276,7 @@ const html = `<!doctype html>
     <code class="install">${cmd(INSTALL)}</code>
     <p class="open">Open source, MIT. No account, no sign-up.<a href="${REPO}">Read the code</a></p>
   </div>
-  <div>${loop('one-line', 'One line typed, the floor lights, three roughs, the pick, polish, the scorecard at the bar')}</div>
+  <div>${loop('one-command', 'One command typed in a terminal, then every piece the studio has signed off, then the line: your own design studio, at your desk')}</div>
 </div></section>
 
 <section id="makes"><div class="wrap">

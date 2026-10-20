@@ -4,7 +4,7 @@ Your own design studio.
 
 A full design studio inside the coding agent you already use. One command, free, nothing leaves your machine but the model calls you already make.
 
-![one-line](site/media/one-line.gif)
+![one-command](site/media/one-command.gif)
 
 ## Install
 
