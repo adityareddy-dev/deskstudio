@@ -1,0 +1,952 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Desk Studio</title>
+<meta name="description" content="Your own design studio. A full design studio inside the coding agent you already use. One command, free, nothing leaves your machine but the model calls you already make.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="icon" href="favicon.ico" sizes="48x48"><link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="canonical" href="https://deskstudio.ai/">
+<link rel="preload" as="image" href="media/one-command-v2.webp" fetchpriority="high">
+<meta property="og:title" content="Your own design studio.">
+<meta property="og:description" content="A full design studio inside the coding agent you already use. One command, free, nothing leaves your machine.">
+<meta property="og:image" content="https://deskstudio.ai/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:url" content="https://deskstudio.ai/"><meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+@font-face { font-family: "Inter"; font-style: normal; font-weight: 100 900; font-display: swap; src: url("fonts/Inter-Variable.woff2") format("woff2"); }
+@font-face { font-family: "Geist Mono"; font-style: normal; font-weight: 100 900; font-display: swap; src: url("fonts/GeistMono-Variable.woff2") format("woff2"); }
+@font-face { font-family: "Inter Fallback"; src: local("Arial"); size-adjust: 107.4%; ascent-override: 90.2%; descent-override: 22.5%; line-gap-override: 0%; }
+
+
+
+:root {
+  color-scheme:light;
+  --white:#ffffff;
+  --ink:#17140f;
+  --cream:#f6f3ec;
+  --muted:#6b655b;
+  --line:#d9d4c8;
+  --dark:#12110f;
+  --warm:#f4f0e8;
+  --panel:#1c1a17;
+  --dark-muted:#9a948a;
+  --dark-line:#3b3830;
+  --gold:#8f5a00;
+  --bright-gold:#ffaa1c;
+}
+* { box-sizing:border-box; }
+html { scroll-padding-top:104px; }
+body {
+  margin:0;
+  background:var(--white);
+  color:var(--ink);
+  font-family:"Inter",Arial,sans-serif;
+  font-size:20px;
+  font-weight:400;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,p,ol,ul,figure { margin:0; }
+h1,h2,h3 { font-weight:600; }
+h1 { font-size:76.5px; line-height:1.05; letter-spacing:-.02em; }
+h2 { font-size:39px; line-height:1.16; letter-spacing:-.02em; }
+h3 { font-size:20px; line-height:1.4; }
+a { color:inherit; text-underline-offset:4px; }
+a:focus-visible,
+a[data-state="focus"] {
+  outline:3px solid currentColor;
+  outline-offset:4px;
+}
+a:hover,
+a[data-state="hover"] { text-decoration-thickness:2px; }
+.wrap { width:calc(100% - 96px); max-width:1200px; margin-inline:auto; }
+.band { padding-block:96px; }
+.cream { background:var(--cream); }
+.dark {
+  background:var(--dark);
+  color:var(--warm);
+  --muted:var(--dark-muted);
+  --line:var(--dark-line);
+  --gold:var(--bright-gold);
+}
+.eyebrow {
+  margin-bottom:24px;
+  color:var(--gold);
+  font-size:13px;
+  line-height:1.6;
+  font-weight:600;
+  letter-spacing:.08em;
+}
+.intro { max-width:640px; }
+.intro > p:last-child { margin-top:24px; }
+.muted { color:var(--muted); }
+.small { font-size:16px; line-height:1.5; }
+.button {
+  display:inline-flex;
+  justify-content:center;
+  align-items:center;
+  min-height:48px;
+  padding:8px 24px;
+  border:1px solid var(--ink);
+  border-radius:4px;
+  background:var(--ink);
+  color:var(--white);
+  font-size:16px;
+  font-weight:600;
+  line-height:1.5;
+  text-decoration:none;
+}
+.button:hover,
+.button[data-state="hover"] { background:var(--panel); text-decoration:underline; }
+.button:focus-visible,
+.button[data-state="focus"] { outline-color:var(--ink); }
+.topbar {
+  position:sticky;
+  top:0;
+  z-index:10;
+  background:var(--white);
+  border-bottom:1px solid var(--line);
+}
+.nav {
+  display:flex;
+  align-items:center;
+  gap:32px;
+  min-height:80px;
+  font-size:16px;
+}
+.brand {
+  display:inline-flex;
+  align-items:center;
+  gap:16px;
+  flex-shrink:0;
+  font-weight:600;
+  text-decoration:none;
+}
+[data-ds-logo] { display:inline-flex; align-items:center; width:40px; height:40px; }
+[data-ds-logo] svg,
+[data-ds-logo] img { display:block; width:100%; height:auto; max-height:40px; }
+.navlinks { display:flex; align-items:center; gap:32px; margin-left:auto; }
+.navlinks a { text-decoration:none; }
+.navlinks a:hover,
+.navlinks a[data-state="hover"] { text-decoration:underline; }
+.nav .github { color:var(--muted); }
+.hero { padding-top:64px; padding-bottom:96px; }
+.hero-copy { text-align:center; }
+.hero h1 { max-width:100%; margin-inline:auto; }
+.hero .description {
+  max-width:640px;
+  margin:24px auto 0;
+  text-align:left;
+}
+.hero-action { margin-top:32px; }
+.hero .support { margin-top:16px; }
+.command {
+  display:block;
+  min-width:0;
+  max-width:100%;
+  margin:0;
+  padding:24px;
+  background:var(--cream);
+  border:1px solid var(--line);
+  border-radius:4px;
+  color:var(--ink);
+  text-align:left;
+  font-family:"Geist Mono",monospace;
+  font-size:16px;
+  font-weight:400;
+  line-height:24px;
+  white-space:pre-wrap;
+  overflow-wrap:anywhere;
+  word-break:normal;
+}
+.hero .command { width:fit-content; max-width:100%; margin:24px auto 0; padding:16px 24px; }
+.media-frame {
+  overflow:hidden;
+  border:1px solid var(--line);
+  border-radius:8px;
+  background:var(--cream);
+  box-shadow:0 16px 32px #17140f14;
+}
+.hero-media { margin-top:48px; }
+.frame-bar {
+  display:flex;
+  align-items:center;
+  min-height:40px;
+  padding:8px 16px;
+  border-bottom:1px solid var(--line);
+  background:var(--cream);
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.6;
+}
+[data-ds-clip], [data-ds-proof] { display:block; width:100%; }
+[data-ds-clip] { aspect-ratio:16 / 9; background:var(--dark); }
+[data-ds-proof] { background:var(--cream); }
+[data-ds-clip] video,
+[data-ds-clip] img,
+[data-ds-proof] img,
+[data-ds-proof] svg {
+  display:block;
+  width:100%;
+  max-width:100%;
+  height:auto;
+  object-fit:contain;
+}
+[data-ds-clip] video { aspect-ratio:16 / 9; }
+.process-head {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:64px;
+  align-items:start;
+}
+.process-head > p { max-width:640px; font-size:16px; line-height:24px; }
+.steps {
+  position:relative;
+  display:grid;
+  grid-template-columns:repeat(5,minmax(0,1fr));
+  align-items:stretch;
+  gap:24px;
+  margin-top:64px;
+  padding:24px 0 0;
+  list-style:none;
+}
+.steps::before {
+  content:"";
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  height:1px;
+  background:var(--line);
+}
+.steps li {
+  min-width:0;
+  display:flex;
+  flex-direction:column;
+  gap:24px;
+}
+.step-number {
+  display:block;
+  color:var(--warm);
+  font-size:39px;
+  font-weight:400;
+  line-height:1;
+  font-variant-numeric:tabular-nums;
+}
+.steps h3 { margin-bottom:16px; }
+.steps p { color:var(--muted); font-size:16px; line-height:24px; }
+.studio-layout {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:96px;
+  align-items:start;
+}
+.tiers { border-top:1px solid var(--line); }
+.tier { padding:24px 0; border-bottom:1px solid var(--line); }
+.tier-description { margin-top:8px; font-size:16px; line-height:24px; color:var(--muted); }
+.roles { display:flex; flex-wrap:wrap; gap:8px 24px; margin-top:16px; font-size:16px; }
+.evidence-head { display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:start; }
+.evidence-head > p { max-width:640px; }
+.evidence-layout {
+  display:grid;
+  grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);
+  gap:64px;
+  align-items:start;
+  margin-top:48px;
+}
+.evidence-record h3 { margin-bottom:16px; }
+.score { font-size:76.5px; font-weight:600; line-height:1.05; letter-spacing:-.02em; font-variant-numeric:tabular-nums; }
+.record-details { display:flex; flex-wrap:wrap; gap:8px 24px; margin-top:16px; font-size:16px; font-variant-numeric:tabular-nums; }
+.caveat { max-width:640px; margin-top:24px; color:var(--muted); font-size:16px; line-height:24px; }
+.checks {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:0 24px;
+  list-style:none;
+  padding:0;
+  margin-top:32px;
+  font-size:16px;
+}
+.checks li { padding:16px 0; border-top:1px solid var(--line); }
+.agents-layout { display:grid; grid-template-columns:1fr 1fr; gap:96px; }
+.agents {
+  display:flex;
+  flex-wrap:wrap;
+  gap:16px 32px;
+  list-style:none;
+  padding:0;
+  margin-bottom:32px;
+  font-size:25px;
+  font-weight:600;
+  line-height:1.4;
+}
+.dark .command { background:var(--panel); color:var(--warm); }
+.qualification { max-width:640px; margin-top:24px; color:var(--muted); font-size:16px; line-height:24px; }
+.contribute-layout { display:grid; grid-template-columns:1fr 1fr; gap:96px; }
+.contribute-links { display:flex; flex-direction:column; align-items:flex-start; gap:24px; padding-top:48px; }
+.contribute-links > a { font-weight:600; }
+.contribute-links p { max-width:640px; }
+.install-layout { display:grid; grid-template-columns:1fr 2fr; gap:96px; }
+.install-layout > div { min-width:0; }
+.install-step + .install-step { margin-top:32px; }
+.install-step p { margin-bottom:16px; font-size:16px; line-height:24px; }
+.faq-layout { display:grid; grid-template-columns:1fr 2fr; gap:96px; }
+.faq-list { border-top:1px solid var(--line); }
+.faq-item { padding:24px 0; border-bottom:1px solid var(--line); }
+.faq-item p { margin-top:8px; max-width:640px; color:var(--muted); font-size:16px; line-height:24px; }
+footer { background:var(--cream); }
+.footer-inner {
+  display:flex;
+  gap:24px;
+  align-items:center;
+  padding-block:32px;
+  border-top:1px solid var(--line);
+  font-size:16px;
+}
+.footer-inner strong { font-weight:600; margin-right:auto; }
+.footer-inner > span { color:var(--muted); }
+
+/* Only JavaScript adds this class, once a lower section enters view.
+   The subtle fade never makes text invisible, including during capture. */
+.section-reveal {
+  animation:section-reveal 300ms cubic-bezier(0.16,1,0.3,1);
+}
+@keyframes section-reveal {
+  from { opacity:.85; transform:translateY(8px); }
+  to { opacity:1; transform:translateY(0); }
+}
+@media (min-width:1440px) {
+  .wrap { width:calc(100% - 192px); }
+}
+@media (max-width:1100px) {
+  .nav { gap:24px; }
+  .navlinks { gap:24px; }
+  .navlinks .github { display:none; }
+  .hero h1 { max-width:960px; }
+  .studio-layout,.agents-layout,.contribute-layout,.install-layout,.faq-layout { gap:48px; }
+  .evidence-layout,.evidence-head,.process-head { gap:32px; }
+  .steps {
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:32px 24px;
+  }
+  .steps li:last-child {
+    grid-column:1 / -1;
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    grid-template-rows:auto 1fr;
+    column-gap:24px;
+    row-gap:16px;
+  }
+  .steps li:last-child .step-number { grid-column:1; grid-row:1; }
+  .steps li:last-child .step-description { display:contents; }
+  .steps li:last-child h3 { grid-column:1; grid-row:2; margin-bottom:0; }
+  .steps li:last-child p { grid-column:2; grid-row:1 / 3; align-self:center; }
+}
+@media (max-width:900px) {
+  .navlinks { display:none; }
+  .nav > .button { margin-left:auto; }
+  .hero h1 { max-width:640px; }
+  .process-head,.evidence-head { grid-template-columns:1fr; }
+  .studio-layout,.agents-layout,.contribute-layout { grid-template-columns:1fr; gap:48px; }
+  .evidence-layout { grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:32px; }
+  .install-layout,.faq-layout { grid-template-columns:1fr; gap:48px; }
+  .contribute-links { padding-top:0; }
+}
+@media (max-width:767px) {
+  .hero-copy { text-align:left; }
+  .hero h1 { margin-inline:0; }
+  .hero .description { margin-inline:0; }
+  .hero-action .button { width:100%; }
+  .hero .command { margin-inline:0; }
+  .steps {
+    grid-template-columns:1fr;
+    grid-auto-rows:1fr;
+    gap:24px;
+    padding:0 0 0 24px;
+  }
+  .steps::before {
+    top:0;
+    bottom:0;
+    left:0;
+    right:auto;
+    width:1px;
+    height:auto;
+  }
+  .steps li,
+  .steps li:last-child {
+    display:grid;
+    grid-template-columns:48px minmax(0,1fr);
+    grid-template-rows:auto;
+    align-items:start;
+    gap:24px;
+    grid-column:auto;
+  }
+  .steps li:last-child .step-number { grid-column:auto; grid-row:auto; }
+  .steps li:last-child .step-description { display:block; }
+  .steps li:last-child h3 { margin-bottom:16px; }
+  .steps li:last-child p { align-self:auto; }
+}
+@media (max-width:599px) {
+  html { scroll-padding-top:96px; }
+  body { font-size:16px; line-height:24px; }
+  .wrap { width:calc(100% - 48px); }
+  .band { padding-block:64px; }
+  h1 { font-size:39px; line-height:1.08; }
+  h2 { font-size:31.25px; font-weight:600; line-height:1.1; }
+  h3 { font-size:20px; }
+  .nav { min-height:80px; gap:16px; }
+  .brand { gap:8px; font-size:16px; }
+  [data-ds-logo] { width:32px; height:32px; }
+  [data-ds-logo] svg,[data-ds-logo] img { max-height:32px; }
+  .nav .button { font-size:13px; padding:8px 16px; }
+  .hero { padding-top:64px; padding-bottom:64px; }
+  .hero .description { margin-top:24px; }
+  .hero-action { margin-top:24px; }
+  .hero .support { font-size:13px; }
+  .hero .command { padding:16px; }
+  .hero-media { margin-top:32px; }
+  .eyebrow { margin-bottom:16px; }
+  .process-head { gap:24px; }
+  .steps { margin-top:40px; }
+  .steps h3,
+  .steps li:last-child h3 { margin-bottom:8px; }
+  .studio-layout,.agents-layout,.contribute-layout,.install-layout,.faq-layout { gap:32px; }
+  .evidence-head { gap:24px; }
+  .evidence-layout { grid-template-columns:1fr; gap:32px; margin-top:32px; }
+  .score { font-size:39px; }
+  .record-details { gap:8px 16px; }
+  .checks { gap:0 16px; margin-top:24px; }
+  .agents { font-size:20px; gap:16px 24px; }
+  .command { padding:16px; }
+  .contribute-links > a { display:flex; align-items:center; min-height:48px; }
+  .contribute-links { gap:16px; }
+  .footer-inner { gap:16px; }
+}
+@media (prefers-reduced-motion:reduce) {
+  html { scroll-behavior:auto; }
+  *,*::before,*::after { animation:none !important; transition:none !important; }
+  .section-reveal { opacity:1; transform:none; }
+}
+
+.mark { width:40px; height:40px; flex:none; }
+.nb { white-space:nowrap; }
+.read-code { display:inline-block; margin-left:16px; }
+code, .mono { font-family:"Geist Mono",monospace; font-size:16px; }
+code { overflow-wrap:anywhere; }
+img, video { max-width:100%; }
+.media-frame img, .media-frame video { display:block; width:100%; height:auto; object-fit:contain; }
+.media-frame video { background:var(--dark); }
+.media-frame .poster { display:none; }
+.gallery { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:48px 24px; margin-top:48px; }
+.gallery figure { min-width:0; }
+.gallery img { aspect-ratio:4 / 3; object-fit:contain; background:var(--cream); }
+.gallery figcaption { margin-top:16px; font-size:16px; line-height:24px; }
+.gallery .cmd { display:block; overflow-wrap:anywhere; margin-bottom:8px; }
+.record { margin-top:48px; border-top:1px solid var(--line); border-bottom:1px solid var(--line); font-size:16px; line-height:24px; }
+.record summary { cursor:pointer; min-height:48px; padding:16px 0; font-weight:600; }
+.record summary:focus-visible { outline:3px solid currentColor; outline-offset:4px; }
+.record-body { padding:24px 0; }
+.record-body > * + *, .record-body .lead, .record-body p + p { margin-top:24px; }
+.record-body h2 { font-size:25px; margin-bottom:24px; }
+.record-body h3 { margin:24px 0 16px; }
+.record-body .two { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:32px; align-items:start; }
+.record-body .two.flip > :first-child { order:2; }
+.record-body .tiers { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:24px; border:0; margin-top:32px; }
+.record-body .tiers ul { padding:0; list-style:none; }
+.record-body .tiers li { border-top:1px solid var(--line); padding:8px 0; }
+.record-body .tiers li span { display:block; color:var(--muted); }
+.run-record { display:grid; gap:32px; margin-top:32px; }
+.run-record .signoff, .roughs { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:24px; }
+.pair2 { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:24px; margin-top:24px; }
+blockquote { border-left:2px solid var(--line); padding-left:24px; margin:24px 0; }
+.axes { display:grid; grid-template-columns:1fr auto; gap:4px 16px; font-variant-numeric:tabular-nums; }
+.axes .bar { grid-column:1 / -1; height:8px; background:var(--line); position:relative; }
+.axes .bar i { position:absolute; inset:0 auto 0 0; background:currentColor; }
+.axes .bar b { position:absolute; left:80%; top:-3px; bottom:-3px; width:2px; background:var(--muted); }
+table { border-collapse:collapse; width:100%; margin-top:24px; font-size:16px; line-height:24px; }
+th,td { border-top:1px solid var(--line); padding:12px 16px 12px 0; text-align:left; vertical-align:top; overflow-wrap:anywhere; }
+.table-scroll { overflow-x:auto; max-width:100%; }
+.table-scroll:focus-visible { outline:3px solid currentColor; outline-offset:4px; }
+pre { white-space:pre-wrap; overflow-wrap:anywhere; font-size:16px; }
+.cmdblock { margin-top:8px; padding:16px; border:1px solid var(--line); background:var(--cream); }
+.install-details > p { margin-bottom:16px; }
+.install-details .lead { margin-top:32px; }
+.costline { display:flex; height:12px; background:var(--line); margin-top:24px; }
+.costline i { background:currentColor; }
+.costline .senior { opacity:.6; } .costline .builder { opacity:.3; }
+.costscale { display:flex; justify-content:space-between; color:var(--muted); }
+.controls { padding-left:24px; }
+.dark .media-frame, .dark .frame-bar { background:var(--panel); }
+.footer-inner { flex-wrap:wrap; }
+.footer-inner .brand { margin-right:auto; }
+.footer-inner a { min-height:48px; display:inline-flex; align-items:center; }
+@media (min-width:901px) { .steps { grid-auto-rows:1fr; } }
+@media (max-width:1100px) { .nav { gap:24px; } }
+@media (max-width:900px) {
+ .gallery { grid-template-columns:repeat(2,minmax(0,1fr)); }
+ .record-body .tiers, .run-record .signoff { grid-template-columns:1fr; }
+}
+@media (max-width:599px) {
+ .mark { width:32px; height:32px; }
+ .nav .button { max-width:160px; }
+ .steps li,.steps li:last-child { grid-template-columns:40px minmax(0,1fr); gap:16px; }
+ .steps { padding-left:16px; }
+ .gallery { grid-template-columns:1fr; gap:32px; margin-top:32px; }
+ .record-body .two,.pair2,.roughs { grid-template-columns:1fr; }
+ .record-body .two.flip > :first-child { order:0; }
+ .evidence-layout { gap:40px; }
+ th,td { padding-right:12px; }
+}
+@media (prefers-reduced-motion:reduce) {
+ video.loop { display:none; }
+ .media-frame .poster { display:block; }
+}
+
+</style>
+</head>
+<body>
+<header class="topbar">
+  <nav class="nav wrap" aria-label="Main navigation">
+    <a class="brand" href="#top" aria-label="Desk Studio">
+      <svg class="mark" viewBox="0 0 512 512" aria-hidden="true"><rect width="512" height="512" rx="112" fill="#12110f"/><path d="M183.5469024181366 330.0H139.02028727531433V296.11074447631836H181.85783553123474Q196.2372498512268 296.11074447631836 206.1582009792328 291.25023543834686Q216.07915210723877 286.38972640037537 221.16878080368042 275.4176050424576Q226.25840950012207 264.4454836845398 226.25840950012207 246.33750438690186Q226.25840950012207 228.19807648658752 221.09690415859222 217.26638317108154Q215.93539881706238 206.33468985557556 205.9515504837036 201.4449805021286Q195.96770215034485 196.55527114868164 181.31874012947083 196.55527114868164H138.29255509376526V162.666015625H183.546875Q209.05352878570557 162.666015625 227.47151124477386 172.70380914211273Q245.88949370384216 182.74160265922546 255.8801280260086 201.4830094575882Q265.87076234817505 220.22441625595093 265.87076234817505 246.33750438690186Q265.87076234817505 272.4191439151764 255.90932834148407 291.18750274181366Q245.9478943347931 309.9558615684509 227.49398040771484 319.97793078422546Q209.0400664806366 330.0 183.5469024181366 330.0ZM161.6251425743103 162.666015625V330.0H122.02178287506104V162.666015625Z" fill="#f4f0e8"/><path d="M340.8125493526459 332.2371006011963Q319.91485691070557 332.2371006011963 304.3875823020935 325.92781722545624Q288.86030769348145 319.6185338497162 280.2263090610504 306.8562000989914Q271.5923104286194 294.0938663482666 271.2643895149231 274.76391553878784H309.29545617103577Q309.8524830341339 282.8318667411804 313.77638852596283 288.31232726573944Q317.70029401779175 293.79278779029846 324.499196767807 296.5554803609848Q331.29809951782227 299.31817293167114 340.3004333972931 299.31817293167114Q348.5705111026764 299.31817293167114 354.49566638469696 297.063113451004Q360.42082166671753 294.8080539703369 363.60800182819366 290.758381485939Q366.7951819896698 286.70870900154114 366.7951819896698 281.4214503765106Q366.7951819896698 276.57891392707825 363.8685426712036 273.1895798444748Q360.9419033527374 269.80024576187134 354.9538371562958 267.22623109817505Q348.9657709598541 264.65221643447876 339.72533798217773 262.6082766056061L322.07107400894165 258.5024380683899Q300.40523505210876 253.54307293891907 288.022505402565 242.31933534145355Q275.63977575302124 231.09559774398804 275.63977575302124 212.1699821949005Q275.63977575302124 196.6539490222931 284.0446684360504 185.01692414283752Q292.4495611190796 173.37989926338196 307.14128172397614 166.89991056919098Q321.8330023288727 160.419921875 340.821515083313 160.419921875Q360.23229455947876 160.419921875 374.50174844264984 166.98526322841644Q388.7712023258209 173.55060458183289 396.6392753124237 185.30892729759216Q404.5073482990265 197.06725001335144 404.7005090713501 212.57431745529175H366.5706000328064Q365.7934603691101 203.40580224990845 359.2012218236923 198.34537386894226Q352.60898327827454 193.28494548797607 340.65980291366577 193.28494548797607Q332.78054332733154 193.28494548797607 327.4124149084091 195.3715479373932Q322.0442864894867 197.4581503868103 319.34450483322144 201.14620506763458Q316.6447231769562 204.83425974845886 316.6447231769562 209.5375394821167Q316.6447231769562 214.62714076042175 319.7016260623932 218.169207572937Q322.7585289478302 221.71127438545227 328.34903216362 224.08987998962402Q333.9395353794098 226.46848559379578 341.3696310520172 228.15305590629578L355.7985076904297 231.47725820541382Q367.9140064716339 234.12765979766846 377.42173886299133 238.55248093605042Q386.92947125434875 242.97730207443237 393.53073036670685 249.13834929466248Q400.13198947906494 255.29939651489258 403.5392961502075 263.3718580007553Q406.9466028213501 271.44431948661804 406.9466028213501 281.50230646133423Q406.9466028213501 297.3372948169708 399.0470812320709 308.7272411584854Q391.14755964279175 320.1171875 376.36375522613525 326.17714405059814Q361.57995080947876 332.2371006011963 340.8125493526459 332.2371006011963Z" fill="#ffaa1c"/><rect x="118" y="360" width="276" height="22" rx="6" fill="#f4f0e8" opacity=".9"/></svg>
+      <span>Desk Studio</span>
+    </a>
+    <div class="navlinks">
+      <a href="#how">How it works</a>
+      <a href="#team">The studio</a>
+      <a href="#contribute">Contribute</a>
+      <a class="github" href="https://github.com/adityareddy-dev/deskstudio">GitHub</a>
+    </div>
+    <a class="button" href="#install">Install the plugin</a>
+  </nav>
+</header>
+
+<main id="top">
+  <section class="hero" aria-labelledby="hero-heading">
+    <div class="wrap">
+      <div class="hero-copy">
+        <p class="eyebrow">DESIGN, AT YOUR DESK</p>
+        <h1 id="hero-heading">Your own design studio.</h1>
+        <p class="description">A full design studio inside the coding agent you already use. One command, free, nothing leaves your machine but the model calls you already make.</p>
+        <div class="hero-action"><a class="button" href="#install">Install the plugin</a></div>
+        <p class="support small muted">Open source, MIT. No account, no sign-up.<a href="https://github.com/adityareddy-dev/deskstudio" class="read-code">Read the code</a></p>
+        <code class="command">/plugin install desk --marketplace adityareddy-dev/deskstudio</code>
+      </div>
+      <figure class="media-frame hero-media" aria-label="Desk Studio one-command design process">
+        <div class="frame-bar" aria-hidden="true">Desk Studio</div>
+        <video controls muted playsinline preload="metadata" width="1920" height="1080" poster="media/one-command-v2.webp" aria-label="One command, the real Desk Studio outputs"><source src="media/one-command-v2.mp4" type="video/mp4"></video>
+      </figure>
+    </div>
+  </section>
+
+  <section class="band dark" id="how" aria-labelledby="how-heading">
+    <div class="wrap">
+      <div class="process-head">
+        <div>
+          <p class="eyebrow">THE PROCESS</p>
+          <h2 id="how-heading">How a job runs.</h2>
+        </div>
+        <p>You type one line. The Design Manager staffs the job, three roughs come back, the Art Director picks one, a cheaper model polishes, proof checks the pixels, and the Creative Director signs it off or sends it back with notes.</p>
+      </div>
+      <ol class="steps">
+        <li>
+          <span class="step-number">01</span>
+          <div class="step-description">
+            <h3>Roughs</h3>
+            <p>Three directions from the brief and the brand.</p>
+          </div>
+        </li>
+        <li>
+          <span class="step-number">02</span>
+          <div class="step-description">
+            <h3>Pick</h3>
+            <p>The Art Director looks at the renders, picks one and writes the notes.</p>
+          </div>
+        </li>
+        <li>
+          <span class="step-number">03</span>
+          <div class="step-description">
+            <h3>Polish</h3>
+            <p>The builder desk revises with the notes and the screenshot.</p>
+          </div>
+        </li>
+        <li>
+          <span class="step-number">04</span>
+          <div class="step-description">
+            <h3>Proof</h3>
+            <p>Contrast on the rendered pixels, overflow, safe zones, palette, type scale, copy present.</p>
+          </div>
+        </li>
+        <li>
+          <span class="step-number">05</span>
+          <div class="step-description">
+            <h3>Sign-off</h3>
+            <p>Pass is every axis at 8 or above and the average at 8.5 or above.</p>
+          </div>
+        </li>
+      </ol>
+<details class="record"><summary>The launch-card job, with its real numbers</summary><div class="record-body">
+  <h2>How a job runs.</h2>
+  <p class="lead">You type one line. The Design Manager staffs the job, three roughs come back, the Art Director picks one, a cheaper model polishes, proof checks the pixels, and the Creative Director signs it off or sends it back with notes. This is the launch card job, retold with its real numbers.</p>
+  <div style="margin-top:32px"><div class="media-frame"><div class="frame-bar" aria-hidden="true">explainer</div><video class="loop" width="1280" height="720" autoplay muted loop playsinline preload="metadata" poster="media/explainer.webp" aria-label="A team of little desk robots passes one job along: three roughs, the pick, polish rounds, proof and the sign-off, then the work comes back"><source src="media/explainer.mp4" type="video/mp4"></video><img class="poster" src="media/explainer.webp" width="1280" height="720" alt="A team of little desk robots passes one job along: three roughs, the pick, polish rounds, proof and the sign-off, then the work comes back" loading="lazy" decoding="async"></div></div>
+
+  <div id="loop"></div><h2>Roughs, pick, polish, proof, sign-off.</h2>
+  <p class="lead">Every visual job runs the way a studio runs. This is the launch card above, as it happened.</p>
+  <div class="run-record">
+    <div><h3>Roughs</h3><p>The UI Designer makes three directions at the senior model from the brief, the brand and the standard for the piece.</p>
+      <div class="roughs"><div class="media-frame"><div class="frame-bar" aria-hidden="true">rough 1</div><img class="" src="gallery/card-rough-1.webp" width="1200" height="627" alt="rough 1" loading="lazy" decoding="async"></div><div class="media-frame"><div class="frame-bar" aria-hidden="true">rough 2</div><img class="" src="gallery/card-rough-2.webp" width="1200" height="627" alt="rough 2" loading="lazy" decoding="async"></div><div class="media-frame"><div class="frame-bar" aria-hidden="true">rough 3</div><img class="" src="gallery/card-rough-3.webp" width="1200" height="627" alt="rough 3" loading="lazy" decoding="async"></div></div></div>
+    <div><h3>Pick</h3><p>The Art Director looks at the renders, picks one and writes the notes.</p><blockquote><p>Rough 2: headline reads first at both sizes, only amber is the small lamp, fixes are type sizes not layout</p></blockquote></div>
+    <div><h3>Polish</h3><p>The builder desk revises with the notes and the screenshot. Rounds are cheap, so this is where the iteration goes.</p>
+      <p>Round 1: 8.4. Round 2: 8.5. Round 3: 8.9.</p></div>
+    <div><h3>Proof</h3><p>Contrast on the rendered pixels, overflow, safe zones, palette, type scale, copy present. No model in the loop. A failure goes back to the builder with the screenshot. It runs on every polished file.</p></div>
+    <div class="signoff"><div><h3>Sign-off</h3><p>The Creative Director scores eight axes. Pass is every axis at 8 or above and the average at 8.5 or above.</p><p class="muted">Average 8.9, 3 of 8 rounds.</p></div>
+      <div class="final"><div class="media-frame"><div class="frame-bar" aria-hidden="true">the signed-off launch card</div><img class="" src="gallery/card-final.webp" width="1200" height="627" alt="the signed-off launch card" loading="lazy" decoding="async"></div></div><div><div class="axes"><span>hierarchy</span><span>9</span><span class="bar"><i style="width:90%"></i><b></b></span><span>typography</span><span>9</span><span class="bar"><i style="width:90%"></i><b></b></span><span>spacing</span><span>9</span><span class="bar"><i style="width:90%"></i><b></b></span><span>colour</span><span>9</span><span class="bar"><i style="width:90%"></i><b></b></span><span>composition</span><span>9</span><span class="bar"><i style="width:90%"></i><b></b></span><span>originality</span><span>8</span><span class="bar"><i style="width:80%"></i><b></b></span><span>brand</span><span>9</span><span class="bar"><i style="width:90%"></i><b></b></span><span>copy</span><span>9</span><span class="bar"><i style="width:90%"></i><b></b></span></div></div></div>
+  </div>
+  <div class="pair2" style="margin-top:48px"><div><div class="media-frame"><div class="frame-bar" aria-hidden="true">the-pick</div><video class="loop" width="1280" height="720" autoplay muted loop playsinline preload="metadata" poster="media/the-pick.webp" aria-label="Three roughs on the board, the Art Director picks one and the ring draws round it"><source src="media/the-pick.mp4" type="video/mp4"></video><img class="poster" src="media/the-pick.webp" width="1280" height="720" alt="Three roughs on the board, the Art Director picks one and the ring draws round it" loading="lazy" decoding="async"></div></div><div><div class="media-frame"><div class="frame-bar" aria-hidden="true">before-after</div><video class="loop" width="1280" height="720" autoplay muted loop playsinline preload="metadata" poster="media/before-after.webp" aria-label="A rough becomes the signed-off render as the scorecard fills"><source src="media/before-after.mp4" type="video/mp4"></video><img class="poster" src="media/before-after.webp" width="1280" height="720" alt="A rough becomes the signed-off render as the scorecard fills" loading="lazy" decoding="async"></div></div></div></div></details>
+    </div>
+  </section>
+
+  <section class="band cream" id="team" aria-labelledby="team-heading">
+    <div class="wrap studio-layout">
+      <div class="intro">
+        <p class="eyebrow">THE STUDIO</p>
+        <h2 id="team-heading">42 desks.</h2>
+        <p>Each desk is a written brief: what it owns, how it decides, its checklist and what it hands to the next desk. The Design Manager staffs them per job.</p>
+      </div>
+      <div class="tiers"><div class="tier"><h3>Directors</h3><p class="tier-description">The pick, the notes, the sign-off.</p><div class="roles"><span>Creative Director</span><span>Art Director</span></div></div><div class="tier"><h3>Seniors</h3><p class="tier-description">The roughs, research, type, tokens, copy.</p><div class="roles"><span>Typographer</span><span>Design System Lead</span></div></div><div class="tier"><h3>Builders</h3><p class="tier-description">Every polish round, the making.</p><div class="roles"><span>UI Designer</span><span>Social Media Designer</span></div></div></div>
+    </div>
+  <div class="wrap"><details class="record"><summary>All desks and the dashboard</summary><div class="record-body">
+  <div class="two">
+    <div><h2>42 desks.</h2><p class="lead">Each desk is a written brief: what it owns, how it decides, its checklist and what it hands to the next desk. The Design Manager staffs them per job. The three roughs run side by side and the rest in turn.</p></div>
+    <div><div class="media-frame"><div class="frame-bar" aria-hidden="true">dashboard</div><video class="loop" width="1280" height="720" autoplay muted loop playsinline preload="metadata" poster="media/floor-idle.webp" aria-label="The dashboard: forty-two desks, a lamp lighting when a desk starts"><source src="media/floor-idle.mp4" type="video/mp4"></video><img class="poster" src="media/floor-idle.webp" width="1280" height="720" alt="The dashboard: forty-two desks, a lamp lighting when a desk starts" loading="lazy" decoding="async"></div></div>
+  </div>
+  <div class="tiers"><div class="tier"><h3>Directors <span class="muted">3</span></h3><p class="muted">the pick, the notes, the sign-off. Default model <span class="mono">anthropic/opus</span>.</p><ul><li>Creative Director<span>direction and sign-off against the rubric</span></li><li>Art Director<span>the pick, the notes, the pen on escalation</span></li><li>Brand Strategist<span>positioning, the claim, voice, architecture, brand audits</span></li></ul></div><div class="tier"><h3>Seniors <span class="muted">17</span></h3><p class="muted">the roughs, research, type, tokens, copy. Default model <span class="mono">anthropic/sonnet</span>.</p><ul><li>Typographer<span>pairing, scale, measure, leading, weights, optical details</span></li><li>Design System Lead<span>tokens, DESIGN.md, exports, consistency audits</span></li><li>Accessibility Specialist<span>WCAG 2.2 AA beyond the automated checks, with code fixes</span></li><li>Copy Editor<span>correctness, consistency, clarity, the last read</span></li><li>UX Researcher<span>audience, jobs, pains, evidence, research questions and plans</span></li><li>Product Designer<span>scope, the core flow, trade-offs, first version versus later</span></li><li>UX Designer<span>flows, wireframes, information architecture, interaction rules, edge cases</span></li><li>Interaction Designer<span>states, gestures, transitions, feedback, clickable prototypes</span></li><li>Presentation Designer<span>slide systems and decks at 1920x1080</span></li><li>Dashboard Architect<span>dashboard information architecture, layout, density, states</span></li><li>Landing Page Designer<span>above the fold, section order, pricing, conversion details</span></li><li>Social Media Strategist<span>the plan, the calendar, launch sequences, platform rules, measurement</span></li><li>Growth/Analytics Specialist<span>the metric, tracking plans, variant plans, honest reads, reports</span></li><li>Compliance Designer<span>consent, privacy, email footers, accessibility obligations, regulated flows</span></li><li>Conversational Designer<span>dialogue, chat and voice flows, message types, guardrails</span></li><li>Spatial Designer<span>headset and AR layout in metres and degrees, comfort, input fallbacks</span></li><li>AI Prompt Engineer<span>prompt packs, cross-tool variants, critiques, consistency strategies</span></li></ul></div><div class="tier"><h3>Builders <span class="muted">21</span></h3><p class="muted">every polish round, the making. Default model <span class="mono">anthropic/haiku</span>.</p><ul><li>UI Designer<span>layout, type, colour and composition in one self-contained file</span></li><li>Social Media Designer<span>cards, stories, carousels, thumbnails, series consistency</span></li><li>Social Media Copywriter<span>on-card copy, captions per platform, carousel copy, alt text</span></li><li>Email Designer<span>600px table email that renders everywhere, dark mode, the bulletproof CTA</span></li><li>Email Copywriter<span>subject, preheader, body with one ask, sequences, transactional copy</span></li><li>Motion Designer<span>motion systems, micro-interactions, transitions, deterministic clips</span></li><li>Illustration Director<span>illustration style, spots, hero art, diagrams, systems</span></li><li>Icon Designer<span>icon grid, stroke, optical corrections, the set, the SVG contract</span></li><li>Image Editor<span>selection, crops and focal points, treatment, scrims, exports</span></li><li>Data Viz Designer<span>chart choice, honest axes, direct labels, colourblind palettes, inline SVG</span></li><li>Design Engineer<span>production HTML and CSS, components in the project's framework, states, performance</span></li><li>Framework Specialist<span>idiomatic components in React, Vue, Svelte, Next.js or Astro</span></li><li>Editorial Designer<span>grids, page systems, long-form hierarchy, figures, print PDFs</span></li><li>Print Designer<span>trim, bleed, safe area, ink, resolution, the print PDF and preflight</span></li><li>Storyboard Artist<span>beat sheets, frames as HTML, eye path, caption timing, the hook frame</span></li><li>Video Editor<span>pacing, captions, platform specs, loops, QC, exports</span></li><li>Video/Content Producer<span>scripts with timings, series plans, the hook, the ask</span></li><li>Content Designer<span>headlines, sublines, buttons, labels, empty states, errors</span></li><li>AI Image Director<span>shot lists, direction, candidate selection, moodboards, fit</span></li><li>AI Video Director<span>shot-by-shot direction, tool choice per shot, consistency, selection</span></li><li>AI Audio &amp; Voice Producer<span>voiceover briefs, stings, UI sounds, music beds, loudness, rights</span></li></ul></div></div>
+  <p class="muted" style="margin-top:24px">The Design Manager runs in your session on whatever model you run, and the other 41 desks run as subagents.</p>
+
+  <div class="two">
+    <div id="dashboard"><h2>You run it from the dashboard.</h2>
+      <p class="lead">A local page, nothing leaves your machine. Every control is a write to a file the Manager reads before its next step.</p>
+      <ul class="controls">
+        <li>Pause at the next step, continue, stop.</li>
+        <li>Move a tier or one desk to another model, for this job or as the default.</li>
+        <li>Write a desk a note. It goes into its next prompt.</li>
+        <li>Pick a rough yourself, over the Art Director.</li>
+        <li>Approve a sign-off under the bar, or send it back with notes.</li>
+      </ul></div>
+    <div><div class="media-frame"><div class="frame-bar" aria-hidden="true">pick-it-yourself</div><video class="loop" width="1280" height="720" autoplay muted loop playsinline preload="metadata" poster="media/pick-it-yourself.webp" aria-label="Clicking a rough on the review board, which then shows as picked by you"><source src="media/pick-it-yourself.mp4" type="video/mp4"></video><img class="poster" src="media/pick-it-yourself.webp" width="1280" height="720" alt="Clicking a rough on the review board, which then shows as picked by you" loading="lazy" decoding="async"></div></div>
+  </div>
+  <p class="muted" style="margin-top:48px">One real job, run from the dashboard: paused after the roughs, the pick made by hand, the builder role moved from Haiku to Sonnet, and a note written to the UI Designer. It came back signed off at 8.5 in 2 rounds, $2.39 at list price.</p>
+  <div class="pair2"><div><div class="media-frame"><div class="frame-bar" aria-hidden="true">change-role</div><video class="loop" width="1280" height="720" autoplay muted loop playsinline preload="metadata" poster="media/swap-the-seat.webp" aria-label="The builder role moved to another model while the job holds"><source src="media/swap-the-seat.mp4" type="video/mp4"></video><img class="poster" src="media/swap-the-seat.webp" width="1280" height="720" alt="The builder role moved to another model while the job holds" loading="lazy" decoding="async"></div></div><div><div class="media-frame"><div class="frame-bar" aria-hidden="true">note-to-the-desk</div><video class="loop" width="1280" height="720" autoplay muted loop playsinline preload="metadata" poster="media/note-to-the-desk.webp" aria-label="A note typed to the UI Designer, then the next round"><source src="media/note-to-the-desk.mp4" type="video/mp4"></video><img class="poster" src="media/note-to-the-desk.webp" width="1280" height="720" alt="A note typed to the UI Designer, then the next round" loading="lazy" decoding="async"></div></div></div></div></details></div>
+  </section>
+
+  <section class="band" id="proof" aria-labelledby="evidence-heading">
+    <div class="wrap">
+      <div class="evidence-head">
+        <div>
+          <p class="eyebrow">THE EVIDENCE</p>
+          <h2 id="evidence-heading">Proof on real pixels.</h2>
+        </div>
+        <p>Every polished file is rendered in Chrome at each size and checked on the pixels before the Creative Director scores it.</p>
+      </div>
+      <div class="evidence-layout">
+        <figure class="media-frame" aria-label="Saved Desk Studio launch-card output">
+          <div class="frame-bar" aria-hidden="true"></div>
+          <img class="" src="gallery/card-final.webp" width="1200" height="627" alt="The signed-off Desk Studio launch card, Your own design studio" loading="lazy" decoding="async">
+        </figure>
+        <div class="evidence-record">
+          <h3>One launch card.</h3>
+          <p class="score">8.9</p>
+          <div class="record-details"><span>3 polish rounds</span><span>$1.34 at list price</span></div>
+          <p class="caveat">Scores come from the studio's model reviewers, they are not independent benchmarks.</p>
+          <ul class="checks">
+            <li>Text contrast</li>
+            <li>Overflow and clipping</li>
+            <li>Safe zones</li>
+            <li>Brand palette</li>
+            <li>Type scale</li>
+            <li>Copy present</li>
+          </ul>
+        </div>
+      </div>
+<details class="record"><summary>Proof checks and the cost record</summary><div class="record-body">
+  <div id="prices"></div><div class="two flip">
+    <div><div class="media-frame"><div class="frame-bar" aria-hidden="true">proof</div><video class="loop" width="1280" height="720" autoplay muted loop playsinline preload="metadata" poster="media/proof.webp" aria-label="Proof flags a subline that is too dark, and the fixed file passes"><source src="media/proof.mp4" type="video/mp4"></video><img class="poster" src="media/proof.webp" width="1280" height="720" alt="Proof flags a subline that is too dark, and the fixed file passes" loading="lazy" decoding="async"></div></div>
+    <div><h2>Proof on real pixels.</h2>
+      <p class="lead">Every polished file is rendered in Chrome at each size and checked on the pixels before the Creative Director scores it.</p>
+      <ul class="checks"><li>Text contrast against the pixels behind it</li><li>Overflow and clipping</li><li>Safe zones per platform</li><li>Colours inside the brand palette</li><li>Type on the brand scale</li><li>Every line of copy present</li><li>Carousels consistent across slides</li><li>Reading time and flashes in motion</li></ul></div>
+  </div>
+  <blockquote><p>From the quill card job: proof failed twice before passing. Round 1 failed on the type scale, a 248px headline off the brand scale, capped at 232px. Round 3 failed because the X card's headline sat inside the left safe zone, and round 4 fixed it. Signed off at 8.9.</p></blockquote>
+
+  <div class="two flip">
+    <div><div class="media-frame"><div class="frame-bar" aria-hidden="true">cost-meter</div><video class="loop" width="1280" height="720" autoplay muted loop playsinline preload="metadata" poster="media/cost-meter.webp" aria-label="The cost line filling by tier as each desk reports"><source src="media/cost-meter.mp4" type="video/mp4"></video><img class="poster" src="media/cost-meter.webp" width="1280" height="720" alt="The cost line filling by tier as each desk reports" loading="lazy" decoding="async"></div></div>
+    <div><h2>Cheap models make. Strong models judge.</h2>
+      <p class="lead">Roughs come from the senior roles, every polish round from the builder roles, and the pick, the notes and the sign-off from the director roles. The dashboard shows what each desk cost at list price.</p></div>
+  </div>
+  <div class="table-scroll" tabindex="0" role="region" aria-label="Technical details"><table><thead><tr><th>Tier</th><th>Default</th><th>Does</th></tr></thead><tbody><tr><th>director</th><td class="mono">anthropic/opus</td><td>the pick, the notes, the sign-off</td></tr><tr><th>senior</th><td class="mono">anthropic/sonnet</td><td>the roughs, research, type, tokens, copy</td></tr><tr><th>builder</th><td class="mono">anthropic/haiku</td><td>every polish round, the making</td></tr></tbody></table></div>
+  <h3 style="margin-top:48px">One launch card, $1.34 at list price.</h3>
+  <div class="costline" aria-hidden="true"><i class="director" style="width:40.44%" title="director $0.81"></i><i class="senior" style="width:21.48%" title="senior $0.43"></i><i class="builder" style="width:4.86%" title="builder $0.10"></i></div>
+  <div class="costscale"><span>$0</span><span>$2</span></div>
+  <p style="margin-top:16px">Director $0.81, senior $0.43, builder $0.10. 61% went to judgment, 39% to making. 10 desk runs, 3 polish rounds, signed off at 8.9.</p></div></details>
+    </div>
+  </section>
+
+<section class="band cream" id="makes"><div class="wrap">
+  <h2>Made by the studio.</h2>
+  <p class="lead">17 pieces for four made-up brands, one real site and the studio's own, each signed off by the Creative Director against the eight-axis rubric. The score and the cost under each one are from the run that made it. Scores come from the studio's model reviewers, they are not independent benchmarks.</p>
+  <div class="gallery"><figure>
+  <div class="media-frame"><div class="frame-bar" aria-hidden="true">brand-kit for Desk Studio, signed off at 8.6</div><img class="" src="gallery/brand-kit-desk-studio.webp" width="1440" height="900" alt="brand-kit for Desk Studio, signed off at 8.6" loading="lazy" decoding="async"></div>
+  <figcaption><span class="cmd mono">/desk:brand-kit</span><span>Brand kit for Desk Studio. Signed off at 8.6 after 3 rounds, $11.60 at list price.</span></figcaption>
+</figure>
+<figure>
+  <div class="media-frame"><div class="frame-bar" aria-hidden="true">brand-kit for harbor, signed off at 8.6</div><img class="" src="gallery/brand-kit-harbor.webp" width="1440" height="900" alt="brand-kit for harbor, signed off at 8.6" loading="lazy" decoding="async"></div>
+  <figcaption><span class="cmd mono">/desk:brand-kit</span><span>Brand kit for Harbor. Signed off at 8.6 after 2 rounds, $10.16 at list price.</span></figcaption>
+</figure>
+<figure>
+  <div class="media-frame"><div class="frame-bar" aria-hidden="true">carousel for quill, signed off at 8.9</div><img class="" src="gallery/carousel-quill-drafts-beat-versions.webp" width="1080" height="1350" alt="carousel for quill, signed off at 8.9" loading="lazy" decoding="async"></div>
+  <figcaption><span class="cmd mono">/desk:social-content</span><span>Carousel for Quill. Signed off at 8.9 after 2 rounds, $2.11 at list price.</span></figcaption>
+</figure>
+<figure>
+  <div class="media-frame"><div class="frame-bar" aria-hidden="true">chart for northlight, signed off at 8.6</div><img class="" src="gallery/chart-northlight-payback-by-state.webp" width="1920" height="1080" alt="chart for northlight, signed off at 8.6" loading="lazy" decoding="async"></div>
+  <figcaption><span class="cmd mono">/desk:chart-design</span><span>Chart for Northlight. Signed off at 8.6 after 1 round, $0.84 at list price.</span></figcaption>
+</figure>
+<figure>
+  <div class="media-frame"><div class="frame-bar" aria-hidden="true">dashboard for northlight, signed off at 8.5</div><img class="" src="gallery/dashboard-northlight-install-ops.webp" width="1440" height="1880" alt="dashboard for northlight, signed off at 8.5" loading="lazy" decoding="async"></div>
+  <figcaption><span class="cmd mono">/desk:dashboard-layout</span><span>Dashboard for Northlight. Signed off at 8.5 after 3 rounds, $6.21 at list price.</span></figcaption>
+</figure>
+<figure>
+  <div class="media-frame"><div class="frame-bar" aria-hidden="true">deck for northlight, signed off at 8.5</div><img class="" src="gallery/deck-northlight-pitch.webp" width="3072" height="824" alt="deck for northlight, signed off at 8.5" loading="lazy" decoding="async"></div>
+  <figcaption><span class="cmd mono">/desk:presentation-design</span><span>Deck for Northlight. Signed off at 8.5 after 4 rounds, $7.93 at list price.</span></figcaption>
+</figure>
+<figure>
+  <div class="media-frame"><div class="frame-bar" aria-hidden="true">email for ferro, signed off at 8.8</div><img class="" src="gallery/email-ferro-welcome.webp" width="600" height="800" alt="email for ferro, signed off at 8.8" loading="lazy" decoding="async"></div>
+  <figcaption><span class="cmd mono">/desk:email-template</span><span>Email for Ferro. Signed off at 8.8 after 2 rounds, $1.42 at list price.</span></figcaption>
+</figure>
+<figure>
+  <div class="media-frame"><div class="frame-bar" aria-hidden="true">landing-page for quill, signed off at 8.5</div><img class="" src="gallery/landing-page-quill-drafts.webp" width="1440" height="3656" alt="landing-page for quill, signed off at 8.5" loading="lazy" decoding="async"></div>
+  <figcaption><span class="cmd mono">/desk:design-template</span><span>Landing page for Quill. Signed off at 8.5 after 2 rounds, $2.12 at list price.</span></figcaption>
+</figure>
+<figure>
+  <div class="media-frame"><div class="frame-bar" aria-hidden="true">motion-clip for quill, signed off at 9</div><img class="" src="gallery/motion-clip-quill-launch-sting.webp" width="1920" height="1080" alt="motion-clip for quill, signed off at 9" loading="lazy" decoding="async"></div>
+  <figcaption><span class="cmd mono">/desk:motion-design</span><span>Motion clip for Quill. Signed off at 9.0 after 2 rounds, $3.33 at list price.</span></figcaption>
+</figure>
+<figure>
+  <div class="media-frame"><div class="frame-bar" aria-hidden="true">social-card for Desk Studio, signed off at 8.5</div><img class="" src="gallery/social-card-desk-studio-floor.webp" width="1200" height="627" alt="social-card for Desk Studio, signed off at 8.5" loading="lazy" decoding="async"></div>
+  <figcaption><span class="cmd mono">/desk:design</span><span>Social card for Desk Studio. Signed off at 8.5 after 2 rounds, $2.39 at list price.</span></figcaption>
+</figure>
+<figure>
+  <div class="media-frame"><div class="frame-bar" aria-hidden="true">social-card for Desk Studio, signed off at 8.9</div><img class="" src="gallery/social-card-desk-studio-launch.webp" width="1200" height="627" alt="social-card for Desk Studio, signed off at 8.9" loading="lazy" decoding="async"></div>
+  <figcaption><span class="cmd mono">/desk:design</span><span>Social card for Desk Studio. Signed off at 8.9 after 3 rounds, $1.34 at list price.</span></figcaption>
+</figure>
+<figure>
+  <div class="media-frame"><div class="frame-bar" aria-hidden="true">social-card for ferro, signed off at 8.8</div><img class="" src="gallery/social-card-ferro-spec-reveal.webp" width="1200" height="627" alt="social-card for ferro, signed off at 8.8" loading="lazy" decoding="async"></div>
+  <figcaption><span class="cmd mono">/desk:design</span><span>Social card for Ferro. Signed off at 8.8 after 2 rounds, $0.80 at list price.</span></figcaption>
+</figure>
+<figure>
+  <div class="media-frame"><div class="frame-bar" aria-hidden="true">social-card for northlight, signed off at 8.6</div><img class="" src="gallery/social-card-northlight-battery-launch.webp" width="1200" height="627" alt="social-card for northlight, signed off at 8.6" loading="lazy" decoding="async"></div>
+  <figcaption><span class="cmd mono">/desk:design</span><span>Social card for Northlight. Signed off at 8.6 after 2 rounds, $0.97 at list price.</span></figcaption>
+</figure>
+<figure>
+  <div class="media-frame"><div class="frame-bar" aria-hidden="true">social-card for northlight, signed off at 8.6</div><img class="" src="gallery/social-card-northlight-battery-post.webp" width="1200" height="627" alt="social-card for northlight, signed off at 8.6" loading="lazy" decoding="async"></div>
+  <figcaption><span class="cmd mono">/desk:social-content</span><span>Social card for Northlight. Signed off at 8.6 after 1 round, $0.65 at list price.</span></figcaption>
+</figure>
+<figure>
+  <div class="media-frame"><div class="frame-bar" aria-hidden="true">social-card for quill, signed off at 8.9</div><img class="" src="gallery/social-card-quill-drafts-launch.webp" width="1600" height="900" alt="social-card for quill, signed off at 8.9" loading="lazy" decoding="async"></div>
+  <figcaption><span class="cmd mono">/desk:design</span><span>Social card for Quill. Signed off at 8.9 after 4 rounds, $0.97 at list price.</span></figcaption>
+</figure>
+<figure>
+  <div class="media-frame"><div class="frame-bar" aria-hidden="true">social-card for A Day in the Life of Adi, signed off at 8.5</div><img class="" src="gallery/social-card-real-brand-site.webp" width="1200" height="627" alt="social-card for A Day in the Life of Adi, signed off at 8.5" loading="lazy" decoding="async"></div>
+  <figcaption><span class="cmd mono">/desk:design</span><span>Social card for A Day in the Life of Adi. Signed off at 8.5 after 4 rounds, $1.23 at list price.</span></figcaption>
+</figure>
+<figure>
+  <div class="media-frame"><div class="frame-bar" aria-hidden="true">video for ferro, signed off at 8.5</div><img class="" src="gallery/video-ferro-spec-reveal.webp" width="1920" height="1080" alt="video for ferro, signed off at 8.5" loading="lazy" decoding="async"></div>
+  <figcaption><span class="cmd mono">/desk:video</span><span>Video for Ferro. Signed off at 8.5 after 1 round, $2.29 at list price.</span></figcaption>
+</figure></div></div></section>
+
+  <section class="band dark" id="where" aria-labelledby="agents-heading">
+    <div class="wrap agents-layout">
+      <div class="intro">
+        <p class="eyebrow">YOUR EXISTING TOOLS</p>
+        <h2 id="agents-heading">Other agents.</h2>
+        <p>The runner reaches each provider through the CLI you already have signed in, on the plan you already pay for.</p>
+      </div>
+      <div>
+        <ul class="agents">
+          <li><a href="https://github.com/adityareddy-dev/deskstudio/blob/main/README.md#install">Claude Code</a></li>
+          <li><a href="https://github.com/adityareddy-dev/deskstudio/blob/main/adapters/agents.md">Codex</a></li>
+          <li><a href="https://github.com/adityareddy-dev/deskstudio/blob/main/adapters/cursor.mdc">Cursor</a></li>
+          <li><a href="https://github.com/adityareddy-dev/deskstudio/blob/main/adapters/gemini.md">Gemini CLI</a></li>
+          <li><a href="https://github.com/adityareddy-dev/deskstudio/blob/main/adapters/copilot.md">Copilot</a></li>
+          <li><a href="https://github.com/adityareddy-dev/deskstudio/blob/main/adapters/windsurf.md">Windsurf</a></li>
+          <li><a href="https://github.com/adityareddy-dev/deskstudio/blob/main/adapters/opencode.md">OpenCode</a></li>
+        </ul>
+        <code class="command">npx deskstudio add</code>
+        <p class="qualification">The runner takes design for social cards. For design work inside the codebase the agent plays the Design Manager from the briefs.</p>
+      </div>
+    </div>
+  <div class="wrap"><details class="record"><summary>Agent support and provider models</summary><div class="record-body">
+  <h2>Other agents.</h2>
+  <div class="table-scroll" tabindex="0" role="region" aria-label="Technical details"><table><thead><tr><th>Agent</th><th>What you get</th></tr></thead><tbody>
+    <tr><th>Claude Code</th><td>Everything: the 41 desks as native subagents with the repo's tools, the Manager in your session, the loop, proof, the dashboard, video.</td></tr>
+    <tr><th>Codex, Cursor, Gemini CLI, Copilot, Windsurf, OpenCode</th><td><span class="mono">npx deskstudio add</span> writes a rules block the agent reads and copies the desk briefs. The runner takes <span class="mono">design</span> for social cards, with the same loop, proof and dashboard, and desks return files rather than editing the repo. For design work inside the codebase the agent plays the Design Manager from the briefs. The other commands are Claude Code only for now. The installer is tested for each of these agents, and jobs have completed through the Claude, Codex and Antigravity CLIs.</td></tr>
+  </tbody></table></div>
+
+  <div id="models"></div><h2>Models per role.</h2>
+  <p class="lead">The runner reaches each provider through the CLI you already have signed in, on the plan you already pay for. API keys are the fallback. One provider is fine, and tiers can mix. Jobs have completed through the Anthropic, OpenAI and Google CLIs. Google uses Antigravity CLI.</p>
+  <div class="table-scroll" tabindex="0" role="region" aria-label="Technical details"><table><thead><tr><th>Provider</th><th>CLI</th><th>Roles</th></tr></thead><tbody><tr><th>Anthropic</th><td class="mono">claude</td><td>director <span class="mono">opus</span>, senior <span class="mono">sonnet</span>, builder <span class="mono">haiku</span></td></tr><tr><th>OpenAI</th><td class="mono">codex</td><td>director <span class="mono">large</span>, senior <span class="mono">mini</span>, builder <span class="mono">nano</span></td></tr><tr><th>Google</th><td class="mono">agy</td><td>director <span class="mono">flash-high</span>, senior <span class="mono">flash</span>, builder <span class="mono">flash-low</span></td></tr></tbody></table></div>
+  <pre><code>{
+  "models": {
+    "director": "anthropic/opus",
+    "senior": "anthropic/sonnet",
+    "builder": "openai/nano"
+  }
+}</code></pre>
+  <p class="muted small" style="margin-top:12px">Set once in <span class="mono">.desk/project.json</span>, or from the dashboard for one job.</p></div></details></div>
+  </section>
+
+  <section class="band cream" id="contribute" aria-labelledby="contribute-heading">
+    <div class="wrap contribute-layout">
+      <div class="intro">
+        <p class="eyebrow">OPEN SOURCE</p>
+        <h2 id="contribute-heading">Make your first contribution.</h2>
+        <p>There are setup guides to write for Cursor and Copilot, and proof tests to add for safe-zone boundaries and required copy. None of them need a model call.</p>
+      </div>
+      <div class="contribute-links">
+        <a href="https://github.com/adityareddy-dev/deskstudio/contribute">Pick a starter issue</a>
+        <a href="https://github.com/adityareddy-dev/deskstudio/blob/main/docs/first-contribution.md">Your first contribution</a>
+        <p class="small muted">Check that an issue is open and unclaimed before starting. A failed install is useful too, <a href="https://github.com/adityareddy-dev/deskstudio/issues/new/choose">report it with the host, version and exact command</a>. Remove private project content from logs.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="install" aria-labelledby="install-heading">
+    <div class="wrap install-layout">
+      <div>
+        <p class="eyebrow">GET STARTED</p>
+        <h2 id="install-heading">Install.</h2>
+      </div>
+      <div class="install-details">
+  <p class="lead">Claude Code, one line.</p>
+  <p class="cmdblock"><code><span class="nb">/plugin</span> <span class="nb">install</span> <span class="nb">desk</span> <span class="nb">--marketplace</span> <span class="nb">adityareddy-dev/deskstudio</span></code></p>
+  <p class="muted small" style="margin-top:8px">On a Claude Code older than 2.1.275: <span class="mono">/plugin marketplace add adityareddy-dev/deskstudio</span>, then <span class="mono">/plugin install desk@deskstudio</span>.</p>
+  <p class="lead">Then ask for something.</p>
+  <p class="cmdblock"><code><span class="nb">/desk:design</span> <span class="nb">a</span> <span class="nb">launch</span> <span class="nb">card</span> <span class="nb">for</span> <span class="nb">LinkedIn</span></code></p>
+  <p class="lead">Other agents, one line in the project.</p><p>Codex, Cursor, Gemini CLI, Copilot, Windsurf or OpenCode: one line in the project.</p>
+  <p class="cmdblock"><code><span class="nb">npx</span> <span class="nb">deskstudio</span> <span class="nb">add</span></code></p>
+  <p class="muted small" style="margin-top:8px">It writes <span class="mono">.desk/</span>, copies the desks to <span class="mono">.agents/skills/desk/</span> and puts one marked block in the agent's instruction file. Every agent by default, one with <span class="mono">--agent codex</span>. Run it again any time, it only touches what sits between its markers.</p>
+  <div class="table-scroll" tabindex="0" role="region" aria-label="Agent installation paths"><table><thead><tr><th>Agent</th><th>Where the block goes</th></tr></thead><tbody>
+    <tr><th>Codex</th><td class="mono">AGENTS.md</td></tr>
+    <tr><th>OpenCode</th><td class="mono">AGENTS.md</td></tr>
+    <tr><th>Gemini CLI</th><td class="mono">GEMINI.md</td></tr>
+    <tr><th>Copilot</th><td class="mono">.github/copilot-instructions.md</td></tr>
+    <tr><th>Cursor</th><td class="mono">.cursor/rules/desk.mdc</td></tr>
+    <tr><th>Windsurf</th><td class="mono">.windsurf/rules/desk.md</td></tr>
+  </tbody></table></div>
+  <p class="lead">Then ask the agent in plain words, it reads the block and runs the studio.</p>
+  <p class="cmdblock"><code><span class="nb">design</span> <span class="nb">a</span> <span class="nb">launch</span> <span class="nb">card</span> <span class="nb">for</span> <span class="nb">LinkedIn</span></code></p>
+  <p class="muted small" style="margin-top:8px">Or run it yourself: <span class="mono">npx --package deskstudio desk-run design "a launch card for LinkedIn"</span>. The desks call models through the CLI you are already signed in to (<span class="mono">claude</span>, <span class="mono">codex</span> or <span class="mono">agy</span>) or a key (<span class="mono">ANTHROPIC_API_KEY</span>, <span class="mono">OPENAI_API_KEY</span>, <span class="mono">GEMINI_API_KEY</span>). <span class="mono">npx --package deskstudio desk-run doctor</span> shows which path it will take without making a model call. Files land in <span class="mono">.desk/out/&lt;job&gt;/</span> either way.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="band cream" id="faq" aria-labelledby="faq-heading">
+    <div class="wrap faq-layout">
+      <div>
+        <p class="eyebrow">GOOD QUESTIONS</p>
+        <h2 id="faq-heading">FAQ.</h2>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <h3>Do I need another account?</h3>
+          <p>Open source, MIT. No account, no sign-up.</p>
+        </div>
+        <div class="faq-item">
+          <h3>What leaves my machine?</h3>
+          <p>Only the model calls the desks make and a few research lookups leave it.</p>
+        </div>
+        <div class="faq-item">
+          <h3>What does the score mean?</h3>
+          <p>Scores come from the studio's model reviewers, they are not independent benchmarks.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Can I choose the rough?</h3>
+          <p>Pick a rough yourself, over the Art Director.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer><div class="wrap footer-inner">
+  <a class="brand" href="#top"><svg class="mark" viewBox="0 0 512 512" aria-hidden="true"><rect width="512" height="512" rx="112" fill="#12110f"/><path d="M183.5469024181366 330.0H139.02028727531433V296.11074447631836H181.85783553123474Q196.2372498512268 296.11074447631836 206.1582009792328 291.25023543834686Q216.07915210723877 286.38972640037537 221.16878080368042 275.4176050424576Q226.25840950012207 264.4454836845398 226.25840950012207 246.33750438690186Q226.25840950012207 228.19807648658752 221.09690415859222 217.26638317108154Q215.93539881706238 206.33468985557556 205.9515504837036 201.4449805021286Q195.96770215034485 196.55527114868164 181.31874012947083 196.55527114868164H138.29255509376526V162.666015625H183.546875Q209.05352878570557 162.666015625 227.47151124477386 172.70380914211273Q245.88949370384216 182.74160265922546 255.8801280260086 201.4830094575882Q265.87076234817505 220.22441625595093 265.87076234817505 246.33750438690186Q265.87076234817505 272.4191439151764 255.90932834148407 291.18750274181366Q245.9478943347931 309.9558615684509 227.49398040771484 319.97793078422546Q209.0400664806366 330.0 183.5469024181366 330.0ZM161.6251425743103 162.666015625V330.0H122.02178287506104V162.666015625Z" fill="#f4f0e8"/><path d="M340.8125493526459 332.2371006011963Q319.91485691070557 332.2371006011963 304.3875823020935 325.92781722545624Q288.86030769348145 319.6185338497162 280.2263090610504 306.8562000989914Q271.5923104286194 294.0938663482666 271.2643895149231 274.76391553878784H309.29545617103577Q309.8524830341339 282.8318667411804 313.77638852596283 288.31232726573944Q317.70029401779175 293.79278779029846 324.499196767807 296.5554803609848Q331.29809951782227 299.31817293167114 340.3004333972931 299.31817293167114Q348.5705111026764 299.31817293167114 354.49566638469696 297.063113451004Q360.42082166671753 294.8080539703369 363.60800182819366 290.758381485939Q366.7951819896698 286.70870900154114 366.7951819896698 281.4214503765106Q366.7951819896698 276.57891392707825 363.8685426712036 273.1895798444748Q360.9419033527374 269.80024576187134 354.9538371562958 267.22623109817505Q348.9657709598541 264.65221643447876 339.72533798217773 262.6082766056061L322.07107400894165 258.5024380683899Q300.40523505210876 253.54307293891907 288.022505402565 242.31933534145355Q275.63977575302124 231.09559774398804 275.63977575302124 212.1699821949005Q275.63977575302124 196.6539490222931 284.0446684360504 185.01692414283752Q292.4495611190796 173.37989926338196 307.14128172397614 166.89991056919098Q321.8330023288727 160.419921875 340.821515083313 160.419921875Q360.23229455947876 160.419921875 374.50174844264984 166.98526322841644Q388.7712023258209 173.55060458183289 396.6392753124237 185.30892729759216Q404.5073482990265 197.06725001335144 404.7005090713501 212.57431745529175H366.5706000328064Q365.7934603691101 203.40580224990845 359.2012218236923 198.34537386894226Q352.60898327827454 193.28494548797607 340.65980291366577 193.28494548797607Q332.78054332733154 193.28494548797607 327.4124149084091 195.3715479373932Q322.0442864894867 197.4581503868103 319.34450483322144 201.14620506763458Q316.6447231769562 204.83425974845886 316.6447231769562 209.5375394821167Q316.6447231769562 214.62714076042175 319.7016260623932 218.169207572937Q322.7585289478302 221.71127438545227 328.34903216362 224.08987998962402Q333.9395353794098 226.46848559379578 341.3696310520172 228.15305590629578L355.7985076904297 231.47725820541382Q367.9140064716339 234.12765979766846 377.42173886299133 238.55248093605042Q386.92947125434875 242.97730207443237 393.53073036670685 249.13834929466248Q400.13198947906494 255.29939651489258 403.5392961502075 263.3718580007553Q406.9466028213501 271.44431948661804 406.9466028213501 281.50230646133423Q406.9466028213501 297.3372948169708 399.0470812320709 308.7272411584854Q391.14755964279175 320.1171875 376.36375522613525 326.17714405059814Q361.57995080947876 332.2371006011963 340.8125493526459 332.2371006011963Z" fill="#ffaa1c"/><rect x="118" y="360" width="276" height="22" rx="6" fill="#f4f0e8" opacity=".9"/></svg>Desk Studio</a>
+  <span>MIT. It runs on your machine. Only the model calls the desks make and a few research lookups leave it.</span>
+  <span><a href="https://github.com/adityareddy-dev/deskstudio">GitHub</a> <a href="https://github.com/adityareddy-dev/deskstudio/tree/main/docs">Docs</a> <a href="#contribute" style="margin-left:24px">Contribute</a> <a href="https://github.com/adityareddy-dev/deskstudio/blob/main/docs/privacy.md" style="margin-left:24px">Privacy</a></span>
+</div></footer>
+<script>
+(() => {
+  const revealAnchor = () => {
+    const id = location.hash.slice(1);
+    let target;
+    try { target = id && document.getElementById(decodeURIComponent(id)); } catch { return; }
+    if (!target) return;
+    for (let p = target.parentElement; p; p = p.parentElement) if (p.tagName === 'DETAILS') p.open = true;
+    target.scrollIntoView();
+  };
+  addEventListener('hashchange', revealAnchor);
+  if (location.hash) revealAnchor();
+  const motion = matchMedia('(prefers-reduced-motion: reduce)');
+  const pause = () => { if (motion.matches) for (const v of document.querySelectorAll('video')) v.pause(); };
+  pause();
+  motion.addEventListener('change', pause);
+})();
+
+(() => {
+  if (!("IntersectionObserver" in window) || !window.matchMedia) return;
+
+  const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  if (motion.matches) return;
+
+  const pending = new Set();
+  const observer = new IntersectionObserver(entries => {
+    for (const entry of entries) {
+      if (!entry.isIntersecting) continue;
+      observer.unobserve(entry.target);
+      pending.delete(entry.target);
+      if (motion.matches) continue;
+
+      const content = entry.target.querySelector(".wrap");
+      if (!content) continue;
+      content.classList.add("section-reveal");
+      content.addEventListener("animationend", () => {
+        content.classList.remove("section-reveal");
+      }, { once:true });
+    }
+    if (!pending.size) observer.disconnect();
+  }, { threshold:0 });
+
+  // Sections already in view remain still. Only lower sections are observed.
+  document.querySelectorAll("main > section.band").forEach(section => {
+    if (section.getBoundingClientRect().top >= window.innerHeight) {
+      pending.add(section);
+      observer.observe(section);
+    }
+  });
+
+  const disableMotion = event => {
+    if (!event.matches) return;
+    observer.disconnect();
+    pending.clear();
+    document.querySelectorAll(".section-reveal").forEach(content => {
+      content.classList.remove("section-reveal");
+    });
+  };
+
+  if (motion.addEventListener) {
+    motion.addEventListener("change", disableMotion);
+  } else if (motion.addListener) {
+    motion.addListener(disableMotion);
+  }
+})();
+</script>
+</body>
+</html>
