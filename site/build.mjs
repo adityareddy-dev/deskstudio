@@ -113,7 +113,9 @@ const heroLoop = (name, alt) => {
 
 // ---------- the page ----------
 for (const f of ['inter/Inter-Variable.woff2', 'geist/GeistMono-Variable.woff2']) cpSync(join(root, 'fonts', f), join(dist, 'fonts', basename(f)));
-cpSync(join(root, 'brand', 'mark.svg'), join(dist, 'favicon.svg'));
+cpSync(join(root, 'brand', 'logo', 'logo.svg'), join(dist, 'favicon.svg'));
+cpSync(join(root, 'brand', 'logo', 'favicon.ico'), join(dist, 'favicon.ico'));
+cpSync(join(root, 'brand', 'logo', 'logo-180.png'), join(dist, 'apple-touch-icon.png'));
 if (existsSync(join(here, 'CNAME'))) cpSync(join(here, 'CNAME'), join(dist, 'CNAME'));
 writeFileSync(join(dist, '.nojekyll'), '');
 if (existsSync(join(media, 'og.png'))) cpSync(join(media, 'og.png'), join(dist, 'og.png'));
@@ -123,7 +125,8 @@ const INSTALL = '/plugin install desk --marketplace adityareddy-dev/deskstudio';
 const REPO = 'https://github.com/adityareddy-dev/deskstudio';
 // A command breaks between words, never inside one.
 const cmd = t => String(t).split(' ').map(w => `<span class="nb">${esc(w)}</span>`).join(' ');
-const mark = `<svg class="mark" viewBox="0 0 24 24" aria-hidden="true"><rect x="0" y="18" width="24" height="6"/><circle cx="17" cy="10" r="4"/></svg>`;
+// The logo from brand/logo, inline so the header needs no extra request.
+const mark = read('brand/logo/logo.svg').trim().replace(/^<svg[^>]*>/, '<svg class="mark" viewBox="0 0 512 512" aria-hidden="true">');
 const star = `<svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z"/></svg>`;
 
 const css = `
@@ -146,8 +149,7 @@ pre { white-space: pre-wrap; overflow-wrap: break-word; padding: 16px; backgroun
 header.top { position: sticky; top: 0; z-index: 2; background: var(--background); border-bottom: 1px solid var(--line); }
 header.top .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; }
 .brand { display: inline-flex; align-items: center; gap: 10px; font-weight: 600; letter-spacing: -0.02em; font-size: 20px; text-decoration: none; }
-.mark { width: 24px; height: 24px; fill: var(--foreground); flex: none; }
-.mark circle { fill: var(--accent); }
+.mark { width: 30px; height: 30px; flex: none; }
 .nav { display: flex; gap: 24px; align-items: center; }
 .nav a { min-height: 44px; display: inline-flex; align-items: center; }
 section { padding: 96px 0; border-top: 1px solid var(--line); }
@@ -267,7 +269,7 @@ const html = `<!doctype html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Desk Studio</title>
 <meta name="description" content="Your own design studio. A full design studio inside the coding agent you already use. One command, free, nothing leaves your machine but the model calls you already make.">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="icon" href="favicon.ico" sizes="48x48"><link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="canonical" href="https://deskstudio.ai/">
 <link rel="preload" as="image" href="media/one-command-vertical.webp" fetchpriority="high">
 <meta property="og:title" content="Your own design studio.">

@@ -1,3 +1,5 @@
+<p align="center"><img src="https://raw.githubusercontent.com/adityareddy-dev/deskstudio/main/brand/logo/lockup-on-light.png" alt="Desk Studio" width="360"></p>
+
 # deskstudio
 
 Your own design studio. A full design studio inside the coding agent you already use. One command, free, nothing leaves your machine but the model calls you already make.

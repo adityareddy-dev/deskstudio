@@ -59,6 +59,12 @@ for name, tile, ink in (('lockup-dark.svg', BG, CREAM), ('lockup-light.svg', CRE
     icon = f'<g transform="translate(20,20) scale({200/512})"><rect width="512" height="512" rx="112" fill="{BG}"/>{mark(True)}</g>'
     body = f'<rect width="{W}" height="{H}" fill="{tile}"/>' + icon + f'<g transform="translate({20 + 200 + 48},{20 + 100 + 44})">{words}</g>'
     files[name] = svg(W, H, body)
+# Transparent lockups for pages that bring their own background (the README on GitHub's light and dark themes).
+for name, ink in (('lockup-on-dark.svg', CREAM), ('lockup-on-light.svg', BG)):
+    words, width = text_paths('Desk Studio', 600, 120, None, 0, -3, [ink] * 11)
+    W = int(200 + 48 + width + 24); H = 200
+    icon = f'<g transform="scale({200/512})"><rect width="512" height="512" rx="112" fill="{BG}"/>{mark(True)}</g>'
+    files[name] = svg(W, H, icon + f'<g transform="translate({200 + 48},{100 + 44})">{words}</g>')
 for n, s in files.items():
     (OUT / n).write_text(s, encoding='utf-8')
 print('\n'.join(f'{n} {len(s)} bytes' for n, s in files.items()))

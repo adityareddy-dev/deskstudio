@@ -51,20 +51,36 @@ const gif = (name, alt = name) => existsSync(join(here, 'media', `${name}.gif`))
 const tierRows = [['director', 'the pick, the notes, the sign-off'], ['senior', 'the roughs, research, type, tokens, copy'], ['builder', 'every polish round, the making']];
 const desksByTier = t => registry.desks.filter(d => d.tier === t);
 
-const md = `# Desk Studio
+const md = `<p align="center"><img src="brand/logo/banner.png" alt="Desk Studio. Your own design studio. At your desk." width="100%"></p>
 
-[![npm version](https://img.shields.io/npm/v/deskstudio)](https://www.npmjs.com/package/deskstudio)
-[![CI](https://github.com/adityareddy-dev/deskstudio/actions/workflows/check.yml/badge.svg)](https://github.com/adityareddy-dev/deskstudio/actions/workflows/check.yml)
-[![MIT licence](https://img.shields.io/badge/licence-MIT-blue)](LICENSE)
-[![Open Source Helpers](https://www.codetriage.com/adityareddy-dev/deskstudio/badges/users.svg)](https://www.codetriage.com/adityareddy-dev/deskstudio)
+<p align="center">A full design studio inside the coding agent you already use.<br>One command, free, nothing leaves your machine but the model calls you already make.</p>
 
-Your own design studio.
+<p align="center">
+  <a href="https://www.npmjs.com/package/deskstudio"><img src="https://img.shields.io/npm/v/deskstudio" alt="npm version"></a>
+  <a href="https://github.com/adityareddy-dev/deskstudio/actions/workflows/check.yml"><img src="https://github.com/adityareddy-dev/deskstudio/actions/workflows/check.yml/badge.svg" alt="CI"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/licence-MIT-blue" alt="MIT licence"></a>
+  <a href="https://www.codetriage.com/adityareddy-dev/deskstudio"><img src="https://www.codetriage.com/adityareddy-dev/deskstudio/badges/users.svg" alt="Open Source Helpers"></a>
+</p>
 
-A full design studio inside the coding agent you already use. One command, free, nothing leaves your machine but the model calls you already make.
+<p align="center"><a href="https://deskstudio.ai">deskstudio.ai</a> · <a href="#install">Install</a> · <a href="docs/first-contribution.md">Contribute</a></p>
 
-${gif('one-command')}## How a job runs
+<br>
 
-${gif('explainer')}## Install
+## One command, every style
+
+<p align="center"><img src="site/media/one-command.gif" alt="One command typed in a terminal, then every piece the studio has signed off" width="760"></p>
+<p align="center"><sub>Type one line in your agent. The wall is the ${goldens.length} pieces the studio has signed off so far.</sub></p>
+
+<br>
+
+## How a job runs
+
+<p align="center"><img src="site/media/explainer.gif" alt="A team of desk robots passes one job along: roughs, the pick, polish, proof and the sign-off" width="760"></p>
+<p align="center"><sub>Three roughs on Sonnet, the pick on Opus, polish on Haiku, proof with no model, then the sign-off. The launch card job, retold with its real numbers.</sub></p>
+
+<br>
+
+## Install
 
 Claude Code:
 

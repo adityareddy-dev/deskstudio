@@ -120,9 +120,7 @@ select:focus, input:focus, textarea:focus, button:focus-visible, a:focus-visible
   padding: 8px var(--pad); background: var(--bg); border-bottom: 1px solid var(--line);
 }
 .brand { display: flex; align-items: center; gap: 8px; min-width: 0; font-size: var(--text-md); }
-.brand .mark { width: 24px; height: 24px; flex: none; }
-.brand .mark rect { fill: var(--text); }
-.brand .mark circle { fill: var(--accent); }
+.brand .mark { width: 28px; height: 28px; flex: none; }
 .brand .muted { font-size: var(--text-sm); overflow-wrap: anywhere; }
 .top-right { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; min-width: 0; }
 .jobpick { display: inline-flex; align-items: center; gap: 8px; min-width: 0; }
