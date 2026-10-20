@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+message: "To cite Desk Studio, use the information in this file."
+type: software
+title: "Desk Studio"
+authors:
+  - family-names: "Reddy"
+    given-names: "Aditya"
+version: "1.0.1"
+date-released: "2026-10-20"
+repository-code: "https://github.com/adityareddy-dev/deskstudio"
+url: "https://github.com/adityareddy-dev/deskstudio"
+license: MIT

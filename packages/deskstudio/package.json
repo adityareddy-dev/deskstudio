@@ -1,6 +1,6 @@
 {
   "name": "deskstudio",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Your own design studio. A full design studio inside the coding agent you already use. One command, free, nothing leaves your machine.",
   "type": "module",
   "license": "MIT",

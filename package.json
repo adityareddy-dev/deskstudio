@@ -1,6 +1,6 @@
 {
   "name": "deskstudio-plugin",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "description": "Desk Studio plugin for Claude Code and the desk-run, desk-proof and desk-dashboard tools.",
   "type": "module",

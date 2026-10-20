@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.0.1](https://github.com/adityareddy-dev/deskstudio/releases/tag/v1.0.1) - 2026-10-20
+
+Adds software citation metadata and a README citation link.
+
 ## [1.0.0](https://github.com/adityareddy-dev/deskstudio/releases/tag/v1.0.0) - 2026-10-19
 
 Initial public release.

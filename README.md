@@ -213,6 +213,8 @@ It runs on your machine. The only things that leave it are the model calls the d
 
 [Commands](docs/commands.md), [the desks](docs/roles.md), [the dashboard](docs/dashboard.md), [cost](docs/cost.md), [the runner](docs/runner.md), [providers](docs/providers.md), [privacy](docs/privacy.md), [first contribution](docs/first-contribution.md).
 
+To cite Desk Studio, use [CITATION.cff](CITATION.cff) or GitHub's **Cite this repository**.
+
 ## Licence
 
 MIT.
