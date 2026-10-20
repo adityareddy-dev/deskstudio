@@ -1,0 +1,48 @@
+name: Welcome contributors
+
+on:
+  issues:
+    types: [opened]
+  pull_request_target:
+    types: [opened]
+
+permissions:
+  issues: write
+  pull-requests: write
+
+concurrency:
+  group: welcome-${{ github.event.issue.number || github.event.pull_request.number }}
+  cancel-in-progress: false
+
+jobs:
+  welcome:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
+        with:
+          script: |
+            const repo = context.repo;
+            const messages = {
+              issue: "Thanks for opening your first issue here. [CONTRIBUTING.md](https://github.com/adityareddy-dev/deskstudio/blob/main/CONTRIBUTING.md) explains the setup and checks, and the [good first issues](https://github.com/adityareddy-dev/deskstudio/issues?q=is%3Aissue%20is%3Aopen%20label%3A%22good%20first%20issue%22) are small places to start.\n",
+              pr: "Thanks for your first pull request here. [CONTRIBUTING.md](https://github.com/adityareddy-dev/deskstudio/blob/main/CONTRIBUTING.md) covers the source files and checks, and the [good first issues](https://github.com/adityareddy-dev/deskstudio/issues?q=is%3Aissue%20is%3Aopen%20label%3A%22good%20first%20issue%22) have more small tasks.\n"
+            };
+            const candidates = [context.payload.issue ?? context.payload.pull_request];
+            for (const item of candidates) {
+              if (!item || item.user.type === 'Bot') continue;
+              const isPR = Boolean(item.pull_request) || context.eventName === 'pull_request_target';
+              const body = isPR ? messages.pr : messages.issue;
+              const comments = await github.paginate(github.rest.issues.listComments, {
+                ...repo, issue_number: item.number, per_page: 100
+              });
+              if (comments.some(comment => comment.user.type === 'Bot' && comment.body === body)) continue;
+              const history = await github.paginate(github.rest.issues.listForRepo, {
+                ...repo, creator: item.user.login, state: 'all', per_page: 100
+              });
+              const hasEarlier = history.some(previous =>
+                previous.number < item.number && Boolean(previous.pull_request) === isPR
+              );
+              if (hasEarlier) continue;
+              const result = await github.rest.issues.createComment({ ...repo, issue_number: item.number, body });
+              core.info(result.data.html_url);
+            }
