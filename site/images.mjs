@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 // The promotional image set, from frames of the recorded takes, so still and motion match.
 //   node site/images.mjs [--takes clips/takes] [--out site/images]
-// Subjects: the floor, the scorecard, the cost line, the gallery, and the hook (the sting's end line), each at
+// Subjects: the wall (every signed-off piece around the command), the floor, the scorecard, the cost line, the gallery and the hook (the sting's end line), each at
 // og 1200x630, linkedin 1200x627, x 1600x900, reddit 1200x628 (from the 16:9 take), square 1080x1080 (from the 1:1
-// take) and story 1080x1920 (from the 9:16 take). The hook at og size is also written to site/media/og.png.
+// take) and story 1080x1920 (from the 9:16 take). The wall at og size is also written to site/media/og.png, cause it shows the work.
 import { existsSync, mkdirSync, statSync } from 'node:fs';
 import { spawnSync } from 'node:child_process';
 import { dirname, join, resolve } from 'node:path';
@@ -18,6 +18,7 @@ mkdirSync(out, { recursive: true });
 
 // Subject: the take and the second to take the frame at.
 const SUBJECTS = {
+  wall: { clip: 'one-command', at: 6.6 },
   hook: { clip: 'made-by-the-studio', at: 2.0 },
   floor: { clip: 'floor-idle', at: 0.0 },
   scorecard: { clip: 'before-after', at: 3.2 },
@@ -36,7 +37,7 @@ for (const [subject, { clip, at }] of Object.entries(SUBJECTS)) {
     // Scale to cover, then crop to the exact size from the centre.
     const r = ff(['-ss', String(at), '-i', src, '-frames:v', '1', '-vf', `scale=${w}:${h}:force_original_aspect_ratio=increase,crop=${w}:${h}`, file]);
     rows.push(`${subject}-${size}: ${r.status === 0 ? Math.round(statSync(file).size / 1e3) + ' KB' : 'failed'}`);
-    if (r.status === 0 && subject === 'hook' && size === 'og') { mkdirSync(join(here, 'media'), { recursive: true }); ff(['-i', file, join(here, 'media', 'og.png')]); }
+    if (r.status === 0 && subject === 'wall' && size === 'og') { mkdirSync(join(here, 'media'), { recursive: true }); ff(['-i', file, join(here, 'media', 'og.png')]); }
   }
 }
 console.log(rows.join('\n'));
