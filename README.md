@@ -1,5 +1,9 @@
 # Desk Studio
 
+[![npm version](https://img.shields.io/npm/v/deskstudio)](https://www.npmjs.com/package/deskstudio)
+[![CI](https://github.com/adityareddy-dev/deskstudio/actions/workflows/check.yml/badge.svg)](https://github.com/adityareddy-dev/deskstudio/actions/workflows/check.yml)
+[![MIT licence](https://img.shields.io/badge/licence-MIT-blue)](LICENSE)
+
 Your own design studio.
 
 A full design studio inside the coding agent you already use. One command, free, nothing leaves your machine but the model calls you already make.
@@ -33,7 +37,7 @@ Codex, Cursor, Gemini CLI, Copilot, Windsurf or OpenCode, one line in the projec
 npx deskstudio add
 ```
 
-It writes `.desk/`, copies the desks to `.agents/skills/desk/` and puts one marked block in the agent's instruction file. Every agent by default, one with `--agent codex`. Run it again any time, it only touches what sits between its markers.
+It writes `.desk/`, copies the desks to `.agents/skills/desk/` and puts one marked block in the agent's instruction file. Every agent by default, one with `--agent codex`. Run it again any time, it keeps project text outside its markers and preserves edited desk briefs unless you pass `--force`.
 
 | Agent | Where the block goes |
 | --- | --- |
@@ -50,7 +54,7 @@ Then ask the agent in plain words, "design a launch card for LinkedIn", it reads
 npx desk-run design "a launch card for LinkedIn"
 ```
 
-The desks call models through the CLI you are already signed in to (`claude`, `codex` or `gemini`) or a key (`ANTHROPIC_API_KEY`, `OPENAI_API_KEY`, `GEMINI_API_KEY`). `npx desk-run doctor` shows which path it will take.
+The desks call models through the CLI you are already signed in to (`claude`, `codex` or `agy`) or a key (`ANTHROPIC_API_KEY`, `OPENAI_API_KEY`, `GEMINI_API_KEY`). `npx desk-run doctor` shows which path it will take.
 
 Files land in `.desk/out/<job>/` with a short note on who did what, the scores and the cost.
 
