@@ -27,6 +27,8 @@ const registry = json('skills/desk/desks.json');
 const TIERS = [['director', 'Directors', 'the pick, the notes, the sign-off'], ['senior', 'Seniors', 'the roughs, research, type, tokens, copy'], ['builder', 'Builders', 'every polish round, the making']];
 const desksByTier = t => registry.desks.filter(d => d.tier === t);
 const models = json('runner/models.json');
+const starters = json('site/starters.json');
+const jobCount = ['No', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten'][starters.length] || String(starters.length);
 
 // The golden gallery: every signed-off output, its command from the eval case it came from, and one render.
 const cap = s => s ? s[0].toUpperCase() + s.slice(1) : s;
@@ -89,8 +91,12 @@ const img = (src, name, alt, cls = '') => {
   const out = image(src, name);
   if (!out) return '';
   const { w, h } = size(src);
-  return `<img class="${cls}" src="${out}" width="${w}" height="${h}" alt="${esc(alt)}" loading="lazy" decoding="async">`;
+  return frame(alt, `<img class="${cls}" src="${out}" width="${w}" height="${h}" alt="${esc(alt)}" loading="lazy" decoding="async">`);
 };
+
+function frame(title, content) {
+  return `<div class="media-frame"><div class="frame-bar"><span class="frame-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="frame-title">${esc(title)}</span></div>${content}</div>`;
+}
 
 // Loops: site/media/<name>.mp4 and .jpg, made by site/media.mjs from the recorded takes.
 const media = join(here, 'media');
@@ -99,16 +105,16 @@ const loop = (name, alt) => {
   if (!existsSync(mp4)) return `<p class="muted">The ${esc(name)} loop is not recorded yet.</p>`;
   cpSync(mp4, join(dist, 'media', `${name}.mp4`));
   if (existsSync(jpg)) cpSync(jpg, join(dist, 'media', `${name}.webp`));
-  return `<video class="loop" width="1280" height="720" autoplay muted loop playsinline preload="metadata" ${existsSync(jpg) ? `poster="media/${name}.webp"` : ''} aria-label="${esc(alt)}"><source src="media/${name}.mp4" type="video/mp4"></video>${existsSync(jpg) ? `<img class="poster" src="media/${name}.webp" width="1280" height="720" alt="${esc(alt)}" loading="lazy" decoding="async">` : ''}`;
+  return frame(({ 'floor-idle': 'dashboard', 'swap-the-seat': 'change-role' })[name] || name, `<video class="loop" width="1280" height="720" autoplay muted loop playsinline preload="metadata" ${existsSync(jpg) ? `poster="media/${name}.webp"` : ''} aria-label="${esc(alt)}"><source src="media/${name}.mp4" type="video/mp4"></video>${existsSync(jpg) ? `<img class="poster" src="media/${name}.webp" width="1280" height="720" alt="${esc(alt)}" loading="lazy" decoding="async">` : ''}`);
 };
 
-// The hero's tall loop, cropped to the hero by CSS. Falls back to the wide loop when no vertical take is recorded.
+// The hero's tall loop, kept at its recorded aspect ratio. Falls back to the wide loop when no vertical take is recorded.
 const heroLoop = (name, alt) => {
   const mp4 = join(media, `${name}-vertical.mp4`), poster = join(media, `${name}-vertical.webp`);
   if (!existsSync(mp4)) return `<div>${loop(name, alt)}</div>`;
   cpSync(mp4, join(dist, 'media', `${name}-vertical.mp4`));
   if (existsSync(poster)) cpSync(poster, join(dist, 'media', `${name}-vertical.webp`));
-  return `<div class="herovid"><video autoplay muted loop playsinline preload="auto" ${existsSync(poster) ? `poster="media/${name}-vertical.webp"` : ''} aria-label="${esc(alt)}"><source src="media/${name}-vertical.mp4" type="video/mp4"></video></div>`;
+  return frame(name, `<div class="herovid"><video class="hero-loop" autoplay muted loop playsinline preload="auto" ${existsSync(poster) ? `poster="media/${name}-vertical.webp"` : ''} aria-label="${esc(alt)}"><source src="media/${name}-vertical.mp4" type="video/mp4"></video>${existsSync(poster) ? `<img class="poster" src="media/${name}-vertical.webp" width="720" height="1280" alt="${esc(alt)}" decoding="async">` : ''}</div>`);
 };
 
 // ---------- the page ----------
@@ -138,7 +144,7 @@ ${palette}
 :root { --background: #ffffff; --foreground: #17140f; --accent: #c27a00; --muted: #6b655b; --surface: #f6f3ec; --line: #d9d4c8; --danger: #c4281c; }
 @media (prefers-color-scheme: dark) { :root { --background: #12110f; --foreground: #f4f0e8; --accent: #ffaa1c; --muted: #9a948a; --surface: #1c1a17; --line: #3b3830; --danger: #ff6b5e; } }
 * { box-sizing: border-box; margin: 0; padding: 0; }
-html { -webkit-text-size-adjust: 100%; }
+html { -webkit-text-size-adjust: 100%; scroll-padding-top: 84px; }
 body { background: var(--background); color: var(--foreground); font-family: "Inter", "Inter Fallback", ui-sans-serif, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; font-size: 16px; line-height: 1.5; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
 img, video, svg { max-width: 100%; height: auto; display: block; }
 a { color: inherit; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
@@ -147,18 +153,20 @@ code, pre, .mono { font-family: "Geist Mono", ui-monospace, Menlo, Consolas, mon
 pre { white-space: pre-wrap; overflow-wrap: break-word; padding: 16px; background: var(--surface); border: 1px solid var(--line); line-height: 1.5; }
 .wrap { width: 100%; max-width: 1168px; margin: 0 auto; padding: 0 24px; }
 header.top { position: sticky; top: 0; z-index: 2; background: var(--background); border-bottom: 1px solid var(--line); }
-header.top .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+header.top .wrap { display: flex; align-items: center; justify-content: space-between; height: 60px; }
 .brand { display: inline-flex; align-items: center; gap: 10px; font-weight: 600; letter-spacing: -0.02em; font-size: 20px; text-decoration: none; }
 .mark { width: 30px; height: 30px; flex: none; }
 .nav { display: flex; gap: 24px; align-items: center; }
 .nav a { min-height: 44px; display: inline-flex; align-items: center; }
 section { padding: 96px 0; border-top: 1px solid var(--line); }
+section:nth-of-type(even) { background: var(--surface); }
 section.hero { border-top: 0; padding: 0; }
-/* The hero's loop is tall and runs the full height of the hero, between the header line and the next section's line. */
+/* Keep the recorded portrait loop inside its frame. */
 section.hero .two { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); align-items: stretch; }
 section.hero .two > :first-child { padding: 64px 0 96px; align-self: center; }
-.herovid { position: relative; min-height: 640px; border-left: 1px solid var(--line); border-right: 1px solid var(--line); background: var(--surface); overflow: hidden; }
-.herovid video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.herovid { position: relative; aspect-ratio: 9 / 16; background: var(--surface); overflow: hidden; }
+section.hero .media-frame { margin: 40px 0; align-self: center; }
+.herovid video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
 h1 { font-weight: 600; font-size: 76.5px; line-height: 1.05; letter-spacing: -0.025em; max-width: 12ch; }
 h2 { font-weight: 600; font-size: 39px; line-height: 1.1; letter-spacing: -0.015em; max-width: 24ch; }
 h3 { font-weight: 600; font-size: 25px; line-height: 1.2; }
@@ -170,7 +178,7 @@ p + p { margin-top: 12px; }
 .two { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 48px; align-items: center; }
 .two.flip > :first-child { order: 2; }
 .cta { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 24px; margin-top: 32px; background: var(--foreground); color: var(--background); border: 2px solid var(--foreground); border-radius: 4px; font-weight: 600; text-decoration: none; }
-.cta:hover { background: var(--background); color: var(--foreground); }
+.cta:hover { filter: brightness(0.85); }
 .ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
 .ctas .cta { margin-top: 0; }
 .cta.ghost { background: transparent; color: var(--foreground); }
@@ -179,22 +187,23 @@ p + p { margin-top: 12px; }
 .nb { white-space: nowrap; }
 .install { display: block; margin-top: 24px; color: var(--muted); }
 .cmdblock { padding: 16px; background: var(--surface); border: 1px solid var(--line); line-height: 1.6; margin-top: 8px; }
-.open a { white-space: nowrap; }
-.open { margin-top: 16px; color: var(--muted); }
-.open a { color: var(--foreground); margin-left: 12px; }
-.loop { width: 100%; aspect-ratio: 16 / 9; border: 1px solid var(--line); background: var(--surface); }
+.loop { width: 100%; aspect-ratio: 16 / 9; background: var(--surface); }
 .pair2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; margin-top: 24px; }
 .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 32px 24px; margin-top: 48px; }
-.gallery figure img { width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: contain; border: 1px solid var(--line); background: var(--surface); }
+.gallery figure img { width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: contain; background: var(--surface); }
+.gallery figure { min-width: 0; transition: transform 180ms ease, box-shadow 180ms ease; border-radius: 12px; }
+.gallery figure:hover { transform: translateY(-4px); box-shadow: 0 12px 24px rgb(23 20 15 / 12%); }
 .gallery figcaption { margin-top: 12px; }
 .gallery .cmd { display: block; }
-.steps { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 24px; margin-top: 48px; counter-reset: step; }
-.steps > div { border-top: 2px solid var(--foreground); padding-top: 16px; }
-.steps h3::before { counter-increment: step; content: counter(step) ". "; }
-.steps > .signoff { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; align-items: start; }
+.steps { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 24px; margin-top: 48px; grid-auto-rows: 1fr; }
+.steps > div { border: 1px solid var(--line); border-radius: 4px; padding: 24px 16px; background: var(--background); }
+.steps h3 { font-size: 20px; margin: 12px 0; }
+.step-number { font: 20px "Geist Mono", monospace; color: var(--seq-6); }
+.process-detail { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 32px; margin-top: 32px; align-items: start; }
+.signoff { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 24px; margin-top: 32px; align-items: start; }
 .axes { font-variant-numeric: tabular-nums lining-nums; }
 .roughs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 16px; }
-.roughs img, .final img { width: 100%; border: 1px solid var(--line); }
+.roughs img, .final img { width: 100%; }
 .axes { display: grid; grid-template-columns: 1fr auto; gap: 4px 16px; margin-top: 16px; max-width: 360px; font-variant-numeric: tabular-nums lining-nums; }
 .axes .bar { grid-column: 1 / -1; height: 8px; background: var(--line); position: relative; }
 .axes .bar i { position: absolute; left: 0; top: 0; bottom: 0; background: var(--foreground); }
@@ -222,17 +231,16 @@ footer a { min-height: 44px; display: inline-flex; align-items: center; }
 @media (max-width: 900px) {
   .two, section.hero .two { grid-template-columns: minmax(0, 1fr); gap: 32px; }
   section.hero .two > :first-child { padding: 40px 0 0; }
-  .herovid { min-height: 0; aspect-ratio: 4 / 5; border: 1px solid var(--line); margin-bottom: 64px; }
+  section.hero .media-frame { margin: 0 0 56px; }
   .two.flip > :first-child { order: 0; }
   .steps { grid-template-columns: minmax(0, 1fr); }
-  .steps > .signoff { grid-template-columns: minmax(0, 1fr); }
+  .signoff, .process-detail { grid-template-columns: minmax(0, 1fr); }
   .tiers { grid-template-columns: minmax(0, 1fr); }
-  section { padding: 64px 0; }
+  section { padding: 56px 0; }
   h1 { font-size: 39px; line-height: 1.1; letter-spacing: -0.015em; }
   h2 { font-size: 25px; }
   .lead { font-size: 16px; margin-top: 16px; }
   .cta { display: flex; width: 100%; }
-  .open a { display: block; margin: 8px 0 0; }
   .nav { gap: 16px; }
   .roughs { grid-template-columns: minmax(0, 1fr); }
   .pair2 { grid-template-columns: minmax(0, 1fr); }
@@ -247,8 +255,36 @@ footer a { min-height: 44px; display: inline-flex; align-items: center; }
   .tiers li + li::before { content: ", "; }
   .tiers li span { display: none; }
 }
+.eyebrow { font: 400 12px/1.5 "Geist Mono", monospace; letter-spacing: 0.08em; color: var(--seq-6); margin-bottom: 16px; }
+.media-frame { min-width: 0; overflow: hidden; border: 1px solid var(--line); border-radius: 12px; background: var(--background); box-shadow: 0 12px 32px rgb(23 20 15 / 12%); }
+.frame-bar { height: 36px; display: flex; align-items: center; gap: 12px; padding: 0 12px; background: var(--surface); border-bottom: 1px solid var(--line); }
+.frame-dots { display: flex; gap: 4px; flex: none; }
+.frame-dots i { width: 6px; height: 6px; border-radius: 50%; background: var(--muted); }
+.frame-title { font: 12px "Geist Mono", monospace; color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.facts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px 16px; margin: 24px 0 16px; }
+.facts dt { font-weight: 600; font-variant-numeric: tabular-nums; }
+.facts dd { font-size: 13px; color: var(--muted); margin-top: 4px; }
+.starters { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 32px; }
+.starter { display: flex; flex-direction: column; gap: 12px; padding: 24px; border: 1px solid var(--line); border-radius: 4px; background: var(--background); text-decoration: none; }
+.starter:hover { border-color: var(--foreground); }
+.starter h3 { font-size: 20px; text-decoration: underline; text-underline-offset: 4px; }
+.starter .tag { font: 12px "Geist Mono", monospace; color: var(--muted); }
+.missing-desk { margin-top: 32px; border-top: 1px solid var(--line); padding-top: 24px; max-width: 64ch; }
+.missing-desk .links { display: flex; gap: 24px; flex-wrap: wrap; margin-top: 16px; }
+.faq-list { margin-top: 32px; max-width: 72ch; }
+.faq-list > div { padding: 24px 0; border-top: 1px solid var(--line); }
+.faq-list dt { font-size: 20px; font-weight: 600; }
+.faq-list dd { margin-top: 12px; }
+.footer-links { display: flex; flex-wrap: wrap; gap: 12px 24px; }
+#proof { --background: #12110f; --foreground: #f4f0e8; --surface: #1c1a17; --muted: #9a948a; --line: #3b3830; --accent: #ffaa1c; --seq-6: #ffaa1c; background: var(--background); color: var(--foreground); }
+.reveal-pending { opacity: 0; transform: translateY(12px); }
+.reveal-ready { transition: opacity 400ms ease, transform 400ms ease; }
+@media (max-width: 1100px) and (min-width: 901px) { .steps { gap: 12px; } }
+@media (max-width: 900px) { .facts { grid-template-columns: repeat(2, minmax(0, 1fr)); } .starters { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .nav .desktop-nav { display: none; } .starters { grid-template-columns: minmax(0, 1fr); } .roughs { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 360px) { .brand { font-size: 16px; gap: 6px; } .nav { gap: 12px; font-size: 13px; } }
 .poster { display: none; }
-@media (prefers-reduced-motion: reduce) { .loop { display: none; } .poster { display: block; } }
+@media (prefers-reduced-motion: reduce) { .loop, .hero-loop { display: none; } .poster { display: block; } *, *::before, *::after { transition: none !important; animation: none !important; } .reveal-pending { opacity: 1; transform: none; } .gallery figure:hover { transform: none; } }
 `;
 
 const providerRows = Object.entries(models.providers).map(([key, p]) => `<tr><th>${esc(p.label)}</th><td class="mono">${esc(p.cli)}</td><td>${['director', 'senior', 'builder'].map(t => `${t} <span class="mono">${esc(p.tiers[t])}</span>`).join(', ')}</td></tr>`).join('');
@@ -282,7 +318,7 @@ const html = `<!doctype html>
 <body>
 <header class="top"><div class="wrap">
   <a class="brand" href="#top">${mark}Desk Studio</a>
-  <nav class="nav"><a href="#install">Install</a><a href="${REPO}">GitHub</a></nav>
+  <nav class="nav"><a class="desktop-nav" href="#install">Install</a><a class="desktop-nav" href="${REPO}/tree/main/docs">Docs</a><a href="#contribute">Contribute</a><a href="${REPO}">GitHub</a></nav>
 </div></header>
 <main id="top">
 
@@ -292,52 +328,61 @@ const html = `<!doctype html>
     <p class="lead">A full design studio inside the coding agent you already use. One command, free, nothing leaves your machine but the model calls you already make.</p>
     <div class="ctas"><a class="cta" href="#install">Install the plugin</a><a class="cta ghost" href="${REPO}">${star}Star on GitHub</a></div>
     <code class="install">${cmd(INSTALL)}</code>
-    <p class="open">Open source, MIT. No account, no sign-up.<a href="${REPO}">Read the code</a></p>
+    <dl class="facts"><div><dt>Free, MIT</dt><dd>no account, no sign-up</dd></div><div><dt>${registry.desks.length} desks</dt><dd>each one a brief you can read</dd></div><div><dt>${goldens.length} pieces</dt><dd>signed off, with score and cost</dd></div><div><dt><a href="#contribute">${starters.length} jobs open</a></dt><dd>pick one</dd></div></dl>
+    <a href="${REPO}">Read the code</a>
   </div>
   ${heroLoop('one-command', 'One command typed in a terminal, then every piece the studio has signed off, then the line: your own design studio, at your desk')}
 </div></section>
 
 <section id="how"><div class="wrap">
-  <h2>How a job runs.</h2>
+  <p class="eyebrow">HOW IT WORKS</p><h2>How a job runs.</h2>
   <p class="lead">You type one line. The Design Manager staffs the job, three roughs come back, the Art Director picks one, a cheaper model polishes, proof checks the pixels, and the Creative Director signs it off or sends it back with notes. This is the launch card job, retold with its real numbers.</p>
   <div style="margin-top:32px">${loop('explainer', 'A team of little desk robots passes one job along: three roughs, the pick, polish rounds, proof and the sign-off, then the work comes back')}</div>
 </div></section>
 
 <section id="makes"><div class="wrap">
-  <h2>Made by the studio.</h2>
+  <p class="eyebrow">THE WORK</p><h2>Made by the studio.</h2>
   <p class="lead">${goldens.length} pieces for four made-up brands, one real site and the studio's own, each signed off by the Creative Director against the eight-axis rubric. The score and the cost under each one are from the run that made it. Scores come from the studio's model reviewers, they are not independent benchmarks.</p>
   <div class="gallery">${galleryHtml}</div>
 </div></section>
 
 <section id="loop"><div class="wrap">
-  <h2>Roughs, pick, polish, proof, sign-off.</h2>
+  <p class="eyebrow">THE PROCESS</p><h2>Roughs, pick, polish, proof, sign-off.</h2>
   <p class="lead">Every visual job runs the way a studio runs. This is the launch card above, as it happened.</p>
   <div class="steps">
-    <div><h3>Roughs</h3><p>The UI Designer makes three directions at the senior model from the brief, the brand and the standard for the piece.</p>
-      <div class="roughs">${[1, 2, 3].map(n => img(cardRender(`rough-${n}`), `card-rough-${n}`, `rough ${n}`)).join('')}</div></div>
-    <div><h3>Pick</h3><p>The Art Director looks at the renders, picks one and writes the notes.</p><blockquote><p>Rough ${card.pick.rough}: ${esc(card.pick.reason)}</p></blockquote></div>
-    <div><h3>Polish</h3><p>The builder desk revises with the notes and the screenshot. Rounds are cheap, so this is where the iteration goes.</p>
-      <p>${card.scores.map(s => `Round ${s.round}: ${s.average}`).join('. ')}.</p></div>
-    <div><h3>Proof</h3><p>Contrast on the rendered pixels, overflow, safe zones, palette, type scale, copy present. No model in the loop. A failure goes back to the builder with the screenshot. It runs on every polished file.</p></div>
-    <div class="signoff"><div><h3>Sign-off</h3><p>The Creative Director scores eight axes. Pass is every axis at 8 or above and the average at 8.5 or above.</p><p class="muted">Average ${cardFinal.average.toFixed(1)}, ${card.round} of ${card.maxRounds} rounds.</p></div>
-      <div class="final">${img(cardRender(`round-${card.round}`), 'card-final', 'the signed-off launch card')}</div><div>${axesHtml(cardFinal.axes)}</div></div>
+    <div><span class="step-number">01</span><h3>Roughs</h3><p>The UI Designer makes three directions at the senior model from the brief, the brand and the standard for the piece.</p></div>
+    <div><span class="step-number">02</span><h3>Pick</h3><p>The Art Director looks at the renders, picks one and writes the notes.</p></div>
+    <div><span class="step-number">03</span><h3>Polish</h3><p>The builder desk revises with the notes and the screenshot.</p></div>
+    <div><span class="step-number">04</span><h3>Proof</h3><p>Contrast on the rendered pixels, overflow, safe zones, palette, type scale, copy present.</p></div>
+    <div><span class="step-number">05</span><h3>Sign-off</h3><p>Pass is every axis at 8 or above and the average at 8.5 or above.</p></div>
   </div>
+  <div class="process-detail"><div class="roughs">${[1, 2, 3].map(n => img(cardRender(`rough-${n}`), `card-rough-${n}`, `rough ${n}`)).join('')}</div><div><blockquote><p>Rough ${card.pick.rough}: ${esc(card.pick.reason)}</p></blockquote><p>${card.scores.map(s => `Round ${s.round}: ${s.average}`).join('. ')}.</p></div></div>
+  <div class="signoff"><div class="final">${img(cardRender(`round-${card.round}`), 'card-final', 'the signed-off launch card')}</div><div><p class="muted">Average ${cardFinal.average.toFixed(1)}, ${card.round} of ${card.maxRounds} rounds.</p>${axesHtml(cardFinal.axes)}</div></div>
   <div class="pair2" style="margin-top:48px"><div>${loop('the-pick', 'Three roughs on the board, the Art Director picks one and the ring draws round it')}</div><div>${loop('before-after', 'A rough becomes the signed-off render as the scorecard fills')}</div></div>
 </div></section>
 
 <section id="team"><div class="wrap">
   <div class="two">
-    <div><h2>${registry.desks.length} desks.</h2><p class="lead">Each desk is a written brief: what it owns, how it decides, its checklist and what it hands to the next desk. The Design Manager staffs them per job. The three roughs run side by side and the rest in turn.</p></div>
+    <div><p class="eyebrow">THE STUDIO</p><h2>${registry.desks.length} desks.</h2><p class="lead">Each desk is a written brief: what it owns, how it decides, its checklist and what it hands to the next desk. The Design Manager staffs them per job. The three roughs run side by side and the rest in turn.</p></div>
     <div>${loop('floor-idle', 'The dashboard: forty-two desks, a lamp lighting when a desk starts')}</div>
   </div>
   <div class="tiers">${TIERS.map(([t, label, does]) => `<div class="tier"><h3>${label} <span class="muted">${desksByTier(t).length}</span></h3><p class="muted">${esc(does)}. Default model <span class="mono">${esc(registry.tiers[t].default)}</span>.</p><ul>${desksByTier(t).map(d => `<li>${esc(d.name)}<span>${esc(d.owns)}</span></li>`).join('')}</ul></div>`).join('')}</div>
   <p class="muted" style="margin-top:24px">The Design Manager runs in your session on whatever model you run, and the other ${registry.desks.length - 1} desks run as subagents.</p>
+  <div class="missing-desk"><p>Missing a desk? A desk is one written brief and one registry entry. Write it, or ask for it first and say what it should own.</p><div class="links"><a href="${REPO}/blob/main/CONTRIBUTING.md#add-a-desk">Add a desk</a><a href="${REPO}/issues/new?template=new-desk.md">Ask for one</a></div></div>
+</div></section>
+
+<section id="contribute"><div class="wrap">
+  <p class="eyebrow">OPEN SOURCE</p><h2>Make your first contribution.</h2>
+  <p class="lead">${jobCount} jobs are open. The four small ones name the files to read and the check to run, and none of the checks need a model call. The two new desks are bigger.</p>
+  <div class="starters">${starters.map(job => `<a class="starter" href="${REPO}/issues/${job.number}"><span class="tag">${esc(job.tag)}</span><h3>${esc(job.title)}</h3><p>${esc(job.line)}</p></a>`).join('')}</div>
+  <div class="ctas"><a class="cta" href="${REPO}/contribute">See every open job</a><a class="cta ghost" href="${REPO}/blob/main/docs/first-contribution.md">Your first contribution</a></div>
+  <p class="muted small" style="margin-top:16px">Check that a job is open and unclaimed, then comment with what you plan to change. A failed install helps too, <a href="${REPO}/issues/new/choose">report it with the host, version and exact command</a>. Remove private project content from logs.</p>
 </div></section>
 
 <section id="prices"><div class="wrap">
   <div class="two flip">
     <div>${loop('cost-meter', 'The cost line filling by tier as each desk reports')}</div>
-    <div><h2>Cheap models make. Strong models judge.</h2>
+    <div><p class="eyebrow">COST BY ROLE</p><h2>Cheap models make. Strong models judge.</h2>
       <p class="lead">Roughs come from the senior roles, every polish round from the builder roles, and the pick, the notes and the sign-off from the director roles. The dashboard shows what each desk cost at list price.</p></div>
   </div>
   <table><thead><tr><th>Tier</th><th>Default</th><th>Does</th></tr></thead><tbody>${TIERS.map(([t, , does]) => `<tr><th>${t}</th><td class="mono">${esc(registry.tiers[t].default)}</td><td>${esc(does)}</td></tr>`).join('')}</tbody></table>
@@ -348,7 +393,7 @@ const html = `<!doctype html>
 </div></section>
 
 <section id="models"><div class="wrap">
-  <h2>Models per role.</h2>
+  <p class="eyebrow">YOUR MODELS</p><h2>Models per role.</h2>
   <p class="lead">The runner reaches each provider through the CLI you already have signed in, on the plan you already pay for. API keys are the fallback. One provider is fine, and tiers can mix. Jobs have completed through the Anthropic, OpenAI and Google CLIs. Google uses Antigravity CLI.</p>
   <table><thead><tr><th>Provider</th><th>CLI</th><th>Roles</th></tr></thead><tbody>${providerRows}</tbody></table>
   <pre><code>{
@@ -363,7 +408,7 @@ const html = `<!doctype html>
 
 <section id="dashboard"><div class="wrap">
   <div class="two">
-    <div><h2>You run it from the dashboard.</h2>
+    <div><p class="eyebrow">YOUR DASHBOARD</p><h2>You run it from the dashboard.</h2>
       <p class="lead">A local page, nothing leaves your machine. Every control is a write to a file the Manager reads before its next step.</p>
       <ul class="controls">
         <li>Pause at the next step, continue, stop.</li>
@@ -381,7 +426,7 @@ const html = `<!doctype html>
 <section id="proof"><div class="wrap">
   <div class="two flip">
     <div>${loop('proof', 'Proof flags a subline that is too dark, and the fixed file passes')}</div>
-    <div><h2>Proof on real pixels.</h2>
+    <div><p class="eyebrow">THE EVIDENCE</p><h2>Proof on real pixels.</h2>
       <p class="lead">Every polished file is rendered in Chrome at each size and checked on the pixels before the Creative Director scores it.</p>
       <ul class="checks"><li>Text contrast against the pixels behind it</li><li>Overflow and clipping</li><li>Safe zones per platform</li><li>Colours inside the brand palette</li><li>Type on the brand scale</li><li>Every line of copy present</li><li>Carousels consistent across slides</li><li>Reading time and flashes in motion</li></ul></div>
   </div>
@@ -389,7 +434,7 @@ const html = `<!doctype html>
 </div></section>
 
 <section id="where"><div class="wrap">
-  <h2>Other agents.</h2>
+  <p class="eyebrow">YOUR EXISTING TOOLS</p><h2>Other agents.</h2>
   <table><thead><tr><th>Agent</th><th>What you get</th></tr></thead><tbody>
     <tr><th>Claude Code</th><td>Everything: the ${registry.desks.length - 1} desks as native subagents with the repo's tools, the Manager in your session, the loop, proof, the dashboard, video.</td></tr>
     <tr><th>Codex, Cursor, Gemini CLI, Copilot, Windsurf, OpenCode</th><td><span class="mono">npx deskstudio add</span> writes a rules block the agent reads and copies the desk briefs. The runner takes <span class="mono">design</span> for social cards, with the same loop, proof and dashboard, and desks return files rather than editing the repo. For design work inside the codebase the agent plays the Design Manager from the briefs. The other commands are Claude Code only for now. The installer is tested for each of these agents, and jobs have completed through the Claude, Codex and Antigravity CLIs.</td></tr>
@@ -397,7 +442,7 @@ const html = `<!doctype html>
 </div></section>
 
 <section id="install"><div class="wrap">
-  <h2>Install.</h2>
+  <p class="eyebrow">GET STARTED</p><h2>Install.</h2>
   <p class="lead">Claude Code, one line.</p>
   <p class="cmdblock"><code>${cmd(INSTALL)}</code></p>
   <p class="muted small" style="margin-top:8px">On a Claude Code older than 2.1.275: <span class="mono">/plugin marketplace add adityareddy-dev/deskstudio</span>, then <span class="mono">/plugin install desk@deskstudio</span>.</p>
@@ -419,21 +464,47 @@ const html = `<!doctype html>
   <p class="muted small" style="margin-top:8px">Or run it yourself: <span class="mono">npx --package deskstudio desk-run design "a launch card for LinkedIn"</span>. The desks call models through the CLI you are already signed in to (<span class="mono">claude</span>, <span class="mono">codex</span> or <span class="mono">agy</span>) or a key (<span class="mono">ANTHROPIC_API_KEY</span>, <span class="mono">OPENAI_API_KEY</span>, <span class="mono">GEMINI_API_KEY</span>). <span class="mono">npx --package deskstudio desk-run doctor</span> shows which path it will take without making a model call. Files land in <span class="mono">.desk/out/&lt;job&gt;/</span> either way.</p>
 </div></section>
 
-<section id="contribute"><div class="wrap">
-  <h2>Make your first contribution.</h2>
-  <p class="lead">There are setup guides to write for Cursor and Copilot, and proof tests to add for safe-zone boundaries and required copy. None of them need a model call.</p>
-  <div class="ctas"><a class="cta" href="${REPO}/contribute">Pick a starter issue</a><a class="cta ghost" href="${REPO}/blob/main/docs/first-contribution.md">Your first contribution</a></div>
-  <p class="muted small" style="margin-top:16px">Check that an issue is open and unclaimed before starting. A failed install is useful too, <a href="${REPO}/issues/new/choose">report it with the host, version and exact command</a>. Remove private project content from logs.</p>
+<section id="faq"><div class="wrap">
+  <p class="eyebrow">GOOD QUESTIONS</p><h2>FAQ.</h2>
+  <dl class="faq-list"><div><dt>Does it cost anything?</dt><dd>Nothing. It is MIT and free. The desks call models through the CLI you already have signed in or a key you set, so the only cost is the model calls you already pay for.</dd></div><div><dt>What leaves my machine?</dt><dd>Only the model calls the desks make and a few research lookups. Jobs, renders, scores and the brand file stay in your project folder.</dd></div><div><dt>Which agents does it work in?</dt><dd>Claude Code as a plugin, with the desks as native subagents. Codex, Cursor, Gemini CLI, Copilot, Windsurf and OpenCode through npx deskstudio add, which writes one rules block the agent reads.</dd></div><div><dt>How do I add a desk?</dt><dd>Copy an existing brief in skills/desk/roles, write the new one in the same shape, add it to skills/desk/desks.json and open a pull request. CONTRIBUTING.md walks through it.</dd></div><div><dt>Why is it free?</dt><dd>It's MIT and it runs on your machine, so there's no server to pay for. You pay for the model calls you already make, and every piece above shows what it cost. One person maintains it so far, and the open jobs above are listed by name. If a desk, an agent adapter or a check is missing, you can add it.</dd></div></dl>
 </div></section>
 
 </main>
 <footer><div class="wrap">
   <a class="brand" href="#top">${mark}Desk Studio</a>
   <span>MIT. It runs on your machine. Only the model calls the desks make and a few research lookups leave it.</span>
-  <span><a href="${REPO}">GitHub</a> <a href="#contribute" style="margin-left:24px">Contribute</a> <a href="${REPO}/blob/main/docs/privacy.md" style="margin-left:24px">Privacy</a></span>
+  <nav class="footer-links"><a href="${REPO}">GitHub</a><a href="${REPO}/tree/main/docs">Docs</a><a href="${REPO}/discussions">Discussions</a><a href="${REPO}/blob/main/CONTRIBUTING.md">Contribute</a><a href="${REPO}/blob/main/CHANGELOG.md">Changelog</a><a href="${REPO}/blob/main/docs/privacy.md">Privacy</a></nav>
 </div></footer>
 <script>
-if (matchMedia('(prefers-reduced-motion: reduce)').matches) for (const v of document.querySelectorAll('video')) { v.removeAttribute('autoplay'); v.pause(); }
+const motion = matchMedia('(prefers-reduced-motion: reduce)');
+const sections = document.querySelectorAll('main > section:not(.hero)');
+const showAll = () => { for (const section of sections) section.classList.remove('reveal-pending'); };
+let observer;
+if (!motion.matches && 'IntersectionObserver' in window) {
+  observer = new IntersectionObserver(entries => {
+    for (const entry of entries) if (entry.isIntersecting) {
+      entry.target.classList.remove('reveal-pending');
+      observer.unobserve(entry.target);
+    }
+  }, { threshold: 0, rootMargin: '0px 0px -24px 0px' });
+  for (const section of sections) {
+    // Keep an anchored or already-visible section readable on initial load.
+    if (section.getBoundingClientRect().top >= innerHeight && location.hash !== '#' + section.id) section.classList.add('reveal-pending');
+    section.classList.add('reveal-ready');
+    observer.observe(section);
+  }
+  addEventListener('hashchange', showAll);
+  addEventListener('beforeprint', showAll);
+}
+const updateMotion = () => {
+  if (motion.matches) {
+    showAll();
+    observer?.disconnect();
+    for (const video of document.querySelectorAll('video')) { video.removeAttribute('autoplay'); video.pause(); }
+  }
+};
+updateMotion();
+motion.addEventListener('change', updateMotion);
 </script>
 </body>
 </html>

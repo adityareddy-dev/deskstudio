@@ -7,9 +7,10 @@
   <a href="https://github.com/adityareddy-dev/deskstudio/actions/workflows/check.yml"><img src="https://github.com/adityareddy-dev/deskstudio/actions/workflows/check.yml/badge.svg" alt="CI"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/licence-MIT-blue" alt="MIT licence"></a>
   <a href="https://www.codetriage.com/adityareddy-dev/deskstudio"><img src="https://www.codetriage.com/adityareddy-dev/deskstudio/badges/users.svg" alt="Open Source Helpers"></a>
+  <a href="https://github.com/adityareddy-dev/deskstudio/contribute"><img src="https://img.shields.io/github/issues/adityareddy-dev/deskstudio/good%20first%20issue?label=good%20first%20issues&color=ffaa1c" alt="good first issues"></a>
 </p>
 
-<p align="center"><a href="https://deskstudio.ai">deskstudio.ai</a> · <a href="#install">Install</a> · <a href="docs/first-contribution.md">Contribute</a></p>
+<p align="center"><a href="https://deskstudio.ai">deskstudio.ai</a> · <a href="#install">Install</a> · <a href="#docs">Docs</a> · <a href="#contribute">Contribute</a> · <a href="https://github.com/adityareddy-dev/deskstudio/discussions">Discussions</a></p>
 
 <br>
 
@@ -103,6 +104,16 @@ Files land in `.desk/out/<job>/` with a short note on who did what, the scores a
 
 Every one of these is in [`evals/golden/`](evals/golden/) with its renders and its state, and the final file where the job kept one.
 
+## Contribute
+
+Six jobs are open, and none of the checks need a model call. [Your first contribution](docs/first-contribution.md) has the files to read and the check to run for each small one.
+
+- [Cursor setup guide](https://github.com/adityareddy-dev/deskstudio/issues/3) or [Copilot setup guide](https://github.com/adityareddy-dev/deskstudio/issues/4), for someone who uses that host.
+- [Safe-zone boundary tests](https://github.com/adityareddy-dev/deskstudio/issues/5) or [required-copy tests](https://github.com/adityareddy-dev/deskstudio/issues/6), for someone comfortable with JavaScript.
+- [Localization designer desk](https://github.com/adityareddy-dev/deskstudio/issues/1) or [form designer desk](https://github.com/adityareddy-dev/deskstudio/issues/2), for someone who wants to write a desk. Bigger than the rest.
+
+Check that a job is open and unclaimed before starting. The [contribution guide](CONTRIBUTING.md) covers setup, source files and checks. Want to talk first, or show what you made? [Discussions](https://github.com/adityareddy-dev/deskstudio/discussions) is open, and [Show and tell](https://github.com/adityareddy-dev/deskstudio/discussions/categories/show-and-tell) is for finished pieces. To report a failed install, use the [issue templates](https://github.com/adityareddy-dev/deskstudio/issues/new/choose) with the host, version and exact command. Remove private project content from logs.
+
 ## How it gets there
 
 Every visual job runs the way a studio runs:
@@ -195,15 +206,6 @@ desk-proof check hero.html --brand .desk/DESIGN.md --sizes phone,desktop
 | --- | --- |
 | Claude Code | Everything: the 41 desks as native subagents with the repo's tools, the Manager in your session, the loop, proof, the dashboard, video. |
 | Codex, Cursor, Gemini CLI, Copilot, Windsurf, OpenCode | `npx deskstudio add` writes a rules block the agent reads and copies the desk briefs. The runner takes `design` for social cards, with the same loop, proof and dashboard, and desks return files rather than editing the repo. For design work inside the codebase the agent plays the Design Manager from the briefs. The other commands are Claude Code only for now. The installer is tested for each of these agents. Jobs have completed through the Claude, Codex and Antigravity CLIs. |
-
-## Contribute
-
-Start with [your first contribution](docs/first-contribution.md). There are small documentation and proof-test tasks that need no model calls:
-
-- [Cursor setup guide](https://github.com/adityareddy-dev/deskstudio/issues/3) or [Copilot setup guide](https://github.com/adityareddy-dev/deskstudio/issues/4), for someone who uses that host.
-- [Safe-zone boundary tests](https://github.com/adityareddy-dev/deskstudio/issues/5) or [required-copy tests](https://github.com/adityareddy-dev/deskstudio/issues/6), for someone comfortable with JavaScript.
-
-Check that an issue is open and unclaimed before starting. The [contribution guide](CONTRIBUTING.md) covers setup, source files and checks. To report a failed install, use the [issue templates](https://github.com/adityareddy-dev/deskstudio/issues/new/choose) with the host, version and exact command. Remove private project content from logs.
 
 ## Privacy
 

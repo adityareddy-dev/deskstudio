@@ -1,0 +1,38 @@
+[
+  {
+    "number": 3,
+    "title": "Cursor setup guide",
+    "tag": "Docs",
+    "line": "Install twice in a throwaway project and write down what the second install keeps."
+  },
+  {
+    "number": 4,
+    "title": "Copilot setup guide",
+    "tag": "Docs",
+    "line": "Check the instruction file and the desk folder, then install a second time."
+  },
+  {
+    "number": 5,
+    "title": "Safe-zone boundary tests",
+    "tag": "Tests",
+    "line": "Boxes exactly on each edge, then one pixel outside."
+  },
+  {
+    "number": 6,
+    "title": "Required-copy tests",
+    "tag": "Tests",
+    "line": "Small made-up text boxes that should pass or fail the copy check."
+  },
+  {
+    "number": 1,
+    "title": "Localization designer desk",
+    "tag": "New desk",
+    "line": "One brief and one registry entry. Bigger than the rest."
+  },
+  {
+    "number": 2,
+    "title": "Form designer desk",
+    "tag": "New desk",
+    "line": "One brief and one registry entry. Bigger than the rest."
+  }
+]
