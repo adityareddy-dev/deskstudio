@@ -1,8 +1,18 @@
 # Commands
 
-Every command is `/desk:<name>` in Claude Code, or `desk-run <name> "<ask>"` anywhere else. Each one is a fixed desk list and an output contract on top of the same loop: intake, roughs, pick, polish, proof, sign-off, handback. Files land in `.desk/out/<job id>/`, state in `.desk/jobs/<job id>/state.json`, and the dashboard shows the desks as they work.
+Every command in the table is `/desk:<name>` in Claude Code. Each loop command is a fixed desk list and an output contract on top of the same loop: intake, roughs, pick, polish, proof, sign-off, handback. Files land in `.desk/out/<job id>/`, state in `.desk/jobs/<job id>/state.json`, and the dashboard shows the desks as they work.
 
 Tiers: director (opus), senior (sonnet), builder (haiku) by default. `--quality studio|best|thrifty` on any command changes the roles. Roughs always run at the senior model, polish at the builder model. `desk:<slug>` is the agent name the dashboard lights up.
+
+## Command availability
+
+Outside Claude Code, the runner registers one command for now, `design`, one still image for a feed. The list lives in [`runner/commands.mjs`](../runner/commands.mjs).
+
+```
+npx --package deskstudio desk-run design "a launch card for LinkedIn"
+```
+
+It also has `doctor`, `providers` and `resume`, covered in [the runner guide](runner.md). The other commands in the table are Claude Code skills, not runner commands yet. `npx deskstudio add` copies the desk briefs and writes the host's instruction block, it does not add commands to the runner.
 
 ## 1.0.0
 

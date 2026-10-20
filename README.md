@@ -56,16 +56,18 @@ It writes `.desk/`, copies the desks to `.agents/skills/desk/` and puts one mark
 Then ask the agent in plain words, "design a launch card for LinkedIn", it reads the block and runs the studio. Or run it yourself:
 
 ```
-npx desk-run design "a launch card for LinkedIn"
+npx --package deskstudio desk-run design "a launch card for LinkedIn"
 ```
 
-The desks call models through the CLI you are already signed in to (`claude`, `codex` or `agy`) or a key (`ANTHROPIC_API_KEY`, `OPENAI_API_KEY`, `GEMINI_API_KEY`). `npx desk-run doctor` shows which path it will take.
+The desks call models through the CLI you are already signed in to (`claude`, `codex` or `agy`) or a key (`ANTHROPIC_API_KEY`, `OPENAI_API_KEY`, `GEMINI_API_KEY`). `npx --package deskstudio desk-run doctor` shows which path it will take without making a model call.
+
+The runner takes `design` for social cards for now. The other commands in the gallery below are Claude Code skills, see [command availability](docs/commands.md#command-availability).
 
 Files land in `.desk/out/<job>/` with a short note on who did what, the scores and the cost.
 
 ## What it makes
 
-17 signed-off pieces so far, for four made-up brands (Northlight, Quill, Ferro and Harbor), one real site whose brand the studio found in the project, and the studio's own. The score is the eight-axis average, rounded to one decimal, and the cost is list price for the whole job.
+17 signed-off pieces so far, for four made-up brands (Northlight, Quill, Ferro and Harbor), one real site whose brand the studio found in the project, and the studio's own. The score is the eight-axis average, rounded to one decimal, and the cost is list price for the whole job. Scores come from the studio's model reviewers, they are not independent benchmarks.
 
 | Piece | Command | Score | Rounds | Cost |
 | --- | --- | --- | --- | --- |
@@ -180,7 +182,16 @@ desk-proof check hero.html --brand .desk/DESIGN.md --sizes phone,desktop
 | Agent | What you get |
 | --- | --- |
 | Claude Code | Everything: the 41 desks as native subagents with the repo's tools, the Manager in your session, the loop, proof, the dashboard, video. |
-| Codex, Cursor, Gemini CLI, Copilot, Windsurf, OpenCode | `npx deskstudio add` writes a rules block the agent reads, and the agent runs jobs through `desk-run`: the same desks, loop, proof and dashboard, with desks returning files rather than editing the repo. The installer is tested for each of these agents. Jobs have completed through the Claude, Codex and Antigravity CLIs. |
+| Codex, Cursor, Gemini CLI, Copilot, Windsurf, OpenCode | `npx deskstudio add` writes a rules block the agent reads and copies the desk briefs. The runner takes `design` for social cards, with the same loop, proof and dashboard, and desks return files rather than editing the repo. For design work inside the codebase the agent plays the Design Manager from the briefs. The other commands are Claude Code only for now. The installer is tested for each of these agents. Jobs have completed through the Claude, Codex and Antigravity CLIs. |
+
+## Contribute
+
+Start with [your first contribution](docs/first-contribution.md). There are small documentation and proof-test tasks that need no model calls:
+
+- [Cursor setup guide](https://github.com/adityareddy-dev/deskstudio/issues/3) or [Copilot setup guide](https://github.com/adityareddy-dev/deskstudio/issues/4), for someone who uses that host.
+- [Safe-zone boundary tests](https://github.com/adityareddy-dev/deskstudio/issues/5) or [required-copy tests](https://github.com/adityareddy-dev/deskstudio/issues/6), for someone comfortable with JavaScript.
+
+Check that an issue is open and unclaimed before starting. The [contribution guide](CONTRIBUTING.md) covers setup, source files and checks. To report a failed install, use the [issue templates](https://github.com/adityareddy-dev/deskstudio/issues/new/choose) with the host, version and exact command. Remove private project content from logs.
 
 ## Privacy
 
@@ -188,7 +199,7 @@ It runs on your machine. The only things that leave it are the model calls the d
 
 ## Docs
 
-[Commands](docs/commands.md), [the desks](docs/roles.md), [the dashboard](docs/dashboard.md), [cost](docs/cost.md), [the runner](docs/runner.md), [providers](docs/providers.md), [privacy](docs/privacy.md).
+[Commands](docs/commands.md), [the desks](docs/roles.md), [the dashboard](docs/dashboard.md), [cost](docs/cost.md), [the runner](docs/runner.md), [providers](docs/providers.md), [privacy](docs/privacy.md), [first contribution](docs/first-contribution.md).
 
 ## Licence
 

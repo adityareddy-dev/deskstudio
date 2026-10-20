@@ -303,7 +303,7 @@ const html = `<!doctype html>
 
 <section id="makes"><div class="wrap">
   <h2>Made by the studio.</h2>
-  <p class="lead">${goldens.length} pieces for four made-up brands, one real site and the studio's own, each signed off by the Creative Director against the eight-axis rubric. The score and the cost under each one are from the run that made it.</p>
+  <p class="lead">${goldens.length} pieces for four made-up brands, one real site and the studio's own, each signed off by the Creative Director against the eight-axis rubric. The score and the cost under each one are from the run that made it. Scores come from the studio's model reviewers, they are not independent benchmarks.</p>
   <div class="gallery">${galleryHtml}</div>
 </div></section>
 
@@ -390,7 +390,7 @@ const html = `<!doctype html>
   <h2>Other agents.</h2>
   <table><thead><tr><th>Agent</th><th>What you get</th></tr></thead><tbody>
     <tr><th>Claude Code</th><td>Everything: the ${registry.desks.length - 1} desks as native subagents with the repo's tools, the Manager in your session, the loop, proof, the dashboard, video.</td></tr>
-    <tr><th>Codex, Cursor, Gemini CLI, Copilot, Windsurf, OpenCode</th><td><span class="mono">npx deskstudio add</span> writes a rules block the agent reads, and the agent runs jobs through <span class="mono">desk-run</span>: the same desks, loop, proof and dashboard, with desks returning files rather than editing the repo. The installer is tested for each of these agents, and jobs have completed through the Claude, Codex and Antigravity CLIs.</td></tr>
+    <tr><th>Codex, Cursor, Gemini CLI, Copilot, Windsurf, OpenCode</th><td><span class="mono">npx deskstudio add</span> writes a rules block the agent reads and copies the desk briefs. The runner takes <span class="mono">design</span> for social cards, with the same loop, proof and dashboard, and desks return files rather than editing the repo. For design work inside the codebase the agent plays the Design Manager from the briefs. The other commands are Claude Code only for now. The installer is tested for each of these agents, and jobs have completed through the Claude, Codex and Antigravity CLIs.</td></tr>
   </tbody></table>
 </div></section>
 
@@ -414,14 +414,21 @@ const html = `<!doctype html>
   </tbody></table>
   <p class="lead">Then ask the agent in plain words, it reads the block and runs the studio.</p>
   <p class="cmdblock"><code>${cmd('design a launch card for LinkedIn')}</code></p>
-  <p class="muted small" style="margin-top:8px">Or run it yourself: <span class="mono">npx desk-run design "a launch card for LinkedIn"</span>. The desks call models through the CLI you are already signed in to (<span class="mono">claude</span>, <span class="mono">codex</span> or <span class="mono">gemini</span>) or a key (<span class="mono">ANTHROPIC_API_KEY</span>, <span class="mono">OPENAI_API_KEY</span>, <span class="mono">GEMINI_API_KEY</span>). <span class="mono">npx desk-run doctor</span> shows which path it will take. Files land in <span class="mono">.desk/out/&lt;job&gt;/</span> either way.</p>
+  <p class="muted small" style="margin-top:8px">Or run it yourself: <span class="mono">npx --package deskstudio desk-run design "a launch card for LinkedIn"</span>. The desks call models through the CLI you are already signed in to (<span class="mono">claude</span>, <span class="mono">codex</span> or <span class="mono">agy</span>) or a key (<span class="mono">ANTHROPIC_API_KEY</span>, <span class="mono">OPENAI_API_KEY</span>, <span class="mono">GEMINI_API_KEY</span>). <span class="mono">npx --package deskstudio desk-run doctor</span> shows which path it will take without making a model call. Files land in <span class="mono">.desk/out/&lt;job&gt;/</span> either way.</p>
+</div></section>
+
+<section id="contribute"><div class="wrap">
+  <h2>Make your first contribution.</h2>
+  <p class="lead">There are setup guides to write for Cursor and Copilot, and proof tests to add for safe-zone boundaries and required copy. None of them need a model call.</p>
+  <div class="ctas"><a class="cta" href="${REPO}/contribute">Pick a starter issue</a><a class="cta ghost" href="${REPO}/blob/main/docs/first-contribution.md">Your first contribution</a></div>
+  <p class="muted small" style="margin-top:16px">Check that an issue is open and unclaimed before starting. A failed install is useful too, <a href="${REPO}/issues/new/choose">report it with the host, version and exact command</a>. Remove private project content from logs.</p>
 </div></section>
 
 </main>
 <footer><div class="wrap">
   <a class="brand" href="#top">${mark}Desk Studio</a>
   <span>MIT. It runs on your machine. Only the model calls the desks make and a few research lookups leave it.</span>
-  <span><a href="${REPO}">GitHub</a> <a href="${REPO}/blob/main/docs/privacy.md" style="margin-left:24px">Privacy</a></span>
+  <span><a href="${REPO}">GitHub</a> <a href="#contribute" style="margin-left:24px">Contribute</a> <a href="${REPO}/blob/main/docs/privacy.md" style="margin-left:24px">Privacy</a></span>
 </div></footer>
 <script>
 if (matchMedia('(prefers-reduced-motion: reduce)').matches) for (const v of document.querySelectorAll('video')) { v.removeAttribute('autoplay'); v.pause(); }
