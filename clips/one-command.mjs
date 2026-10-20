@@ -2,7 +2,7 @@
 // The hero loop: one command typed in a terminal, then every piece the studio has signed off, then the line.
 // Not a floor recording. Every frame is drawn from a fixed timeline, so every take comes out the same.
 // The pieces are the gallery's own renders from evals/golden, picked the way site/build.mjs picks them.
-//   node clips/one-command.mjs [--size 16:9|1:1] [--out clips/takes]
+//   node clips/one-command.mjs [--size 16:9|1:1|9:16] [--out clips/takes]
 // Output: one-command-<WxH>.mp4 and the poster frame one-command-<WxH>.png.
 import { existsSync, mkdirSync, mkdtempSync, readdirSync, rmSync, writeFileSync } from 'node:fs';
 import { spawnSync } from 'node:child_process';
@@ -14,7 +14,7 @@ import { launch } from '../proof/browser.mjs';
 const here = dirname(fileURLToPath(import.meta.url));
 const root = join(here, '..');
 const args = Object.fromEntries(process.argv.slice(2).map((a, i, all) => a.startsWith('--') ? [a.slice(2), all[i + 1] && !all[i + 1].startsWith('--') ? all[i + 1] : true] : []).filter(Boolean));
-const SIZES = { '16:9': [1920, 1080], '1:1': [1080, 1080] };
+const SIZES = { '16:9': [1920, 1080], '1:1': [1080, 1080], '9:16': [1080, 1920] };
 const [W, H] = SIZES[args.size || '16:9'] || SIZES['16:9'];
 const out = resolve(args.out || join(here, 'takes'));
 const FPS = 30, SECONDS = 11;
@@ -45,9 +45,10 @@ for (const deliverable of readdirSync(join(root, 'evals', 'golden')).sort())
 const mixed = [];
 for (let i = 0; pieces.length; i = (i + 7) % pieces.length) mixed.push(pieces.splice(i, 1)[0]);
 
-const square = W === H;
-const L = square
-  ? { rows: 5, th: 168, gap: 16, termW: 900, cmdSize: 25, hook: 66, mark: 72 }
+const square = W === H, vertical = H > W;
+// The vertical take is the site's hero, cropped to the hero's height, so everything that matters sits in the middle.
+const L = square ? { rows: 5, th: 168, gap: 16, termW: 900, cmdSize: 25, hook: 66, mark: 72 }
+  : vertical ? { rows: 9, th: 190, gap: 16, termW: 960, cmdSize: 30, hook: 118, mark: 128 }
   : { rows: 4, th: 234, gap: 20, termW: 1120, cmdSize: 34, hook: 104, mark: 104 };
 
 const font = f => pathToFileURL(join(root, 'fonts', f)).href;
@@ -86,10 +87,10 @@ html, body { width: ${W}px; height: ${H}px; overflow: hidden; background: #12110
   <div class="body"><div><span class="prompt">&gt;</span><span id="typed"></span><span id="cursor"></span></div>
   <div id="status"><span class="dot"></span>${LOOP.map(w => `<b>${w}</b>`).join('&nbsp;&nbsp;&nbsp;')}</div></div></div>
 <div id="hook"><svg viewBox="0 0 24 24"><rect id="desk" x="0" y="18" width="24" height="6"/><circle id="lamp" cx="17" cy="10" r="4"/></svg>
-  <h1><span id="l1">Your own design studio.</span><br><span id="l2">At your desk.</span></h1><div class="url" id="url">deskstudio.ai</div></div>
+  <h1><span id="l1">Your own${vertical ? '<br>' : ' '}design studio.</span><br><span id="l2">At your desk.</span></h1><div class="url" id="url">deskstudio.ai</div></div>
 <div id="fade"></div>
 </div><script>
-const W = ${W}, H = ${H}, L = ${JSON.stringify(L)}, PIECES = ${JSON.stringify(mixed)};
+const W = ${W}, H = ${H}, L = ${JSON.stringify(L)}, PIECES = ${JSON.stringify(mixed)}, VERTICAL = ${vertical};
 const COMMAND = ${JSON.stringify(COMMAND)}, END = ${SECONDS};
 const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
 const span = (t, a, b) => clamp((t - a) / (b - a));
@@ -112,7 +113,9 @@ window.init = async () => {
   rows.forEach((row, r) => {
     row.items.sort((a, b) => a.n - b.n);
     const seq = [...row.items];
-    for (let k = 0; row.w < need; k++) { const it = row.items[k % row.items.length]; seq.push(it); row.w += it.w + L.gap; }
+    // A vertical row holds about two pieces of its own, so it tops up from the whole set instead of repeating itself.
+    const pool = VERTICAL ? items.filter(it => !row.items.includes(it)) : row.items;
+    for (let k = 0; row.w < need; k++) { const it = pool[(VERTICAL ? r * 3 + k : k) % pool.length]; seq.push(it); row.w += it.w + L.gap; }
     let x = (W - row.w) / 2;
     const y = (H - wallH) / 2 + r * (L.th + L.gap);
     for (const it of seq) {

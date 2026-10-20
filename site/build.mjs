@@ -102,6 +102,15 @@ const loop = (name, alt) => {
   return `<video class="loop" width="1280" height="720" autoplay muted loop playsinline preload="metadata" ${existsSync(jpg) ? `poster="media/${name}.webp"` : ''} aria-label="${esc(alt)}"><source src="media/${name}.mp4" type="video/mp4"></video>${existsSync(jpg) ? `<img class="poster" src="media/${name}.webp" width="1280" height="720" alt="${esc(alt)}" loading="lazy" decoding="async">` : ''}`;
 };
 
+// The hero's tall loop, cropped to the hero by CSS. Falls back to the wide loop when no vertical take is recorded.
+const heroLoop = (name, alt) => {
+  const mp4 = join(media, `${name}-vertical.mp4`), poster = join(media, `${name}-vertical.webp`);
+  if (!existsSync(mp4)) return `<div>${loop(name, alt)}</div>`;
+  cpSync(mp4, join(dist, 'media', `${name}-vertical.mp4`));
+  if (existsSync(poster)) cpSync(poster, join(dist, 'media', `${name}-vertical.webp`));
+  return `<div class="herovid"><video autoplay muted loop playsinline preload="auto" ${existsSync(poster) ? `poster="media/${name}-vertical.webp"` : ''} aria-label="${esc(alt)}"><source src="media/${name}-vertical.mp4" type="video/mp4"></video></div>`;
+};
+
 // ---------- the page ----------
 for (const f of ['inter/Inter-Variable.woff2', 'geist/GeistMono-Variable.woff2']) cpSync(join(root, 'fonts', f), join(dist, 'fonts', basename(f)));
 cpSync(join(root, 'brand', 'mark.svg'), join(dist, 'favicon.svg'));
@@ -142,7 +151,12 @@ header.top .wrap { display: flex; align-items: center; justify-content: space-be
 .nav { display: flex; gap: 24px; align-items: center; }
 .nav a { min-height: 44px; display: inline-flex; align-items: center; }
 section { padding: 96px 0; border-top: 1px solid var(--line); }
-section.hero { border-top: 0; padding: 64px 0 96px; }
+section.hero { border-top: 0; padding: 0; }
+/* The hero's loop is tall and runs the full height of the hero, between the header line and the next section's line. */
+section.hero .two { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); align-items: stretch; }
+section.hero .two > :first-child { padding: 64px 0 96px; align-self: center; }
+.herovid { position: relative; min-height: 640px; border-left: 1px solid var(--line); border-right: 1px solid var(--line); background: var(--surface); overflow: hidden; }
+.herovid video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 h1 { font-weight: 600; font-size: 76.5px; line-height: 1.05; letter-spacing: -0.025em; max-width: 12ch; }
 h2 { font-weight: 600; font-size: 39px; line-height: 1.1; letter-spacing: -0.015em; max-width: 24ch; }
 h3 { font-weight: 600; font-size: 25px; line-height: 1.2; }
@@ -204,7 +218,9 @@ footer { padding: 48px 0; border-top: 1px solid var(--line); color: var(--muted)
 footer .wrap { display: flex; flex-wrap: wrap; gap: 16px 32px; align-items: center; justify-content: space-between; }
 footer a { min-height: 44px; display: inline-flex; align-items: center; }
 @media (max-width: 900px) {
-  .two { grid-template-columns: minmax(0, 1fr); gap: 32px; }
+  .two, section.hero .two { grid-template-columns: minmax(0, 1fr); gap: 32px; }
+  section.hero .two > :first-child { padding: 40px 0 0; }
+  .herovid { min-height: 0; aspect-ratio: 4 / 5; border: 1px solid var(--line); margin-bottom: 64px; }
   .two.flip > :first-child { order: 0; }
   .steps { grid-template-columns: minmax(0, 1fr); }
   .steps > .signoff { grid-template-columns: minmax(0, 1fr); }
@@ -253,7 +269,7 @@ const html = `<!doctype html>
 <meta name="description" content="Your own design studio. A full design studio inside the coding agent you already use. One command, free, nothing leaves your machine but the model calls you already make.">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="canonical" href="https://deskstudio.ai/">
-<link rel="preload" as="image" href="media/one-command.webp" fetchpriority="high">
+<link rel="preload" as="image" href="media/one-command-vertical.webp" fetchpriority="high">
 <meta property="og:title" content="Your own design studio.">
 <meta property="og:description" content="A full design studio inside the coding agent you already use. One command, free, nothing leaves your machine.">
 <meta property="og:image" content="https://deskstudio.ai/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
@@ -276,7 +292,7 @@ const html = `<!doctype html>
     <code class="install">${cmd(INSTALL)}</code>
     <p class="open">Open source, MIT. No account, no sign-up.<a href="${REPO}">Read the code</a></p>
   </div>
-  <div>${loop('one-command', 'One command typed in a terminal, then every piece the studio has signed off, then the line: your own design studio, at your desk')}</div>
+  ${heroLoop('one-command', 'One command typed in a terminal, then every piece the studio has signed off, then the line: your own design studio, at your desk')}
 </div></section>
 
 <section id="makes"><div class="wrap">

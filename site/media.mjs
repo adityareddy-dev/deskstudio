@@ -25,6 +25,15 @@ for (const f of readdirSync(takes).filter(f => /-1920x1080\.mp4$/.test(f)).sort(
   const r2 = existsSync(poster) ? ff(['-i', poster, '-vf', 'scale=1280:720', '-c:v', 'libwebp', '-quality', '80', jpg]) : { status: 1 };
   rows.push({ name, mp4: r1.status === 0 ? statSync(mp4).size : null, jpg: r2.status === 0 ? statSync(jpg).size : null });
 }
+// Vertical takes (<name>-1080x1920) become the hero's tall loop, media/<name>-vertical.mp4, and its poster.
+for (const f of readdirSync(takes).filter(f => /-1080x1920\.mp4$/.test(f)).sort()) {
+  const name = f.replace(/-1080x1920\.mp4$/, '') + '-vertical';
+  const mp4 = join(out, `${name}.mp4`), jpg = join(out, `${name}.webp`);
+  const r1 = ff(['-i', join(takes, f), '-vf', 'scale=720:1280', '-c:v', 'libx264', '-crf', '27', '-preset', 'slow', '-pix_fmt', 'yuv420p', '-movflags', '+faststart', '-an', mp4]);
+  const poster = join(takes, f.replace(/\.mp4$/, '.png'));
+  const r2 = existsSync(poster) ? ff(['-i', poster, '-vf', 'scale=720:1280', '-c:v', 'libwebp', '-quality', '80', jpg]) : { status: 1 };
+  rows.push({ name, mp4: r1.status === 0 ? statSync(mp4).size : null, jpg: r2.status === 0 ? statSync(jpg).size : null });
+}
 // GIFs for the README, where video does not play: 640 wide, 12 frames a second, a palette per clip.
 const GIFS = ['one-command', 'one-line', 'the-pick', 'floor-idle', 'before-after', 'cost-meter', 'pick-it-yourself', 'swap-the-seat', 'note-to-the-desk', 'proof'];
 for (const name of GIFS) {
