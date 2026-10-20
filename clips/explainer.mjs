@@ -1,11 +1,13 @@
 #!/usr/bin/env node
-// The explainer: one command, then the studio as a little team passing the work along, then the work back in your terminal.
+// The explainer: one command, then the studio as a little team of robots passing the work along, then every signed-off piece
+// thrown back to you as a wall, then the name.
 // It retells the real launch-card job (clips/fixtures/card): three roughs on Sonnet, the Art Director's pick on Opus,
 // polish on Haiku, proof with no model, and the Creative Director sending it back at 8.4 and 8.5 before signing off at 8.9.
 // Every frame is drawn from a fixed timeline, so every take comes out the same.
-//   node clips/explainer.mjs [--size 16:9] [--out clips/takes] [--still 4,9.5,16]
+//   node clips/explainer.mjs [--size 16:9|1:1|9:16] [--out clips/takes] [--still 4,9.5,16]
+// The team works on one 1920x1080 stage. For square and vertical a camera follows the work along it, so the desks stay big.
 // Output: explainer-<WxH>.mp4 and the poster frame explainer-<WxH>.png.
-import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, mkdtempSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { spawnSync } from 'node:child_process';
 import { tmpdir } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
@@ -15,9 +17,11 @@ import { launch } from '../proof/browser.mjs';
 const here = dirname(fileURLToPath(import.meta.url));
 const root = join(here, '..');
 const args = Object.fromEntries(process.argv.slice(2).map((a, i, all) => a.startsWith('--') ? [a.slice(2), all[i + 1] && !all[i + 1].startsWith('--') ? all[i + 1] : true] : []).filter(Boolean));
+const SIZES = { '16:9': [1920, 1080], '1:1': [1080, 1080], '9:16': [1080, 1920] };
+const [FW, FH] = SIZES[args.size || '16:9'] || SIZES['16:9'];
 const [W, H] = [1920, 1080];
 const out = resolve(args.out || join(here, 'takes'));
-const FPS = 30, SECONDS = 30;
+const FPS = 30, SECONDS = 31;
 const JOB = join(here, 'fixtures', 'card', 'jobs', '20261019-0025-launch-card-desk-studio');
 const job = JSON.parse(readFileSync(join(JOB, 'state.json'), 'utf8'));
 const render = name => pathToFileURL(join(JOB, 'renders', name, 'linkedin.png')).href;
@@ -32,6 +36,33 @@ const BADGE = {
   openai: t => `OpenAI ${models.openai.tiers[t]}`,
   google: t => `Google ${models.google.tiers[t]}`,
 };
+
+// The wall at the end: every signed-off piece, picked the way site/build.mjs picks them.
+function pickRender(dir) {
+  const r = join(dir, 'renders');
+  if (!existsSync(r)) return null;
+  const all = [];
+  const walk = (d, depth) => { for (const f of readdirSync(d, { withFileTypes: true })) { if (f.isDirectory() && depth < 3) walk(join(d, f.name), depth + 1); else if (f.isFile() && /\.png$/.test(f.name) && !/background/.test(f.name)) all.push(join(d, f.name)); } };
+  walk(r, 0);
+  const main = all.filter(f => !/(^|[\\/])(empty|error|loading)[\\/]/.test(f));
+  const pool = main.length ? main : all;
+  const prefer = [/slide-01[\\/]ig-post\.png$/, /email-600-light\.png$/, /held-00000\.png$/, /f-00000\.png$/, /[\\/]hero[\\/]desktop\.png$/, /[\\/]desktop\.png$/, /[\\/]linkedin\.png$/, /[\\/]x\.png$/, /ig-post\.png$/, /ig-square\.png$/, /\.png$/];
+  for (const p of prefer) { const hit = pool.sort().find(f => p.test(f)); if (hit) return hit; }
+  return null;
+}
+const pieces = [];
+for (const deliverable of readdirSync(join(root, 'evals', 'golden')).sort())
+  for (const n of readdirSync(join(root, 'evals', 'golden', deliverable)).sort()) {
+    const dir = join(root, 'evals', 'golden', deliverable, n);
+    const image = existsSync(join(dir, 'golden.json')) && pickRender(dir);
+    if (image) pieces.push(pathToFileURL(image).href);
+  }
+const mixed = [];
+for (let i = 0; pieces.length; i = (i + 7) % pieces.length) mixed.push(pieces.splice(i, 1)[0]);
+// Per size: terminal width and font, where it docks, caption sizes, the line's sizes, and the wall's rows.
+const F = FW === 1920 ? { term: [1120, 34], dock: [40, 36, 0.38], cap: [40, 24, 54], hook: [104, 104, 44], wall: { rows: 4, th: 234, gap: 20 } }
+  : FH > FW ? { term: [940, 29], dock: [40, 70, 0.5], cap: [52, 28, 150], hook: [118, 128, 56], wall: { rows: 9, th: 190, gap: 16 } }
+  : { term: [940, 29], dock: [28, 28, 0.44], cap: [34, 21, 44], hook: [66, 72, 32], wall: { rows: 5, th: 168, gap: 16 } };
 
 const font = f => pathToFileURL(join(root, 'fonts', f)).href;
 const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -83,33 +114,40 @@ const html = `<!doctype html><html><head><meta charset="utf-8"><style>
 @font-face { font-family: Inter; font-weight: 100 900; src: url("${font('inter/Inter-Variable.woff2')}") format("woff2"); }
 @font-face { font-family: "Geist Mono"; font-weight: 100 900; src: url("${font('geist/GeistMono-Variable.woff2')}") format("woff2"); }
 * { margin: 0; padding: 0; box-sizing: border-box; }
-html, body { width: ${W}px; height: ${H}px; overflow: hidden; background: #12110f; color: #f4f0e8; font-family: Inter, sans-serif; }
+html, body { width: ${FW}px; height: ${FH}px; overflow: hidden; background: #12110f; color: #f4f0e8; font-family: Inter, sans-serif; }
+#stage { position: absolute; left: 0; top: 0; width: ${W}px; height: ${H}px; transform-origin: 0 0; }
 svg { position: absolute; inset: 0; }
+#wall { position: absolute; inset: 0; }
+.tile { position: absolute; left: 0; top: 0; height: ${F.wall.th}px; border: 1px solid #3b3830; border-radius: 6px; background: #1c1a17; overflow: hidden; will-change: transform, opacity; }
+.tile img { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; }
+#shade { position: absolute; inset: 0; background: #12110f; opacity: 0; }
 .name { font: 600 22px Inter, sans-serif; fill: #f4f0e8; }
 .badge { font: 500 17px "Geist Mono", monospace; fill: #ffaa1c; }
 .bubble text { font: 600 22px Inter, sans-serif; }
 .bubble text.mono { font: 500 19px "Geist Mono", monospace; }
 .bubble text.score { font: 700 58px Inter, sans-serif; }
 .stamp { font: 800 26px Inter, sans-serif; letter-spacing: .08em; }
-#term { position: absolute; left: 50%; top: 50%; width: 1120px; background: #1c1a17; border: 1px solid #3b3830; border-radius: 12px; box-shadow: 0 40px 120px rgba(0,0,0,.65); transform-origin: 0 0; }
+#term { position: absolute; left: 50%; top: 50%; width: ${F.term[0]}px; background: #1c1a17; border: 1px solid #3b3830; border-radius: 12px; box-shadow: 0 40px 120px rgba(0,0,0,.65); transform-origin: 0 0; }
 #term .bar { height: 48px; border-bottom: 1px solid #3b3830; display: flex; align-items: center; gap: 10px; padding: 0 20px; }
 #term .bar i { width: 12px; height: 12px; border-radius: 50%; background: #3b3830; }
 #term .bar span { margin-left: 12px; font: 400 18px "Geist Mono", monospace; color: #9a948a; }
-#term .body { padding: 36px 40px; font: 400 34px/1.5 "Geist Mono", monospace; min-height: 190px; }
+#term .body { padding: 36px 40px; font: 400 ${F.term[1]}px/1.5 "Geist Mono", monospace; min-height: ${Math.round(F.term[1] * 4)}px; }
 #term .prompt { color: #ffaa1c; margin-right: .6em; }
 #cursor { display: inline-block; width: .6em; height: 1.15em; background: #f4f0e8; vertical-align: -0.2em; margin-left: 2px; }
 #outlines div { font-size: 28px; color: #9a948a; white-space: nowrap; }
 #outlines .ok { color: #f4f0e8; }
 #outlines .ok b { color: #ffaa1c; font-weight: 400; }
-#cap { position: absolute; left: 0; right: 0; bottom: 54px; text-align: center; font: 600 40px Inter, sans-serif; letter-spacing: -0.01em; }
-#cap small { display: block; margin-top: 8px; font: 500 24px "Geist Mono", monospace; color: #9a948a; }
+#cap { position: absolute; left: 24px; right: 24px; bottom: ${F.cap[2]}px; text-align: center; font: 600 ${F.cap[0]}px/1.2 Inter, sans-serif; letter-spacing: -0.01em; text-shadow: 0 2px 18px #000, 0 0 6px #000; }
+#cap .plate { display: inline-block; padding: 10px 24px 12px; border-radius: 16px; background: rgba(18,17,15,.86); }
+#cap small { display: block; margin-top: 8px; font: 500 ${F.cap[1]}px "Geist Mono", monospace; color: #b8b2a8; }
 #hook { position: absolute; left: 0; right: 0; top: 50%; transform: translateY(-50%); text-align: center; }
-#hook svg { position: static; width: 104px; height: 104px; margin: 0 auto 48px; display: block; overflow: visible; }
-#hook h1 { font-weight: 600; font-size: 104px; line-height: 1.06; letter-spacing: -0.025em; }
-#hook .url { margin-top: 48px; font: 400 32px "Geist Mono", monospace; color: #9a948a; }
+#hook svg { position: static; width: ${F.hook[1]}px; height: ${F.hook[1]}px; margin: 0 auto ${Math.round(F.hook[1] * 0.3)}px; display: block; overflow: visible; }
+#hook .brand { font: 600 ${F.hook[2]}px Inter, sans-serif; letter-spacing: -0.02em; margin-bottom: ${Math.round(F.hook[2] * 0.9)}px; }
+#hook h1 { font-weight: 600; font-size: ${F.hook[0]}px; line-height: 1.06; letter-spacing: -0.025em; }
+#hook .url { margin-top: ${Math.round(F.hook[0] * 0.45)}px; font: 400 32px "Geist Mono", monospace; color: #9a948a; }
 #fade { position: absolute; inset: 0; background: #12110f; opacity: 0; }
 </style></head><body>
-<svg id="scene" viewBox="0 0 ${W} ${H}">
+<div id="stage"><svg id="scene" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}">
   <defs>
     <filter id="soft" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#000" flood-opacity=".45"/></filter>
     <radialGradient id="room" cx="50%" cy="38%" r="75%"><stop offset="0" stop-color="#221f1a"/><stop offset="1" stop-color="#12110f"/></radialGradient>
@@ -124,15 +162,19 @@ svg { position: absolute; inset: 0; }
   <g id="pickstamp" opacity="0"><rect x="-58" y="-22" width="116" height="44" rx="8" fill="none" stroke="#ffaa1c" stroke-width="4"/><text x="0" y="10" text-anchor="middle" class="stamp" fill="#ffaa1c">PICK</text></g>
   <g id="bubbles"></g>
   <g id="sparks"></g>
-</svg>
+</svg></div>
 <div id="term"><div class="bar"><i></i><i></i><i></i><span>~/my-app</span></div>
-  <div class="body"><div><span class="prompt">&gt;</span><span id="typed"></span><span id="cursor"></span></div><div id="outlines"></div></div></div>
+  <div class="body"><div><span class="prompt">&gt;</span><span id="typed"></span><span id="cursor"></span></div></div></div>
+<div id="wall"></div>
+<div id="shade"></div>
 <div id="cap"></div>
 <div id="hook" style="opacity:0"><svg viewBox="0 0 24 24"><rect id="desk" x="0" y="18" width="24" height="6" fill="#f4f0e8"/><circle id="lampmark" cx="17" cy="10" r="4" fill="#ffaa1c"/></svg>
-  <h1><span id="l1">Your own design studio.</span><br><span id="l2">At your desk.</span></h1><div class="url" id="url">deskstudio.ai</div></div>
+  <div class="brand" id="brand">Desk Studio</div>
+  <h1><span id="l1">Your own${FH > FW ? '<br>' : ' '}design studio.</span><br><span id="l2">At your desk.</span></h1><div class="url" id="url">deskstudio.ai</div></div>
 <div id="fade"></div>
 <script>
-const W = ${W}, H = ${H}, BASE = ${BASE}, END = ${SECONDS};
+const W = ${W}, H = ${H}, FW = ${FW}, FH = ${FH}, BASE = ${BASE}, END = ${SECONDS};
+const K = FH / H, VW = FW / K, DOCK = ${JSON.stringify(F.dock)}, WALLC = ${JSON.stringify(F.wall)}, VERT = ${FH > FW}, PIECES = ${JSON.stringify(mixed)};
 const IMG = ${JSON.stringify(IMG)}, SCORES = ${JSON.stringify(scores)}, PICK = ${JSON.stringify(pick)};
 const TEAM = ${JSON.stringify(team.map(({ id, x, tier, scale }) => ({ id, x, tier, scale: scale || 1 })))};
 const BADGES = ${JSON.stringify(Object.fromEntries(Object.entries(BADGE).map(([p, f]) => [p, { senior: f('senior'), director: f('director'), builder: f('builder') }])))};
@@ -160,6 +202,9 @@ const BUSY = {
 const HAND = {
   mgr: [5.5], d1: [9.8], d2: [9.8], d3: [9.8], ad: [12.6], b: [14.4, 18.6, 21.7], p: [15.6, 19.3, 22.4], cd: [17.2, 20.4, 23.8],
 };
+// At the end everyone lights up and throws the work out to you.
+const WALL0 = 24.2;
+for (const id of ['mgr', 'd1', 'd2', 'd3', 'ad', 'b', 'p', 'cd']) { BUSY[id].push([23.95, 25.4]); HAND[id].push(WALL0 + 0.1); }
 // The picked rough's trip down the line and back, [start, end, from, to, arc].
 const R2 = [
   [9.8, 10.6, [X.D2, ITEM_Y - 40], [X.AD, ITEM_Y - 20], 90],
@@ -173,7 +218,6 @@ const R2 = [
   [20.4, 21.0, [X.CD, ITEM_Y], [X.B, ITEM_Y], 170],
   [21.7, 22.0, [X.B, ITEM_Y], [X.P, ITEM_Y], 60],
   [22.4, 22.7, [X.P, ITEM_Y], [X.CD, ITEM_Y], 60],
-  [23.8, 25.0, [X.CD, ITEM_Y], [250, 150], 260],
 ];
 const R1 = [[9.8, 10.6, [X.D1, ITEM_Y - 40], [X.AD - 120, ITEM_Y - 20], 90]], R3 = [[9.8, 10.6, [X.D3, ITEM_Y - 40], [X.AD + 120, ITEM_Y - 20], 90]];
 const along = (legs, t) => {
@@ -235,32 +279,54 @@ const CAPS = [
   [16.0, 17.9, 'The Creative Director scores eight axes', 'every axis 8 or more, average 8.5'],
   [17.9, 22.6, 'Under the bar, it goes back with notes', 'round 2, round 3'],
   [22.6, 23.9, 'Signed off at 8.9', '3 rounds, $1.34 at list price'],
-  [23.9, 26.4, 'And it comes back to you', ''],
+  [23.9, 26.9, 'And it all comes back to you', PIECES.length + ' pieces signed off so far'],
 ];
+
+// The camera: for square and vertical it follows the work along the stage, smoothed so it glides.
+const focus = t => t < 5.6 ? X.MGR + 120 : t < 7.3 ? X.MGR + 120 + (X.CD - X.MGR - 120) * inOut(span(t, 5.7, 7.2)) : t < 9.8 ? X.D2 : t < 23.9 ? along(R2, t)[0] : X.CD - 120;
+const camX = t => { let s = 0; for (let j = 0; j < 8; j++) s += focus(t - j * 0.06); return clamp(s / 8 - VW / 2, 0, W - VW); };
+
+// The wall: each piece keeps its own shape at the row height, rows topped up so a drifting row never shows its end.
+const DRIFT = 30, home = [], delay = [];
+window.init = async () => {
+  const imgs = await Promise.all(PIECES.map(src => new Promise(res => { const i = new Image(); i.onload = () => res(i); i.onerror = () => res(null); i.src = src; })));
+  const items = imgs.filter(Boolean).map((i, n) => ({ n, src: i.src, w: Math.round(WALLC.th * Math.min(2.2, Math.max(0.75, i.naturalWidth / i.naturalHeight))) }));
+  const rows = Array.from({ length: WALLC.rows }, () => ({ items: [], w: -WALLC.gap }));
+  for (const it of [...items].sort((a, b) => b.w - a.w)) { const r = rows.reduce((a, b) => (b.w < a.w ? b : a)); r.items.push(it); r.w += it.w + WALLC.gap; }
+  const need = FW + 2 * DRIFT * (END - WALL0) + 40, wallH = WALLC.rows * WALLC.th + (WALLC.rows - 1) * WALLC.gap;
+  rows.forEach((row, r) => {
+    row.items.sort((a, b) => a.n - b.n);
+    const seq = [...row.items];
+    const pool = VERT ? items.filter(it => !row.items.includes(it)) : row.items;
+    for (let k = 0; row.w < need; k++) { const it = pool[(VERT ? r * 3 + k : k) % pool.length]; seq.push(it); row.w += it.w + WALLC.gap; }
+    let x = (FW - row.w) / 2;
+    const y = (FH - wallH) / 2 + r * (WALLC.th + WALLC.gap);
+    for (const it of seq) {
+      const el = document.createElement('div');
+      el.className = 'tile'; el.style.width = it.w + 'px'; el.innerHTML = '<img src="' + it.src + '" alt="">';
+      $('wall').appendChild(el);
+      home.push({ x, y, w: it.w, dir: r % 2 ? 1 : -1, el });
+      x += it.w + WALLC.gap;
+    }
+  });
+  await Promise.all([...document.images].map(i => i.decode().catch(() => {})));
+  home.forEach((h, i) => { delay[i] = Math.min(1.0, (i % 34) * 0.028 + ((i * 7) % 5) * 0.012); });
+};
 
 window.seek = t => {
   // The terminal: typed, entered, then it steps back into the corner while the team works, and comes forward with the result.
   $('typed').textContent = COMMAND.slice(0, keys.filter(k => k <= t).length);
   $('cursor').style.opacity = t < ENTER ? (t < keys[0] || t > keys[keys.length - 1] ? (Math.floor(t * 2.2) % 2 ? 0 : 1) : 1) : 0;
-  const dock = inOut(span(t, 3.0, 3.8)), undock = inOut(span(t, 24.7, 25.5));
-  const k = dock * (1 - undock);
-  const s = 1 - 0.62 * k, cx = -560 + (40 - (-560 + 960)) * 0, w = 1120;
-  const x0 = W / 2 - w / 2, y0 = H / 2 - 150, x1 = 40, y1 = 36;
-  const tx = x0 + (x1 - x0) * k, ty = y0 + (y1 - y0) * k;
-  $('term').style.transform = 'translate(' + (tx - W / 2) + 'px,' + (ty - H / 2) + 'px) scale(' + s + ')';
-  const termOut = span(t, 26.3, 26.8);
-  $('term').style.opacity = span(t, 0, 0.3) * (1 - termOut);
-  const outl = t < 25.4 ? [] : [
-    ['ok', '✓ launch card signed off at <b>8.9</b>'],
-    ['', '  3 rounds · $1.34 at list price'],
-    ['', '  final-linkedin.png  final-ig-post.png'],
-  ].filter((_, i) => t >= 25.4 + i * 0.3);
-  $('outlines').innerHTML = outl.map(([c, h]) => '<div class="' + c + '">' + h + '</div>').join('');
-  $('outlines').style.marginTop = outl.length ? '14px' : '0';
+  const k = inOut(span(t, 3.0, 3.8)), term = $('term'), tw = term.offsetWidth;
+  const s = 1 - (1 - DOCK[2]) * k;
+  const x0 = FW / 2 - tw / 2, y0 = FH / 2 - 150, tx = x0 + (DOCK[0] - x0) * k, ty = y0 + (DOCK[1] - y0) * k;
+  term.style.transform = 'translate(' + (tx - FW / 2) + 'px,' + (ty - FH / 2) + 'px) scale(' + s + ')';
+  term.style.opacity = span(t, 0, 0.3) * (1 - span(t, 24.0, 24.5));
 
-  // The room fades in under the terminal and out before the line.
-  const room = span(t, 3.0, 3.6) * (1 - span(t, 25.6, 26.4));
-  $('scene').style.opacity = room;
+  // The stage under the camera. It fades in under the terminal and out once the wall has covered it.
+  const cx = camX(t);
+  $('stage').style.transform = 'translate(' + (-cx * K).toFixed(1) + 'px,0) scale(' + K + ')';
+  $('scene').style.opacity = span(t, 3.0, 3.6) * (1 - span(t, 26.2, 27.0));
 
   TEAM.forEach((m, i) => {
     const g = $(m.id);
@@ -297,7 +363,7 @@ window.seek = t => {
   const pp = span(t, 3.7, 4.5), paper = $('paper');
   if (t < 3.7 || t > 5.6) paper.setAttribute('opacity', 0);
   else {
-    const u = inOut(pp), x = 250 + (X.MGR + 60 - 250) * u, y = 150 + (BASE - 290 - 150) * u - 120 * 4 * u * (1 - u);
+    const u = inOut(pp), x = X.MGR + 20 + 40 * u, y = 40 + (BASE - 290 - 40) * u;
     paper.setAttribute('opacity', (1 - span(t, 5.3, 5.6)).toFixed(2)); setT(paper, x, y, 1, -8 + 16 * u);
   }
 
@@ -308,8 +374,7 @@ window.seek = t => {
     if (id !== 'r2') { const gone = span(t, 11.2, 11.7); o *= 1 - gone; s *= 1 - 0.4 * gone; }
     else {
       s = t > 10.6 ? 0.82 + 0.18 * span(t, 11.2, 11.6) : s;
-      if (t > 24.4) s *= 1 - 0.75 * span(t, 24.4, 25.0);
-      o *= 1 - span(t, 24.85, 25.05);
+      o *= 1 - span(t, WALL0, WALL0 + 0.3);
       const img = t < 14.2 ? IMG['rough-2'] : t < 18.4 ? IMG['round-1'] : t < 21.5 ? IMG['round-2'] : IMG['round-3'];
       const im = g.querySelector('image'); if (im.getAttribute('href') !== img) im.setAttribute('href', img);
     }
@@ -343,16 +408,29 @@ window.seek = t => {
   // Captions.
   const c = CAPS.find(([a, b]) => t >= a && t < b);
   const capEl = $('cap');
-  if (c) { const [a, b, l1, l2] = c; capEl.innerHTML = l1 + (l2 ? '<small>' + l2 + '</small>' : ''); capEl.style.opacity = (span(t, a, a + 0.25) * (1 - span(t, b - 0.25, b))).toFixed(2); }
+  if (c) { const [a, b, l1, l2] = c; capEl.innerHTML = '<span class="plate">' + l1 + (l2 ? '<small>' + l2 + '</small>' : '') + '</span>'; capEl.style.opacity = (span(t, a, a + 0.25) * (1 - span(t, b - 0.25, b))).toFixed(2); }
   else capEl.style.opacity = 0;
 
-  // The line, same as the hero loop.
-  const hk = span(t, 26.6, 27.1);
-  $('hook').style.opacity = hk;
-  const d = outCubic(span(t, 26.7, 27.2)); $('desk').setAttribute('width', 24 * d);
-  const lamp = span(t, 28.3, 28.5); $('lampmark').style.opacity = lamp; $('lampmark').style.filter = lamp ? 'drop-shadow(0 0 ' + (6 * lamp) + 'px rgba(255,170,28,.9))' : 'none';
-  for (const [id, a] of [['l1', 26.9], ['l2', 27.5], ['url', 28.2]]) {
-    const p = outCubic(span(t, a, a + 0.5)); const el = $(id); el.style.opacity = p; el.style.display = id === 'url' ? 'block' : 'inline-block'; el.style.transform = 'translateY(' + (1 - p) * 24 + 'px)';
+  // The robots throw the work out to you: every signed-off piece flies from the desks into a wall that keeps drifting.
+  const c0 = camX(WALL0);
+  const from = TEAM.map(m => [(m.x - c0) * K, (BASE - 150) * K]).filter(([x]) => x > 20 && x < FW - 20);
+  home.forEach((h, i) => {
+    const p = span(t, WALL0 + delay[i], WALL0 + delay[i] + 0.9);
+    const [ox, oy] = from[i % from.length] || [FW / 2, FH * 0.7];
+    const e = outBack(p), drift = h.dir * DRIFT * Math.max(0, t - WALL0);
+    const x = ox - h.w / 2 + (h.x - (ox - h.w / 2)) * e + drift, y = oy - WALLC.th / 2 + (h.y - (oy - WALLC.th / 2)) * e;
+    h.el.style.opacity = p <= 0 ? 0 : Math.min(1, p * 3);
+    h.el.style.transform = 'translate(' + x.toFixed(1) + 'px,' + y.toFixed(1) + 'px) scale(' + (0.2 + 0.8 * outCubic(p)).toFixed(3) + ') rotate(' + ((1 - p) * ((i % 2) ? 8 : -8)).toFixed(2) + 'deg)';
+  });
+  // Then the wall goes quiet and the name comes up.
+  const sh = span(t, 26.9, 27.5);
+  $('shade').style.opacity = 0.9 * sh;
+  $('wall').style.filter = sh > 0 ? 'blur(' + (sh * 5).toFixed(2) + 'px)' : 'none';
+  $('hook').style.opacity = span(t, 27.0, 27.2);
+  const d = outCubic(span(t, 27.1, 27.5)); $('desk').setAttribute('width', 24 * d);
+  const lamp = span(t, 28.9, 29.1); $('lampmark').style.opacity = lamp; $('lampmark').style.filter = lamp ? 'drop-shadow(0 0 ' + (6 * lamp) + 'px rgba(255,170,28,.9))' : 'none';
+  for (const [id, a] of [['brand', 27.3], ['l1', 27.7], ['l2', 28.2], ['url', 28.8]]) {
+    const p = outCubic(span(t, a, a + 0.5)); const el = $(id); el.style.opacity = p; el.style.display = id === 'url' || id === 'brand' ? 'block' : 'inline-block'; el.style.transform = 'translateY(' + (1 - p) * 24 + 'px)';
   }
   $('fade').style.opacity = span(t, END - 0.3, END);
 };
@@ -363,12 +441,12 @@ mkdirSync(out, { recursive: true });
 const pagePath = join(work, 'index.html');
 writeFileSync(pagePath, html);
 const browser = await launch();
-const context = await browser.newContext({ viewport: { width: W, height: H }, deviceScaleFactor: 1 });
+const context = await browser.newContext({ viewport: { width: FW, height: FH }, deviceScaleFactor: 1 });
 const page = await context.newPage();
 page.on('pageerror', e => console.error('page error:', e.message));
 await page.goto(pathToFileURL(pagePath).href, { waitUntil: 'load' });
-await page.evaluate(async () => { await document.fonts.ready; await Promise.all([...document.images].map(i => i.decode().catch(() => {}))); });
-const name = `explainer-${W}x${H}`;
+await page.evaluate(async () => { await document.fonts.ready; await window.init(); await Promise.all([...document.images].map(i => i.decode().catch(() => {}))); });
+const name = `explainer-${FW}x${FH}`;
 if (args.still) {
   for (const t of String(args.still).split(',').map(Number)) {
     await page.evaluate(t => window.seek(t), t);

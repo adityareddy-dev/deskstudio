@@ -41,7 +41,7 @@ for (const name of GIFS) {
   if (!existsSync(src)) continue;
   const gif = join(out, `${name}.gif`);
   // The one-command wall moves every pixel on every frame, so its GIF runs smaller and slower to stay near the others.
-  const [fps, w, colors] = name === 'one-command' ? [10, 560, 96] : name === 'explainer' ? [10, 640, 128] : [12, 640, 128];
+  const [fps, w, colors] = name === 'one-command' ? [10, 560, 96] : name === 'explainer' ? [8, 560, 96] : [12, 640, 128];
   const r = ff(['-i', src, '-vf', `fps=${fps},scale=${w}:-1:flags=lanczos,split[a][b];[a]palettegen=max_colors=${colors}[p];[b][p]paletteuse=dither=bayer:bayer_scale=4`, '-loop', '0', gif]);
   const row = rows.find(x => x.name === name);
   if (row) row.gif = r.status === 0 ? statSync(gif).size : null;
