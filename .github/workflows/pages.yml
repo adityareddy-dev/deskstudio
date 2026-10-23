@@ -26,7 +26,10 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
+      - run: sudo apt-get update -q && sudo apt-get install -y -q ffmpeg
       - run: node site/build.mjs
+      - name: Verify site body
+        run: echo '6b131383ded1f047ad3252d9e77a1666412183535c0002c815942bfff5a9628e  site/dist/index.html' | sha256sum --check
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
