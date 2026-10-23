@@ -283,5 +283,5 @@ export async function main(argv = process.argv.slice(2), env = process.env, out 
 
 const invokedDirectly = process.argv[1] && pathToFileURL(resolve(process.argv[1])).href === import.meta.url;
 if (invokedDirectly) {
-  main().then(code => process.exit(code)).catch(e => { process.stderr.write(`otel: ${e.message}\n`); process.exit(1); });
+  main().then(code => { process.exitCode = code; }).catch(e => { process.stderr.write(`otel: ${e.message}\n`); process.exitCode = 1; });
 }

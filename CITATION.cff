@@ -5,8 +5,8 @@ title: "Desk Studio"
 authors:
   - family-names: "Reddy"
     given-names: "Aditya"
-version: "1.0.1"
-date-released: "2026-10-20"
+version: "1.0.2"
+date-released: "2026-10-23"
 repository-code: "https://github.com/adityareddy-dev/deskstudio"
 url: "https://github.com/adityareddy-dev/deskstudio"
 license: MIT

@@ -1,6 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { createServer } from 'node:http';
+import { spawnSync } from 'node:child_process';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { runJob } from '../run.mjs';
@@ -109,4 +110,16 @@ test('without an endpoint the request body goes to stdout', async () => {
   assert.equal(code, 0);
   const body = JSON.parse(printed);
   assert.deepEqual(body, toOtlp([buildTrace(readEvents(CARD), jobIds(readEvents(CARD))[0])], {}));
+});
+
+
+test('the CLI flushes a full trace when stdout is piped', () => {
+  const env = Object.fromEntries(Object.entries(process.env).filter(([key]) => !key.startsWith('OTEL_')));
+  const result = spawnSync(process.execPath, [join(here, '..', 'otel.mjs'), '--events', CARD], {
+    env, encoding: 'utf8', maxBuffer: 4 * 1024 * 1024,
+  });
+  assert.equal(result.status, 0, result.stderr);
+  assert.ok(result.stdout.length > 65536, 'exercise output larger than the truncated pipe buffer');
+  const expected = toOtlp([buildTrace(readEvents(CARD), jobIds(readEvents(CARD))[0])], env);
+  assert.deepEqual(JSON.parse(result.stdout), expected);
 });

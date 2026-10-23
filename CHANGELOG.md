@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.0.2](https://github.com/adityareddy-dev/deskstudio/releases/tag/v1.0.2) - 2026-10-23
+
+Export a job's event log as an OpenTelemetry trace with role timings, token usage and cost.
+
 ## [1.0.1](https://github.com/adityareddy-dev/deskstudio/releases/tag/v1.0.1) - 2026-10-20
 
 Adds software citation metadata and a README citation link.
