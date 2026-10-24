@@ -112,7 +112,7 @@ Codex, Cursor, Gemini CLI, Copilot, Windsurf or OpenCode, one line in the projec
 npx deskstudio add
 \`\`\`
 
-It writes \`.desk/\`, copies the desks to \`.agents/skills/desk/\` and puts one marked block in the agent's instruction file. Every agent by default, one with \`--agent codex\`. Run it again any time, it keeps project text outside its markers and preserves edited desk briefs unless you pass \`--force\`.
+It writes \`.desk/\`, copies the desks to \`.agents/skills/desk/\` and puts one marked block in the agent's instruction file. Every agent by default, one with \`--agent codex\`. Run it again any time, it keeps project text outside its markers, updates untouched desk briefs and preserves your edits unless you pass \`--force\`. It records installed file hashes in \`.desk/installed.json\`, including on the first upgrade from npm 1.0.0.
 
 | Agent | Where the block goes |
 | --- | --- |

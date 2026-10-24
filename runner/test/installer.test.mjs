@@ -1,7 +1,9 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { existsSync, mkdtempSync, readFileSync, writeFileSync, mkdirSync, readdirSync, symlinkSync } from 'node:fs';
+import { existsSync, mkdtempSync, readFileSync, writeFileSync, mkdirSync, readdirSync, symlinkSync, cpSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
+import { createHash } from 'node:crypto';
+import { gunzipSync } from 'node:zlib';
 import { join, dirname } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { execFileSync } from 'node:child_process';
@@ -109,4 +111,112 @@ test('the installer runs through an npm-style binary symlink', { skip: process.p
   assert.ok(out.includes('AGENTS.md: created'));
   assert.ok(existsSync(join(project, '.desk', 'project.json')));
   assert.ok(existsSync(join(project, '.agents', 'skills', 'desk', 'roles', 'ui-designer.md')));
+});
+
+const legacyFiles = JSON.parse(gunzipSync(readFileSync(join(here, 'fixtures', 'installed-1.0.0.json.gz'))));
+const digest = bytes => createHash('sha256').update(bytes).digest('hex');
+const manifestAt = dir => join(dir, '.desk', 'installed.json');
+const skillAt = (dir, name) => join(dir, '.agents', 'skills', 'desk', name);
+const tempProject = t => {
+  const dir = mkdtempSync(join(tmpdir(), 'desk-upgrade-'));
+  t.after(() => rmSync(dir, { recursive: true, force: true }));
+  return dir;
+};
+const installLegacy = dir => {
+  writeFileSync(join(dir, 'AGENTS.md'), '# My project\n');
+  for (const [name, text] of Object.entries(legacyFiles)) {
+    const file = skillAt(dir, name);
+    mkdirSync(dirname(file), { recursive: true });
+    writeFileSync(file, text);
+  }
+};
+
+test('npm 1.0.0 migration replaces every untouched brief without --force', t => {
+  const dir = tempProject(t);
+  installLegacy(dir);
+  assert.equal(existsSync(manifestAt(dir)), false);
+  const baseline = JSON.parse(readFileSync(join(dirname(bin), 'installed-1.0.0.json'), 'utf8'));
+  assert.equal(Object.keys(legacyFiles).length, 64);
+  assert.deepEqual(baseline.skills, Object.fromEntries(Object.entries(legacyFiles).map(([name, text]) => [name, digest(text)])));
+  const result = add({ dir, agents: ['codex'], log: quiet });
+  assert.deepEqual(result.skills.kept, []);
+  assert.ok(result.skills.replaced > 0, 'the fixture must contain older briefs');
+  const fresh = tempProject(t);
+  add({ dir: fresh, agents: ['codex'], log: quiet });
+  assert.deepEqual(snapshot(skillAt(dir, '')), snapshot(skillAt(fresh, '')));
+  assert.deepEqual(JSON.parse(readFileSync(manifestAt(dir))), JSON.parse(readFileSync(manifestAt(fresh))));
+  const before = snapshot(dir);
+  const again = add({ dir, agents: ['codex'], log: quiet });
+  assert.deepEqual(again.skills.kept, []);
+  assert.equal(again.skills.replaced, 0);
+  assert.deepEqual(snapshot(dir), before);
+});
+
+test('migration preserves real edits across repeated runs and --force resets their baseline', t => {
+  const dir = tempProject(t);
+  installLegacy(dir);
+  const name = 'roles/content-designer.md';
+  const edit = legacyFiles[name] + '\nMy project brief.\n';
+  writeFileSync(skillAt(dir, name), edit);
+  for (let i = 0; i < 2; i++) {
+    const result = add({ dir, agents: ['codex'], log: quiet });
+    assert.deepEqual(result.skills.kept, [name]);
+    assert.equal(readFileSync(skillAt(dir, name), 'utf8'), edit);
+    assert.equal(JSON.parse(readFileSync(manifestAt(dir))).skills[name], digest(legacyFiles[name]));
+  }
+  const forced = add({ dir, agents: ['codex'], force: true, log: quiet });
+  assert.equal(forced.skills.replaced, 1);
+  assert.deepEqual(forced.skills.kept, []);
+  assert.equal(JSON.parse(readFileSync(manifestAt(dir))).skills[name], digest(readFileSync(skillAt(dir, name))));
+  assert.equal(add({ dir, agents: ['codex'], log: quiet }).skills.replaced, 0);
+});
+
+test('a later package updates tracked files, restores missing files and keeps edits and unknown copies', async t => {
+  const dir = tempProject(t);
+  const pkg = join(dir, 'package');
+  // An isolated package lets the test change a release without touching repo sources.
+  cpSync(dirname(bin), join(pkg, 'bin'), { recursive: true });
+  cpSync(join(ROOT, 'skills'), join(pkg, 'skills'), { recursive: true });
+  cpSync(join(ROOT, 'adapters'), join(pkg, 'adapters'), { recursive: true });
+  const { add: install } = await import(pathToFileURL(join(pkg, 'bin', 'deskstudio.mjs')).href);
+  const project = join(dir, 'project');
+  install({ dir: project, agents: ['codex'], log: quiet });
+  const changed = 'roles/content-designer.md';
+  const edited = 'roles/ui-designer.md';
+  const unknown = 'roles/art-director.md';
+  const removed = 'standards/deck.md';
+  const before = JSON.parse(readFileSync(manifestAt(project)));
+  writeFileSync(join(pkg, 'skills', 'desk', changed), '# New release brief\n');
+  writeFileSync(skillAt(project, edited), 'My edited brief\n');
+  writeFileSync(skillAt(project, unknown), 'An untracked local copy\n');
+  delete before.skills[unknown];
+  writeFileSync(manifestAt(project), JSON.stringify(before));
+  rmSync(skillAt(project, removed));
+  const result = install({ dir: project, agents: ['codex'], log: quiet });
+  assert.equal(result.skills.replaced, 1);
+  assert.equal(result.skills.written, 1);
+  assert.deepEqual(result.skills.kept.sort(), [edited, unknown].sort());
+  assert.equal(readFileSync(skillAt(project, changed), 'utf8'), '# New release brief\n');
+  const after = JSON.parse(readFileSync(manifestAt(project)));
+  assert.equal(after.skills[changed], digest('# New release brief\n'));
+  assert.equal(after.skills[edited], before.skills[edited]);
+  assert.equal(Object.hasOwn(after.skills, unknown), false);
+  assert.equal(readFileSync(skillAt(project, edited), 'utf8'), 'My edited brief\n');
+  assert.equal(readFileSync(skillAt(project, unknown), 'utf8'), 'An untracked local copy\n');
+  const again = install({ dir: project, agents: ['codex'], log: quiet });
+  assert.equal(again.skills.replaced, 0);
+  assert.equal(again.skills.written, 0);
+  assert.deepEqual(again.skills.kept.sort(), [edited, unknown].sort());
+});
+
+test('invalid manifests stop before changing installed files', t => {
+  const dir = tempProject(t);
+  installLegacy(dir);
+  mkdirSync(join(dir, '.desk'));
+  for (const text of ['{broken', '{"version":2,"skills":{}}', '{"version":1,"skills":{"SKILL.md":"invalid"}}']) {
+    writeFileSync(manifestAt(dir), text);
+    const before = snapshot(dir);
+    assert.throws(() => add({ dir, agents: ['codex'], log: quiet }));
+    assert.deepEqual(snapshot(dir), before);
+  }
 });

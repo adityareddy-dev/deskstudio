@@ -7,8 +7,9 @@
 // (Manager, roles, standards, procedures) to .agents/skills/desk/, and writes or updates one marked block
 // (<!-- desk:start --> to <!-- desk:end -->) in each host's instruction file. Nothing outside the markers is touched.
 // --agent claude prints the plugin install lines instead.
-import { existsSync, mkdirSync, readFileSync, writeFileSync, readdirSync, statSync, realpathSync } from 'node:fs';
+import { existsSync, mkdirSync, readFileSync, writeFileSync, readdirSync, statSync, realpathSync, renameSync } from 'node:fs';
 import { dirname, join, relative, resolve } from 'node:path';
+import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import { resolveRoot } from './root.mjs';
 
@@ -72,16 +73,39 @@ function splitAdapter(text) {
   return { head: s > 0 ? text.slice(0, s) : '', block: s >= 0 ? text.slice(s) : text };
 }
 
-function copyTree(src, dst, { force, rewrite, root = dst }, report) {
+const sha256 = bytes => createHash('sha256').update(bytes).digest('hex');
+
+function installedHashes(file) {
+  // Before manifests, add wrote these exact bytes from npm 1.0.0.
+  const source = existsSync(file) ? file : new URL('./installed-1.0.0.json', import.meta.url);
+  const manifest = JSON.parse(readFileSync(source, 'utf8'));
+  if (manifest?.version !== 1 || !manifest.skills || typeof manifest.skills !== 'object' || Array.isArray(manifest.skills)
+      || Object.values(manifest.skills).some(hash => typeof hash !== 'string' || !/^[a-f0-9]{64}$/.test(hash))) {
+    throw new Error(`Invalid install manifest: ${file}`);
+  }
+  return manifest.skills;
+}
+
+function copyTree(src, dst, { force, rewrite, previous, installed, root = dst }, report) {
   mkdirSync(dst, { recursive: true });
   for (const name of readdirSync(src)) {
     const s = join(src, name), d = join(dst, name);
-    if (statSync(s).isDirectory()) { copyTree(s, d, { force, rewrite, root }, report); continue; }
+    if (statSync(s).isDirectory()) { copyTree(s, d, { force, rewrite, previous, installed, root }, report); continue; }
+    const key = relative(root, d).split('\\').join('/');
     const text = rewrite(readFileSync(s, 'utf8'));
-    if (!existsSync(d)) { writeFileSync(d, text); report.written++; continue; }
-    const current = readFileSync(d, 'utf8');
-    if (current === text) { report.same++; continue; }
-    if (force) { writeFileSync(d, text); report.replaced++; } else { report.kept.push(relative(root, d).split('\\').join('/')); }
+    const hash = sha256(text);
+    if (!existsSync(d)) { writeFileSync(d, text); report.written++; installed[key] = hash; continue; }
+    const current = readFileSync(d);
+    if (current.equals(Buffer.from(text))) { report.same++; installed[key] = hash; continue; }
+    if (force || sha256(current) === previous[key]) {
+      writeFileSync(d, text);
+      report.replaced++;
+      installed[key] = hash;
+    } else {
+      report.kept.push(key);
+      // Keep the old baseline, never adopt the user's edit on a later run.
+      if (previous[key]) installed[key] = previous[key];
+    }
   }
 }
 
@@ -90,7 +114,6 @@ export function add({ dir = process.cwd(), agents = ALL_AGENTS, force = false, l
   const root = resolveRoot(join('skills', 'desk', 'SKILL.md'));
   const adaptersDir = resolveRoot(join('adapters', 'agents.md')) + '/adapters';
   const out = { seeds: [], skills: null, blocks: [] };
-  mkdirSync(target, { recursive: true });
 
   if (agents.includes('claude')) {
     log('For Claude Code, install the plugin instead:');
@@ -99,6 +122,9 @@ export function add({ dir = process.cwd(), agents = ALL_AGENTS, force = false, l
     agents = agents.filter(a => a !== 'claude');
     if (!agents.length) return out;
   }
+
+  const manifestFile = join(target, '.desk', 'installed.json');
+  const previous = installedHashes(manifestFile);
 
   // 1. .desk/ seeds. Never DESIGN.md, the first job finds the brand in the project.
   const desk = join(target, '.desk');
@@ -119,7 +145,10 @@ export function add({ dir = process.cwd(), agents = ALL_AGENTS, force = false, l
     .replace(/node "\$\{CLAUDE_PLUGIN_ROOT\}\/scripts\/emit-event\.mjs"/g, 'npx --package deskstudio desk-event')
     .replace(/\$\{CLAUDE_PLUGIN_ROOT\}\/skills\/desk/g, '.agents/skills/desk')
     .replace(/\$\{CLAUDE_PLUGIN_ROOT\}/g, '.agents/skills/desk');
-  copyTree(join(root, 'skills', 'desk'), skillsDst, { force, rewrite }, report);
+  const installed = {};
+  copyTree(join(root, 'skills', 'desk'), skillsDst, { force, rewrite, previous, installed }, report);
+  writeFileSync(manifestFile + '.tmp', JSON.stringify({ version: 1, skills: installed }, null, 2) + '\n');
+  renameSync(manifestFile + '.tmp', manifestFile);
   out.skills = report;
   log(`.agents/skills/desk/: ${report.written} written, ${report.same} unchanged, ${report.replaced} replaced${report.kept.length ? `, ${report.kept.length} kept as edited (${report.kept.join(', ')}), use --force to replace them` : ''}`);
 
