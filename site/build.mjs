@@ -6,6 +6,7 @@ import { cpSync, existsSync, mkdirSync, readdirSync, readFileSync, rmSync, write
 import { spawnSync } from 'node:child_process';
 import { basename, dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { buildDocs } from './docs.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const root = join(here, '..');
@@ -984,7 +985,7 @@ const html = `<!doctype html>
 <footer><div class="wrap footer-inner">
   <a class="brand" href="#top">${mark}Desk Studio</a>
   <span>MIT. It runs on your machine. Only the model calls the desks make and a few research lookups leave it.</span>
-  <nav class="footer-links"><a href="${REPO}">GitHub</a><a href="${REPO}/tree/main/docs">Docs</a><a href="${REPO}/discussions">Discussions</a><a href="${REPO}/blob/main/CONTRIBUTING.md">Contribute</a><a href="${REPO}/blob/main/CHANGELOG.md">Changelog</a><a href="${REPO}/blob/main/docs/privacy.md">Privacy</a></nav>
+  <nav class="footer-links"><a href="${REPO}">GitHub</a><a href="/docs/">Docs</a><a href="${REPO}/discussions">Discussions</a><a href="${REPO}/blob/main/CONTRIBUTING.md">Contribute</a><a href="${REPO}/blob/main/CHANGELOG.md">Changelog</a><a href="${REPO}/blob/main/docs/privacy.md">Privacy</a></nav>
 </div></footer>
 <script>
 (() => {
@@ -1065,5 +1066,6 @@ const html = `<!doctype html>
 </html>
 `;
 writeFileSync(join(dist, 'index.html'), html);
+buildDocs(dist);
 const bytes = Buffer.byteLength(html);
 console.log(`site/dist/index.html ${Math.round(bytes / 1024)} KB, ${goldens.length} goldens, ${registry.desks.length} desks`);
