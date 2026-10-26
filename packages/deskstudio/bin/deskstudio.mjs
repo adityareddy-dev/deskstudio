@@ -10,8 +10,12 @@
 import { existsSync, mkdirSync, readFileSync, writeFileSync, readdirSync, statSync, realpathSync, renameSync } from 'node:fs';
 import { dirname, join, relative, resolve } from 'node:path';
 import { createHash } from 'node:crypto';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 import { resolveRoot } from './root.mjs';
+
+const runnerRoot = resolveRoot();
+const { chooseDefaults } = await import(pathToFileURL(join(runnerRoot, 'runner', 'models.mjs')).href);
+const { detect } = await import(pathToFileURL(join(runnerRoot, 'runner', 'providers', 'index.mjs')).href);
 
 export const AGENT_FILES = {
   codex:    { file: 'AGENTS.md', adapter: 'agents.md' },
@@ -27,7 +31,6 @@ const END = '<!-- desk:end -->';
 
 const SEED_PROJECT = {
   quality: 'studio',
-  models: { director: 'anthropic/opus', senior: 'anthropic/sonnet', builder: 'anthropic/haiku' },
   presets: {
     studio:  { director: 'anthropic/opus',   senior: 'anthropic/sonnet', builder: 'anthropic/haiku' },
     best:    { director: 'anthropic/fable',  senior: 'anthropic/opus',   builder: 'anthropic/sonnet' },
@@ -109,7 +112,7 @@ function copyTree(src, dst, { force, rewrite, previous, installed, root = dst },
   }
 }
 
-export function add({ dir = process.cwd(), agents = ALL_AGENTS, force = false, log = s => process.stdout.write(s + '\n') } = {}) {
+export function add({ dir = process.cwd(), agents = ALL_AGENTS, force = false, log = s => process.stdout.write(s + '\n'), detectProviders = detect } = {}) {
   const target = resolve(dir);
   const root = resolveRoot(join('skills', 'desk', 'SKILL.md'));
   const adaptersDir = resolveRoot(join('adapters', 'agents.md')) + '/adapters';
@@ -123,13 +126,25 @@ export function add({ dir = process.cwd(), agents = ALL_AGENTS, force = false, l
     if (!agents.length) return out;
   }
 
+  for (const agent of agents) {
+    if (!AGENT_FILES[agent]) throw new Error(`Unknown agent "${agent}". Agents: ${ALL_AGENTS.join(', ')}, claude, all.`);
+  }
+
   const manifestFile = join(target, '.desk', 'installed.json');
   const previous = installedHashes(manifestFile);
 
   // 1. .desk/ seeds. Never DESIGN.md, the first job finds the brand in the project.
   const desk = join(target, '.desk');
+  let projectSeed;
+  if (!existsSync(join(desk, 'project.json'))) {
+    const chosen = chooseDefaults(detectProviders({ fresh: true }));
+    if (!chosen.models) throw new Error('No model provider is ready. Sign in with `codex login`, `claude auth login` or `agy`, then rerun `deskstudio add`. Run `desk-run doctor` to check provider access.');
+    // The runner selects the studio preset before the top-level model map.
+    projectSeed = { ...SEED_PROJECT, models: chosen.models, presets: { ...SEED_PROJECT.presets, studio: { ...chosen.models } } };
+    log(`Project models: ${Object.entries(chosen.models).map(([tier, spec]) => `${tier} ${spec}`).join(', ')} (${chosen.reason})`);
+  }
   mkdirSync(desk, { recursive: true });
-  for (const [name, text] of [['project.json', JSON.stringify(SEED_PROJECT, null, 2) + '\n'], ['taste.md', SEED_TASTE], ['.gitignore', SEED_GITIGNORE]]) {
+  for (const [name, text] of [['project.json', JSON.stringify(projectSeed, null, 2) + '\n'], ['taste.md', SEED_TASTE], ['.gitignore', SEED_GITIGNORE]]) {
     const f = join(desk, name);
     if (existsSync(f)) { out.seeds.push({ name, status: 'kept' }); continue; }
     writeFileSync(f, text);
@@ -156,7 +171,6 @@ export function add({ dir = process.cwd(), agents = ALL_AGENTS, force = false, l
   const done = new Set();
   for (const agent of agents) {
     const spec = AGENT_FILES[agent];
-    if (!spec) throw new Error(`Unknown agent "${agent}". Agents: ${ALL_AGENTS.join(', ')}, claude, all.`);
     if (done.has(spec.file)) continue;
     done.add(spec.file);
     const adapter = readFileSync(join(adaptersDir, spec.adapter), 'utf8');

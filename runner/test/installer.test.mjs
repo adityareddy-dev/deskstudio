@@ -18,7 +18,9 @@ if (!existsSync(join(ROOT, 'adapters', 'agents.md'))) {
   const { build } = await import(pathToFileURL(join(ROOT, 'scripts', 'build-adapters.mjs')).href);
   build({ log: quiet });
 }
-const { add, upsertBlock } = await import(pathToFileURL(bin).href);
+const { add: install, upsertBlock } = await import(pathToFileURL(bin).href);
+const anthropic = () => ({ anthropic: { via: 'cli' } });
+const add = options => install({ detectProviders: anthropic, ...options });
 
 const snapshot = dir => {
   const out = {};
@@ -106,6 +108,8 @@ test('the installer runs through an npm-style binary symlink', { skip: process.p
   const dir = mkdtempSync(join(tmpdir(), 'desk-npm-bin-'));
   const link = join(dir, 'deskstudio');
   const project = join(dir, 'project');
+  mkdirSync(join(project, '.desk'), { recursive: true });
+  writeFileSync(join(project, '.desk', 'project.json'), '{}\n');
   symlinkSync(bin, link);
   const out = execFileSync(process.execPath, [link, 'add', '--agent', 'codex', '--dir', project], { encoding: 'utf8' });
   assert.ok(out.includes('AGENTS.md: created'));
@@ -178,7 +182,9 @@ test('a later package updates tracked files, restores missing files and keeps ed
   cpSync(dirname(bin), join(pkg, 'bin'), { recursive: true });
   cpSync(join(ROOT, 'skills'), join(pkg, 'skills'), { recursive: true });
   cpSync(join(ROOT, 'adapters'), join(pkg, 'adapters'), { recursive: true });
-  const { add: install } = await import(pathToFileURL(join(pkg, 'bin', 'deskstudio.mjs')).href);
+  cpSync(join(ROOT, 'runner'), join(pkg, 'runner'), { recursive: true });
+  const { add: packageInstall } = await import(pathToFileURL(join(pkg, 'bin', 'deskstudio.mjs')).href);
+  const install = options => packageInstall({ detectProviders: anthropic, ...options });
   const project = join(dir, 'project');
   install({ dir: project, agents: ['codex'], log: quiet });
   const changed = 'roles/content-designer.md';
