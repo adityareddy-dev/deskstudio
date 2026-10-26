@@ -69,18 +69,19 @@ const md = `<p align="center"><img src="brand/logo/banner.png" alt="Desk Studio.
 
 <p align="center"><a href="https://deskstudio.ai">deskstudio.ai</a> · <a href="#install">Install</a> · <a href="#docs">Docs</a> · <a href="#contribute">Contribute</a> · <a href="https://github.com/adityareddy-dev/deskstudio/discussions">Discussions</a></p>
 
+<p align="center"><a href="site/media/explainer.mp4"><img src="site/media/explainer.gif" alt="One brief through roughs, pick, polish, pixel proof and scored sign-off" width="760"></a></p>
+
 <br>
 
-## One command, every style
+## What a run looks like
 
-<p align="center"><img src="site/media/one-command.gif" alt="One command typed in a terminal, then every piece the studio has signed off" width="760"></p>
-<p align="center"><sub>Type one line in your agent. The wall is the ${goldens.length} pieces the studio has signed off so far.</sub></p>
+<p align="center"><a href="site/media/real-run.mp4"><img src="site/media/real-run.gif" alt="Eight seconds captured from a fresh Desk Studio CLI job" width="760"></a></p>
+
 
 <br>
 
 ## How a job runs
 
-<p align="center"><img src="site/media/explainer.gif" alt="A team of desk robots passes one job along: roughs, the pick, polish, proof and the sign-off" width="760"></p>
 <p align="center"><sub>Three roughs on Sonnet, the pick on Opus, polish on Haiku, proof with no model, then the sign-off. The launch card job, retold with its real numbers.</sub></p>
 
 <br>

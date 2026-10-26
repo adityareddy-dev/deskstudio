@@ -1,0 +1,98 @@
+{
+  "capturedAt": "2026-10-26T09:13:20-05:00",
+  "jobId": "20261026-0857-linkedin-launch-desk-studio",
+  "runnerCommit": "1a15970f40d4026e7720756f0268dcd5edc99de4",
+  "jobStartedAt": "2026-10-26T08:57:53-05:00",
+  "jobFinishedAt": "2026-10-26T09:13:24-05:00",
+  "capture": "X11 screen capture of the actual CLI, contiguous excerpt from sign-off round 3 into handback",
+  "recordingStart": "2026-10-26T09:12:54-05:00",
+  "excerptSeconds": [
+    26,
+    34
+  ],
+  "playbackSpeed": 1,
+  "width": 1920,
+  "height": 1080,
+  "fps": 30,
+  "audio": false,
+  "crop": "Top 198 px of terminal removed to omit local command paths, remaining 1920x882 pixels padded without scaling",
+  "models": {
+    "director": "openai/mini",
+    "senior": "openai/mini",
+    "builder": "openai/nano"
+  },
+  "rounds": 3,
+  "proof": [
+    {
+      "round": 1,
+      "pass": true,
+      "failures": 0
+    },
+    {
+      "round": 2,
+      "pass": false,
+      "failures": 1
+    },
+    {
+      "round": 3,
+      "pass": true,
+      "failures": 0
+    }
+  ],
+  "scores": [
+    {
+      "round": 1,
+      "by": "creative-director",
+      "axes": {
+        "hierarchy": 9,
+        "typography": 9,
+        "spacing": 9,
+        "colour": 10,
+        "composition": 8,
+        "originality": 6,
+        "brand": 10,
+        "copy": 9
+      },
+      "average": 8.75,
+      "pass": false,
+      "notes": [
+        "composition: Increase the headline from 76px to 88px, retaining one line and the 80px left margin, to carry more of the landscape canvas.",
+        "originality: Right-align the URL with the enlarged headline\u2019s right edge, creating a deliberate counterpoint to the mark at x=80px, y=496px; retain the mark\u2019s 96px width."
+      ],
+      "polish": [
+        "None."
+      ]
+    },
+    {
+      "round": 3,
+      "by": "creative-director",
+      "axes": {
+        "hierarchy": 9,
+        "typography": 9,
+        "spacing": 9,
+        "colour": 10,
+        "composition": 8,
+        "originality": 6,
+        "brand": 9,
+        "copy": 9
+      },
+      "average": 8.63,
+      "pass": false,
+      "notes": [
+        "composition: Move the URL from x=926px to x=80px, keeping its top at y=320px, to group the claim and destination.",
+        "originality: Develop one brand-specific relationship between the headline and the 96px mark; the isolated corner logo does not distinguish this standard type layout."
+      ],
+      "polish": [
+        "None."
+      ]
+    }
+  ],
+  "cost": {
+    "director": 0.2295,
+    "senior": 0.0983,
+    "builder": 0.0045,
+    "total": 0.3323,
+    "complete": true
+  },
+  "outcome": "Under the bar at the three-round cap, originality 6. This capture does not claim sign-off. Historical explainer figures belong to a different job."
+}
