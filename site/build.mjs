@@ -109,10 +109,14 @@ const loop = (name, alt) => {
   return frame(({ 'floor-idle': 'dashboard', 'swap-the-seat': 'change-role' })[name] || name, `<video class="loop" width="1280" height="720" autoplay muted loop playsinline preload="metadata" ${existsSync(jpg) ? `poster="media/${name}.webp"` : ''} aria-label="${esc(alt)}"><source src="media/${name}.mp4" type="video/mp4"></video>${existsSync(jpg) ? `<img class="poster" src="media/${name}.webp" width="1280" height="720" alt="${esc(alt)}" loading="lazy" decoding="async">` : ''}`);
 };
 
-// The corrected wide take and its poster share the same uncropped aspect ratio.
 const heroLoop = (name, alt) => {
-  for (const ext of ['mp4', 'webp']) cpSync(join(media, `${name}.${ext}`), join(dist, 'media', `${name}.${ext}`));
-  return `<video controls muted playsinline preload="metadata" width="1920" height="1080" poster="media/${name}.webp" aria-label="${esc(alt)}"><source src="media/${name}.mp4" type="video/mp4"></video>`;
+  for (const file of [`${name}.mp4`, `${name}.webm`, `${name}-poster.png`, `${name}.vtt`]) cpSync(join(media, file), join(dist, 'media', file));
+  return `<video class="loop" autoplay muted loop playsinline preload="metadata" width="1920" height="1080" poster="media/${name}-poster.png" aria-label="${esc(alt)}"><source src="media/${name}.webm" type="video/webm"><source src="media/${name}.mp4" type="video/mp4"><track kind="captions" src="media/${name}.vtt" srclang="en" label="English"></video><img class="poster" src="media/${name}-poster.png" width="1920" height="1080" alt="${esc(alt)}"><div class="hero-video-controls"><button type="button" data-video-toggle aria-pressed="false">Pause video</button><a href="media/${name}.mp4">Open video</a></div>`;
+};
+
+const realRun = () => {
+  for (const ext of ['mp4', 'png']) cpSync(join(media, `real-run.${ext}`), join(dist, 'media', `real-run.${ext}`));
+  return `<video controls muted playsinline preload="none" width="1920" height="1080" poster="media/real-run.png" aria-label="Eight seconds captured from a fresh Desk Studio CLI job"><source src="media/real-run.mp4" type="video/mp4"></video>`;
 };
 
 // ---------- the page ----------
@@ -568,6 +572,8 @@ code { overflow-wrap:anywhere; }
 img, video { max-width:100%; }
 .media-frame img, .media-frame video { display:block; width:100%; height:auto; object-fit:contain; }
 .media-frame video { background:var(--dark); }
+.hero-video-controls { display:flex; align-items:center; gap:24px; padding:16px; }
+.hero-video-controls button { font:inherit; color:inherit; border:1px solid currentColor; border-radius:4px; background:transparent; padding:8px 16px; cursor:pointer; }
 .media-frame .poster { display:none; }
 .gallery { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:48px 24px; margin-top:48px; }
 .gallery figure { min-width:0; }
@@ -632,6 +638,7 @@ pre { white-space:pre-wrap; overflow-wrap:anywhere; font-size:16px; }
 @media (prefers-reduced-motion:reduce) {
  video.loop { display:none; }
  .media-frame .poster { display:block; }
+ .hero-video-controls button { display:none; }
 }
 
 `;
@@ -655,7 +662,7 @@ const html = `<!doctype html>
 <meta name="description" content="Your own design studio. A full design studio inside the coding agent you already use. One command, free, nothing leaves your machine but the model calls you already make.">
 <link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="icon" href="favicon.ico" sizes="48x48"><link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="canonical" href="https://deskstudio.ai/">
-<link rel="preload" as="image" href="media/one-command-v2.webp" fetchpriority="high">
+<link rel="preload" as="image" href="media/explainer-poster.png" fetchpriority="high">
 <meta property="og:title" content="Your own design studio.">
 <meta property="og:description" content="A full design studio inside the coding agent you already use. One command, free, nothing leaves your machine.">
 <meta property="og:image" content="https://deskstudio.ai/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
@@ -692,12 +699,17 @@ const html = `<!doctype html>
         <code class="command">/plugin install desk --marketplace adityareddy-dev/deskstudio</code>
     <dl class="facts"><div><dt>Free, MIT</dt><dd>no account, no sign-up</dd></div><div><dt>${registry.desks.length} desks</dt><dd>each one a brief you can read</dd></div><div><dt>${goldens.length} pieces</dt><dd>signed off, with score and cost</dd></div><div><dt><a href="#contribute">${starters.length} jobs open</a></dt><dd>pick one</dd></div></dl>
       </div>
-      <figure class="media-frame hero-media" aria-label="Desk Studio one-command design process">
+      <figure class="media-frame hero-media" aria-label="Desk Studio capabilities">
         <div class="frame-bar" aria-hidden="true">Desk Studio</div>
-        ${heroLoop('one-command-v2', 'One command, the real Desk Studio outputs')}
+        ${heroLoop('explainer', 'Desk Studio: roughs, pick, polish, proof and sign-off')}
       </figure>
     </div>
   </section>
+
+  <section class="band" aria-labelledby="real-run-heading"><div class="wrap">
+    <h2 id="real-run-heading">What a run looks like</h2>
+    <div class="media-frame" style="margin-top:32px">${realRun()}</div>
+  </div></section>
 
   <section class="band dark" id="how" aria-labelledby="how-heading">
     <div class="wrap">
@@ -747,7 +759,6 @@ const html = `<!doctype html>
       </ol>
 <details class="record"><summary>The launch-card job, with its real numbers</summary><div class="record-body">
   <p class="lead">This is the launch card job, retold with its real numbers.</p>
-  <div style="margin-top:32px">${loop('explainer', 'A team of little desk robots passes one job along: three roughs, the pick, polish rounds, proof and the sign-off, then the work comes back')}</div>
 
   <div id="loop"></div><h2>Roughs, pick, polish, proof, sign-off.</h2>
   <p class="lead">Every visual job runs the way a studio runs. This is the launch card above, as it happened.</p>
@@ -988,7 +999,16 @@ const html = `<!doctype html>
   addEventListener('hashchange', revealAnchor);
   if (location.hash) revealAnchor();
   const motion = matchMedia('(prefers-reduced-motion: reduce)');
-  const pause = () => { if (motion.matches) for (const v of document.querySelectorAll('video')) v.pause(); };
+  const toggle = document.querySelector('[data-video-toggle]');
+  const heroVideo = document.querySelector('.hero-media video');
+  const syncToggle = () => {
+    toggle.textContent = heroVideo.paused ? 'Play video' : 'Pause video';
+    toggle.setAttribute('aria-pressed', String(heroVideo.paused));
+  };
+  toggle.addEventListener('click', () => { if (heroVideo.paused) heroVideo.play().catch(syncToggle); else heroVideo.pause(); });
+  heroVideo.addEventListener('play', syncToggle);
+  heroVideo.addEventListener('pause', syncToggle);
+  const pause = () => { if (motion.matches) for (const v of document.querySelectorAll('video')) v.pause(); syncToggle(); };
   pause();
   motion.addEventListener('change', pause);
 })();

@@ -1,0 +1,65 @@
+export const launch = {
+  id: "20261019-0025-launch-card-desk-studio",
+  scores: [
+    {
+      round: 1,
+      by: "creative-director",
+      average: 8.4,
+      pass: false,
+      axes: {
+        hierarchy: 9,
+        typography: 8,
+        spacing: 8,
+        colour: 9,
+        composition: 8,
+        originality: 7,
+        brand: 9,
+        copy: 9,
+      },
+    },
+    {
+      round: 2,
+      by: "creative-director",
+      average: 8.5,
+      pass: false,
+      axes: {
+        hierarchy: 9,
+        typography: 8,
+        spacing: 9,
+        colour: 9,
+        composition: 8,
+        originality: 7,
+        brand: 9,
+        copy: 9,
+      },
+    },
+    {
+      round: 3,
+      by: "creative-director",
+      average: 8.9,
+      pass: true,
+      axes: {
+        hierarchy: 9,
+        typography: 9,
+        spacing: 9,
+        colour: 9,
+        composition: 9,
+        originality: 8,
+        brand: 9,
+        copy: 9,
+      },
+    },
+  ],
+  cost: {
+    director: 0.8087,
+    senior: 0.4296,
+    builder: 0.0971,
+    total: 1.3354,
+    complete: true,
+  },
+};
+export const proof = {
+  id: "20261019-0821-linkedin-desk-studio-headline",
+  actualTop: 32,
+  safeTop: 38,
+};

@@ -1,0 +1,33 @@
+{
+  "name": "deskstudio-motion",
+  "version": "1.0.0",
+  "description": "Capability explainer renders",
+  "scripts": {
+    "typecheck": "tsc",
+    "render": "remotion render src/index.tsx Explainer ../media/explainer.mp4 --codec=h264 --crf=20",
+    "render:webm": "remotion render src/index.tsx Explainer ../media/explainer.webm --codec=vp9 --crf=32",
+    "render:short": "remotion render src/index.tsx ExplainerShort ../media/explainer-short.mp4 --codec=h264 --crf=20",
+    "poster": "remotion still src/index.tsx Explainer ../media/explainer-poster.png --frame=365",
+    "render:all": "node render.mjs",
+    "check:sources": "node check-sources.mjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "@remotion/cli": "4.0.539",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "remotion": "4.0.539"
+  },
+  "devDependencies": {
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "typescript": "7.0.2"
+  },
+  "private": true,
+  "overrides": {
+    "zod": "^4.6.6"
+  }
+}

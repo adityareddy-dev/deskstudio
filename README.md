@@ -21,6 +21,10 @@ The first line is for Claude Code. The second is for Codex, Cursor, Gemini CLI, 
 
 [deskstudio.ai](https://deskstudio.ai) · [Install](docs/install.md) · [Docs](#docs) · [Contribute](#contribute) · [Discussions](https://github.com/adityareddy-dev/deskstudio/discussions)
 
+<a href="site/media/explainer.mp4"><img src="site/media/explainer.gif" alt="One brief through roughs, pick, polish, pixel proof and scored sign-off" width="760"></a>
+
+[Watch the 50-second explainer](site/media/explainer.mp4)
+
 ## 30-second example
 
 Ask for something in your agent:
@@ -37,17 +41,19 @@ npx --package deskstudio desk-run design "a launch card for LinkedIn"
 
 Files land in `.desk/out/<job>/` with a short note on who did what, the scores and the cost.
 
-<img src="site/media/one-command.gif" alt="One command typed in a terminal, then every piece the studio has signed off" width="760">
+## What a run looks like
 
-Type one line in your agent. The wall is the 17 pieces the studio has signed off so far. The list, with scores and cost, is in [What it makes](docs/gallery.md).
+<a href="site/media/real-run.mp4"><img src="site/media/real-run.gif" alt="Eight seconds captured from a fresh Desk Studio CLI job" width="760"></a>
+
+[Watch the real CLI capture](site/media/real-run.mp4)
+
+The outputs, scores and cost are in [What it makes](docs/gallery.md).
 
 ## Why it exists
 
 Cheap models make, strong models judge. Every visual job runs the way a studio runs: roughs, a pick, polish, proof, sign-off. The desks call models through the CLI you are already signed in to (`claude`, `codex` or `agy`) or a key (`ANTHROPIC_API_KEY`, `OPENAI_API_KEY`, `GEMINI_API_KEY`). `npx --package deskstudio desk-run doctor` shows which path it will take without making a model call. Scores come from the studio's model reviewers, they are not independent benchmarks.
 
 ## How it works
-
-<img src="site/media/explainer.gif" alt="A team of desk robots passes one job along: roughs, the pick, polish, proof and the sign-off" width="760">
 
 Three roughs on Sonnet, the pick on Opus, polish on Haiku, proof with no model, then the sign-off. The launch card job, retold with its real numbers. The five steps, the retry rules and the pixel checks are in [How a job runs](docs/how-it-works.md).
 
