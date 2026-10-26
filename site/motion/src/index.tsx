@@ -11,6 +11,7 @@ import {
 } from "remotion";
 import { launch, proof } from "./records";
 import captionBeats from "../captions.json";
+import shortCaptionBeats from "../captions-short.json";
 const captions = captionBeats.map((beat) => beat.text);
 import "./style.css";
 
@@ -318,8 +319,8 @@ const Pipeline = ({ f }: { f: number }) => {
 const Proof = ({ f }: { f: number }) => {
   const fix = move(f, 155, 18),
     success = f > 185;
-  const y =
-    (proof.actualTop + (proof.safeTop + 22 - proof.actualTop) * fix) * 0.92;
+  const measuredTop = proof.actualTop + (proof.safeTop + 22 - proof.actualTop) * fix;
+  const y = measuredTop * 0.92;
   return (
     <>
       <div
@@ -385,6 +386,43 @@ const Proof = ({ f }: { f: number }) => {
         <div style={{ position: "absolute", right: 60, bottom: 42 }}>
           <Lamp width={110} />
         </div>
+      </div>
+      <div
+        style={{
+          position: "absolute",
+          left: 460,
+          top: 370,
+          width: 1000,
+          opacity: move(f, 32),
+          background: C.surface,
+          border: `2px solid ${C.line}`,
+          boxShadow: `0 12px 40px ${C.bg}`,
+        }}
+      >
+        <div style={{ fontSize: 25, padding: "16px 24px", color: C.muted }}>
+          2× · top-left
+        </div>
+        <svg width="996" height="320" viewBox="0 0 498 160">
+          <path d="M0 0H498" stroke={C.fg} strokeWidth="2" />
+          {!success && (
+            <rect x="35" y={proof.actualTop} width="440"
+              height={proof.safeTop - proof.actualTop} fill={C.red} opacity=".25" />
+          )}
+          <path d={`M35 ${proof.safeTop}H475`} fill="none"
+            stroke={success ? C.green : C.red} strokeWidth="1.5" strokeDasharray="5 4" />
+          <text x="60" y={measuredTop - 5} dominantBaseline="text-before-edge"
+            fill={C.fg} fontSize="25" fontFamily="Inter">deskstudio.ai</text>
+          <path d={`M290 0V${measuredTop}m-6 0h12M284 0h12`}
+            fill="none" stroke={success ? C.green : C.red} strokeWidth="2" />
+          <path d={`M400 0V${proof.safeTop}m-6 0h12M394 0h12`}
+            fill="none" stroke={C.muted} strokeWidth="2" />
+          <text x="290" y="100" textAnchor="middle" fill={success ? C.green : C.red}
+            fontSize="25" fontFamily="Inter">{success ? "PASS" : "32 px"}</text>
+          <text x="400" y="100" textAnchor="middle" fill={C.fg}
+            fontSize="25" fontFamily="Inter">38 px</text>
+          <text x="400" y="125" textAnchor="middle" fill={C.muted}
+            fontSize="16" fontFamily="Inter">safe zone</text>
+        </svg>
       </div>
       <div
         style={{
@@ -761,7 +799,7 @@ export const Explainer = ({ short = false }: { short?: boolean }) => {
             maxWidth: 1550,
           }}
         >
-          {captions[i]}
+          {short ? shortCaptionBeats[i - 1].text : captions[i]}
         </div>
       </AbsoluteFill>
       <div

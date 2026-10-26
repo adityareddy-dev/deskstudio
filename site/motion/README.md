@@ -8,7 +8,7 @@ npm run typecheck
 npm run render:all
 ```
 
-Set `CHROME_PATH` to an existing Chrome executable, or let Remotion download its renderer. The six-beat composition is 1500 frames, 1920 × 1080, 30 fps. `ExplainerShort` compresses beats 2–4 into 300 frames. The CLI produces H.264, VP9, a PNG poster and a 760 px GIF fallback. Captions are in `captions.json` and are also burned into the video. No audio track.
+Set `CHROME_PATH` to an existing Chrome executable, or let Remotion download its renderer. The six-beat composition is 1500 frames, 1920 × 1080, 30 fps. `ExplainerShort` compresses beats 2–4 into 300 frames. The CLI produces H.264, VP9, a PNG poster and a 760 px GIF fallback. Full-length captions are in `captions.json`. The short cut uses `captions-short.json`. Both are burned into their videos. Beat 3 includes a 2× top-left inset with rulers for the 32 px placement and 38 px safe zone. No audio track.
 
 `src/records.ts` copies scores and cost from `evals/golden/social-card/desk-studio-launch/state.json`. The rejected proof example is a different job, `evals/golden/social-card/desk-studio-floor/state.json`: its notes record `deskstudio.ai` at 32 px inside the 38 px LinkedIn safe zone. The eight rubric labels come from the launch record, including Copy. Round two is held even at 8.5 because Originality is 7. Costs are recorded list-price estimates.
 
