@@ -9,8 +9,8 @@
 //   desk-run providers
 //
 // Exit codes: 0 done at the bar, 4 handed back under the bar, 3 holding (paused), 1 failed, 2 usage.
-import { existsSync, readFileSync, writeFileSync, copyFileSync, mkdirSync, readdirSync, statSync } from 'node:fs';
-import { join, resolve, basename, extname, relative } from 'node:path';
+import { existsSync, readFileSync, writeFileSync, copyFileSync, mkdirSync, readdirSync, statSync, renameSync } from 'node:fs';
+import { join, resolve, basename, dirname, extname, relative } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { getCommand, COMMANDS } from './commands.mjs';
 import { PRESETS, TIERS, resolveModel, parseModelsFlag, chooseDefaults, loadModels, providerDefaults, deskInfo, deskName, normalizeUsage } from './models.mjs';
@@ -511,6 +511,11 @@ async function stepProof(ctx) {
   state.lastRenders = S.rel(ctx.projectDir, out);
   S.emit(ctx.projectDir, 'job.proof', { id: state.id, round, pass: !!result.pass, failures });
   if (result.pass) {
+    // Keep the file that passed, so the gate at the cap can ship it if a later round breaks a check.
+    const kept = join(paths.jobDir, 'passed', `round-${round}.html`);
+    mkdirSync(dirname(kept), { recursive: true });
+    copyFileSync(paths.finalFile, kept);
+    state.lastPass = { round, file: S.rel(ctx.projectDir, kept), renders: S.rel(ctx.projectDir, out) };
     ctx.log(`proof round ${round}: pass`);
     setPhase(ctx, 'signoff', round);
     return;
@@ -563,12 +568,35 @@ function afterMiss(ctx, notes, keys) {
   }
   if (state.round >= state.maxRounds) {
     ctx.log(`round cap ${state.maxRounds} reached, handing back under the bar`);
-    state.waitingOn = { type: 'approve_under_bar', text: `Under the bar after ${state.maxRounds} rounds. ${openLine(state)}` };
+    const gate = shipGate(ctx);
+    state.waitingOn = { type: 'approve_under_bar', text: `Under the bar after ${state.maxRounds} rounds. ${gate || openLine(state)}` };
     S.emit(ctx.projectDir, 'job.waiting', { id: state.id, on: 'approve_under_bar' }); // "type=" would overwrite the event type in emit-event.mjs
     setPhase(ctx, 'handback', state.round);
     return;
   }
   setPhase(ctx, 'polish', state.round + 1);
+}
+
+// The gate on what ships: at the cap, the file handed back must be one that passed proof. If the last round failed proof,
+// the last round that passed is shipped instead (state.gate.round says which); if no round passed, nothing ships and the
+// job is marked failed by the gate. Returns the line for waitingOn, or null when the last round's file stands.
+function shipGate(ctx) {
+  const { state, paths } = ctx;
+  if (state.proofMode === 'off') return null;
+  const lastProof = state.proof[state.proof.length - 1];
+  if (!lastProof || lastProof.pass) { state.gate = { shipped: 'last round', round: state.round }; return null; }
+  if (state.lastPass && existsSync(join(ctx.projectDir, state.lastPass.file))) {
+    copyFileSync(join(ctx.projectDir, state.lastPass.file), paths.finalFile);
+    state.lastRenders = state.lastPass.renders;
+    state.gate = { shipped: 'last passing round', round: state.lastPass.round, failedRound: state.round };
+    ctx.log(`gate: round ${state.round} failed proof, shipping round ${state.lastPass.round}, the last that passed`);
+    return `Shipped round ${state.lastPass.round}, the last round that passed proof; round ${state.round} failed it (${state.notes.slice(0, 2).join('; ')}).`;
+  }
+  const failedFile = join(paths.jobDir, 'final-failed-proof.html');
+  if (existsSync(paths.finalFile)) renameSync(paths.finalFile, failedFile);
+  state.gate = { shipped: null, round: null, failed: true, kept: S.rel(ctx.projectDir, failedFile) };
+  ctx.log('gate: no round passed proof, nothing ships');
+  return `No round passed proof, nothing shipped (the last file is kept at ${state.gate.kept}). ${openLine(state)}`;
 }
 
 function openLine(state) {
@@ -633,7 +661,8 @@ async function stepHandback(ctx) {
     `Scores: ${scoresLine}`,
     `Rounds: ${state.round} of ${state.maxRounds}. ${proofLine}`,
     `Cost: ${costLine}`,
-    `Open: ${passed ? 'none' : openLine(state)}${state.signoffBy === 'report' ? ' (sign-off by report, the director model did not see the screenshots)' : ''}`,
+    ...(state.gate && state.gate.shipped !== 'last round' ? [`Gate: ${state.gate.failed ? 'no round passed proof, nothing shipped, job failed' : `shipped round ${state.gate.round}, the last that passed proof (round ${state.gate.failedRound} failed it)`}`] : []),
+    `Open: ${passed ? 'none' : state.waitingOn?.text?.replace(/^Under the bar after \d+ rounds\. /, '') || openLine(state)}${state.signoffBy === 'report' ? ' (sign-off by report, the director model did not see the screenshots)' : ''}`,
   ];
   if (vias.includes('api')) lines.push(`Models: ${[...new Set(state.desks.map(d => `${d.model}${d.via ? ` via ${d.via}` : ''}`))].join(', ')}`);
   let handback = lines.join('\n') + '\n';
