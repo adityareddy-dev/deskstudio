@@ -10,6 +10,8 @@ Use Node.js 20 or newer. Install Codex following the [official CLI setup](https:
 curl -fsSL https://chatgpt.com/codex/install.sh | sh
 ```
 
+Sign in using the official setup before adding Desk Studio. A fresh install needs a ready model provider; it stops before writing project files if none is available. Check provider access with `npx --package deskstudio desk-run doctor`, which makes no model call.
+
 From your project's root, run:
 
 ```sh
@@ -24,7 +26,7 @@ Codex reads [project instructions from AGENTS.md](https://developers.openai.com/
 codex
 ```
 
-Sign in using the official setup if needed. Then try this design request:
+Then try this design request:
 
 ```text
 Use Desk Studio to improve this project's landing page. Read
@@ -32,7 +34,7 @@ Use Desk Studio to improve this project's landing page. Read
 and check the result at phone and desktop sizes.
 ```
 
-For work inside the codebase, Codex plays the Design Manager from the installed briefs. The separate runner currently supports `design` for a social card; see [command availability](commands.md#command-availability) before trying other commands. Design work uses models through your host or configured providers and may incur usage costs; installation and the check below do not need a model account. Visual proof needs Chrome or Chromium, and motion exports also need system `ffmpeg`; see [prerequisites](../CONTRIBUTING.md#run-the-checks).
+For work inside the codebase, Codex plays the Design Manager from the installed briefs. The separate runner currently supports `design` for a social card; see [command availability](commands.md#command-availability) before trying other commands. Design work uses models through your host or configured providers and may incur usage costs; installation and the check below make no model calls, though a fresh install needs a detected provider. Visual proof needs Chrome or Chromium, and motion exports also need system `ffmpeg`; see [prerequisites](../CONTRIBUTING.md#run-the-checks).
 
 ## What a second install keeps
 
@@ -42,9 +44,12 @@ For work inside the codebase, Codex plays the Design Manager from the installed 
 | --- | --- | --- |
 | Text outside the markers in `AGENTS.md` | Kept | Kept |
 | Desk Studio block inside the markers | Refreshed | Refreshed |
-| Existing files in `.agents/skills/desk/` that differ from the package, including edited briefs | Kept and reported as edited | Replaced with the package copy |
+| Untouched skill files matching a recorded install hash or the recognized npm 1.0.0 baseline | Updated to the package copy | Updated to the package copy |
+| Edited skill files or copies with no recognized baseline at packaged paths | Kept and reported as edited | Replaced with the package copy |
 | Missing packaged skill files | Added | Added |
 | Existing `.desk/` seed files | Kept | Kept |
+
+The installer records packaged skill hashes in `.desk/installed.json`. It retains the previous baseline for preserved edits so a later install does not mistake them for untouched files.
 
 `--force` replaces differing packaged skill files, not just role briefs. It does not reset `.desk/project.json` or `.desk/taste.md`, write `.desk/DESIGN.md`, or delete extra user-created skill files. Back up edits before using it:
 
@@ -54,7 +59,7 @@ npx deskstudio add --agent codex --force
 
 ## Try it in a disposable project
 
-These macOS/Linux shell commands check a second install without starting Codex or running a design job. Use the same Desk Studio version for both installs.
+These macOS/Linux shell commands check a second install without starting Codex or running a design job. Use a machine with a provider already configured, and use the same Desk Studio version for both installs.
 
 ```sh
 mkdir -p /tmp/deskstudio-checks
