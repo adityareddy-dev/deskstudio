@@ -1,6 +1,6 @@
 {
   "name": "deskstudio",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Your own design studio. A full design studio inside the coding agent you already use. One command, free, nothing leaves your machine.",
   "type": "module",
   "license": "MIT",
@@ -23,6 +23,9 @@
     "art-director",
     "coding-agent"
   ],
+  "scripts": {
+    "prepack": "node ../../scripts/build-adapters.mjs"
+  },
   "bin": {
     "deskstudio": "bin/deskstudio.mjs",
     "desk-run": "bin/desk-run.mjs",
