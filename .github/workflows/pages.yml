@@ -29,7 +29,7 @@ jobs:
       - run: sudo apt-get update -q && sudo apt-get install -y -q ffmpeg
       - run: node site/build.mjs
       - name: Verify site body
-        run: echo '87868fa7add764777e522533695f0fbc9fdc13c75e100fef7e437ae0a244e25f  site/dist/index.html' | sha256sum --check
+        run: echo '403b802baee11aeeac4957a8c5677d0b99d00ff1198c0097d9cefea0b880f988  site/dist/index.html' | sha256sum --check
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
