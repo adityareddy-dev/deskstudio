@@ -2,6 +2,15 @@
 
 The input for the studio's own brand job (phase 4). The Brand Strategist, Typographer, Design System Lead and UI Designer work from this. Nothing here is final until Adi picks a direction.
 
+## What changed on 2026-10-29
+
+Adi, 2026-10-29 15:15 CDT: the dashboard and the site shots looked dull and nothing showed a fun dashboard, and the lamp concept was not working. So the dashboard was redesigned first and the brand was redone to match it.
+
+- Was: a desk slab with a lamp disc as the mark, a "DS" monogram as the app icon, one amber accent, no characters, no gradients, no robots and no mascot. Now: every desk is a toy bot at its own desk, the mark is that bot's head with one lens eye, and the six trims of the site film carry the tiers (amber Manager, pink directors, sky seniors, green builders, blue for information, orange for what needs you). A soft dusk light is allowed.
+- Was: Inter 600 for the wordmark. Now: Inter 800, still the same face as the film.
+- The lamp, the slab and the disc are retired everywhere. The old kit's pages (`card.html`, `hero.html`, `marks.html`, `sting.html` and the old `sheet.html`) are in git history; `sheet.html` now shows the new kit.
+- The visual starting points and the "Not this" list below are kept as they were written for the first brand job, on 2026-10-18.
+
 ## What it is
 
 A design studio inside the coding agent people already use. Forty-two desks, each a real role with a brief, staffed per job by a Design Manager. Work goes through roughs, a pick, polish, proof on real pixels, and a sign-off against an eight-axis rubric. Cheap models make, strong models judge, and the user runs it all from a local dashboard: pause, swap a role, write a desk a note, pick the rough yourself.

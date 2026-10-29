@@ -64,8 +64,8 @@ const F = FW === 1920 ? { term: [1120, 34], dock: [40, 36, 0.38], cap: [40, 24, 
   : FH > FW ? { term: [940, 29], dock: [40, 70, 0.5], cap: [52, 28, 150], hook: [118, 128, 56], wall: { rows: 9, th: 190, gap: 16 } }
   : { term: [940, 29], dock: [28, 28, 0.44], cap: [34, 21, 44], hook: [66, 72, 32], wall: { rows: 5, th: 168, gap: 16 } };
 
-// The end card carries the logo from brand/logo. Its S starts cream and turns gold when the lamp used to come on.
-const LOGO = readFileSync(join(root, 'brand', 'logo', 'logo.svg'), 'utf8').trim().replace(/^<svg[^>]*>/, '<svg id="logo" viewBox="0 0 512 512">').replace('fill="#ffaa1c"', 'id="logoS" fill="#f4f0e8"');
+// The end card carries the logo from brand/logo. The iris of its lens starts cream and turns amber as the bot wakes.
+const LOGO = readFileSync(join(root, 'brand', 'logo', 'logo.svg'), 'utf8').trim().replace(/^<svg[^>]*>/, '<svg id="logo" viewBox="0 0 512 512">').replace('fill="none" stroke="#ffaa1c"', 'id="logoS" fill="none" stroke="#f4f0e8"');
 const font = f => pathToFileURL(join(root, 'fonts', f)).href;
 const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const BASE = 780;
@@ -432,7 +432,7 @@ window.seek = t => {
   const d = span(t, 27.1, 27.5);
   $('logo').style.opacity = Math.min(1, d * 3); $('logo').style.transform = 'scale(' + (0.6 + 0.4 * outBack(d)).toFixed(3) + ')';
   const lamp = span(t, 28.9, 29.1);
-  $('logoS').setAttribute('fill', lamp > 0.5 ? '#ffaa1c' : '#f4f0e8'); $('logoS').style.filter = lamp ? 'drop-shadow(0 0 ' + (14 * lamp).toFixed(1) + 'px rgba(255,170,28,.8))' : 'none';
+  $('logoS').setAttribute('stroke', lamp > 0.5 ? '#ffaa1c' : '#f4f0e8'); $('logoS').style.filter = lamp ? 'drop-shadow(0 0 ' + (14 * lamp).toFixed(1) + 'px rgba(255,170,28,.8))' : 'none';
   for (const [id, a] of [['brand', 27.3], ['l1', 27.7], ['l2', 28.2], ['url', 28.8]]) {
     const p = outCubic(span(t, a, a + 0.5)); const el = $(id); el.style.opacity = p; el.style.display = id === 'url' || id === 'brand' ? 'block' : 'inline-block'; el.style.transform = 'translateY(' + (1 - p) * 24 + 'px)';
   }

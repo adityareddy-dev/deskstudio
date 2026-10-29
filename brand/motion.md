@@ -1,31 +1,40 @@
 # Motion, Desk Studio
 
-Source of truth is the `motion:` block in DESIGN.md. The table copies it. Where this file and DESIGN.md differ, DESIGN.md wins.
+Motion says what the studio is doing. Every move is tied to something in the job's record: a desk starting or stopping, a phase changing, a pick, a score. Nothing moves to look busy.
 
-## The four moves
+## The moves
 
 | Move | Duration | Easing | Used for |
 |---|---|---|---|
-| entrance | 300ms | cubic-bezier(0.16, 1, 0.3, 1) | a thing arriving: a lamp lighting, a line landing (opacity plus a 16 to 24px rise) |
-| settle | 300ms | cubic-bezier(0.65, 0, 0.35, 1) | a thing moving into place (DESIGN.md calls this `move`) |
+| entrance | 320ms | cubic-bezier(0.16, 1, 0.3, 1) | a panel, a log line, a card arriving |
+| pop | 360ms | cubic-bezier(0.34, 1.56, 0.64, 1) | a speech bubble, a toast, a bot's hop |
+| move | 700ms | cubic-bezier(0.65, 0, 0.35, 1) | the job ticket along the track, the cost line |
 | exit | 200ms | cubic-bezier(0.7, 0, 0.84, 0) | a thing leaving |
-| emphasis | 400ms | cubic-bezier(0.16, 1, 0.3, 1) | the one thing to look at: the pick ring |
 
-Linear only for opacity under 150ms and for progress. No bounce. Stagger between items is 60 to 80ms, six items at most per group, except the scorecard's eight slabs at 60ms and the sting's 42-lamp wave at 20ms.
+## The bots
 
-## The three dashboard moves
+| State | When | What moves |
+|---|---|---|
+| Asleep | no agent of the desk is working | lens shut, a 4.8s breath, a small "z" now and then, dimmed in the big rooms |
+| Waking | an agent of the desk starts | a 520ms hop, the lens opens in 260ms |
+| Awake | while it works | a 1.1s bob, typing arms, a blink about every 4s, the pupil looking round, the laptop mark lit in the trim, a soft trim glow |
+| Half awake | the job lists the desk as working but no agent is live | lens half open, no bob |
 
-| Move | Property | Duration | Easing | Stagger |
-|---|---|---|---|---|
-| A lamp lights | lamp disc `background-color` from muted `#9a948a` to amber `#ffaa1c`. The slab holds still. Flat, no glow, no flash. | 300ms | entrance | 20ms in the sting wave, none for a single desk |
-| The pick ring draws | one open amber stroke (`#ffaa1c` on dark, `#c27a00` on light), `pathLength` 1, `stroke-dasharray` 1, `stroke-dashoffset` 1 to 0. Clockwise from the top arc a third in from the left, the end running 8px past the start (12px on rings 120px and wider). Round caps and joins, no fill. It starts once the thing it circles has landed. | 400ms | emphasis | none |
-| The scorecard slabs fill | eight slabs, each `transform: scaleX(0)` to `scaleX(1)` from its left edge, left to right. The pass line at 8 is drawn from the first frame and never animates. A slab under 8 stops at its value and stays muted, its figure turns danger `#ff6b5e`. | 300ms each | entrance | 60ms between slabs |
-| The cost line grows | one line in three segments, director then senior then builder, in the foreground colour at 100%, 60% and 30%, measured against the next whole dollar. Each segment's `width` moves from its last value to its new one when a desk reports. No amber, no stagger. | 300ms | settle | none |
+Each bot gets its own phase offset, so a room never moves in step.
 
-The pick ring appears fully drawn on the card, and it draws on the dashboard and on the sheet. It is not in the hero or the sting, where amber stays the lamps. One ring per screen.
+## The job
 
-The sting lights all 42 desks in reading order, 20ms apart, from 200ms (the last starts at 1020ms and is lit by 1320ms), then the end line lands with the entrance move at 1333ms and holds to 3000ms.
+- The ticket slides to the next station in 700ms with a small hop, the rail behind it fills green to blue.
+- The current station pings once every 1.8s while the job runs, and stops when it is paused or closed.
+- Score and cost figures count to their new value in 600ms.
+- Scorecard bars fill from the left, 420ms each, 60ms apart. The pass line at 8 never moves.
+- The pick ring draws once, clockwise, in 600ms, when the pick lands.
+- Confetti in the six trims falls once, about 2s, when a job you are watching signs off at the bar.
 
 ## Reduced motion
 
-Under `prefers-reduced-motion: reduce` show the end state with no fill, draw or stagger. Lamps are amber from the first frame, the pick ring is already drawn on the first frame, scorecard slabs are already filled. The only movement left is a 150ms linear crossfade on text that would have landed. No loops, no autoplay.
+Under `prefers-reduced-motion: reduce` everything shows its end state: bots are drawn awake or asleep without moving, bars are full, the ring is drawn, no confetti, no pings.
+
+## Recording
+
+The dashboard clips are recorded by `clips/frames.mjs` on a virtual clock, one screenshot per frame at 60 fps, so the motion in the clips is the motion in the product.
