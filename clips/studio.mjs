@@ -62,6 +62,7 @@ export const CLIPS = [
     about: 'Move the builder role to another model for this job, then the next polish round runs on it.',
     record: CONTROLS, project: 'deskstudio', skipControl: true,
     time: rec => { const p = run(rec, /^polish round 1/); return [[0, t(p.startedAt) - 1200], [6.2, t(p.startedAt) - 1100], [9, t(p.startedAt) + 15000]]; },
+    zoom: [[0, 0, { x: 440, y: 56, w: 1000 }]],
     actions: [
       [0.5, async k => { await k.point('.room.workshop button[data-act="tier"]', 0.9); }],
       [1.5, async k => { await k.click('.room.workshop button[data-act="tier"]'); }],
@@ -79,6 +80,7 @@ export const CLIPS = [
     about: 'A note typed to the UI Designer goes into its next prompt, then the next round starts.',
     record: CONTROLS, project: 'deskstudio', skipControl: true,
     time: rec => { const p = run(rec, /^polish round 1/); return [[0, t(p.startedAt) - 1200], [7.2, t(p.startedAt) - 1100], [10, t(p.startedAt) + 15000]]; },
+    zoom: [[0, 0, { x: 440, y: 56, w: 1000 }]],
     actions: [
       [0.5, async k => { await k.point('#floor button.desk[data-slug="ui-designer"]', 0.9); }],
       [1.5, async k => { await k.click('#floor button.desk[data-slug="ui-designer"]'); }],
