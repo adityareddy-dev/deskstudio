@@ -50,6 +50,24 @@ The runner takes `design` for social cards for now. The other commands in the [g
 
 Files land in `.desk/out/<job>/` with a short note on who did what, the scores and the cost.
 
+## Open the dashboard
+
+To watch the desks work and steer the job, turn the dashboard on once per project and start it:
+
+```
+/desk:dashboard setup
+/desk:dashboard start
+```
+
+Outside Claude Code:
+
+```
+npx --package deskstudio desk-dashboard setup
+npx --package deskstudio desk-dashboard start
+```
+
+`start` prints a link on 127.0.0.1 with a token. Open it, then run a job. How to read it is in [the dashboard guide](dashboard.md).
+
 ## Other agents
 
 | Agent | What you get |
