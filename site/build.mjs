@@ -48,6 +48,10 @@ for (const deliverable of readdirSync(join(root, 'evals', 'golden'))) {
   }
 }
 goldens.sort((a, b) => a.deliverable.localeCompare(b.deliverable) || a.name.localeCompare(b.name));
+// The studio's first brand kit and the card made on it show the retired lamp mark. They stay in evals/golden as
+// records, and the site's gallery leaves them out.
+const RETIRED = new Set(['brand-kit/desk-studio', 'social-card/desk-studio-floor']);
+for (let i = goldens.length - 1; i >= 0; i--) if (RETIRED.has(`${goldens[i].deliverable}/${goldens[i].name}`)) goldens.splice(i, 1);
 
 function pickRender(dir) {
   const r = join(dir, 'renders');
@@ -100,15 +104,26 @@ function frame(title, content) {
   return `<div class="media-frame"><div class="frame-bar" aria-hidden="true">${esc(title)}</div>${content}</div>`;
 }
 
-// Loops: site/media/<name>.mp4 and .jpg, made by site/media.mjs from the recorded takes.
+// Loops: site/media/<name>.mp4, .webm and the .webp poster. The dashboard loops are recorded at 60 fps by
+// clips/frames.mjs and published by site/media.mjs --frames.
 const media = join(here, 'media');
-const loop = (name, alt) => {
-  const mp4 = join(media, `${name}.mp4`), jpg = join(media, `${name}.webp`);
+const loop = (name, alt, label) => {
+  const mp4 = join(media, `${name}.mp4`), webm = join(media, `${name}.webm`), jpg = join(media, `${name}.webp`);
   if (!existsSync(mp4)) return `<p class="muted">The ${esc(name)} loop is not recorded yet.</p>`;
-  cpSync(mp4, join(dist, 'media', `${name}.mp4`));
-  if (existsSync(jpg)) cpSync(jpg, join(dist, 'media', `${name}.webp`));
-  return frame(({ 'floor-idle': 'dashboard', 'swap-the-seat': 'change-role' })[name] || name, `<video class="loop" width="1280" height="720" autoplay muted loop playsinline preload="metadata" ${existsSync(jpg) ? `poster="media/${name}.webp"` : ''} aria-label="${esc(alt)}"><source src="media/${name}.mp4" type="video/mp4"></video>${existsSync(jpg) ? `<img class="poster" src="media/${name}.webp" width="1280" height="720" alt="${esc(alt)}" loading="lazy" decoding="async">` : ''}`);
+  for (const f of [mp4, webm, jpg]) if (existsSync(f)) cpSync(f, join(dist, 'media', basename(f)));
+  return frame(label || name, `<video class="loop" width="1920" height="1080" autoplay muted loop playsinline preload="metadata" ${existsSync(jpg) ? `poster="media/${name}.webp"` : ''} aria-label="${esc(alt)}"><source src="media/${name}.mp4" type="video/mp4">${existsSync(webm) ? `<source src="media/${name}.webm" type="video/webm">` : ''}</video>${existsSync(jpg) ? `<img class="poster" src="media/${name}.webp" width="1920" height="1080" alt="${esc(alt)}" loading="lazy" decoding="async">` : ''}`);
 };
+// The captioned walkthrough: plays when asked, with its poster and a captions track.
+const walkthrough = () => {
+  const files = ['walkthrough.mp4', 'walkthrough.webm', 'walkthrough.webp', 'walkthrough.vtt'];
+  if (!existsSync(join(media, 'walkthrough.mp4'))) return '<p class="muted">The walkthrough is not recorded yet.</p>';
+  for (const f of files) if (existsSync(join(media, f))) cpSync(join(media, f), join(dist, 'media', f));
+  return `<video class="walk" controls playsinline preload="none" width="1920" height="1080" poster="media/walkthrough.webp" aria-label="A whole job on the dashboard, from the request to the sign-off and the files, with captions"><source src="media/walkthrough.mp4" type="video/mp4">${existsSync(join(media, 'walkthrough.webm')) ? '<source src="media/walkthrough.webm" type="video/webm">' : ''}<track kind="captions" src="media/walkthrough.vtt" srclang="en" label="English"></video>`;
+};
+// The studio bots, drawn by the dashboard's own bots.js, so the site's bots are the product's bots.
+const bots = (() => { const g = {}; new Function('window', read('dashboard/public/bots.js'))(g); return g.DeskBots; })();
+const botsCss = read('dashboard/public/bots.css');
+const bot = (tier, state = 'awake', seed = 0) => `<span class="tier-${tier}">${bots.html(tier, state, seed)}</span>`;
 
 const heroLoop = (name, alt) => {
   for (const file of [`${name}.mp4`, `${name}.webm`, `${name}-poster.png`, `${name}.vtt`]) cpSync(join(media, file), join(dist, 'media', file));
@@ -145,24 +160,26 @@ const css = `
 
 :root {
   color-scheme:light;
-  --white:#ffffff;
-  --ink:#17140f;
-  --cream:#f6f3ec;
-  --muted:#6b655b;
-  --line:#d9d4c8;
-  --dark:#12110f;
-  --warm:#f4f0e8;
-  --panel:#1c1a17;
-  --dark-muted:#9a948a;
-  --dark-line:#3b3830;
-  --gold:#8f5a00;
-  --bright-gold:#ffaa1c;
+  /* the studio by day, and its dusk bands, from brand/palette.css */
+  --white:#fffaf2;
+  --ink:#2b2017;
+  --cream:#f6ecdc;
+  --muted:#6f604f;
+  --line:#eadbc4;
+  --dark:#15100b;
+  --warm:#fcf3e4;
+  --panel:#1f1711;
+  --dark-muted:#c2b19b;
+  --dark-line:#3b2e23;
+  --gold:#9a5b00;
+  --bright-gold:#ffbf52;
+  --amber:#ffaa1c; --green:#009e73; --pink:#cc79a7; --blue:#0072b2; --sky:#56b4e9; --orange:#d55e00;
 }
 * { box-sizing:border-box; }
 html { scroll-padding-top:104px; }
 body {
   margin:0;
-  background:var(--white);
+  background:radial-gradient(1200px 600px at 15% -10%, rgba(255,170,28,.12), transparent 70%), var(--white);
   color:var(--ink);
   font-family:"Inter",Arial,sans-serif;
   font-size:20px;
@@ -171,9 +188,9 @@ body {
   -webkit-font-smoothing:antialiased;
 }
 h1,h2,h3,p,ol,ul,figure { margin:0; }
-h1,h2,h3 { font-weight:600; }
-h1 { font-size:76.5px; line-height:1.05; letter-spacing:-.02em; }
-h2 { font-size:39px; line-height:1.16; letter-spacing:-.02em; }
+h1,h2,h3 { font-weight:700; }
+h1 { font-size:76.5px; line-height:1.03; letter-spacing:-.035em; font-weight:800; }
+h2 { font-size:42px; line-height:1.12; letter-spacing:-.03em; font-weight:800; }
 h3 { font-size:20px; line-height:1.4; }
 a { color:inherit; text-underline-offset:4px; }
 a:focus-visible,
@@ -187,7 +204,7 @@ a[data-state="hover"] { text-decoration-thickness:2px; }
 .band { padding-block:96px; }
 .cream { background:var(--cream); }
 .dark {
-  background:var(--dark);
+  background:radial-gradient(1000px 520px at 12% 0%, rgba(255,170,28,.13), transparent 70%), radial-gradient(800px 480px at 95% 10%, rgba(204,121,167,.08), transparent 70%), var(--dark);
   color:var(--warm);
   --muted:var(--dark-muted);
   --line:var(--dark-line);
@@ -210,25 +227,30 @@ a[data-state="hover"] { text-decoration-thickness:2px; }
   justify-content:center;
   align-items:center;
   min-height:48px;
-  padding:8px 24px;
-  border:1px solid var(--ink);
-  border-radius:4px;
+  padding:8px 26px;
+  border:0;
+  border-radius:999px;
   background:var(--ink);
   color:var(--white);
   font-size:16px;
-  font-weight:600;
+  font-weight:700;
   line-height:1.5;
   text-decoration:none;
+  box-shadow:0 3px 0 rgba(43,32,23,.28), inset 0 -2px 0 rgba(0,0,0,.18);
+  transition:transform 120ms cubic-bezier(.16,1,.3,1), box-shadow 120ms;
 }
 .button:hover,
-.button[data-state="hover"] { background:var(--panel); text-decoration:underline; }
+.button[data-state="hover"] { background:var(--panel); transform:translateY(-1px); box-shadow:0 4px 0 rgba(43,32,23,.28); }
+.button:active { transform:translateY(1px); box-shadow:0 1px 0 rgba(43,32,23,.28); }
+.dark .button { background:var(--warm); color:var(--dark); box-shadow:0 3px 0 rgba(0,0,0,.45); }
 .button:focus-visible,
 .button[data-state="focus"] { outline-color:var(--ink); }
 .topbar {
   position:sticky;
   top:0;
   z-index:10;
-  background:var(--white);
+  background:rgba(255,250,242,.88);
+  backdrop-filter:blur(10px);
   border-bottom:1px solid var(--line);
 }
 .nav {
@@ -241,9 +263,11 @@ a[data-state="hover"] { text-decoration-thickness:2px; }
 .brand {
   display:inline-flex;
   align-items:center;
-  gap:16px;
+  gap:14px;
   flex-shrink:0;
-  font-weight:600;
+  font-weight:800;
+  letter-spacing:-.03em;
+  font-size:20px;
   text-decoration:none;
 }
 [data-ds-logo] { display:inline-flex; align-items:center; width:40px; height:40px; }
@@ -272,7 +296,7 @@ a[data-state="hover"] { text-decoration-thickness:2px; }
   padding:24px;
   background:var(--cream);
   border:1px solid var(--line);
-  border-radius:4px;
+  border-radius:14px;
   color:var(--ink);
   text-align:left;
   font-family:"Geist Mono",monospace;
@@ -287,9 +311,9 @@ a[data-state="hover"] { text-decoration-thickness:2px; }
 .media-frame {
   overflow:hidden;
   border:1px solid var(--line);
-  border-radius:8px;
+  border-radius:18px;
   background:var(--cream);
-  box-shadow:0 16px 32px #17140f14;
+  box-shadow:0 18px 40px rgba(84,56,26,.14);
 }
 .hero-media { margin-top:48px; }
 .frame-bar {
@@ -351,7 +375,8 @@ a[data-state="hover"] { text-decoration-thickness:2px; }
 }
 .step-number {
   display:block;
-  color:var(--warm);
+  color:var(--step, var(--warm));
+  font-weight:800;
   font-size:39px;
   font-weight:400;
   line-height:1;
@@ -411,7 +436,7 @@ a[data-state="hover"] { text-decoration-thickness:2px; }
 .facts dt { font-weight:600; }
 .facts dd { font-size:13px; color:var(--muted); }
 .starters { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr)); gap:24px; margin-top:32px; }
-.starter { display:flex; flex-direction:column; gap:12px; padding:24px; border:1px solid var(--line); text-decoration:none; min-width:0; }
+.starter { display:flex; flex-direction:column; gap:12px; padding:24px; border:1px solid var(--line); border-radius:18px; background:var(--white); text-decoration:none; min-width:0; }
 .starter:hover { border-color:var(--ink); }
 .starter h3 { font-size:20px; text-decoration:underline; text-underline-offset:4px; }
 .starter .tag { font:12px "Geist Mono",monospace; color:var(--muted); }
@@ -600,19 +625,19 @@ img, video { max-width:100%; }
 blockquote { border-left:2px solid var(--line); padding-left:24px; margin:24px 0; }
 .axes { display:grid; grid-template-columns:1fr auto; gap:4px 16px; font-variant-numeric:tabular-nums; }
 .axes .bar { grid-column:1 / -1; height:8px; background:var(--line); position:relative; }
-.axes .bar i { position:absolute; inset:0 auto 0 0; background:currentColor; }
-.axes .bar b { position:absolute; left:80%; top:-3px; bottom:-3px; width:2px; background:var(--muted); }
+.axes .bar { border-radius:4px; }
+.axes .bar i { position:absolute; inset:0 auto 0 0; background:var(--green); border-radius:4px; }
+.axes .bar b { position:absolute; left:80%; top:-3px; bottom:-3px; width:2px; background:var(--amber); }
 table { border-collapse:collapse; width:100%; margin-top:24px; font-size:16px; line-height:24px; }
 th,td { border-top:1px solid var(--line); padding:12px 16px 12px 0; text-align:left; vertical-align:top; overflow-wrap:anywhere; }
 .table-scroll { overflow-x:auto; max-width:100%; }
 .table-scroll:focus-visible { outline:3px solid currentColor; outline-offset:4px; }
 pre { white-space:pre-wrap; overflow-wrap:anywhere; font-size:16px; }
-.cmdblock { margin-top:8px; padding:16px; border:1px solid var(--line); background:var(--cream); }
+.cmdblock { margin-top:8px; padding:16px; border:1px solid var(--line); border-radius:14px; background:var(--cream); }
 .install-details > p { margin-bottom:16px; }
 .install-details .lead { margin-top:32px; }
-.costline { display:flex; height:12px; background:var(--line); margin-top:24px; }
-.costline i { background:currentColor; }
-.costline .senior { opacity:.6; } .costline .builder { opacity:.3; }
+.costline { display:flex; height:14px; background:var(--line); margin-top:24px; border-radius:7px; overflow:hidden; }
+.costline .director { background:var(--pink); } .costline .senior { background:var(--sky); } .costline .builder { background:var(--green); }
 .costscale { display:flex; justify-content:space-between; color:var(--muted); }
 .controls { padding-left:24px; }
 .dark .media-frame, .dark .frame-bar { background:var(--panel); }
@@ -640,6 +665,51 @@ pre { white-space:pre-wrap; overflow-wrap:anywhere; font-size:16px; }
  video.loop { display:none; }
  .media-frame .poster { display:block; }
  .hero-video-controls button { display:none; }
+}
+
+/* the studio bots, from dashboard/public/bots.css */
+${botsCss}
+.crew { display:flex; justify-content:center; align-items:flex-end; gap:18px; margin:40px auto -6px; position:relative; z-index:1; }
+.crew .bot-wrap { --bot-w:86px; }
+.crew .tier-senior:last-child .bot-wrap { opacity:.75; }
+.watch-head { display:grid; grid-template-columns:1.1fr 1fr; gap:64px; align-items:end; }
+.watch-head p { color:var(--muted); font-size:18px; line-height:28px; }
+.walk-frame { margin-top:40px; }
+.walk { display:block; width:100%; height:auto; aspect-ratio:16 / 9; background:var(--dark); }
+.walk-links { display:flex; flex-wrap:wrap; gap:12px 28px; align-items:center; margin-top:20px; font-size:16px; }
+.loops { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:32px 28px; margin-top:56px; }
+.loops figcaption { margin-top:14px; font-size:16px; line-height:24px; color:var(--muted); }
+.loops figcaption strong { color:inherit; display:block; font-size:18px; margin-bottom:2px; }
+.dark .loops figcaption strong { color:var(--warm); }
+.control-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:40px 28px; margin-top:48px; }
+.control-list { padding:28px; border-radius:22px; background:var(--white); border:1px solid var(--line); font-size:16px; line-height:24px; }
+.control-list ul { padding-left:20px; margin:12px 0; } .control-list li { margin:6px 0; }
+.control-grid figcaption { margin-top:14px; font-size:16px; line-height:24px; color:var(--muted); }
+.control-grid figcaption strong { display:block; color:var(--ink); font-size:18px; }
+.start-steps { list-style:none; padding:0; margin:48px 0 0; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:24px; }
+.start-steps li { padding:28px; border-radius:22px; background:var(--white); border:1px solid var(--line); display:flex; flex-direction:column; gap:14px; min-width:0; }
+.start-steps .num { display:inline-grid; place-items:center; width:40px; height:40px; border-radius:50%; font-weight:800; font-size:18px; color:#1a120b; }
+.start-steps li:nth-child(1) .num { background:var(--amber); }
+.start-steps li:nth-child(2) .num { background:var(--sky); }
+.start-steps li:nth-child(3) .num { background:var(--green); color:#fff; }
+.start-steps h3 { font-size:22px; }
+.start-steps p { font-size:16px; line-height:24px; color:var(--muted); }
+.start-steps .cmdblock { margin:0; font-size:14px; }
+.start-steps .cmdblock code { font-size:14px; }
+.start-more { margin-top:32px; font-size:16px; }
+.tier .tier-bot { float:right; margin:-8px 0 0 16px; }
+.tier .tier-bot .bot-wrap { --bot-w:76px; }
+.steps li:nth-child(1) { --step:var(--amber); } .steps li:nth-child(2) { --step:var(--pink); } .steps li:nth-child(3) { --step:var(--green); } .steps li:nth-child(4) { --step:var(--sky); } .steps li:nth-child(5) { --step:var(--bright-gold); }
+@media (max-width:900px) {
+ .watch-head { grid-template-columns:1fr; gap:24px; }
+ .loops { grid-template-columns:1fr; }
+ .control-grid, .start-steps { grid-template-columns:1fr; }
+ .crew .bot-wrap { --bot-w:62px; }
+ .crew { gap:10px; }
+}
+@media (max-width:599px) {
+ .crew .bot-wrap { --bot-w:48px; }
+ .crew .tier-senior:last-child { display:none; }
 }
 
 `;
@@ -679,12 +749,13 @@ const html = `<!doctype html>
       <span>Desk Studio</span>
     </a>
     <div class="navlinks">
+      <a href="#watch">The dashboard</a>
       <a href="#how">How it works</a>
       <a href="#team">The studio</a>
-      <a href="#contribute">Contribute</a>
+      <a href="/docs/">Docs</a>
       <a class="github" href="https://github.com/adityareddy-dev/deskstudio">GitHub</a>
     </div>
-    <a class="button" href="#install">Install the plugin</a>
+    <a class="button" href="#start">Get started</a>
   </nav>
 </header>
 
@@ -695,17 +766,46 @@ const html = `<!doctype html>
         <p class="eyebrow">DESIGN, AT YOUR DESK</p>
         <h1 id="hero-heading">Your own design studio.</h1>
         <p class="description">A full design studio inside the coding agent you already use. One command, free, nothing leaves your machine but the model calls you already make.</p>
-        <div class="hero-action"><a class="button" href="#install">Install the plugin</a></div>
+        <div class="hero-action"><a class="button" href="#start">Get started</a></div>
         <p class="support small muted"><a href="${REPO}" class="read-code">Read the code</a></p>
         <code class="command">/plugin install desk --marketplace adityareddy-dev/deskstudio</code>
     <dl class="facts"><div><dt>Free, MIT</dt><dd>no account, no sign-up</dd></div><div><dt>${registry.desks.length} desks</dt><dd>each one a brief you can read</dd></div><div><dt>${goldens.length} pieces</dt><dd>signed off, with score and cost</dd></div><div><dt><a href="#contribute">${starters.length} jobs open</a></dt><dd>pick one</dd></div></dl>
       </div>
-      <figure class="media-frame hero-media" aria-label="Desk Studio capabilities">
+      <div class="crew" aria-hidden="true">${bot('manager', 'awake', 1)}${bot('director', 'awake', 2)}${bot('senior', 'awake', 3)}${bot('builder', 'awake', 4)}${bot('builder', 'asleep', 5)}${bot('senior', 'asleep', 6)}</div>
+      <figure class="media-frame hero-media" style="margin-top:0" aria-label="Desk Studio capabilities">
         <div class="frame-bar" aria-hidden="true">Desk Studio</div>
         ${heroLoop('explainer', 'Desk Studio: roughs, pick, polish, proof and sign-off')}
       </figure>
     </div>
   </section>
+
+  <section class="band dark" id="watch" aria-labelledby="watch-heading"><div class="wrap">
+    <div class="watch-head">
+      <div><p class="eyebrow">THE DASHBOARD</p><h2 id="watch-heading">Watch the studio work.</h2></div>
+      <p>Every desk is a small bot at its own desk. It wakes up while its agent works and goes back to sleep when it is done. The job moves along a track from the brief to the sign-off, and every rough, pick and score lands on the board. It runs on your machine, on 127.0.0.1.</p>
+    </div>
+    <figure class="media-frame walk-frame"><div class="frame-bar" aria-hidden="true">A real job from this repo, replayed and sped up</div>${walkthrough()}</figure>
+    <div class="walk-links"><a href="/docs/dashboard/">Read the dashboard guide</a><a href="#start">Open it in your project</a><span class="muted">50 seconds, with captions. Recorded at 60 frames a second from the real dashboard.</span></div>
+    <div class="loops">
+      <figure>${loop('floor-idle', 'The floor of a real brand-kit job: desks wake as their agents start and sleep when they stop', 'the floor')}<figcaption><strong>Desks wake up when they work.</strong>A real brand-kit job at its busiest, ten agents at once. The badge counts agents working at the same desk.</figcaption></figure>
+      <figure>${loop('the-pick', 'The Art Director wakes, then the ring draws round the picked rough on the review board', 'the pick')}<figcaption><strong>The Art Director picks.</strong>Three roughs on the board, then the ring goes round the one that reads first, with the reason under it.</figcaption></figure>
+      <figure>${loop('before-after', 'Three polish rounds scored against the bar, 8.4, 8.5, then 8.9 at the bar', 'the rounds')}<figcaption><strong>Every round is scored.</strong>8.4 and 8.5 stay under the bar, round 3 signs off at 8.9 with every axis at 8 or above.</figcaption></figure>
+      <figure>${loop('cost-meter', 'Round, score, cost and time counting up as the desks report', 'the numbers')}<figcaption><strong>Cost as it happens.</strong>Round, score, cost and time update as each desk reports, at list price.</figcaption></figure>
+    </div>
+  </div></section>
+
+  <section class="band cream" id="control" aria-labelledby="control-heading"><div class="wrap">
+    <div class="watch-head">
+      <div><p class="eyebrow">YOU RUN IT</p><h2 id="control-heading">Steer it while it runs.</h2></div>
+      <p>Every control is a write to a file the Design Manager reads before its next step: pause, continue or stop, move a tier or one desk to another model, write a desk a note, pick a rough yourself, approve a sign-off under the bar or send it back.</p>
+    </div>
+    <div class="control-grid">
+      <figure>${loop('pick-it-yourself', 'Clicking Pick this on a rough, which then shows as picked by you with the ring', 'pick it yourself')}<figcaption><strong>Pick it yourself.</strong>Your pick overrides the Art Director and is recorded as your call.</figcaption></figure>
+      <figure>${loop('swap-the-seat', 'The builder role moved to Sonnet for this job, then the next polish round runs on it', 'change the role')}<figcaption><strong>Change a role.</strong>The builder role moved from Haiku to Sonnet for this job. It applies at the next step.</figcaption></figure>
+      <figure>${loop('note-to-the-desk', 'A note typed to the UI Designer, then the UI Designer starts the next round', 'a note to the desk')}<figcaption><strong>Leave a desk a note.</strong>It goes into that desk's next prompt. The log keeps only its length.</figcaption></figure>
+      <div class="control-list"><h3>Every control</h3><ul><li>Pause at the next step, continue, stop.</li><li>Move a tier or one desk to another model, for this job or as the default.</li><li>Write a desk a note for its next prompt.</li><li>Pick a rough yourself, over the Art Director.</li><li>Approve a sign-off under the bar, or send it back with notes.</li></ul><p>Nothing interrupts a desk in the middle of a step. <a href="/docs/dashboard/#what-each-control-does">What each control writes</a>.</p></div>
+    </div>
+  </div></section>
 
   <section class="band" aria-labelledby="real-run-heading"><div class="wrap">
     <h2 id="real-run-heading">What a run looks like</h2>
@@ -772,8 +872,7 @@ const html = `<!doctype html>
     <div><h3>Proof</h3><p>No model in the loop. A failure goes back to the builder with the screenshot. It runs on every polished file.</p></div>
     <div class="signoff"><div><h3>Sign-off</h3><p>The Creative Director scores eight axes.</p><p class="muted">Average ${cardFinal.average.toFixed(1)}, ${card.round} of ${card.maxRounds} rounds.</p></div>
       <div class="final">${img(cardRender(`round-${card.round}`), 'card-final', 'the signed-off launch card')}</div><div>${axesHtml(cardFinal.axes)}</div></div>
-  </div>
-  <div class="pair2" style="margin-top:48px"><div>${loop('the-pick', 'Three roughs on the board, the Art Director picks one and the ring draws round it')}</div><div>${loop('before-after', 'A rough becomes the signed-off render as the scorecard fills')}</div></div></div></details>
+  </div></div></details>
     </div>
   </section>
 
@@ -784,14 +883,11 @@ const html = `<!doctype html>
         <h2 id="team-heading">${registry.desks.length} desks.</h2>
         <p>Each desk is a written brief: what it owns, how it decides, its checklist and what it hands to the next desk. The Design Manager staffs them per job.</p>
       </div>
-      <div class="tiers">${TIERS.map(([t, label, does]) => `<div class="tier"><h3>${label}</h3><p class="tier-description">${esc(cap(does))}.</p><div class="roles">${desksByTier(t).slice(0, 2).map(d => `<span>${esc(d.name)}</span>`).join('')}</div></div>`).join('')}</div>
+      <div class="tiers">${TIERS.map(([t, label, does], i) => `<div class="tier"><span class="tier-bot" aria-hidden="true">${bot(t, 'awake', i + 2)}</span><h3>${label}</h3><p class="tier-description">${esc(cap(does))}.</p><div class="roles">${desksByTier(t).slice(0, 2).map(d => `<span>${esc(d.name)}</span>`).join('')}</div></div>`).join('')}</div>
     </div>
   <div class="wrap">  <div class="missing-desk"><p>Missing a desk? A desk is one written brief and one registry entry. Write it, or ask for it first and say what it should own.</p><div class="links"><a href="${REPO}/blob/main/CONTRIBUTING.md#add-a-desk">Add a desk</a><a href="${REPO}/issues/new?template=new-desk.md">Ask for one</a></div></div></div>
   <div class="wrap"><details class="record"><summary>All desks and the dashboard</summary><div class="record-body">
-  <div class="two">
-    <div><p class="lead">The three roughs run side by side and the rest in turn.</p></div>
-    <div>${loop('floor-idle', 'The dashboard: forty-two desks, a lamp lighting when a desk starts')}</div>
-  </div>
+  <p class="lead">The three roughs run side by side and the rest in turn. <a href="#watch">Watch the floor</a>.</p>
   <div class="tiers">${TIERS.map(([t, label, does]) => `<div class="tier"><h3>${label} <span class="muted">${desksByTier(t).length}</span></h3><p class="muted">${esc(does)}. Default model <span class="mono">${esc(registry.tiers[t].default)}</span>.</p><ul>${desksByTier(t).map(d => `<li>${esc(d.name)}<span>${esc(d.owns)}</span></li>`).join('')}</ul></div>`).join('')}</div>
   <p class="muted" style="margin-top:24px">The Design Manager runs in your session on whatever model you run, and the other ${registry.desks.length - 1} desks run as subagents.</p>
 
@@ -805,10 +901,9 @@ const html = `<!doctype html>
         <li>Pick a rough yourself, over the Art Director.</li>
         <li>Approve a sign-off under the bar, or send it back with notes.</li>
       </ul></div>
-    <div>${loop('pick-it-yourself', 'Clicking a rough on the review board, which then shows as picked by you')}</div>
+    <div><p class="lead">The loops are <a href="#control">above</a>, and every control is in <a href="/docs/dashboard/">the dashboard guide</a>.</p></div>
   </div>
-  <p class="muted" style="margin-top:48px">One real job, run from the dashboard: paused after the roughs, the pick made by hand, the builder role moved from Haiku to Sonnet, and a note written to the UI Designer. It came back signed off at ${controls.average} in ${controls.rounds} rounds, ${money(controls.cost)} at list price.</p>
-  <div class="pair2"><div>${loop('swap-the-seat', 'The builder role moved to another model while the job holds')}</div><div>${loop('note-to-the-desk', 'A note typed to the UI Designer, then the next round')}</div></div></div></details></div>
+  <p class="muted" style="margin-top:48px">One real job, run from the dashboard: paused after the roughs, the pick made by hand, the builder role moved from Haiku to Sonnet, and a note written to the UI Designer. It came back signed off at ${controls.average} in ${controls.rounds} rounds, ${money(controls.cost)} at list price.</p></div></details></div>
   </section>
 
   <section class="band" id="proof" aria-labelledby="evidence-heading">
@@ -847,8 +942,7 @@ const html = `<!doctype html>
   </div>
   ${quill ? `<blockquote><p>From the ${esc(quill.brand)} card job: proof failed twice before passing. Round 1 failed on the type scale, a 248px headline off the brand scale, capped at 232px. Round 3 failed because the X card's headline sat inside the left safe zone, and round 4 fixed it. Signed off at ${quill.average}.</p></blockquote>` : ''}
 
-  <div class="two flip">
-    <div>${loop('cost-meter', 'The cost line filling by tier as each desk reports')}</div>
+  <div>
     <div><h2>Cheap models make. Strong models judge.</h2>
       <p class="lead">Roughs come from the senior roles, every polish round from the builder roles, and the pick, the notes and the sign-off from the director roles. The dashboard shows what each desk cost at list price.</p></div>
   </div>
@@ -920,11 +1014,20 @@ const html = `<!doctype html>
     </div>
   </section>
 
-  <section class="band" id="install" aria-labelledby="install-heading">
-    <div class="wrap install-layout">
+  <section class="band" id="start" aria-labelledby="start-heading">
+    <div class="wrap" id="install">
+      <p class="eyebrow">GET STARTED</p>
+      <h2 id="start-heading">From install to the dashboard.</h2>
+      <ol class="start-steps">
+        <li><span class="num">1</span><h3>Install</h3><p>In Claude Code:</p><p class="cmdblock"><code>${cmd(INSTALL)}</code></p><p>In Codex, Cursor, Gemini CLI, Copilot, Windsurf or OpenCode, in the project:</p><p class="cmdblock"><code>${cmd('npx deskstudio add')}</code></p></li>
+        <li><span class="num">2</span><h3>Run a first job</h3><p>Ask for something. In the other agents, plain words work too.</p><p class="cmdblock"><code>${cmd('/desk:design a launch card for LinkedIn')}</code></p><p>The files land in <span class="mono">.desk/out/&lt;job&gt;/</span>, with a note on who did what, the scores and the cost.</p></li>
+        <li><span class="num">3</span><h3>Open the dashboard</h3><p>Once per project, then open the link it prints. Keep it open while the job runs.</p><p class="cmdblock"><code>${cmd('/desk:dashboard setup')}<br>${cmd('/desk:dashboard start')}</code></p><p>Outside Claude Code: <span class="mono">npx --package deskstudio desk-dashboard setup</span>, then <span class="mono">start</span>. How to read it is in <a href="/docs/dashboard/">the dashboard guide</a>.</p></li>
+      </ol>
+      <p class="start-more">All of it, with older Claude Code versions and the runner, is in <a href="/docs/install/">the install guide</a>.</p>
+    </div>
+    <div class="wrap install-layout" style="margin-top:72px">
       <div>
-        <p class="eyebrow">GET STARTED</p>
-        <h2 id="install-heading">Install.</h2>
+        <h3>Every agent, step by step.</h3>
       </div>
       <div class="install-details">
   <p class="lead">Claude Code, one line.</p>
@@ -985,7 +1088,7 @@ const html = `<!doctype html>
 <footer><div class="wrap footer-inner">
   <a class="brand" href="#top">${mark}Desk Studio</a>
   <span>MIT. It runs on your machine. Only the model calls the desks make and a few research lookups leave it.</span>
-  <nav class="footer-links"><a href="${REPO}">GitHub</a><a href="/docs/">Docs</a><a href="${REPO}/discussions">Discussions</a><a href="${REPO}/blob/main/CONTRIBUTING.md">Contribute</a><a href="${REPO}/blob/main/CHANGELOG.md">Changelog</a><a href="${REPO}/blob/main/docs/privacy.md">Privacy</a></nav>
+  <nav class="footer-links"><a href="${REPO}">GitHub</a><a href="/docs/">Docs</a><a href="/docs/dashboard/">Dashboard guide</a><a href="${REPO}/discussions">Discussions</a><a href="${REPO}/blob/main/CONTRIBUTING.md">Contribute</a><a href="${REPO}/blob/main/CHANGELOG.md">Changelog</a><a href="${REPO}/blob/main/docs/privacy.md">Privacy</a></nav>
 </div></footer>
 <script>
 (() => {
@@ -1010,6 +1113,11 @@ const html = `<!doctype html>
   heroVideo.addEventListener('play', syncToggle);
   heroVideo.addEventListener('pause', syncToggle);
   const pause = () => { if (motion.matches) for (const v of document.querySelectorAll('video')) v.pause(); syncToggle(); };
+  // The 60 fps loops play only while they are on screen.
+  if ('IntersectionObserver' in window) {
+    const seen = new IntersectionObserver(entries => { for (const e of entries) { if (motion.matches) continue; if (e.isIntersecting) e.target.play().catch(() => {}); else e.target.pause(); } }, { rootMargin: '120px' });
+    for (const v of [...document.querySelectorAll('video.loop')].filter(v => !v.closest('.hero-media'))) { v.removeAttribute('autoplay'); v.pause(); seen.observe(v); }
+  }
   pause();
   motion.addEventListener('change', pause);
 })();
