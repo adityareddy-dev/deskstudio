@@ -41,7 +41,7 @@ motion:
   move: "700ms cubic-bezier(0.65, 0, 0.35, 1)"
   exit: "200ms cubic-bezier(0.7, 0, 0.84, 0)"
 sources:
-  - "Adi's direction of 2026-10-29: a fun dashboard where the studio is visible, the lamp dropped"
+  - "direction of 2026-10-29: a fun dashboard where the studio is visible, the lamp dropped"
   - "the dashboard redesign in dashboard/public, then this kit to match it"
   - "the six trims shared with the site film (Okabe-Ito, safe for colour vision deficiency)"
 ---

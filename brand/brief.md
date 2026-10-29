@@ -4,7 +4,7 @@ The input for the studio's own brand job (phase 4). The Brand Strategist, Typogr
 
 ## What changed on 2026-10-29
 
-Adi, 2026-10-29 15:15 CDT: the dashboard and the site shots looked dull and nothing showed a fun dashboard, and the lamp concept was not working. So the dashboard was redesigned first and the brand was redone to match it.
+The dashboard and the site shots looked dull, nothing showed a fun dashboard, and the lamp wasn't working. So I redesigned the dashboard first and redid the brand to match it.
 
 - Was: a desk slab with a lamp disc as the mark, a "DS" monogram as the app icon, one amber accent, no characters, no gradients, no robots and no mascot. Now: every desk is a toy bot at its own desk, the mark is that bot's head with one lens eye, and the six trims of the site film carry the tiers (amber Manager, pink directors, sky seniors, green builders, blue for information, orange for what needs you). A soft dusk light is allowed.
 - Was: Inter 600 for the wordmark. Now: Inter 800, still the same face as the film.
