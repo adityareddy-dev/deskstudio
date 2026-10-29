@@ -51,8 +51,8 @@ const L = square ? { rows: 5, th: 168, gap: 16, termW: 900, cmdSize: 25, hook: 6
   : vertical ? { rows: 9, th: 190, gap: 16, termW: 960, cmdSize: 30, hook: 118, mark: 128 }
   : { rows: 4, th: 234, gap: 20, termW: 1120, cmdSize: 34, hook: 104, mark: 104 };
 
-// The end card carries the logo from brand/logo. Its S starts cream and turns gold when the lamp used to come on.
-const LOGO = readFileSync(join(root, 'brand', 'logo', 'logo.svg'), 'utf8').trim().replace(/^<svg[^>]*>/, '<svg id="logo" viewBox="0 0 512 512">').replace('fill="#ffaa1c"', 'id="logoS" fill="#f4f0e8"');
+// The end card carries the logo from brand/logo. The iris of its lens starts cream and turns amber as the bot wakes.
+const LOGO = readFileSync(join(root, 'brand', 'logo', 'logo.svg'), 'utf8').trim().replace(/^<svg[^>]*>/, '<svg id="logo" viewBox="0 0 512 512">').replace('fill="none" stroke="#ffaa1c"', 'id="logoS" fill="none" stroke="#f4f0e8"');
 const font = f => pathToFileURL(join(root, 'fonts', f)).href;
 const html = `<!doctype html><html><head><meta charset="utf-8"><style>
 @font-face { font-family: Inter; font-weight: 100 900; src: url("${font('inter/Inter-Variable.woff2')}") format("woff2"); }
@@ -159,7 +159,7 @@ window.seek = t => {
   const d = span(t, HOOK + 0.2, HOOK + 0.6);
   $('logo').style.opacity = Math.min(1, d * 3); $('logo').style.transform = 'scale(' + (0.6 + 0.4 * outBack(d)).toFixed(3) + ')';
   const lamp = span(t, HOOK + 1.75, HOOK + 1.95);
-  $('logoS').setAttribute('fill', lamp > 0.5 ? '#ffaa1c' : '#f4f0e8'); $('logoS').style.filter = lamp ? 'drop-shadow(0 0 ' + (14 * lamp).toFixed(1) + 'px rgba(255,170,28,.8))' : 'none';
+  $('logoS').setAttribute('stroke', lamp > 0.5 ? '#ffaa1c' : '#f4f0e8'); $('logoS').style.filter = lamp ? 'drop-shadow(0 0 ' + (14 * lamp).toFixed(1) + 'px rgba(255,170,28,.8))' : 'none';
   for (const [id, a] of [['l1', HOOK + 0.45], ['l2', HOOK + 1.05], ['url', HOOK + 1.7]]) {
     const p = outCubic(span(t, a, a + 0.5));
     $(id).style.opacity = p; $(id).style.display = 'inline-block'; $(id).style.transform = 'translateY(' + (1 - p) * 24 + 'px)';

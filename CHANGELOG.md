@@ -1,5 +1,14 @@
 # Changelog
 
+## Unreleased
+
+A new dashboard and a brand to match it.
+
+- The dashboard shows every desk as a small bot at its own desk, in a room for its tier, awake only while an agent of that desk is working. The job moves along a track from the brief to the sign-off, with the round, score, cost and time beside it. The review board has a tab per round, a score chart against the bar, and the scorecard. The studio log says what happened in plain words. All controls and routes are unchanged.
+- The logo is the bot's head with its one lens eye. The lamp mark is retired.
+- A dashboard guide with screenshots in `docs/dashboard.md`, and a 50-second captioned walkthrough.
+- `clips/frames.mjs` records the dashboard at 60 frames a second on a virtual clock, replaying real job records.
+
 ## [1.0.2](https://github.com/adityareddy-dev/deskstudio/releases/tag/v1.0.2) - 2026-10-23
 
 Export a job's event log as an OpenTelemetry trace with role timings, token usage and cost.
