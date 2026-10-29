@@ -17,7 +17,7 @@ Motion says what the studio is doing. Every move is tied to something in the job
 |---|---|---|
 | Asleep | no agent of the desk is working | lens shut, a 4.8s breath, a small "z" now and then, dimmed in the big rooms |
 | Waking | an agent of the desk starts | a 520ms hop, the lens opens in 260ms |
-| Awake | while it works | a 1.1s bob, typing arms, a blink about every 4s, the pupil looking round, the laptop mark lit in the trim, a soft trim glow |
+| Awake | while it works | a 1.1s bob, typing arms, a blink about every 4s, the pupil looking round, the laptop mark lit in the trim |
 | Half awake | the job lists the desk as working but no agent is live | lens half open, no bob |
 
 Each bot gets its own phase offset, so a room never moves in step.

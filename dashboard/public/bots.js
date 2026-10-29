@@ -23,7 +23,7 @@
       + `<g class="laptop"><rect class="lap" x="54" y="41" width="26" height="15" rx="2.5"/><rect class="lap" x="51" y="54.5" width="32" height="2.6" rx="1.2"/><circle class="lid" cx="67" cy="48.5" r="2.4"/></g></svg>`;
   };
   // state: asleep, awake, half or waking. seed offsets the bot's breathing and blinking so a room never moves in step.
-  const html = (tier, state = 'asleep', seed = 0) => `<span class="bot-wrap ${state}" style="--seed:${seed}"><span class="glow"></span>${svg(tier)}</span>`;
+  const html = (tier, state = 'asleep', seed = 0) => `<span class="bot-wrap ${state}" style="--seed:${seed}">${svg(tier)}</span>`;
   // The two gradients the bodies use. Put this once on any page that draws bots.
   const defs = '<svg class="bot-defs" aria-hidden="true" focusable="false"><defs><linearGradient id="bot-head" x1="0" y1="0" x2="0" y2="1"><stop offset="0" class="s-hi"/><stop offset=".6" class="s-mid"/><stop offset="1" class="s-lo"/></linearGradient><linearGradient id="bot-body" x1="0" y1="0" x2="0" y2="1"><stop offset="0" class="s-mid"/><stop offset="1" class="s-lo"/></linearGradient></defs></svg>';
   root.DeskBots = { svg, html, defs, tiers: ['manager', 'director', 'senior', 'builder'] };

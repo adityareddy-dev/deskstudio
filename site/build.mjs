@@ -672,8 +672,7 @@ ${botsCss}
 .crew { display:flex; justify-content:center; align-items:flex-end; gap:18px; margin:40px auto -6px; position:relative; z-index:1; }
 .crew .bot-wrap { --bot-w:86px; }
 .crew .tier-senior:last-child .bot-wrap { opacity:.75; }
-/* on the light page the glow reads as a smudge, and the cream bots need an edge */
-.crew .glow, .tier-bot .glow { display:none; }
+/* on the light page the cream bots need an edge */
 .crew .bot, .tier-bot .bot { filter:drop-shadow(0 0 0.6px rgba(70,45,20,.55)) drop-shadow(0 2px 3px rgba(70,45,20,.14)); }
 .watch-head { display:grid; grid-template-columns:1.1fr 1fr; gap:64px; align-items:end; }
 .watch-head p { color:var(--muted); font-size:18px; line-height:28px; }
