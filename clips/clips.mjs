@@ -32,7 +32,7 @@ const polish = (t, n) => (t.final?.desks || []).find(d => String(d.task || '').t
 
 export const CLIPS = [
   {
-    name: 'floor-idle', seconds: 10, loop: true, about: 'The 42 desks, a lamp lighting as a desk starts work.',
+    name: 'floor-idle', seconds: 10, loop: true, about: 'The 42 desks, a bot waking as a desk starts work.',
     caption: 'Forty-two desks.',
     fresh: true, job: null,
     // An empty job on the dashboard, the camera on the grid, desks starting and stopping one after another.
@@ -41,7 +41,7 @@ export const CLIPS = [
       const a = t.start('typographer', 'type scale', SONNET); await t.wait(1100);
       const b = t.start('icon-designer', 'mark on the grid', HAIKU); await t.wait(900);
       const c = t.start('copy-editor', 'read the headline', SONNET); await t.wait(1100);
-      const d = t.start('motion-designer', 'lamp timing', HAIKU); await t.wait(900);
+      const d = t.start('motion-designer', 'wake timing', HAIKU); await t.wait(900);
       t.stop('typographer', a, { model: ID[SONNET] }); const e = t.start('art-director', 'pick', OPUS); await t.wait(1200);
       const f = t.start('email-designer', 'dark set', HAIKU); await t.wait(900);
       t.stop('icon-designer', b); t.stop('copy-editor', c, { model: ID[SONNET] }); await t.wait(1000);

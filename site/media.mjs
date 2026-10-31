@@ -16,6 +16,36 @@ const out = resolve(args.out || join(here, 'media'));
 mkdirSync(out, { recursive: true });
 
 const ff = a => spawnSync('ffmpeg', ['-y', '-loglevel', 'error', ...a], { encoding: 'utf8' });
+
+// The dashboard clips recorded at 60 fps by clips/frames.mjs: copied as they are (MP4, WebM, GIF), the poster as WebP,
+// and the walkthrough's captions as a WebVTT track, from the same lines that are burned into it.
+//   node site/media.mjs --frames [clips/takes/frames]
+if (args.frames) {
+  const { copyFileSync, writeFileSync } = await import('node:fs');
+  const { CLIPS } = await import('../clips/studio.mjs');
+  const dir = resolve(args.frames === true ? join(root, 'clips', 'takes', 'frames') : args.frames);
+  const vttTime = s => { const ms = Math.round(s * 1000); return `${String(Math.floor(ms / 3600000)).padStart(2, '0')}:${String(Math.floor(ms / 60000) % 60).padStart(2, '0')}:${String(Math.floor(ms / 1000) % 60).padStart(2, '0')}.${String(ms % 1000).padStart(3, '0')}`; };
+  for (const clip of CLIPS) {
+    const mp4 = join(dir, `${clip.name}.mp4`);
+    if (!existsSync(mp4)) { console.log(`${clip.name.padEnd(18)} not recorded`); continue; }
+    const row = [clip.name.padEnd(18)];
+    // A long clip ships as MP4 only: its WebM came out larger and every browser plays the MP4.
+    for (const ext of clip.seconds > 20 ? ['mp4'] : ['mp4', 'webm', 'gif']) {
+      const f = join(dir, `${clip.name}.${ext}`);
+      if (existsSync(f)) { copyFileSync(f, join(out, `${clip.name}.${ext}`)); row.push(`${ext} ${(statSync(f).size / 1e6).toFixed(2)} MB`); }
+    }
+    const png = join(dir, `${clip.name}.png`);
+    if (existsSync(png) && ff(['-i', png, '-c:v', 'libwebp', '-quality', '82', join(out, `${clip.name}.webp`)]).status === 0) row.push(`poster ${Math.round(statSync(join(out, `${clip.name}.webp`)).size / 1e3)} KB`);
+    if (clip.captions) {
+      // Tags go, entities stay: WebVTT reads &lt; and &gt; the way HTML does.
+      const plain = s => s.replace(/<[^>]+>/g, '');
+      writeFileSync(join(out, `${clip.name}.vtt`), 'WEBVTT\n\n' + clip.captions.map(([a, b, t], i) => `${i + 1}\n${vttTime(a)} --> ${vttTime(b)}\n${plain(t)}\n`).join('\n'));
+      row.push('captions');
+    }
+    console.log(row.join('   '));
+  }
+  process.exit(0);
+}
 const rows = [];
 for (const f of readdirSync(takes).filter(f => /-1920x1080\.mp4$/.test(f) && !/^(explainer|real-run)-/.test(f)).sort()) {
   const name = f.replace(/-1920x1080\.mp4$/, '');

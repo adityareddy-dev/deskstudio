@@ -1,38 +1,44 @@
-# Desk Studio
+# Desk Studio brand
 
-Position: for developers and founders who ship without a designer, 42 desks working inside your agent while you run the dashboard. Warm, plain, steady.
+Position: for developers and founders who ship without a designer, a small studio of 42 desks inside your coding agent that you watch work on the dashboard. Warm, plain, a bit playful.
+
+The brand comes from the dashboard: every desk is a toy bot at its own desk, and the logo is that bot's head. It shares the six trim colours and Inter with the site film.
+
+## Files
+
+| File | What it is |
+|---|---|
+| `DESIGN.md` | Colours by job with measured contrast, type, shape, the bots, do and don't. Its front matter is what the studio's proof reads. |
+| `palette.css` | The tokens, dark and light. |
+| `type.md`, `motion.md` | The type scale and the moves. |
+| `sheet.html` | The kit on one page: mark, wordmark, lockups, the four tiers of bots, colour, type and motion. |
+| `mark.svg`, `mark-mono.svg`, `mark-clear.svg` | The bot head in colour, in one colour, and with its clear space. |
+| `wordmark.svg`, `lockup-horizontal.svg`, `lockup-stacked.svg` | The words, and the tile with the words, in `currentColor`. |
+| `logo/` | The app icon (`logo.svg`, `logo-light.svg`), PNGs from 32 to 1024, `favicon.ico`, the lockups on dark and light, the README banner and the cover images. |
+| `brief.md` | The brief and what changed. |
+
+## Making the files
+
+```
+python brand/logo/build.py        # every SVG, the words outlined from Inter 800
+node brand/logo/render.mjs        # the PNGs and favicon.ico
+node brand/logo/banner.mjs        # the README banner, and --og, --devto, --cover variants
+```
 
 ## The mark
 
-- The mark is a desk with its lamp: a flat slab and an 8-unit disc over the right third. Never move the disc, resize it, curve the slab or add a face.
-- Smallest size: mark alone 16px high. Horizontal lockup 120px wide. Stacked lockup 72px wide. Wordmark alone 96px wide.
-- Clear space is 0.5 mark heights on all four sides, in every lockup.
-- The slab is always foreground. The disc is muted at rest and amber when lit.
-- One colour per placement, no gradient, no outline version, no effects.
+- A studio bot's head: cream, two ear bolts, one lens with an amber iris. On the dark tile with a little dusk light.
+- On light pages, the outlined head. In one colour, `mark-mono.svg`.
+- Smallest size 16px. Clear space a quarter of the mark's height.
 
-## Backgrounds
+## Colour
 
-- Dark set (`background` #12110f) for the dashboard, the sting and dark cards.
-- Light set (`background-light` #ffffff) for the hero page, the sheet and white cards.
-- Surface (`surface`, `surface-light`) for panels and desks only. Never put the mark on amber.
-- Text pairs are in `DESIGN.md`. Use only those.
-
-## Accent
-
-Amber is a desk at work and the pick: a lit lamp, and the ring drawn round the picked desk or rough. Nothing else is amber. Never text, never a button, never a fill behind text. On light, amber is 3.5:1 and is for lamps and the ring only.
+Dark is the default: dusk brown #15100b with cream text. Light is the studio by day, #fbf3e6. The trims: amber #ffaa1c (the Manager, the pick, where the job is), pink #cc79a7 (directors), sky #56b4e9 (seniors), green #009e73 (builders and passes), blue #0072b2 (links and information), orange #d55e00 (anything that needs you).
 
 ## Type
 
-Inter, 600 and 400. Wordmark tracking -0.02em. Scale and sizes are in `type.md`. Geist Mono only for the install line.
-
-## The dashboard
-
-The 42-desk grid is 7 columns by 6 rows. It appears only as the dashboard, never as wallpaper behind text.
+Inter 800 for the wordmark and big figures, 700 headings, 650 labels, 400 body. Geist Mono for commands and paths.
 
 ## Voice
 
-Plain, confident, short. Numbers are figures. Costs are rounded to the cent and scores to one decimal, the same way everywhere.
-
-## Motion
-
-Lamps fill in 300ms, the pick ring draws in 400ms, scorecard slabs fill 300ms each, 60ms apart. All ease-out. Reduced motion shows the end state.
+Plain, confident, short. Figures exact. The fun is in the bots and the motion, not in the words.

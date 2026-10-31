@@ -1,91 +1,80 @@
-/* Desk Studio. Dark is the default, light is designed, not inverted. */
+/* Desk Studio. Dark is the default (the studio at dusk), light is the studio by day. The six trims are shared. */
 
 :root,
 [data-theme="dark"] {
-  --background: #12110f;
-  --foreground: #f4f0e8;
-  --accent: #ffaa1c;
-  --muted: #9a948a;
-  --surface: #1c1a17;
-  --line: #3b3830;
-  --danger: #ff6b5e;
+  --background: #15100b;
+  --surface: #1f1711;
+  --surface-2: #2a2018;
+  --line: #3b2e23;
+  --foreground: #fcf3e4;
+  --muted: #c2b19b;
+  --faint: #a08d77;
+  --bot: #f6e9d6;
+  --bot-shade: #dcc6a6;
+  --lens: #2a1f18;
+  --desk-top: #b07a4c;
+  --desk-front: #8c5c37;
 
-  --data-1: #ffaa1c;
-  --data-2: #56b4e9;
-  --data-3: #009e73;
-  --data-4: #cc79a7;
-  --data-5: #0072b2;
-  --data-6: #d55e00;
+  --amber: #ffaa1c;
+  --green: #009e73;
+  --pink: #cc79a7;
+  --blue: #0072b2;
+  --sky: #56b4e9;
+  --orange: #d55e00;
 
-  --seq-1: #3b2d12;
-  --seq-2: #5f4511;
-  --seq-3: #85600f;
-  --seq-4: #ad7b10;
-  --seq-5: #d49416;
-  --seq-6: #ffaa1c;
-  --seq-7: #ffd27a;
+  --amber-text: #ffbf52;
+  --green-text: #3fcf9f;
+  --pink-text: #e39cc4;
+  --sky-text: #8ccdf2;
+  --orange-text: #ff8a4c;
+  --ring: #ffaa1c;
 
-  --div-low: #56b4e9;
-  --div-mid: #9a948a;
-  --div-high: #ffaa1c;
+  --tier-manager: var(--amber);
+  --tier-director: var(--pink);
+  --tier-senior: var(--sky);
+  --tier-builder: var(--green);
 }
 
 [data-theme="light"] {
-  --background: #ffffff;
-  --foreground: #17140f;
-  --accent: #c27a00;
-  --muted: #6b655b;
-  --surface: #f6f3ec;
-  --line: #d9d4c8;
-  --danger: #c4281c;
+  --background: #fbf3e6;
+  --surface: #fffaf2;
+  --surface-2: #f6ecdc;
+  --line: #eadbc4;
+  --foreground: #2b2017;
+  --muted: #6f604f;
+  --faint: #74634f;
+  --bot: #fffaf1;
+  --bot-shade: #e6d2b3;
+  --desk-top: #d29a63;
+  --desk-front: #b47c4b;
 
-  --data-1: #c27a00;
-  --data-2: #1a78b0;
-  --data-3: #007a5a;
-  --data-4: #a5497f;
-  --data-5: #2a3f9e;
-  --data-6: #b34700;
-
-  --seq-1: #f7ead2;
-  --seq-2: #f0d3a0;
-  --seq-3: #e4b668;
-  --seq-4: #d29a35;
-  --seq-5: #c27a00;
-  --seq-6: #8f5a00;
-  --seq-7: #5c3a00;
-
-  --div-low: #1a78b0;
-  --div-mid: #e8e3d8;
-  --div-high: #c27a00;
+  --amber-text: #9a5b00;
+  --green-text: #007a5a;
+  --pink-text: #a5497f;
+  --sky-text: #1a6fa3;
+  --orange-text: #b34700;
+  --ring: #c27a00;
 }
 
 @media (prefers-color-scheme: light) {
   :root:not([data-theme]) {
-    --background: #ffffff;
-    --foreground: #17140f;
-    --accent: #c27a00;
-    --muted: #6b655b;
-    --surface: #f6f3ec;
-    --line: #d9d4c8;
-    --danger: #c4281c;
+    --background: #fbf3e6;
+    --surface: #fffaf2;
+    --surface-2: #f6ecdc;
+    --line: #eadbc4;
+    --foreground: #2b2017;
+    --muted: #6f604f;
+    --faint: #74634f;
+    --bot: #fffaf1;
+    --bot-shade: #e6d2b3;
+    --desk-top: #d29a63;
+    --desk-front: #b47c4b;
 
-    --data-1: #c27a00;
-    --data-2: #1a78b0;
-    --data-3: #007a5a;
-    --data-4: #a5497f;
-    --data-5: #2a3f9e;
-    --data-6: #b34700;
-
-    --seq-1: #f7ead2;
-    --seq-2: #f0d3a0;
-    --seq-3: #e4b668;
-    --seq-4: #d29a35;
-    --seq-5: #c27a00;
-    --seq-6: #8f5a00;
-    --seq-7: #5c3a00;
-
-    --div-low: #1a78b0;
-    --div-mid: #e8e3d8;
-    --div-high: #c27a00;
+    --amber-text: #9a5b00;
+    --green-text: #007a5a;
+    --pink-text: #a5497f;
+    --sky-text: #1a6fa3;
+    --orange-text: #b34700;
+    --ring: #c27a00;
   }
 }

@@ -380,7 +380,8 @@ function tokenOk(req, url, token) {
   return a.length === b.length && timingSafeEqual(a, b);
 }
 
-export function createFloor({ root, desk, token, port = DEFAULT_PORT, startedAt = new Date().toISOString() }) {
+// tailMs and watchMs are how often the event log and the job states are read. Recordings set them low.
+export function createFloor({ root, desk, token, port = DEFAULT_PORT, startedAt = new Date().toISOString(), tailMs = 400, watchMs = 1000 }) {
   const clients = new Set();
   const broadcast = (event, data) => {
     const frame = (event === 'message' ? '' : `event: ${event}\n`) + `data: ${data}\n\n`;
@@ -481,8 +482,8 @@ export function createFloor({ root, desk, token, port = DEFAULT_PORT, startedAt 
         server.listen(port, '127.0.0.1', () => {
           server.off('error', fail);
           timers = [
-            setInterval(tailer.tick, 400),
-            setInterval(watcher, 1000),
+            setInterval(tailer.tick, tailMs),
+            setInterval(watcher, watchMs),
             setInterval(() => { for (const r of clients) r.write(': ping\n\n'); }, 15000)
           ];
           ok(server.address().port);
