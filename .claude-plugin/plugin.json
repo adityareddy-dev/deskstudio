@@ -1,6 +1,6 @@
 {
   "name": "desk",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "Desk Studio: a design studio inside your coding agent. Forty-two desks staffed per job, roughs, pick, polish, proof and sign-off, studio quality on the plans you already have.",
   "author": { "name": "Aditya Reddy", "url": "https://deskstudio.ai" },
   "homepage": "https://deskstudio.ai",
