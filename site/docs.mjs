@@ -37,7 +37,7 @@ const slug = text => text.toLowerCase().replace(/[^a-z0-9 -]/g, '').trim().repla
 function render(source) {
   return source.trim().split(/\n\s*\n/).map(block => {
     const code = block.match(/^```[^\n]*\n([\s\S]*?)\n```$/);
-    if (code) return `<pre class="codeblock${/^[ 	]/m.test(code[1]) ? ' keep' : ''}"><code>${esc(code[1])}</code></pre>`;
+    if (code) return `<pre class="codeblock${/^[ \t]/m.test(code[1]) ? ' keep' : ''}"><code>${esc(code[1]).replace(/(^|[ \t])([^ \t\n<>&]*[-\/][^ \t\n<>&]*)(?=$|[ \t\n])/gm, (m, a, t) => `${a}<span class="nb">${t}</span>`)}</code></pre>`;
     const heading = block.match(/^(#{1,3}) (.+)$/);
     if (heading) return `<h${heading[1].length} id="${slug(heading[2])}">${inline(heading[2])}</h${heading[1].length}>`;
     const clip = block.match(/^\[!\[([^\]]*)\]\(([^)]+)\)\]\(([^)]+\.mp4)\)$/);
@@ -58,7 +58,7 @@ function render(source) {
 const mark = readFileSync(join(root, 'brand', 'logo', 'logo.svg'), 'utf8').trim().replace(/^<svg[^>]*>/, '<svg class="mark" viewBox="0 0 512 512" aria-hidden="true">');
 const themeIcons = '<svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg><svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>';
 function document(title, body, current = '') {
-  const cur = slug => current === slug ? ' aria-current="page"' : '';
+  const cur = slug => (current === slug || (slug === 'index' && pages.some(([s]) => s === current))) ? ' aria-current="page"' : '';
   const links = `<a href="/docs/install/"${cur('install')}>Getting started</a><a href="/docs/dashboard/"${cur('dashboard')}>The dashboard</a><a href="/docs/"${cur('index')}>Agent setup</a><a href="${REPO}/tree/main/docs">All docs</a>`;
   return `<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
@@ -67,7 +67,7 @@ function document(title, body, current = '') {
 <link rel="stylesheet" href="/site.css">
 </head><body>
 <a class="skip-link" href="#main">Skip to content</a>
-<header class="site-head"><nav class="wrap site-nav" aria-label="Docs"><a class="brand" href="/">${mark}<span>Desk Studio</span></a><div class="links">${links}</div><details class="nav-menu"><summary>Menu</summary><div class="links">${links}</div></details><button type="button" class="theme-toggle" data-theme-toggle aria-label="Switch between light and dark">${themeIcons}</button><a class="btn" href="/#start">Get started</a></nav></header>
+<header class="site-head"><nav class="wrap site-nav" aria-label="Docs"><a class="brand" href="/">${mark}<span>Desk Studio</span></a><div class="links">${links}</div><details class="nav-menu"><summary>Menu</summary><div class="links">${links}</div></details><button type="button" class="theme-toggle" data-theme-toggle aria-label="Switch between light and dark">${themeIcons}</button><a class="btn btn-secondary" href="/#start">Get started</a></nav></header>
 <main id="main" class="wrap doc"><article class="prose">${body}</article></main>
 <footer class="site-foot"><div class="wrap"><a class="brand" href="/">${mark}<span>Desk Studio</span></a><nav aria-label="Agent setup">${pages.map(([slug, name]) => `<a href="/docs/${slug}/"${current === slug ? ' aria-current="page"' : ''}>${esc(name)}</a>`).join('')}</nav></div></footer>
 </body></html>

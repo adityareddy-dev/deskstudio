@@ -2,7 +2,7 @@
    Layout notes: the hero is left aligned and the crew wakes in turn beneath it; bands alternate plain, tint and ink. */
 
 /* the bots draw with these names */
-:root { --amber: var(--crew-amber); --pink: var(--crew-pink); --green: var(--crew-green); --sky: #56b4e9; }
+:root { --amber: var(--crew-amber); --pink: var(--crew-pink); --green: var(--crew-green); --sky: var(--crew-blue); }
 
 .stack-top { margin-top: var(--space-5); }
 .brand .mark { width: 36px; height: 36px; }
@@ -48,7 +48,6 @@
 
 /* steps: the shared .steps, with the run in one column on phones and a three step variant for install */
 .steps.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-.steps.three li:nth-child(3) { border-top-color: var(--crew-green); }
 .steps.three .command { font-size: var(--fs-s); padding: var(--space-3) var(--space-4); }
 .steps li p + p { margin-top: var(--space-1); }
 @media (max-width: 1099px) { .steps.three { grid-template-columns: minmax(0, 1fr); } }

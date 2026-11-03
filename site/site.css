@@ -78,7 +78,7 @@
 :root[data-theme="dark"] {
   --bg: #15100b; --surface: #1f1812; --surface-2: #2a2118; --surface-3: #352a1f;
   --text: #fbf2e3; --text-2: #e2d5c0; --muted: #b8a890;
-  --border: #3a2e22; --border-strong: #54442f; --border-input: #8b7a62;
+  --band-deep: #0f0b08; --border: #3a2e22; --border-strong: #54442f; --border-input: #8b7a62;
   --accent: #ffaa1c; --accent-hover: #ffbb45; --accent-ink: #1c1409; --accent-text: #ffbf4d; --accent-soft: #3a2a12;
   --ok: #4cc38a; --ok-soft: #143024;
   --warn: #ffb84d; --warn-soft: #3a2a12;
@@ -135,7 +135,7 @@ code, kbd, .mono { font-family: var(--mono); font-size: .88em; overflow-wrap: an
   --border: #3a2e22; --border-strong: #54442f; --border-input: #8b7a62; --accent-text: #ffbf4d; --accent-soft: #3a2a12; --focus: #ffbf4d; --mark: #7a6a54;
   --edge: 0 1px 0 rgb(0 0 0 / .55); --ok: #4cc38a; --ok-soft: #143024; --warn: #ffb84d; --warn-soft: #3a2a12; --review: #e59cc4; --info: #7db8e8;
   background: var(--bg); color: var(--text); }
-:root[data-theme="dark"] .band.ink { --bg: #1f1812; --surface: #2a2118; --surface-2: #352a1f; background: var(--bg); }
+:root[data-theme="dark"] .band.ink { --bg: var(--band-deep); --surface: #2a2118; --surface-2: #352a1f; background: var(--bg); }
 .prose { max-width: 68ch; }
 .prose > * + * { margin-top: var(--space-4); }
 
@@ -212,8 +212,8 @@ p code, li code, td code { padding: .1em .35em; border-radius: var(--radius-s); 
 
 /* a real sequence, so numbered: <ol class="steps"><li><span class="step-n">1</span><h3>Roughs</h3><p>...</p></li>...</ol> */
 .steps { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--space-5); grid-template-columns: repeat(5, minmax(0, 1fr)); }
-.steps li { display: flex; flex-direction: column; gap: var(--space-3); min-width: 0; padding-top: var(--space-4); border-top: 3px solid var(--text); }
-.steps li:nth-child(1) { border-top-color: var(--crew-amber); } .steps li:nth-child(2) { border-top-color: var(--crew-pink); } .steps li:nth-child(3) { border-top-color: var(--crew-green); } .steps li:nth-child(4) { border-top-color: var(--crew-blue); } .steps li:nth-child(5) { border-top-color: var(--crew-orange); }
+.steps li { display: flex; flex-direction: column; gap: var(--space-3); min-width: 0; padding-top: var(--space-4); border-top: 3px solid var(--border-strong); }
+.steps li:last-child { border-top-color: var(--crew-green); }
 .steps .step-n { font-family: var(--font-display); font-size: var(--fs-3xl); font-weight: 750; line-height: 1; letter-spacing: -.03em; font-variant-numeric: tabular-nums; }
 .steps p { color: var(--text-2); font-size: var(--fs-m); line-height: 1.5; }
 @media (max-width: 1099px) { .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
