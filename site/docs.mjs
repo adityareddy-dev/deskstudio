@@ -37,7 +37,7 @@ const slug = text => text.toLowerCase().replace(/[^a-z0-9 -]/g, '').trim().repla
 function render(source) {
   return source.trim().split(/\n\s*\n/).map(block => {
     const code = block.match(/^```[^\n]*\n([\s\S]*?)\n```$/);
-    if (code) return `<pre><code>${esc(code[1])}</code></pre>`;
+    if (code) return `<pre class="codeblock${/^[ \t]/m.test(code[1]) ? ' keep' : ''}"><code>${esc(code[1]).replace(/(^|[ \t])([^ \t\n<>&]*[-\/][^ \t\n<>&]*)(?=$|[ \t\n])/gm, (m, a, t) => `${a}<span class="nb">${t}</span>`)}</code></pre>`;
     const heading = block.match(/^(#{1,3}) (.+)$/);
     if (heading) return `<h${heading[1].length} id="${slug(heading[2])}">${inline(heading[2])}</h${heading[1].length}>`;
     const clip = block.match(/^\[!\[([^\]]*)\]\(([^)]+)\)\]\(([^)]+\.mp4)\)$/);
@@ -56,29 +56,22 @@ function render(source) {
 }
 
 const mark = readFileSync(join(root, 'brand', 'logo', 'logo.svg'), 'utf8').trim().replace(/^<svg[^>]*>/, '<svg class="mark" viewBox="0 0 512 512" aria-hidden="true">');
+const themeIcons = '<svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg><svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>';
 function document(title, body, current = '') {
+  const cur = slug => (current === slug || (slug === 'index' && pages.some(([s]) => s === current))) ? ' aria-current="page"' : '';
+  const links = `<a href="/docs/install/"${cur('install')}>Getting started</a><a href="/docs/dashboard/"${cur('dashboard')}>The dashboard</a><a href="/docs/"${cur('index')}>Agent setup</a><a href="${REPO}/tree/main/docs">All docs</a>`;
   return `<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${esc(title)} | Desk Studio</title><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon.ico" sizes="48x48">
-<style>
-@font-face{font-family:Inter;src:url('/fonts/Inter-Variable.woff2') format('woff2');font-weight:100 900;font-display:swap}
-@font-face{font-family:GeistMono;src:url('/fonts/GeistMono-Variable.woff2') format('woff2');font-weight:100 900;font-display:swap}
-*{box-sizing:border-box}body{margin:0;background:radial-gradient(1000px 520px at 10% -10%,rgba(255,170,28,.13),transparent 70%),#15100b;color:#fcf3e4;font:17px/1.65 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
-a{color:inherit;text-underline-offset:4px;text-decoration-color:#a08d77}a:hover{color:#ffbf52}a:focus-visible{outline:2px solid #ffaa1c;outline-offset:4px}
-header,main,footer{max-width:920px;margin:auto;padding:22px 24px}header{display:flex;gap:12px 24px;flex-wrap:wrap;align-items:center;border-bottom:1px solid #3b2e23}
-header .brand{display:inline-flex;align-items:center;gap:10px;font-weight:800;letter-spacing:-.03em;font-size:19px;text-decoration:none;margin-right:auto}.mark{width:32px;height:32px}
-header nav{display:flex;gap:10px 22px;flex-wrap:wrap}header nav a{text-decoration:none;font-weight:600}header nav a[aria-current=page]{color:#ffbf52}
-main{padding-top:40px;padding-bottom:56px}h1{font-size:clamp(32px,6vw,52px);line-height:1.08;letter-spacing:-.035em;font-weight:800;margin:0 0 18px}h2{font-size:26px;letter-spacing:-.02em;margin-top:48px;font-weight:800}h3{font-size:19px;margin-top:32px}
-p,li{max-width:70ch;color:#e8dccb}ul,ol{padding-left:22px}li{margin:6px 0}strong{color:#fcf3e4}
-code{font-family:GeistMono,monospace;font-size:.88em;overflow-wrap:anywhere;color:#ffbf52}pre{padding:16px 18px;background:#1f1711;border:1px solid #3b2e23;border-radius:14px;white-space:pre-wrap;overflow-wrap:anywhere}pre code{color:#fcf3e4}
-figure{margin:28px 0}figure img,figure video{display:block;width:100%;height:auto;border-radius:16px;border:1px solid #3b2e23;background:#1f1711}figure video{aspect-ratio:16/9}figcaption{margin-top:10px;font-size:14px;color:#a08d77}
-.table-scroll{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:15px;margin:16px 0}th,td{text-align:left;padding:10px 14px 10px 0;border-top:1px solid #3b2e23;vertical-align:top}th{color:#c2b19b}
-footer{border-top:1px solid #3b2e23;color:#c2b19b;font-size:15px}footer nav{display:flex;gap:10px 20px;flex-wrap:wrap}footer nav [aria-current=page]{color:#ffbf52}
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;padding:0;list-style:none}.cards li{max-width:none;margin:0}.cards a{display:block;padding:20px;border:1px solid #3b2e23;border-radius:18px;background:#1f1711;text-decoration:none}.cards a:hover{border-color:#ffaa1c;color:inherit}.cards strong{display:block;font-size:19px}.cards span{color:#c2b19b;font-size:15px}
-</style></head><body>
-<header><a class="brand" href="/">${mark}Desk Studio</a><nav aria-label="Docs"><a href="/docs/install/"${current === 'install' ? ' aria-current="page"' : ''}>Getting started</a><a href="/docs/dashboard/"${current === 'dashboard' ? ' aria-current="page"' : ''}>The dashboard</a><a href="/docs/"${current === 'index' ? ' aria-current="page"' : ''}>Agent setup</a><a href="${REPO}/tree/main/docs">All docs</a></nav></header>
-<main>${body}</main><footer><nav aria-label="Agent setup">${pages.map(([slug, name]) => `<a href="/docs/${slug}/"${current === slug ? ' aria-current="page"' : ''}>${esc(name)}</a>`).join('')}</nav></footer>
-</body></html>\n`;
+<script src="/theme.js"></script>
+<link rel="stylesheet" href="/site.css">
+</head><body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-head"><nav class="wrap site-nav" aria-label="Docs"><a class="brand" href="/">${mark}<span>Desk Studio</span></a><div class="links">${links}</div><details class="nav-menu"><summary>Menu</summary><div class="links">${links}</div></details><button type="button" class="theme-toggle" data-theme-toggle aria-label="Switch between light and dark">${themeIcons}</button><a class="btn btn-secondary" href="/#start">Get started</a></nav></header>
+<main id="main" class="wrap doc"><article class="prose">${body}</article></main>
+<footer class="site-foot"><div class="wrap"><a class="brand" href="/">${mark}<span>Desk Studio</span></a><nav aria-label="Agent setup">${pages.map(([slug, name]) => `<a href="/docs/${slug}/"${current === slug ? ' aria-current="page"' : ''}>${esc(name)}</a>`).join('')}</nav></div></footer>
+</body></html>
+`;
 }
 
 export function buildDocs(dist) {
@@ -101,7 +94,7 @@ export function buildDocs(dist) {
   for (const f of ['walkthrough.mp4', 'walkthrough.webm', 'walkthrough.webp', 'walkthrough.vtt']) if (existsSync(join(here, 'media', f))) cpSync(join(here, 'media', f), join(dist, 'media', f));
   const links = pages.map(([slug, name]) => `<li><a href="/docs/${slug}/">${esc(name)}</a></li>`).join('\n');
   writeFileSync(join(docs, 'index.html'), document('Docs', `<h1>Docs</h1>
-<ul class="cards"><li><a href="/docs/install/"><strong>Getting started</strong><span>Install, run a first job, open the dashboard.</span></a></li><li><a href="/docs/dashboard/"><strong>The dashboard</strong><span>Open it, read every part of it, follow a job, read the result.</span></a></li></ul>
+<ul class="doc-cards cards"><li><a class="card" href="/docs/install/"><strong>Getting started</strong><span>Install, run a first job, open the dashboard.</span></a></li><li><a class="card" href="/docs/dashboard/"><strong>The dashboard</strong><span>Open it, read every part of it, follow a job, read the result.</span></a></li></ul>
 <h2>Agent setup</h2>\n<ul>${links}</ul>
 <p>Everything else is in <a href="${REPO}/tree/main/docs">the repo's docs</a>.</p>`, 'index'));
 }
