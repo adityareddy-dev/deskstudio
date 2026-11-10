@@ -121,7 +121,7 @@ Check that a job is open and unclaimed before starting. The [contribution guide]
 
 ## Docs
 
-[Commands](docs/commands.md), [the desks](docs/roles.md), [the dashboard](docs/dashboard.md), [cost](docs/cost.md), [the runner](docs/runner.md), [providers](docs/providers.md), [privacy](docs/privacy.md), [first contribution](docs/first-contribution.md), [install](docs/install.md), [what it makes](docs/gallery.md), [how a job runs](docs/how-it-works.md), [the team, cost and models](docs/team-and-cost.md), [the dashboard in use](docs/dashboard-tour.md).
+[Commands](docs/commands.md), [Codex setup](docs/codex.md), [the desks](docs/roles.md), [the dashboard](docs/dashboard.md), [cost](docs/cost.md), [the runner](docs/runner.md), [providers](docs/providers.md), [privacy](docs/privacy.md), [first contribution](docs/first-contribution.md), [install](docs/install.md), [what it makes](docs/gallery.md), [how a job runs](docs/how-it-works.md), [the team, cost and models](docs/team-and-cost.md), [the dashboard in use](docs/dashboard-tour.md).
 
 To cite Desk Studio, use [CITATION.cff](CITATION.cff) or GitHub's **Cite this repository**.
 
