@@ -1,6 +1,7 @@
 import { cpSync, existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { pageHead } from './seo.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const root = join(here, '..');
@@ -12,6 +13,24 @@ const pages = [
   ['gemini-cli', 'Gemini CLI'], ['copilot', 'Copilot CLI'],
   ['windsurf', 'Windsurf'], ['opencode', 'OpenCode'],
 ];
+const descriptions = {
+  index: 'Install, run a first job, open the dashboard. Agent setup for Claude Code, Cursor, Codex, Gemini CLI, Copilot CLI, Windsurf and OpenCode.',
+  install: 'Install Desk Studio in your agent, run a first job and open the dashboard. Files land in .desk/out/ with the scores and the cost.',
+  dashboard: 'The dashboard is a page on your own machine where you watch the studio work and steer it.',
+  'claude-code': 'Install Desk Studio in Claude Code. The plugin installs the desk briefs and commands. A first job has not been run from this install.',
+  cursor: 'Install Desk Studio in Cursor. The installer writes .desk/ and copies the desk briefs. Desk Studio has not been run inside Cursor.',
+  codex: 'Install Desk Studio in Codex. Codex reads the block and calls design. A finished card needs a reachable provider, and no card has been produced yet.',
+  'gemini-cli': 'Install Desk Studio in Gemini CLI. The installer writes .desk/ and copies the desk briefs. A job has not been run in Gemini CLI on this release.',
+  copilot: 'Install Desk Studio in Copilot CLI. The installer writes .desk/ and copies the desk briefs. Desk Studio has not been run in Copilot CLI.',
+  windsurf: 'Install Desk Studio in Windsurf. The installer writes .desk/ and copies the desk briefs. Desk Studio has not been run inside Windsurf.',
+  opencode: 'Install Desk Studio in OpenCode. The installer writes .desk/ and copies the desk briefs. Desk Studio has not been run inside OpenCode.',
+};
+const commonSources = ['site/docs.mjs', 'site/seo.mjs', 'site/site.css', 'site/theme.js', 'brand/logo', 'fonts', 'site/media/og.png'];
+const metadata = (title, current) => ({
+  path: current === 'index' ? '/docs/' : `/docs/${current}/`,
+  title: title.startsWith('Desk Studio in ') ? title : `${title} | Desk Studio`,
+  description: descriptions[current],
+});
 const esc = text => text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 // A link in a guide: another guide becomes its page, another doc goes to the repo, media and images to the site.
 const href = url => {
@@ -62,7 +81,8 @@ function document(title, body, current = '') {
   const links = `<a href="/docs/install/"${cur('install')}>Getting started</a><a href="/docs/dashboard/"${cur('dashboard')}>The dashboard</a><a href="/docs/"${cur('index')}>Agent setup</a><a href="${REPO}/tree/main/docs">All docs</a>`;
   return `<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>${esc(title)} | Desk Studio</title><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon.ico" sizes="48x48">
+${pageHead(metadata(title, current))}
+<link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon.ico" sizes="48x48"><link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <script src="/theme.js"></script>
 <link rel="stylesheet" href="/site.css">
 </head><body>
@@ -76,15 +96,19 @@ function document(title, body, current = '') {
 
 export function buildDocs(dist) {
   const docs = join(dist, 'docs');
+  const published = [{ ...metadata('Docs', 'index'), sources: commonSources }];
   mkdirSync(docs, { recursive: true });
   for (const [slug, name] of pages) {
     const directory = join(docs, slug);
     mkdirSync(directory, { recursive: true });
-    const body = readFileSync(join(here, 'docs', `${slug}.md`), 'utf8');
+    const source = join(here, 'docs', `${slug}.md`);
+    const body = readFileSync(source, 'utf8');
+    published.push({ ...metadata(`Desk Studio in ${name}`, slug), sources: [...commonSources, source] });
     writeFileSync(join(directory, 'index.html'), document(`Desk Studio in ${name}`, render(body), slug));
   }
   for (const [slug, name, file] of guides) {
     mkdirSync(join(docs, slug), { recursive: true });
+    published.push({ ...metadata(name, slug), sources: [...commonSources, file, ...(slug === 'dashboard' ? ['docs/images/dashboard', 'site/media/walkthrough.mp4', 'site/media/walkthrough.webp', 'site/media/walkthrough.vtt'] : [])] });
     writeFileSync(join(docs, slug, 'index.html'), document(name, render(readFileSync(file, 'utf8')), slug));
   }
   // The guide's screenshots, and the walkthrough the guide plays (the home page copies it to /media too).
@@ -97,4 +121,5 @@ export function buildDocs(dist) {
 <ul class="doc-cards cards"><li><a class="card" href="/docs/install/"><strong>Getting started</strong><span>Install, run a first job, open the dashboard.</span></a></li><li><a class="card" href="/docs/dashboard/"><strong>The dashboard</strong><span>Open it, read every part of it, follow a job, read the result.</span></a></li></ul>
 <h2>Agent setup</h2>\n<ul>${links}</ul>
 <p>Everything else is in <a href="${REPO}/tree/main/docs">the repo's docs</a>.</p>`, 'index'));
+  return published;
 }

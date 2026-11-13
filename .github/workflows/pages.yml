@@ -21,6 +21,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: 22
@@ -29,7 +31,7 @@ jobs:
       - run: sudo apt-get update -q && sudo apt-get install -y -q ffmpeg
       - run: node site/build.mjs
       - name: Verify site body
-        run: echo '49f945107d16995d5dfbf8ce5fc22b3e77ef362c2ab76947272278ac6906fa2d  site/dist/index.html' | sha256sum --check
+        run: echo 'd38695256c9eb79b7562e64308cc851c03d53332b85f1b03ed4b90252853ed6d  site/dist/index.html' | sha256sum --check
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

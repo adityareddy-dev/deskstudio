@@ -7,6 +7,7 @@ import { spawnSync } from 'node:child_process';
 import { basename, dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { buildDocs } from './docs.mjs';
+import { home, pageHead, writeDiscovery } from './seo.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const root = join(here, '..');
@@ -144,7 +145,7 @@ if (existsSync(join(here, 'CNAME'))) cpSync(join(here, 'CNAME'), join(dist, 'CNA
 writeFileSync(join(dist, '.nojekyll'), '');
 for (const f of ['site.css', 'theme.js', 'home.css']) cpSync(join(here, f), join(dist, f));
 cpSync(join(here, 'fonts', 'Bricolage-Variable.woff2'), join(dist, 'fonts', 'Bricolage-Variable.woff2'));
-if (existsSync(join(media, 'og.png'))) cpSync(join(media, 'og.png'), join(dist, 'og.png'));
+cpSync(join(media, 'og.png'), join(dist, 'og.png'));
 
 const INSTALL = '/plugin install desk --marketplace adityareddy-dev/deskstudio';
 const REPO = 'https://github.com/adityareddy-dev/deskstudio';
@@ -172,18 +173,11 @@ const html = `<!doctype html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Desk Studio</title>
-<meta name="description" content="Your own design studio. A full design studio inside the coding agent you already use. One command, free, nothing leaves your machine but the model calls you already make.">
+${pageHead(home)}
 <script src="/theme.js"></script>
 <link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="icon" href="favicon.ico" sizes="48x48"><link rel="apple-touch-icon" href="apple-touch-icon.png">
-<link rel="canonical" href="https://deskstudio.ai/">
 <link rel="preload" as="image" href="media/explainer-poster.png" fetchpriority="high">
 <link rel="preload" as="font" type="font/woff2" href="/fonts/Bricolage-Variable.woff2" crossorigin>
-<meta property="og:title" content="Your own design studio.">
-<meta property="og:description" content="A full design studio inside the coding agent you already use. One command, free, nothing leaves your machine.">
-<meta property="og:image" content="https://deskstudio.ai/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
-<meta property="og:url" content="https://deskstudio.ai/"><meta property="og:type" content="website">
-<meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="/site.css">
 <link rel="stylesheet" href="/home.css">
 <style>${botsCss}</style>
@@ -558,6 +552,7 @@ ${bots.defs}
 </html>
 `;
 writeFileSync(join(dist, 'index.html'), html);
-buildDocs(dist);
+const docs = buildDocs(dist);
+writeDiscovery(dist, [home, ...docs]);
 const bytes = Buffer.byteLength(html);
 console.log(`site/dist/index.html ${Math.round(bytes / 1024)} KB, ${goldens.length} goldens, ${registry.desks.length} desks`);
