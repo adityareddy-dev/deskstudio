@@ -20,12 +20,14 @@ export const home = {
 // Both builders use the same title, description and picture for search and shares.
 export function pageHead({ path, title, description }) {
   const url = `${ORIGIN}${path}`;
+  // The docs index is a list of links, not an article.
+  const index = path === '/docs/';
   const data = {
     '@context': 'https://schema.org',
     '@graph': [
       { '@type': 'WebSite', '@id': `${ORIGIN}/#website`, name: 'Desk Studio', url: `${ORIGIN}/` },
       { '@type': 'SoftwareSourceCode', '@id': `${ORIGIN}/#software`, name: 'Desk Studio', url: `${ORIGIN}/`, codeRepository: REPO, description: home.description },
-      { '@type': path === '/' ? 'WebPage' : 'TechArticle', '@id': `${url}#page`, url, name: title, headline: title, description, inLanguage: 'en', isPartOf: { '@id': `${ORIGIN}/#website` }, about: { '@id': `${ORIGIN}/#software` } },
+      { '@type': path === '/' ? 'WebPage' : index ? 'CollectionPage' : 'TechArticle', '@id': `${url}#page`, url, name: title, headline: title, description, inLanguage: 'en', isPartOf: { '@id': `${ORIGIN}/#website` }, about: { '@id': `${ORIGIN}/#software` } },
     ],
   };
   return `<title>${esc(title)}</title>
@@ -34,7 +36,7 @@ export function pageHead({ path, title, description }) {
 <meta property="og:title" content="${esc(title)}">
 <meta property="og:description" content="${esc(description)}">
 <meta property="og:url" content="${esc(url)}">
-<meta property="og:type" content="${path === '/' ? 'website' : 'article'}">
+<meta property="og:type" content="${path === '/' || index ? 'website' : 'article'}">
 <meta property="og:site_name" content="Desk Studio">
 <meta property="og:image" content="${IMAGE}">
 <meta property="og:image:type" content="image/png">
