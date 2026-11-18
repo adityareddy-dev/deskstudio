@@ -18,6 +18,7 @@ import { parsePick, parseScores, parseEscalation, parseBuilderReturn, extractHtm
 import * as S from './state.mjs';
 import { run as execRun } from './providers/exec.mjs';
 import { loadBrandFont, injectFont, stripFont } from './fonts.mjs';
+import { loadBrandLogo, injectLogo, stripLogo, LOGO_TOKEN } from './logo.mjs';
 
 const ROOT = S.ROOT;
 const SKILL_DIR = join(ROOT, 'skills', 'desk');
@@ -360,15 +361,37 @@ function fontLine(ctx) {
   return font ? `The brand font ${font.family} is inlined by the runner into your file after you return, so write font-family: ${font.stack} and do not paste an @font-face block yourself.\n` : '';
 }
 
-// What the builder returned, with the font block spliced in, written to disk.
+// The brand logo, read once per job. Builders write desk:logo, the runner puts the file in. Never in a prompt.
+function ensureLogo(ctx) {
+  if (ctx.logo !== undefined) return ctx.logo;
+  try { ctx.logo = loadBrandLogo(ctx.projectDir, readFileSync(ctx.paths.brandFile, 'utf8')); }
+  catch { ctx.logo = null; }
+  if (ctx.logo?.uri) ctx.log(`brand logo ${ctx.logo.path} inlined by the runner into every file (${ctx.logo.uri.length < 1024 ? 'under 1' : Math.round(ctx.logo.uri.length / 1024)} KB)`);
+  else if (ctx.logo) ctx.log(`brand logo ${ctx.logo.path} cannot be inlined, ${ctx.logo.missing}, so the wordmark stands in`);
+  return ctx.logo;
+}
+
+function logoLine(ctx) {
+  const logo = ensureLogo(ctx);
+  if (!logo?.uri) return '';
+  return `The brand logo ${logo.path}${logo.width ? ` (${logo.width}x${logo.height} px)` : ''} is inlined by the runner. Where the mark goes, write src="${LOGO_TOKEN}" on an <img> (or url("${LOGO_TOKEN}") in CSS) and the runner puts the file in after you return. Do not write a data URI or the file's path yourself.\n`;
+}
+
+// What every desk needs to know when the brand names a logo the runner cannot use, so no desk asks for it again.
+function logoNote(ctx) {
+  const logo = ensureLogo(ctx);
+  return logo && !logo.uri ? `The brand names a logo at ${logo.path}, but the runner cannot inline it (${logo.missing}). The files use the wordmark in its place, and that is not a desk's miss.\n` : '';
+}
+
+// What the builder returned, with the font block and the logo spliced in, written to disk.
 function writeHtml(ctx, file, text) {
-  writeFileSync(file, injectFont(extractHtml(text), ensureFont(ctx)));
+  writeFileSync(file, injectLogo(injectFont(extractHtml(text), ensureFont(ctx)), ensureLogo(ctx)));
 }
 
 function briefBlock(ctx) {
   const { paths, texts } = ctx;
   const brand = readFileSync(paths.brandFile, 'utf8');
-  return section('Brief (.desk/jobs/<id>/brief.md)', readFileSync(paths.briefFile, 'utf8').replace(/^<!--.*-->\n/, ''))
+  return logoNote(ctx) + section('Brief (.desk/jobs/<id>/brief.md)', readFileSync(paths.briefFile, 'utf8').replace(/^<!--.*-->\n/, ''))
     + section('Brand (.desk/DESIGN.md)', brand + '\n\n' + scaleLine(brand))
     + section(`Standard: ${ctx.cmd.standard}`, texts.standard)
     + section('House style', texts.houseStyle);
@@ -404,7 +427,7 @@ async function stepRoughs(ctx) {
     const prompt = `Job ${state.id}. Out folder: ${paths.outDir}. Renders folder: ${paths.rendersDir}.\n`
       + `You own one file: ${file}. Return it whole in one fenced block tagged html, then your return block.\n`
       + `This is a rough. Composition pattern for this rough: ${pattern}. Build that pattern honestly, pushed as far as the brand allows, so it differs from the other two roughs.\n`
-      + `Sizes: ${sizesLine(ctx)}. One DOM, media queries adapt it to each size.\n` + fontLine(ctx) + common;
+      + `Sizes: ${sizesLine(ctx)}. One DOM, media queries adapt it to each size.\n` + fontLine(ctx) + logoLine(ctx) + common;
     const result = await callDesk(ctx, { desk: ctx.cmd.builder, tier: 'senior', task: `rough ${n}, ${pattern.toLowerCase()}`, system: texts.roles[ctx.cmd.builder], prompt });
     writeHtml(ctx, file, result.text);
     const ret = parseBuilderReturn(result.text);
@@ -461,13 +484,13 @@ async function stepPolish(ctx) {
   const pen = state.pen;
   const images = rendersOf(join(ctx.projectDir, state.lastRenders), state.sizes);
   const notes = state.notes.length ? state.notes.map((n, i) => `${i + 1}. ${n}`).join('\n') : '(no notes, check the file against the standard)';
-  const current = stripFont(readFileSync(paths.finalFile, 'utf8'));
+  const current = stripLogo(stripFont(readFileSync(paths.finalFile, 'utf8')), ensureLogo(ctx));
   const shots = images.map((f, i) => `${i + 1}. ${basename(f, '.png')}: ${f}`).join('\n');
   let r;
   if (pen === 'art-director') {
     const prompt = `Job ${state.id}. Polish round ${round} of ${state.maxRounds}. Escalation: you take the pen for this round, the same notes were missed two rounds running.\n`
       + `Rewrite ${paths.finalFile} yourself: apply the notes below, keep the DOM structure and the file contract, change the minimum. Return the whole file in one fenced block tagged html, then the escalation shape from your brief (took the pen, changed, notes for the builder).\n`
-      + `Sizes: ${sizesLine(ctx)}.\n` + fontLine(ctx) + `Notes outstanding:\n${notes}\nScreenshots of the current state attached:\n${shots}\n`
+      + `Sizes: ${sizesLine(ctx)}.\n` + fontLine(ctx) + logoLine(ctx) + `Notes outstanding:\n${notes}\nScreenshots of the current state attached:\n${shots}\n`
       + section('Current final.html', '```html\n' + current + '\n```') + briefBlock(ctx);
     r = await callDesk(ctx, { desk: 'art-director', tier: 'director', task: `pen, round ${round}`, system: texts.roles['art-director'], prompt, images });
     const esc = parseEscalation(r.text);
@@ -475,7 +498,7 @@ async function stepPolish(ctx) {
     ctx.log(`art director took the pen: ${esc.changed || 'rewrote final.html'}`);
   } else {
     const prompt = `Job ${state.id}. Polish round ${round} of ${state.maxRounds}${pen === 'senior' ? ' (escalated to the senior model)' : ''}. You own ${paths.finalFile}. Return the complete revised file in one fenced block tagged html, then your return block.\n`
-      + `Sizes: ${sizesLine(ctx)}.\n` + fontLine(ctx) + `Notes to apply, in order:\n${notes}\n${state.penNotes?.length ? `Notes from the Art Director's rewrite last round:\n${state.penNotes.map((n, i) => `${i + 1}. ${n}`).join('\n')}\n` : ''}Screenshots of the current state attached:\n${shots}\n`
+      + `Sizes: ${sizesLine(ctx)}.\n` + fontLine(ctx) + logoLine(ctx) + `Notes to apply, in order:\n${notes}\n${state.penNotes?.length ? `Notes from the Art Director's rewrite last round:\n${state.penNotes.map((n, i) => `${i + 1}. ${n}`).join('\n')}\n` : ''}Screenshots of the current state attached:\n${shots}\n`
       + section('Current final.html', '```html\n' + current + '\n```') + briefBlock(ctx);
     r = await callDesk(ctx, { desk: ctx.cmd.builder, tier: tierFor(ctx, pen), task: `polish round ${round}${pen === 'senior' ? ', escalated' : ''}`, system: texts.roles[ctx.cmd.builder], prompt, images });
     state.penNotes = [];
@@ -628,6 +651,8 @@ async function stepHandback(ctx) {
     `Open: ${passed ? 'none' : openLine(state)}${state.signoffBy === 'report' ? ' (sign-off by report, the director model did not see the screenshots)' : ''}`,
   ];
   const font = ensureFont(ctx);
+  const logo = ensureLogo(ctx);
+  if (logo && !logo.uri) lines.push(`Logo: ${logo.path} could not be inlined, ${logo.missing}, so the files use the wordmark.`);
   if (font?.substituted) lines.push(`Font: ${font.brandFamily} is not bundled, so the files use ${font.family} in its place. Swap it back when the design goes into the codebase.`);
   if (vias.includes('api')) lines.push(`Models: ${[...new Set(state.desks.map(d => `${d.model}${d.via ? ` via ${d.via}` : ''}`))].join(', ')}`);
   let handback = lines.join('\n') + '\n';
