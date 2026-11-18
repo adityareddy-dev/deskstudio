@@ -32,6 +32,10 @@ Then start a job the usual way, `/desk:design a launch card for LinkedIn` in Cla
 
 ## What you see
 
+The whole page during a real job, a LinkedIn launch card for react-inp-blame. Each part is explained below.
+
+![The whole dashboard during a real launch card job: the track, the floor of desks, the review board with three roughs, the polish rounds, and the cost by role](images/dashboard/full-page.webp)
+
 ### The job
 
 The top of the page is the job you picked in the **Job** menu: the command and the deliverable, the job id, and a track with seven stations: Brief, Roughs, Pick, Polish, Proof, Sign-off, Done. The ticket sits on the station the job is at, and says which round it is on. Next to it are four numbers: the round out of the most allowed, the latest score, the cost so far and how long the job has been running.

@@ -3,10 +3,11 @@
 //   check  <file> --brand DESIGN.md --sizes a,b --out dir [--must-appear "x" "y"]
 //   render <file> --sizes a,b --out dir
 //   sizes
+//   setup [--with-deps]   download the headless Chromium proof uses, for a machine with no Chrome
 import { mkdirSync, statSync } from 'node:fs';
 import { join, resolve, basename } from 'node:path';
 import { SIZES, resolveSizes } from './sizes.mjs';
-import { launch, openPage, snapshot } from './browser.mjs';
+import { launch, openPage, snapshot, setup } from './browser.mjs';
 import { readBrand } from './brand.mjs';
 import { runChecks, checkSeries } from './check.mjs';
 import { recordMotion, exportFrames } from './motion.mjs';
@@ -59,6 +60,7 @@ try {
     for (const [name, s] of Object.entries(SIZES)) console.log(`${name.padEnd(13)} ${String(s.width).padStart(5)}x${String(s.height || 'auto').padEnd(5)} safe ${s.safe.map(v => Math.round(v * 100) + '%').join('/')}`);
     process.exit(0);
   }
+  if (cmd === 'setup') process.exit(await setup({ withDeps: !!args['with-deps'] }));
   if (cmd === 'motion') {
     const file = resolve(args._[1] || '');
     if (!args._[1]) throw new Error('Give the clip file to record.');
@@ -72,7 +74,7 @@ try {
     console.log(JSON.stringify(result, null, 2));
     process.exit(result.pass ? 0 : 1);
   }
-  if (cmd !== 'check' && cmd !== 'render') { console.error('usage: desk-proof check|render <file> --sizes a,b --out dir [--brand DESIGN.md] [--scheme light|dark|both] [--must-appear "x" "y"]  |  motion <file> --size slide|1080x1920 --seconds 8 --out dir  |  sizes'); process.exit(2); }
+  if (cmd !== 'check' && cmd !== 'render') { console.error('usage: desk-proof check|render <file> --sizes a,b --out dir [--brand DESIGN.md] [--scheme light|dark|both] [--must-appear "x" "y"]  |  motion <file> --size slide|1080x1920 --seconds 8 --out dir  |  sizes  |  setup [--with-deps]'); process.exit(2); }
   const file = resolve(args._[1] || '');
   if (!args._[1]) throw new Error('Give the file to render.');
   const sizes = resolveSizes(args.sizes);

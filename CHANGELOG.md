@@ -1,5 +1,15 @@
 # Changelog
 
+## Unreleased
+
+Easier to start, and no more stuck jobs on a brand font the studio does not ship.
+
+- A brand font the studio does not ship no longer fails proof every round. The closest bundled family stands in for it, as the fonts procedure always said: proof accepts it, the runner inlines it, and the handback names it. Before, a project on any font other than Geist, Inter or Source Serif 4 used up every round and never reached the sign-off.
+- `desk-proof setup` downloads the browser proof uses, for a machine with no Chrome or Edge. `--with-deps` also installs its Linux system libraries.
+- `desk-run` checks for a working browser before it calls any model, so a missing browser costs nothing.
+- `deskstudio add` names the API keys it accepts when no CLI is signed in, and prints the next two commands.
+- The README starts with a short Get started section, and the dashboard guide shows the whole page.
+
 ## [1.1.0](https://github.com/adityareddy-dev/deskstudio/releases/tag/v1.1.0) - 2026-10-31
 
 A new dashboard, a brand to match it, and a new film on the site.
