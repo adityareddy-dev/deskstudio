@@ -120,6 +120,8 @@ export function add({ dir = process.cwd(), agents = ALL_AGENTS, force = false, l
 
   if (agents.includes('claude')) {
     log('For Claude Code, install the plugin instead:');
+    log('  /plugin install desk --marketplace adityareddy-dev/deskstudio');
+    log('On a Claude Code older than 2.1.275, add the marketplace first:');
     log('  /plugin marketplace add adityareddy-dev/deskstudio');
     log('  /plugin install desk@deskstudio');
     agents = agents.filter(a => a !== 'claude');
@@ -138,7 +140,7 @@ export function add({ dir = process.cwd(), agents = ALL_AGENTS, force = false, l
   let projectSeed;
   if (!existsSync(join(desk, 'project.json'))) {
     const chosen = chooseDefaults(detectProviders({ fresh: true }));
-    if (!chosen.models) throw new Error('No model provider is ready. Sign in with `codex login`, `claude auth login` or `agy`, then rerun `deskstudio add`. Run `desk-run doctor` to check provider access.');
+    if (!chosen.models) throw new Error('No model provider is ready. Sign in with `claude auth login`, `codex login` or `agy`, or set ANTHROPIC_API_KEY, OPENAI_API_KEY or GEMINI_API_KEY, then rerun `deskstudio add`. `npx --package deskstudio desk-run doctor` shows what it finds.');
     // The runner selects the studio preset before the top-level model map.
     projectSeed = { ...SEED_PROJECT, models: chosen.models, presets: { ...SEED_PROJECT.presets, studio: { ...chosen.models } } };
     log(`Project models: ${Object.entries(chosen.models).map(([tier, spec]) => `${tier} ${spec}`).join(', ')} (${chosen.reason})`);
@@ -213,7 +215,13 @@ export async function main(argv = process.argv.slice(2)) {
   const list = flags.agent && flags.agent !== true ? String(flags.agent).split(',').map(s => s.trim().toLowerCase()).filter(Boolean) : ['all'];
   const agents = list.includes('all') ? [...ALL_AGENTS, ...(list.includes('claude') ? ['claude'] : [])] : list;
   try {
-    add({ dir: typeof flags.dir === 'string' ? flags.dir : process.cwd(), agents, force: !!flags.force });
+    const out = add({ dir: typeof flags.dir === 'string' ? flags.dir : process.cwd(), agents, force: !!flags.force });
+    if (out.blocks.length) process.stdout.write([
+      '',
+      'Next, check the setup, then make something (or ask your agent in plain words):',
+      '  npx --package deskstudio desk-run doctor',
+      '  npx --package deskstudio desk-run design "a launch card for LinkedIn"',
+    ].join('\n') + '\n');
     return 0;
   } catch (e) { process.stderr.write(`deskstudio: ${e.message}\n`); return 1; }
 }

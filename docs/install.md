@@ -46,6 +46,8 @@ npx --package deskstudio desk-run design "a launch card for LinkedIn"
 
 The desks call models through the CLI you are already signed in to (`claude`, `codex` or `agy`) or a key (`ANTHROPIC_API_KEY`, `OPENAI_API_KEY`, `GEMINI_API_KEY`). `npx --package deskstudio desk-run doctor` shows which path it will take without making a model call.
 
+Proof renders every file in Chrome or Edge. With neither on the machine, run `npx --package deskstudio desk-proof setup` once and it downloads the browser it uses. On a Linux server with no desktop, add `--with-deps` so it also installs the browser's system libraries. A job checks for a working browser before it calls any model.
+
 The runner takes `design` for social cards for now. The other commands in the [gallery](gallery.md) are Claude Code skills, see [command availability](commands.md#command-availability).
 
 Files land in `.desk/out/<job>/` with a short note on who did what, the scores and the cost.
@@ -67,6 +69,8 @@ npx --package deskstudio desk-dashboard start
 ```
 
 `start` prints a link on 127.0.0.1 with a token. Open it, then run a job. How to read it is in [the dashboard guide](dashboard.md).
+
+![The whole dashboard during a real launch card job](images/dashboard/full-page.webp)
 
 ## Other agents
 

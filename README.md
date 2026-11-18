@@ -4,13 +4,6 @@
 
 A full design studio inside the coding agent you already use. One command, free, nothing leaves your machine but the model calls you already make.
 
-```
-/plugin install desk --marketplace adityareddy-dev/deskstudio
-npx deskstudio add
-```
-
-The first line is for Claude Code. The second is for Codex, Cursor, Gemini CLI, Copilot, Windsurf or OpenCode.
-
 <p>
   <a href="https://www.npmjs.com/package/deskstudio"><img src="https://img.shields.io/npm/v/deskstudio" alt="npm version"></a>
   <a href="https://github.com/adityareddy-dev/deskstudio/actions/workflows/check.yml"><img src="https://github.com/adityareddy-dev/deskstudio/actions/workflows/check.yml/badge.svg" alt="CI"></a>
@@ -19,27 +12,44 @@ The first line is for Claude Code. The second is for Codex, Cursor, Gemini CLI, 
   <a href="https://github.com/adityareddy-dev/deskstudio/contribute"><img src="https://img.shields.io/github/issues/adityareddy-dev/deskstudio/good%20first%20issue?label=good%20first%20issues&color=ffaa1c" alt="good first issues"></a>
 </p>
 
-[deskstudio.ai](https://deskstudio.ai) · [Install](docs/install.md) · [Dashboard guide](docs/dashboard.md) · [Docs](#docs) · [Contribute](#contribute) · [Discussions](https://github.com/adityareddy-dev/deskstudio/discussions)
+[deskstudio.ai](https://deskstudio.ai) · [Get started](#get-started) · [Dashboard guide](docs/dashboard.md) · [Docs](#docs) · [Contribute](#contribute) · [Discussions](https://github.com/adityareddy-dev/deskstudio/discussions)
 
 <a href="site/media/explainer.mp4"><img src="site/media/explainer.gif" alt="One brief through roughs, pick, polish, pixel proof and scored sign-off" width="760"></a>
 
 [Watch the 50-second explainer](site/media/explainer.mp4)
 
-## 30-second example
+## Get started
 
-Ask for something in your agent:
+You need Node.js 20 or newer and one model account you already use: Claude Code or the `claude` CLI, the `codex` CLI, Antigravity (`agy`), or an API key (`ANTHROPIC_API_KEY`, `OPENAI_API_KEY` or `GEMINI_API_KEY`).
+
+**In Claude Code**, install the plugin, then ask:
 
 ```
+/plugin install desk --marketplace adityareddy-dev/deskstudio
 /desk:design a launch card for LinkedIn
 ```
 
-Other agents read the block `npx deskstudio add` writes, so plain words work: "design a launch card for LinkedIn". Or run it yourself:
+If proof finds no browser on the machine, it prints the one command that sets one up.
+
+**In Codex, Cursor, Gemini CLI, Copilot, Windsurf, OpenCode or a plain terminal**, run these in your project:
 
 ```
+npx deskstudio add
+npx --package deskstudio desk-run doctor
 npx --package deskstudio desk-run design "a launch card for LinkedIn"
 ```
 
-Files land in `.desk/out/<job>/` with a short note on who did what, the scores and the cost.
+`add` sets the project up and tells your agent about the studio, so after that you can also ask the agent in plain words. `doctor` checks your model sign-in and the browser proof renders with, and makes no model call. `design` makes the card, usually in a few minutes.
+
+No Chrome on the machine? Run this once and proof downloads its own browser:
+
+```
+npx --package deskstudio desk-proof setup
+```
+
+On a Linux server with no desktop, add `--with-deps` so it also installs the system libraries the browser needs.
+
+The files land in `.desk/out/<job>/`: three roughs, `final.html`, and a short note on who did what, the scores and the cost.
 
 ## What a run looks like
 
@@ -51,11 +61,20 @@ The outputs, scores and cost are in [What it makes](docs/gallery.md).
 
 ## Watch it work
 
-The dashboard shows the studio as it works. Every desk is a small bot at its own desk, awake while its agent works, and the job moves along a track from the brief to the sign-off with its round, score and cost.
+The dashboard shows the studio as it works. Every desk is a small bot at its own desk, awake while its agent works, and the job moves along a track from the brief to the sign-off with its round, score and cost. Turn it on once per project, start it, and open the link it prints:
+
+```
+npx --package deskstudio desk-dashboard setup
+npx --package deskstudio desk-dashboard start
+```
+
+In Claude Code that is `/desk:dashboard setup`, then `/desk:dashboard start`. It only listens on 127.0.0.1, behind a token in the link.
+
+<a href="docs/images/dashboard/full-page.webp"><img src="docs/images/dashboard/full-page.webp" alt="The whole dashboard during a real launch card job: the track, the floor of desks, the review board with three roughs, the polish rounds, and the cost by role" width="760"></a>
 
 <a href="site/media/walkthrough.mp4"><img src="site/media/floor-idle.gif" alt="The floor of a real brand-kit job: desks wake as their agents start and sleep when they stop" width="760"></a>
 
-[Watch a whole job on the dashboard, 50 seconds with captions](site/media/walkthrough.mp4). Open it in your project with `/desk:dashboard setup` once, then `/desk:dashboard start`. How to read every part of it is in [the dashboard guide](docs/dashboard.md).
+[Watch a whole job on the dashboard, 50 seconds with captions](site/media/walkthrough.mp4). How to read every part of it is in [the dashboard guide](docs/dashboard.md).
 
 ## Why it exists
 
@@ -69,29 +88,9 @@ Three roughs on Sonnet, the pick on Opus, polish on Haiku, proof with no model, 
 - A local [dashboard](docs/dashboard.md) to watch the desks work, pause, move a desk to another model, write a desk a note or pick a rough yourself.
 - It runs on your machine. The only things that leave it are the model calls the desks make and, for the few research desks, web lookups. The dashboard is 127.0.0.1 only with a token in the URL. See [docs/privacy.md](docs/privacy.md).
 
-## Install and use
+## Settings
 
-Claude Code:
-
-```
-/plugin install desk --marketplace adityareddy-dev/deskstudio
-```
-
-Other agents, one line in the project:
-
-```
-npx deskstudio add
-```
-
-Then open the dashboard and ask for something:
-
-```
-/desk:dashboard setup
-/desk:dashboard start
-/desk:design a launch card for LinkedIn
-```
-
-Outside Claude Code the dashboard is `npx --package deskstudio desk-dashboard setup`, then `start`. `npx deskstudio add` writes `.desk/`, copies the desks to `.agents/skills/desk/` and puts one marked block in the agent's instruction file. Every agent by default, one with `--agent codex`. The runner takes `design` for social cards for now; the other commands are Claude Code skills. Older Claude Code versions, the table of instruction files per agent, what each agent gets and the update rules are in [docs/install.md](docs/install.md).
+`npx deskstudio add` writes `.desk/`, copies the desks to `.agents/skills/desk/` and puts one marked block in the agent's instruction file. Every agent by default, one with `--agent codex`. Outside Claude Code the runner takes `design` for social cards for now. The other commands are Claude Code skills. Older Claude Code versions, the table of instruction files per agent, what each agent gets and the update rules are in [docs/install.md](docs/install.md).
 
 Models are set once in `.desk/project.json`, or from the dashboard for one job:
 
@@ -106,7 +105,7 @@ Models are set once in `.desk/project.json`, or from the dashboard for one job:
 Providers and roles are in [docs/providers.md](docs/providers.md) and [docs/runner.md](docs/runner.md). Proof also works on its own:
 
 ```
-desk-proof check hero.html --brand .desk/DESIGN.md --sizes phone,desktop
+npx --package deskstudio desk-proof check hero.html --brand .desk/DESIGN.md --sizes phone,desktop
 ```
 
 ## Contribute

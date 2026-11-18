@@ -1,8 +1,11 @@
 // Finds a Chrome on this machine and renders a file at an exact size.
 // Order: CHROME_PATH, then the Chrome channel, then Edge, then Chromium if Playwright has one.
 import { chromium } from 'playwright-core';
-import { pathToFileURL } from 'node:url';
+import { pathToFileURL, fileURLToPath } from 'node:url';
 import { writeFileSync } from 'node:fs';
+import { createRequire } from 'node:module';
+import { spawnSync } from 'node:child_process';
+import { dirname, join } from 'node:path';
 import { PNG } from 'pngjs';
 
 const ATTEMPTS = [
@@ -12,16 +15,47 @@ const ATTEMPTS = [
   () => ({}),
 ];
 
+// The browser has to match this copy's Playwright, so name the setup of this copy. The npm package (npx or an
+// install) has the short form. Anywhere else, the Claude Code plugin included, it is this file's own CLI.
+const CLI = fileURLToPath(new URL('./cli.mjs', import.meta.url));
+export const SETUP_COMMAND = /[\\/](_npx|node_modules)[\\/]/.test(CLI) ? 'npx --package deskstudio desk-proof setup' : `node "${CLI}" setup`;
+const MISSING_LIBS = /error while loading shared libraries|missing dependencies to run browsers/i;
+
 export async function launch() {
   const errors = [];
+  let libs = false;
   for (const attempt of ATTEMPTS) {
     const opts = attempt();
     if (!opts) continue;
     try {
       return await chromium.launch({ headless: true, ...opts, args: ['--disable-dev-shm-usage', '--force-device-scale-factor=1'] });
-    } catch (e) { errors.push(`${JSON.stringify(opts)}: ${String(e.message).split('\n')[0]}`); }
+    } catch (e) {
+      if (MISSING_LIBS.test(String(e.message))) libs = true;
+      errors.push(`${JSON.stringify(opts)}: ${String(e.message).split('\n')[0]}`);
+    }
   }
-  throw new Error('No Chrome or Edge found. Install Google Chrome, or set CHROME_PATH to a chrome executable.\n' + errors.join('\n'));
+  const head = libs
+    ? `A browser is installed, but this machine is missing the system libraries it needs. Run ${SETUP_COMMAND} --with-deps once. It installs them with admin rights, so it asks for your password.`
+    : `No Chrome, Edge or Chromium found. Run ${SETUP_COMMAND} once to download the one proof uses, or set CHROME_PATH to a Chrome executable.`;
+  throw new Error(head + '\n' + errors.join('\n'));
+}
+
+async function works() {
+  try { const b = await launch(); await b.close(); return null; } catch (e) { return e; }
+}
+
+// desk-proof setup: downloads the headless Chromium that matches this copy of Playwright, so proof renders on a
+// machine with no Chrome. --with-deps also installs its Linux system libraries (Playwright asks for sudo).
+export async function setup({ withDeps = false, log = s => process.stdout.write(s + '\n') } = {}) {
+  if (!withDeps && !(await works())) { log('Proof is ready, a browser renders on this machine.'); return 0; }
+  const cli = join(dirname(createRequire(import.meta.url).resolve('playwright-core/package.json')), 'cli.js');
+  log(`Installing the headless Chromium proof uses${withDeps ? ', with its system libraries' : ''}.`);
+  const r = spawnSync(process.execPath, [cli, 'install', ...(withDeps ? ['--with-deps'] : []), 'chromium', '--only-shell'], { stdio: 'inherit' });
+  if (r.status !== 0) { log(`The install did not finish (exit ${r.status}). Run it again, or set CHROME_PATH to a Chrome executable.`); return 1; }
+  const err = await works();
+  if (!err) { log('Proof is ready, a browser renders on this machine.'); return 0; }
+  log(String(err.message).split('\n')[0]);
+  return 1;
 }
 
 export async function openPage(browser, file, size, { scheme = 'light' } = {}) {

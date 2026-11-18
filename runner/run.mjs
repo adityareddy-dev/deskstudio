@@ -681,7 +681,7 @@ export async function doctor({ project, probe = false, out = s => process.stdout
   try {
     const { launch } = await import(pathToFileURL(join(ROOT, 'proof', 'browser.mjs')).href);
     const b = await launch(); await b.close();
-    out('Proof: Chrome found, renders work');
+    out('Proof: a browser renders, proof works');
   } catch (e) { out(`Proof: ${String(e.message).split('\n')[0]}`); }
   out(`Models table: runner/models.json checked ${table.checkedAt}`);
   if (probe) {
@@ -743,6 +743,13 @@ export function parseArgv(argv) {
   return out;
 }
 
+// Proof renders every round, so a job without a working browser would pay for the brief and the roughs and then
+// stop. Check first, before any model call.
+async function browserProblem() {
+  const { launch } = await import(pathToFileURL(join(ROOT, 'proof', 'browser.mjs')).href);
+  try { const b = await launch(); await b.close(); return null; } catch (e) { return String(e.message).split('\n')[0]; }
+}
+
 export async function main(argv = process.argv.slice(2)) {
   const { _, flags } = parseArgv(argv);
   const [command, ...rest] = _;
@@ -750,6 +757,10 @@ export async function main(argv = process.argv.slice(2)) {
   const timeoutMs = flags.timeout ? Number(flags.timeout) * 60 * 1000 : undefined;
   if (command === 'doctor') { await doctor({ project: flags.project, probe: !!flags.probe }); return 0; }
   if (command === 'providers') { providers(); return 0; }
+  if (command === 'resume' || COMMANDS[command]) {
+    const problem = await browserProblem();
+    if (problem) { process.stderr.write(`desk-run: proof cannot render on this machine yet, so the job did not start and no model was called.\n${problem}\n`); return 1; }
+  }
   const { runModel } = await import('./providers/index.mjs');
   if (command === 'resume') {
     if (!rest[0]) { process.stderr.write('desk-run resume needs the job id.\n'); return 2; }

@@ -44,10 +44,12 @@ npx --package deskstudio desk-dashboard setup
 npx --package deskstudio desk-dashboard start
 ```
 
+![The whole dashboard during a real launch card job](https://raw.githubusercontent.com/adityareddy-dev/deskstudio/main/docs/images/dashboard/full-page.webp)
+
 `desk-proof` checks any HTML or SVG file on its own:
 
 ```
 npx --package deskstudio desk-proof check hero.html --brand .desk/DESIGN.md --sizes phone,desktop
 ```
 
-Node 20 or later and a Chrome or Edge on the machine. Docs, the desks and the signed-off gallery: https://deskstudio.ai and https://github.com/adityareddy-dev/deskstudio. MIT.
+Node 20 or later. Proof renders in Chrome or Edge. With neither, `npx --package deskstudio desk-proof setup` downloads the browser it uses, and `--with-deps` also installs its system libraries on a Linux server. Docs, the desks and the signed-off gallery: https://deskstudio.ai and https://github.com/adityareddy-dev/deskstudio. MIT.
