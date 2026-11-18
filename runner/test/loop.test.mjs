@@ -4,7 +4,7 @@ import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { runJob } from '../run.mjs';
 import { makeFake } from '../providers/fake.mjs';
-import { BRIEF, BRAND, roughReply, polishReply, PICK, SCORES_PASS, SCORES_FAIL, PEN, tempProject } from './fixtures.mjs';
+import { BRIEF, BRAND, roughReply, polishReply, PICK, SCORES_PASS, SCORES_FAIL, PEN, tempProject, tinyPng } from './fixtures.mjs';
 
 const quiet = () => {};
 const ASK = 'a LinkedIn card announcing Desk Studio. Copy: Your own design studio.';
@@ -177,6 +177,35 @@ test('a bundled brand font is spliced by the runner into every file and proof se
   assert.match(polish.prompt, /The brand font Geist is inlined by the runner/);
   assert.ok(!polish.prompt.includes('data:font/woff2'), 'the data URI never reaches a prompt');
   assert.match(fake.calls.find(c => c.desk === 'ui-designer').prompt, /font-family: "Geist", "Inter", Arial, sans-serif/);
+});
+
+test('the brand logo is spliced in by the runner, the builder only writes desk:logo', { timeout: 180000 }, async () => {
+  const dir = tempProject();
+  writeFileSync(join(dir, 'logo.png'), tinyPng(32, 32));
+  writeFileSync(join(dir, '.desk', 'DESIGN.md'), BRAND.replace('spacing:', 'logo:\n  path: "logo.png"\nspacing:'));
+  const withLogo = text => text.replace('<main data-artboard>', '<main data-artboard><img class="logo" src="desk:logo" alt="">').replace('.mark{', '.logo{position:absolute;left:8vw;top:12vh;width:32px;height:32px}\n.mark{');
+  const fake = makeFake({ brief: BRIEF('linkedin'), roughs: roughs.map(withLogo), pick: PICK, polish: withLogo(polishReply()), scores: SCORES_PASS });
+  const r = await runJob({ command: 'design', ask: ASK, project: dir, rounds: 2, invoke: fake.runModel, log: quiet });
+  assert.equal(r.code, 0, r.error?.message || r.handback);
+  const final = readFileSync(join(dir, '.desk', 'out', r.id, 'final.html'), 'utf8');
+  assert.ok(final.includes('src="data:image/png;base64,') && !final.includes('desk:logo'), 'the logo is in final.html as a data URI');
+  assert.ok(readFileSync(join(dir, '.desk', 'out', r.id, 'rough-1.html'), 'utf8').includes('data:image/png;base64,'), 'and in the roughs');
+  const polish = fake.calls.filter(c => c.desk === 'ui-designer')[3];
+  assert.match(polish.prompt, /The brand logo logo\.png \(32x32 px\) is inlined by the runner/);
+  assert.ok(polish.prompt.includes('src="desk:logo"') && !polish.prompt.includes('data:image/png'), 'the builder sees the token, never the data URI');
+  assert.equal(r.state.proof[0].pass, true);
+});
+
+test('a logo the runner cannot inline is named to every desk once, so no desk asks for it again', { timeout: 180000 }, async () => {
+  const dir = tempProject();
+  writeFileSync(join(dir, '.desk', 'DESIGN.md'), BRAND.replace('spacing:', 'logo:\n  path: "missing.png"\nspacing:'));
+  const fake = makeFake({ brief: BRIEF('linkedin'), roughs, pick: PICK, polish: polishReply(), scores: SCORES_PASS });
+  const r = await runJob({ command: 'design', ask: ASK, project: dir, rounds: 2, invoke: fake.runModel, log: quiet });
+  assert.equal(r.code, 0, r.error?.message || r.handback);
+  for (const desk of ['art-director', 'creative-director', 'ui-designer']) {
+    assert.match(fake.calls.find(c => c.desk === desk).prompt, /logo at missing\.png, but the runner cannot inline it \(the file is not in the project\)\. The files use the wordmark/, desk);
+  }
+  assert.match(r.handback, /Logo: missing\.png could not be inlined, the file is not in the project, so the files use the wordmark\./);
 });
 
 test('a brand font the studio does not ship gets the closest bundled family, so the job does not loop on proof', { timeout: 180000 }, async () => {

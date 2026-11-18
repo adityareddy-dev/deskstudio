@@ -77,7 +77,11 @@ Each call reports tokens as `{ input, output, cacheRead, cacheWrite, total }` (i
 
 ## Fonts
 
-Builders in runner mode cannot run `scripts/font.mjs`, so the runner does it: when the brand's `type.family` starts with a bundled family, it asks `font.mjs` for the @font-face block once per job (into the out folder), tells the builder to write the family's stack and nothing else, and splices the block into every file the builder returns between `/* desk:font start */` and `/* desk:font end */`. The block is stripped again before the current file is shown to a builder, so a 100 KB data URI never sits in a prompt. Without `font.mjs`, or with a family it does not bundle, nothing is added and proof's font check says so.
+Builders in runner mode cannot run `scripts/font.mjs`, so the runner does it: when the brand's `type.family` starts with a bundled family, it asks `font.mjs` for the @font-face block once per job (into the out folder), tells the builder to write the family's stack and nothing else, and splices the block into every file the builder returns between `/* desk:font start */` and `/* desk:font end */`. The block is stripped again before the current file is shown to a builder, so a 100 KB data URI never sits in a prompt. When the brand names a family the studio does not ship, the closest bundled family stands in for it (a mono for a mono, a serif for a serif, Inter for a sans), proof accepts it and the handback names it. Without `font.mjs` nothing is added and proof's font check says so.
+
+## Logo
+
+Builders in runner mode cannot read the logo file the brand names in `logo.path`, so the runner inlines it. Builders write `src="desk:logo"` on an `<img>` (or `url("desk:logo")` in CSS), and the runner swaps that for the file as a data URI in every file they return, and swaps it back before the current file is shown to a builder. PNG, SVG, JPEG, WebP and GIF up to 1 MB inside the project work. For a logo it cannot use, every desk is told once that the wordmark stands in, and the handback says why.
 
 ## Vision
 

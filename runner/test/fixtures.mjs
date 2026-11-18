@@ -2,6 +2,7 @@
 import { mkdtempSync, mkdirSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
+import { PNG } from 'pngjs';
 
 export const BRAND = `---
 name: Test
@@ -99,4 +100,11 @@ export function tempProject({ withBrand = true } = {}) {
   writeFileSync(join(dir, 'package.json'), JSON.stringify({ name: 'fixture', private: true }));
   if (withBrand) writeFileSync(join(dir, '.desk', 'DESIGN.md'), BRAND);
   return dir;
+}
+
+// A small solid PNG in the brand accent, for logo tests.
+export function tinyPng(width = 4, height = 4) {
+  const png = new PNG({ width, height });
+  for (let i = 0; i < png.data.length; i += 4) { png.data[i] = 15; png.data[i + 1] = 98; png.data[i + 2] = 254; png.data[i + 3] = 255; }
+  return PNG.sync.write(png);
 }
