@@ -21,6 +21,7 @@ jobs:
       - run: npm test
       - run: node scripts/build-agents.mjs && git diff --exit-code agents docs/roles.md
       - run: node scripts/build-adapters.mjs && git diff --exit-code adapters
+      - run: node site/readme.mjs && git diff --exit-code README.md
 
   plugin:
     runs-on: ubuntu-latest
