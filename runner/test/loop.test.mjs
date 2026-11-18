@@ -178,3 +178,20 @@ test('a bundled brand font is spliced by the runner into every file and proof se
   assert.ok(!polish.prompt.includes('data:font/woff2'), 'the data URI never reaches a prompt');
   assert.match(fake.calls.find(c => c.desk === 'ui-designer').prompt, /font-family: "Geist", "Inter", Arial, sans-serif/);
 });
+
+test('a brand font the studio does not ship gets the closest bundled family, so the job does not loop on proof', { timeout: 180000 }, async () => {
+  const dir = tempProject();
+  writeFileSync(join(dir, '.desk', 'DESIGN.md'), BRAND.replace('family: "Arial"', 'family: "Instrument Sans, Helvetica, sans-serif"'));
+  const interCard = extra => polishReply(extra, 'inter').replace('font-family:Arial,sans-serif', 'font-family:"Inter", Arial, sans-serif');
+  const interRoughs = roughs.map(r => r.replace('font-family:Arial,sans-serif', 'font-family:"Inter", Arial, sans-serif'));
+  const fake = makeFake({ brief: BRIEF('linkedin'), roughs: interRoughs, pick: PICK, polish: interCard(''), scores: SCORES_PASS });
+  const r = await runJob({ command: 'design', ask: ASK, project: dir, rounds: 3, invoke: fake.runModel, log: quiet });
+  assert.equal(r.code, 0, r.error?.message || r.handback);
+  const final = readFileSync(join(dir, '.desk', 'out', r.id, 'final.html'), 'utf8');
+  assert.ok(final.includes('/* desk:font start */') && final.includes('font-family: "Inter"'), 'Inter is spliced in for the brand font');
+  assert.equal(r.state.proof[0].pass, true, 'proof passes on the first round');
+  assert.equal(r.state.round, 1);
+  const polish = fake.calls.filter(c => c.desk === 'ui-designer')[3];
+  assert.match(polish.prompt, /The brand font Instrument Sans is not one the studio ships, so Inter/);
+  assert.match(r.handback, /Font: Instrument Sans is not bundled, so the files use Inter in its place/);
+});

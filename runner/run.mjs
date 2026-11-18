@@ -349,12 +349,14 @@ function ensureFont(ctx) {
   if (ctx.font !== undefined) return ctx.font;
   try { ctx.font = loadBrandFont(ROOT, readFileSync(ctx.paths.brandFile, 'utf8'), ctx.paths.outDir); }
   catch { ctx.font = null; }
-  if (ctx.font) ctx.log(`brand font ${ctx.font.family} inlined by the runner into every file (${Math.round(ctx.font.css.length / 1024)} KB)`);
+  if (ctx.font?.substituted) ctx.log(`brand font ${ctx.font.brandFamily} is not bundled, ${ctx.font.family} inlined by the runner in its place (${Math.round(ctx.font.css.length / 1024)} KB)`);
+  else if (ctx.font) ctx.log(`brand font ${ctx.font.family} inlined by the runner into every file (${Math.round(ctx.font.css.length / 1024)} KB)`);
   return ctx.font;
 }
 
 function fontLine(ctx) {
   const font = ensureFont(ctx);
+  if (font?.substituted) return `The brand font ${font.brandFamily} is not one the studio ships, so ${font.family}, the closest bundled family, stands in for it. The runner inlines ${font.family} into your file after you return, so write font-family: ${font.stack} wherever the brand font goes and do not paste an @font-face block yourself.\n`;
   return font ? `The brand font ${font.family} is inlined by the runner into your file after you return, so write font-family: ${font.stack} and do not paste an @font-face block yourself.\n` : '';
 }
 
@@ -625,6 +627,8 @@ async function stepHandback(ctx) {
     `Cost: ${costLine}`,
     `Open: ${passed ? 'none' : openLine(state)}${state.signoffBy === 'report' ? ' (sign-off by report, the director model did not see the screenshots)' : ''}`,
   ];
+  const font = ensureFont(ctx);
+  if (font?.substituted) lines.push(`Font: ${font.brandFamily} is not bundled, so the files use ${font.family} in its place. Swap it back when the design goes into the codebase.`);
   if (vias.includes('api')) lines.push(`Models: ${[...new Set(state.desks.map(d => `${d.model}${d.via ? ` via ${d.via}` : ''}`))].join(', ')}`);
   let handback = lines.join('\n') + '\n';
   if (passed) {

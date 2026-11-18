@@ -12,7 +12,7 @@ node "${CLAUDE_PLUGIN_ROOT}/scripts/font.mjs" stack "Geist"                     
 
 **Builders.** When the brand file's `type.family` names a bundled family (or starts with one, as in `Geist, Inter, Arial, sans-serif`), run `font.mjs css` once into the out folder and paste the block at the top of the file's `<style>`, then use the stack. One block per family used, two families at most. Say in your return which family was inlined.
 
-When the brand names a family that is not bundled, use the closest bundled one by structure (a grotesque for a grotesque, a serif for a serif), say so in your return with the name, and the handback tells the user the brand font was substituted. Never leave a brand font to fall back to Arial or Times silently.
+When the brand names a family that is not bundled, use the closest bundled one by structure (a grotesque for a grotesque, a serif for a serif), say so in your return with the name, and the handback tells the user the brand font was substituted. `font.mjs css` on an unbundled name prints which one is closest. Proof accepts the stand-in, and in runner mode the runner inlines it for you. Never leave a brand font to fall back to Arial or Times silently.
 
 **Emails** are the exception: email clients ignore data-URI fonts, so the Email Designer writes a metric-close system stack and designs for the fallback.
 

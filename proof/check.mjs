@@ -1,6 +1,7 @@
 // The checks. Each returns failures a builder can act on. Pixels come from the background PNG (text hidden).
 import { readFileSync } from 'node:fs';
 import { PNG } from 'pngjs';
+import { bundledFamily, isSystemFamily, substituteFor } from '../fonts/families.mjs';
 
 const rgb = color => {
   const s = String(color).trim();
@@ -111,14 +112,20 @@ export function checkCopy(dom, mustAppear) {
   return mustAppear.filter(m => !rendered.includes(norm(m))).map(m => ({ check: 'copy', text: short(m), reason: 'this copy is not in the rendered text, it must appear word for word' }));
 }
 
-// The brand's first family must be loaded in the page, not left to a system fallback.
+// The brand's first family must be loaded in the page, not left to a system fallback. When the studio does not
+// ship that family, no desk can inline it, so the closest bundled family stands in (procedures/fonts.md) and passes.
 export function checkFont(dom, brand) {
-  const family = String(brand?.type?.family || '').split(',')[0].trim().replace(/^["']|["']$/g, '');
+  const stack = String(brand?.type?.family || '');
+  const family = stack.split(',')[0].trim().replace(/^["']|["']$/g, '');
   if (!family || !dom.fonts) return [];
-  const generic = ['sans-serif', 'serif', 'monospace', 'system-ui', 'ui-sans-serif', 'ui-serif', 'ui-monospace', 'arial', 'helvetica', 'georgia', 'times new roman'];
-  if (generic.includes(family.toLowerCase())) return [];
+  if (isSystemFamily(family)) return [];
   if (dom.fonts[family] === true) return [];
   const used = Object.keys(dom.fonts);
+  if (!bundledFamily(family)) {
+    if (used.some(n => dom.fonts[n] === true && bundledFamily(n))) return [];
+    const sub = substituteFor(family, stack).name;
+    return [{ check: 'font', text: family, reason: `the brand font "${family}" is not one the studio ships and no bundled family is loaded in this file (families named: ${used.join(', ') || 'none'}), so it renders in a system fallback. Inline the closest bundled family instead with font.mjs css "${sub}" per procedures/fonts.md` }];
+  }
   return [{ check: 'font', text: family, reason: `the brand font "${family}" is not loaded in this file (families named: ${used.join(', ') || 'none'}), so it renders in a fallback. Inline it with font.mjs css "${family}" per procedures/fonts.md` }];
 }
 

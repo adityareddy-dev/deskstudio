@@ -1,6 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { brandFamily, injectFont, stripFont, loadBrandFont, FONT_START, FONT_END } from '../fonts.mjs';
+import { bundledFamily, substituteFor } from '../../fonts/families.mjs';
 import { mkdtempSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
@@ -24,6 +25,18 @@ test('inject puts the block at the top of the first style and strip takes it out
   assert.ok(noStyle.includes('<head>\n<style>\n' + FONT_START));
   assert.equal(stripFont('plain'), 'plain');
   assert.equal(injectFont(html, null), html);
+});
+
+test('a family the studio does not ship gets the closest bundled one by structure', () => {
+  assert.equal(substituteFor('Instrument Sans').name, 'Inter');
+  assert.equal(substituteFor('Encode Sans').name, 'Inter');
+  assert.equal(substituteFor('IBM Plex Mono').name, 'Geist Mono');
+  assert.equal(substituteFor('Fira Code').name, 'Geist Mono');
+  assert.equal(substituteFor('Playfair Display').name, 'Source Serif 4');
+  assert.equal(substituteFor('Brand X', '"Brand X", Georgia, serif').name, 'Source Serif 4');
+  assert.equal(substituteFor('Brand X', '"Brand X", Geist, sans-serif').name, 'Geist', 'a bundled family already in the stack wins');
+  assert.equal(bundledFamily('Instrument Sans'), null);
+  assert.equal(bundledFamily('source serif').name, 'Source Serif 4');
 });
 
 test('loadBrandFont is null without scripts/font.mjs', () => {
