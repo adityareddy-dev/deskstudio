@@ -1,14 +1,16 @@
 # Changelog
 
-## Unreleased
+## [1.1.1](https://github.com/adityareddy-dev/deskstudio/releases/tag/v1.1.1) - 2026-11-18
 
-Easier to start, and no more stuck jobs on a brand font the studio does not ship.
+Easier to start, and no more stuck jobs on a real project's font or logo.
 
 - A brand font the studio does not ship no longer fails proof every round. The closest bundled family stands in for it, as the fonts procedure always said: proof accepts it, the runner inlines it, and the handback names it. Before, a project on any font other than Geist, Inter or Source Serif 4 used up every round and never reached the sign-off.
+- The brand logo reaches the file in runner mode. Builders write `src="desk:logo"` and the runner puts the logo the brand names in as a data URI after they return, the same way it handles the font. Before, the builders had no way to read the file, the mark rendered as a broken image, and the Creative Director marked brand down every round. A logo the runner cannot use is named to every desk once, and the files use the wordmark.
 - `desk-proof setup` downloads the browser proof uses, for a machine with no Chrome or Edge. `--with-deps` also installs its Linux system libraries.
 - `desk-run` checks for a working browser before it calls any model, so a missing browser costs nothing.
 - `deskstudio add` names the API keys it accepts when no CLI is signed in, and prints the next two commands.
 - The README starts with a short Get started section, and the dashboard guide shows the whole page.
+- `site/readme.mjs` writes the README in the repo again, and CI fails when the two differ.
 
 ## [1.1.0](https://github.com/adityareddy-dev/deskstudio/releases/tag/v1.1.0) - 2026-10-31
 
