@@ -82,6 +82,24 @@ test('a card without the brand font inlined fails on font', { timeout: 60000 }, 
   assert.ok(r.renders[0].failures.some(f => f.check === 'font'), JSON.stringify(r, null, 2));
 });
 
+test('a brand font the studio does not ship passes with a bundled family inlined in its place', { timeout: 60000 }, () => {
+  const dir = mkdtempSync(join(tmpdir(), 'desk-proof-sub-'));
+  writeFileSync(join(dir, 'DESIGN.md'), brand.replace('family: "Inter"', 'family: "Instrument Sans, Helvetica, sans-serif"'));
+  writeFileSync(join(dir, 'sub.html'), card());
+  const r = run(['check', join(dir, 'sub.html'), '--brand', join(dir, 'DESIGN.md'), '--sizes', 'linkedin', '--out', join(dir, 'sub')]);
+  assert.equal(r.pass, true, JSON.stringify(r, null, 2));
+});
+
+test('a brand font the studio does not ship, with nothing loaded, fails and names the stand-in', { timeout: 60000 }, () => {
+  const dir = mkdtempSync(join(tmpdir(), 'desk-proof-sub-'));
+  writeFileSync(join(dir, 'DESIGN.md'), brand.replace('family: "Inter"', 'family: "Instrument Sans, Helvetica, sans-serif"'));
+  writeFileSync(join(dir, 'nofont.html'), card('', ''));
+  const r = run(['check', join(dir, 'nofont.html'), '--brand', join(dir, 'DESIGN.md'), '--sizes', 'linkedin', '--out', join(dir, 'nofont')]);
+  const font = r.renders[0].failures.find(f => f.check === 'font');
+  assert.ok(font, JSON.stringify(r, null, 2));
+  assert.match(font.reason, /font\.mjs css "Inter"/);
+});
+
 test('long pages keep their footer pixels and contrast checks past 16384px', { timeout: 60000 }, async () => {
   const dir = mkdtempSync(join(tmpdir(), 'desk-proof-long-'));
   const browser = await launch();

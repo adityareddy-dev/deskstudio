@@ -27,7 +27,7 @@ node "${CLAUDE_PLUGIN_ROOT}/proof/cli.mjs" sizes
 
 Checks, in the order they run:
 
-0. **font**: the brand's first family is loaded in the file (inlined per `fonts.md`), not left to a system fallback.
+0. **font**: the brand's first family is loaded in the file (inlined per `fonts.md`), not left to a system fallback. When the studio does not ship that family, the closest bundled family loaded in its place passes, since no desk can inline a font the studio does not have.
 1. **overflow**: the document is no wider or taller than the canvas, and no text box is clipped by an ancestor.
 2. **safe-zone**: every text box is inside the size's safe zone.
 3. **contrast**: for every text box, the worst contrast between its colour and the actual pixels behind it, sampled every 2px, against 4.5:1 (or 3:1 for 24px and up, or 18.67px and up at weight 700).

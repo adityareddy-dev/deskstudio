@@ -13,7 +13,7 @@ Cost: director 0.21, senior 0.09, builder 0.02, total 0.32 (list prices, from th
 Open: none
 ```
 
-If the cap was reached, the `Scores` line says `under the bar` and an `Open` line says which axis and the last note, and `waitingOn` is set in state. If cost was incomplete, the `Cost` line ends with `(some runs did not report usage)`. If the user made the pick or an approval, say so on that line.
+If the cap was reached, the `Scores` line says `under the bar` and an `Open` line says which axis and the last note, and `waitingOn` is set in state. If cost was incomplete, the `Cost` line ends with `(some runs did not report usage)`. If the user made the pick or an approval, say so on that line. If the brand font is not bundled, a `Font` line names the family that stood in for it.
 
 Then write a memory block so the Stop hook can save what was decided, inside the message:
 
